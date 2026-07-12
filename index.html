@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EventWire — legislative change &amp; GOV.UK content readiness board</title>
+<title>EventWire — legislation that may affect GOV.UK content</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -452,9 +452,9 @@
         let whyLine;
         if (isProvisionMatch) {
           const subs = matchedProvisions.map(m => m.subject).filter(Boolean).slice(0, 2);
-          whyLine = "A " + confWord + "-confidence match to " + matchRefsText + (subs.length ? " — " + subs.join("; ") + "." : ".");
+          whyLine = "May need checking against " + matchRefsText + (subs.length ? " — " + subs.join("; ") + "." : ".");
         } else {
-          whyLine = "A " + confWord + "-confidence match to this Act. Check it against the commencement as a whole.";
+          whyLine = "May need checking against this Act. Check it against the commencement as a whole.";
         }
         const matchLabel = isProvisionMatch ? ("Brought in by " + matchRefsText) : "Act-level match";
         const matchTint  = isProvisionMatch ? "#e2efe8" : "#f3f2f1";
@@ -480,7 +480,7 @@
           cta: p.priority === "monitor" ? "Review" : "Plan update",
           workState: p.work_state || "not_started", workBadge: WSTAT[p.work_state] || null, workOwner: p.work_owner || "",
           valueBadge: vdBadge(p.value_diff), valueDiff: p.value_diff || null,
-          // Hand-off brief inputs (T-072): raw fields the per-page panel derives
+          // Per-page handoff inputs (T-072): raw fields the panel derives
           // stakeholder candidates + reviewing checks from, client-side.
           provisions: matchedProvisions, tier: p.tier || "",
           publisherFull: (p.publisher && p.publisher.title) || "", estate: p.estate || "",
@@ -686,7 +686,7 @@
     +   '<div class="ew-header-inner" style="max-width:1120px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between">'
     +     '<div style="display:flex;align-items:baseline;gap:12px">'
     +       '<span style="font-family:var(--font-heading);font-weight:700;color:#fff;font-size:19px;letter-spacing:-.01em">EventWire</span>'
-    +       '<span style="color:#9fb3c8;font-size:12px">Legislative change · GOV.UK content</span>'
+    +       '<span style="color:#9fb3c8;font-size:12px">Legislation that may affect GOV.UK content</span>'
     +     '</div>'
     +     '<div class="ew-header-meta" style="text-align:right">'
     +       '<div style="color:#e8eef4;font-size:12px;white-space:nowrap">' + esc(vm.header.updated) + '</div>'
@@ -729,7 +729,7 @@
     +   '<div class="ew-counts" style="text-align:right">'
     +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + esc(it.countsText) + '</div>'
     +     '<div class="t-caption t-muted" style="margin-top:1px">' + esc(it.ownerLine) + '</div>'
-    +     '<div style="font-size:12px;color:#1d70b8;font-weight:600;margin-top:4px">Open →</div>'
+    +     '<div style="font-size:12px;color:#1d70b8;font-weight:600;margin-top:4px">View pages →</div>'
     +   '</div>'
     + '</div>';
   }
@@ -746,12 +746,12 @@
     + '<main class="ew-main" style="max-width:1120px;margin:0 auto;padding:26px 24px 0">'
     +   viewTabsHTML("overview")
     +   '<div class="t-overline" style="color:#1d70b8">Upcoming legislation</div>'
-    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">What\'s coming, and when to start</h1>'
-    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">Legislation taking effect in the months ahead, each with a suggested date to start the content work — worked back from how long that kind of job usually takes. Open an Act to see which GOV.UK pages it affects.</p>'
+    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">Upcoming changes to check</h1>'
+    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">Legislation coming into force soon, matched to GOV.UK pages that may need updating or reviewing. Suggested start dates are based on the likely size of the content work.</p>'
     +   '<div class="ew-stats" style="display:flex;gap:0;background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:22px">' + statsHTML(ov.stats) + '</div>'
     +   '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px">'
-    +     '<input type="search" data-ctl="q" placeholder="Filter by Act, page or owner…" value="' + esc(ov.q) + '" style="min-width:240px;font-size:13px;font-family:var(--font-stack);padding:8px 11px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
-    +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Route to'
+    +     '<input type="search" data-ctl="q" placeholder="Filter by act, page or owner" value="' + esc(ov.q) + '" style="min-width:240px;font-size:13px;font-family:var(--font-stack);padding:8px 11px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
+    +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Team'
     +       '<select data-ctl="owner" style="font-size:13px;font-family:var(--font-stack);padding:8px 10px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">' + optionsHTML(ov.ownerOptions, ov.owner) + '</select>'
     +     '</label>'
     +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Show'
@@ -761,7 +761,7 @@
     +     '</label>'
     +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Sort'
     +       '<select data-ctl="sort" style="font-size:13px;font-family:var(--font-stack);padding:8px 10px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
-    +         optionsHTML([{value:"commencement",label:"Commencement date"},{value:"deadline",label:"Start-by deadline"}], ov.sort)
+    +         optionsHTML([{value:"commencement",label:"Commencement date"},{value:"deadline",label:"Suggested start date"}], ov.sort)
     +       '</select>'
     +     '</label>'
     +     '<span class="t-caption t-muted" id="ew-count" style="margin-left:auto">' + esc(ov.count) + '</span>'
@@ -804,7 +804,7 @@
     return ''
     + '<div style="background:#f4f8fb;border:1px solid #b7cfe3;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
     +   '<div class="t-overline" style="color:#144e81">Due for review</div>'
-    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Pages a real change has touched — their legislation came into force or was amended again, they appear to state a figure the law has since changed, or the page itself changed quietly. A few are here simply because their scheduled review date has passed. This is a prompt to look, not a finding that anything is wrong.</p>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Pages to check because something changed: the law came into force, was amended again, a value may now be out of date, the page changed quietly, or its review date has passed. This is a prompt to review, not a finding of error.</p>'
     +   rows.slice(0, MAX_ROWS).map(rowHTML).join("")
     +   (rows.length > MAX_ROWS ? '<div class="t-caption t-muted" style="padding:10px 0 0">+' + (rows.length - MAX_ROWS) + ' more page(s) due.</div>' : '')
     + '</div>';
@@ -836,7 +836,7 @@
     return ''
     + '<div style="background:#fffbf5;border:1px dashed #f47738;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
     +   '<div class="t-overline" style="color:#a04d0a">On the horizon</div>'
-    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Bills at late parliamentary stages that look likely to affect these pages. Nothing here has an in-force date yet — no deadline exists, and scope can still change before Royal Assent. When a bill becomes an Act with dates, it moves onto the worklist above and leaves this list.</p>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Bills that may affect these pages but do not yet have in-force dates. They may still change. Once dates are known, they move into the worklist.</p>'
     +   rows.map(rowHTML).join("")
     + '</div>';
   }
@@ -869,7 +869,7 @@
     return ''
     + '<div style="background:#fafafa;border:1px dotted #9aa2ab;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
     +   '<div class="t-overline" style="color:#4c5560">Enacted — not yet commenced</div>'
-    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Law that has already passed but whose provisions have no commencement date set yet. There is no deadline to work back from — this is a longer-term backlog to keep in view. Each provision moves onto the worklist above once a date is appointed.</p>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Acts that have passed but do not yet have commencement dates for these provisions. Keep them in view; no deadline exists yet.</p>'
     +   rows.map(rowHTML).join("")
     + '</div>';
   }
@@ -919,8 +919,8 @@
     + '<main class="ew-main" style="max-width:1120px;margin:0 auto;padding:26px 24px 0">'
     +   viewTabsHTML("plan")
     +   '<div class="t-overline" style="color:#1d70b8">Upcoming legislation</div>'
-    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">The whole window on one timeline</h1>'
-    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">Every Act, plotted from its suggested start date to the day it takes effect — so you can see where the work bunches up. The ring marks the day it takes effect; the vertical line is today. Open an Act to see which GOV.UK pages it affects.</p>'
+    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">Timeline of upcoming work</h1>'
+    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">See where content work may cluster across the worklist. Bars run from the suggested start date to the in-force date. The vertical line is today.</p>'
     +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px">'
     +     '<div class="ew-plan-grid" style="display:grid;grid-template-columns:260px 1fr;gap:16px">'
     +       '<div></div>'
@@ -1048,7 +1048,7 @@
     }).join("");
     return ''
     + '<div style="margin:6px 0 8px" class="t-overline">What changes</div>'
-    + '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 12px">Values this Act changes, with the pages that appear to still state the old one. Read from the legislation, not checked by a person yet — confirm on the page before editing.</p>'
+    + '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 12px">Values that may need updating on matched pages. Confirm the page before editing.</p>'
     + cards;
   }
 
@@ -1064,7 +1064,7 @@
     +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
     +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
     +       (p.showPublisher ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f"><span style="font-weight:400;color:#6f777b">Published by · </span>' + esc(p.publisher) + '</span>' : '')
-    +       '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:' + p.ownerTint + ';color:' + p.ownerColor + '"><span style="font-weight:400;opacity:.7">Route to · </span>' + esc(p.ownerShort) + '</span>'
+    +       '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:' + p.ownerTint + ';color:' + p.ownerColor + '"><span style="font-weight:400;opacity:.7">Team · </span>' + esc(p.ownerShort) + '</span>'
     +     '</div>'
     // Value-diff finding rendered as a flag, NOT a chip (ISS-031): a red flag is not
     // a category. Own line, flag glyph + sentence-case warning text, matching the
@@ -1135,15 +1135,15 @@
     if (!stakeholders.length && !checks.length) return "";
 
     return ''
-    + '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">Hand-off brief</h2>'
+    + '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">Who to involve</h2>'
     + '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:16px 20px;margin-bottom:24px">'
     +   '<p class="t-caption t-muted" style="margin:0 0 10px">Who to involve and what to check when this page comes up for review. Stakeholders are candidates to confirm, not authority.</p>'
     +   (stakeholders.length
-          ? '<div class="t-caption" style="font-weight:700;margin-bottom:4px">Stakeholders to confirm</div>'
+          ? '<div class="t-caption" style="font-weight:700;margin-bottom:4px">People and teams to confirm</div>'
             + stakeholders.map(s => '<div class="t-body-sm" style="padding:3px 0">' + esc(s.name) + ' <span class="t-caption t-muted">— ' + esc(s.role) + '</span></div>').join("")
           : '')
     +   (checks.length
-          ? '<div class="t-caption" style="font-weight:700;margin:10px 0 4px">What to check on review</div>'
+          ? '<div class="t-caption" style="font-weight:700;margin:10px 0 4px">What to check</div>'
             + checks.map(c => '<div class="t-body-sm" style="padding:3px 0;line-height:1.4">· ' + esc(c) + '</div>').join("")
           : '')
     + '</div>';
@@ -1190,7 +1190,7 @@
     +       '<div><div class="t-caption t-muted">Start by</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.startByFull) + '</div></div>'
     +       '<div><div class="t-caption t-muted">In force</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.commenceFull) + '</div></div>'
     +       '<div><div class="t-caption t-muted">Work type</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.workType) + '</div></div>'
-    +       '<div><div class="t-caption t-muted">Route to</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.ownerShort) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">Team</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.ownerShort) + '</div></div>'
     +     '</div>'
     +   '</div>'
     +   '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">What to do, in order</h2>'
