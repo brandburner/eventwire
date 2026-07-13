@@ -292,7 +292,26 @@
     const outstandingCount = it => actionable(it).filter(p => (p.work_state || "not_started") !== "done" && (p.work_state || "not_started") !== "not_doing").length;
 
     // ---- build one act model per queue item ----
+    // Dated work and prospective work are separate queue lanes because only
+    // the former has deadlines. On an Act page, join them by Act URL so the
+    // user can see the full set of matched measures without changing the
+    // worklist's counts or urgency.
+    const prospectiveByUrl = new Map(((Q.prospective && Q.prospective.items) || [])
+      .filter(x => x.legislation_url)
+      .map(x => [x.legislation_url, x]));
     const acts = Q.items.map((it, idx) => {
+      const prospectiveMatch = prospectiveByUrl.get(it.legislation_url);
+      const datedUrls = new Set((it.affected_pages || []).map(p => p.url).filter(Boolean));
+      const longerTermPages = prospectiveMatch
+        ? (prospectiveMatch.affected_pages || [])
+            .filter(p => p.url && !datedUrls.has(p.url))
+            .map(p => Object.assign({}, p, {
+              priority: "monitor",
+              long_term: true,
+              long_term_provisions: prospectiveMatch.provisions_sample || []
+            }))
+        : [];
+      const affectedPages = (it.affected_pages || []).concat(longerTermPages);
       const D = it.date;
       const S = it.start_by;          // commencement − lead_time.days (or null = monitor only)
       const lt = it.lead_time;
@@ -405,8 +424,9 @@
         ]
       };
 
-      const pages = (it.affected_pages || []).map((p, pi) => {
+      const pages = affectedPages.map((p, pi) => {
         const cat = lt ? lt.category : "content_update";
+        const isLongTerm = !!p.long_term;
         // Prefer the pipeline's authoritative page->provision provenance
         // (queue.json `matched_provisions`, from planning_queue.py); fall back to
         // the client-side topic<->subject heuristic only for pre-grounding caches.
@@ -435,7 +455,8 @@
         } else {
           steps = (stepDefs[cat] || stepDefs.content_update).map(s => ({ label:s.l.replace("DEPT", deptOf(p.owner)), f:s.f }));
         }
-        const baseS = hasStart ? iso(S).getTime() : iso(D).getTime();
+        const pageHasStart = hasStart && !isLongTerm;
+        const baseS = pageHasStart ? iso(S).getTime() : iso(D).getTime();
         const baseD = iso(D).getTime();
         const stepsOut = steps.map((s, si) => {
           const t = new Date(baseS + s.f * (baseD - baseS));
@@ -450,7 +471,9 @@
 
         const confWord = p.confidence || "";
         let whyLine;
-        if (isProvisionMatch) {
+        if (isLongTerm) {
+          whyLine = "May be affected by provisions that are not yet in force. Check the Act again when commencement dates are set.";
+        } else if (isProvisionMatch) {
           const subs = matchedProvisions.map(m => m.subject).filter(Boolean).slice(0, 2);
           whyLine = "May need checking against " + matchRefsText + (subs.length ? " — " + subs.join("; ") + "." : ".");
         } else {
@@ -463,7 +486,8 @@
         let doNextHead, doNextSub;
         const firstOverdue = stepsOut.find(s => s.flag === "Date passed");
         const firstJob = stepsOut[0].label.charAt(0).toLowerCase() + stepsOut[0].label.slice(1);
-        if (p.priority === "monitor" || !hasStart) { doNextHead = "Just keep an eye on it"; doNextSub = "Nothing to change yet. Look in again once the provisions go live on " + fmtFull(D) + "."; }
+        if (isLongTerm) { doNextHead = "Keep it in view"; doNextSub = "No commencement date yet. Check again when dates are set for these provisions."; }
+        else if (p.priority === "monitor" || !hasStart) { doNextHead = "Just keep an eye on it"; doNextSub = "Nothing to change yet. Look in again once the provisions go live on " + fmtFull(D) + "."; }
         else if (firstOverdue) { doNextHead = "Pick this up now"; doNextSub = "Start with: " + firstJob + ". The ideal start date was " + fmtFull(S) + ", so the sooner the better."; }
         else { doNextHead = "Not urgent — but get it on the list"; doNextSub = "Aim to start around " + fmtFull(S) + ". First job: " + firstJob + "."; }
 
@@ -486,10 +510,10 @@
           publisherFull: (p.publisher && p.publisher.title) || "", estate: p.estate || "",
           ownerFull: p.owner || "", rawDocType: p.doc_type || "",
           reviewDue: p.review_due || [],
-          matchLabel, matchTint, matchInk, isProvisionMatch,
+          matchLabel, matchTint, matchInk, isProvisionMatch, isLongTerm,
           steps:stepsOut, whyLine, doNextHead, doNextSub,
-          workType: hasStart ? (WORK[lt.category] || "Content update") : "Monitor",
-          startByFull: hasStart ? fmtFull(S) : "—", commenceFull: fmtFull(D),
+          workType: pageHasStart ? (WORK[lt.category] || "Content update") : "Monitor",
+          startByFull: pageHasStart ? fmtFull(S) : "—", commenceFull: isLongTerm ? "No date yet" : fmtFull(D),
           statusColor: st.color, statusInk: st.ink, actTitle: it.legislation_title, actUrl: it.legislation_url
         };
       });
@@ -529,9 +553,10 @@
         idx, title:it.legislation_title, url:it.legislation_url, commence:D, startBy:S, hasStart,
         status, statusLabel:st.label, statusColor:st.color, statusTint:st.tint, statusInk:st.ink,
         urgency, bannerLine, leadLine, runwayLabel, countsText, ownerLine, ownersSrc,
-        action:it.action_count, review:it.review_count, monitor:it.monitor_count, pageCount:it.page_count,
+        action:it.action_count, review:it.review_count, monitor:it.monitor_count, pageCount:pages.length,
         commencePct, startPct, showOverdueSeg, segOverdueLeft, segOverdueWidth, showRunwaySeg, segRunwayLeft, segRunwayWidth,
         commencements, pages, groups, proposals,
+        futureProvisions: prospectiveMatch ? (prospectiveMatch.provisions_sample || []) : [],
         _sortKey: S || ("Z" + D)
       };
     });
@@ -961,6 +986,15 @@
       + '</div>'
       + '</div>').join("");
 
+    const futureHTML = a.futureProvisions && a.futureProvisions.length
+      ? '<div style="margin:0 0 24px">'
+        + '<div class="t-overline">More measures to keep in view</div>'
+        + '<div style="background:#fafafa;border:1px dotted #9aa2ab;padding:12px 20px">'
+        + '<p class="t-body-sm t-secondary" style="margin:0 0 8px">These provisions have not been given commencement dates yet. The matched pages below are a longer-term prompt, not work with a deadline.</p>'
+        + '<div class="t-caption t-muted">' + a.futureProvisions.map(p => esc(p)).join(' · ') + '</div>'
+        + '</div></div>'
+      : '';
+
     // Every matched page renders — the Monitor bucket is collapsed by default
     // (native <details>) rather than hidden, so the "N pages matched" header
     // always agrees with what's on screen.
@@ -1003,6 +1037,7 @@
     +   '</div>'
     +   '<div style="margin-bottom:8px" class="t-overline">What comes into force, and when</div>'
     +   '<div style="margin-bottom:24px;display:flex;flex-direction:column;gap:14px">' + commHTML + '</div>'
+    +   futureHTML
     +   actProposalsHTML(a)
     +   '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">'
     +     '<h2 class="t-h4" style="margin:0;font-size:21px">Affected GOV.UK content</h2>'
@@ -1064,6 +1099,7 @@
     +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
     +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
     +       (p.showPublisher ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f"><span style="font-weight:400;color:#6f777b">Published by · </span>' + esc(p.publisher) + '</span>' : '')
+    +       (p.isLongTerm ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#4c5560">Longer-term measure</span>' : '')
     +       '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:' + p.ownerTint + ';color:' + p.ownerColor + '"><span style="font-weight:400;opacity:.7">Team · </span>' + esc(p.ownerShort) + '</span>'
     +     '</div>'
     // Value-diff finding rendered as a flag, NOT a chip (ISS-031): a red flag is not
@@ -1388,6 +1424,24 @@
       for (const p of it.affected_pages) {
         p.priority = p.priority || "action"; p.estate = p.estate || "other";
         p.owner = p.owner || "Unknown owner"; p.publisher_short = p.publisher_short || ""; p.topics = p.topics || [];
+      }
+    }
+    // Make longer-term matches addressable from an Act's page-detail routes as
+    // well as visible in the Act model. They remain monitor-only and do not
+    // alter the dated counts above.
+    const prospectiveByUrl = new Map(((Q.prospective && Q.prospective.items) || [])
+      .filter(x => x.legislation_url)
+      .map(x => [x.legislation_url, x]));
+    for (const it of (Q.items || [])) {
+      const x = prospectiveByUrl.get(it.legislation_url);
+      if (!x) continue;
+      const known = new Set(it.affected_pages.map(p => p.url).filter(Boolean));
+      for (const p of (x.affected_pages || [])) {
+        if (!p.url || known.has(p.url)) continue;
+        const copy = Object.assign({}, p, { priority: "monitor", long_term: true, long_term_provisions: x.provisions_sample || [] });
+        copy.estate = copy.estate || "other"; copy.owner = copy.owner || "Unknown owner";
+        copy.publisher_short = copy.publisher_short || ""; copy.topics = copy.topics || [];
+        it.affected_pages.push(copy); known.add(p.url);
       }
     }
     state.ready = true;
