@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventWire — legislation that may affect GOV.UK content</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<!--
+  EventWire content-readiness board.
+
+  Ported from the Claude Design canvas "EventWire Flow v2.dc.html" (guvnor design
+  system) into a single self-contained page the stdlib serve.py can render: no
+  external JS/CSS, the DCLogic component reworked as vanilla JS, design-system
+  tokens (Noto Sans body / Instrument Sans headings, GOV.UK palette, the .t-* type
+  ramp) inlined. Reads outputs/queue.json over fetch() and computes nothing on the
+  server. Hash-routed views (see the "hash routing" block): Worklist (#/) and Plan
+  timeline (#/plan) at the top level, drilling into Act detail -> Page next-steps.
+
+  One deliberate divergence from the canvas: the runway time-axis is derived from
+  the data window (start-by .. commencement across in-window Acts) rather than the
+  canvas's hard-coded May–Nov 2026 scale, so the board stays correct as the
+  plan-window shifts.
+-->
+<style>
+  :root {
+    --font-stack: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-heading: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --font-size-base: 19px; --font-size-sm: 16px; --font-size-xs: 14px;
+    --font-size-2xs: 12px; --font-size-3xs: 13px; --font-size-lead: 21px;
+    --font-size-title: 22px; --font-size-2xl: 28px; --font-size-xl: 36px; --font-size-xxl: 48px;
+
+    --leading-heading: 1.1; --leading-snug: 1.2; --leading-title: 1.3; --leading-body: 1.5;
+    --tracking-tight: -0.02em; --tracking-snug: -0.01em; --tracking-wider: 0.08em;
+
+    --color-text-primary: #0b0c0c; --color-text-secondary: #505a5f; --color-text-muted: #6f777b;
+    --color-gov-blue: #1d70b8; --color-bg-page: #f3f2f1;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-stack); font-size: var(--font-size-base); font-weight: 400;
+    line-height: var(--leading-body); color: var(--color-text-primary); background: var(--color-bg-page);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-text-primary); margin: 0; }
+
+  /* ---- design-system type ramp (.t-*) ---- */
+  .t-overline { font-family: var(--font-stack); font-weight: 600; font-size: var(--font-size-3xs);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-wider); text-transform: uppercase; }
+  .t-h2 { font-family: var(--font-heading); font-weight: 600; font-size: var(--font-size-xl);
+    line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); }
+  .t-h3 { font-family: var(--font-heading); font-weight: 650; font-size: var(--font-size-2xl);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .t-h4 { font-family: var(--font-heading); font-weight: 650; font-size: var(--font-size-title);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .t-body { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-base); line-height: var(--leading-body); }
+  .t-body-sm { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-sm); line-height: var(--leading-body); }
+  .t-caption { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-xs);
+    line-height: 1.45; color: var(--color-text-secondary); }
+  .t-muted { color: var(--color-text-muted); }
+  .t-secondary { color: var(--color-text-secondary); }
+
+  /* ---- form controls ---- */
+  input[type=search], select { font-family: var(--font-stack); color: #0b0c0c; }
+  a:focus { outline: 3px solid transparent; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; color: #0b0c0c; text-decoration: none; }
+
+  /* ---- hover affordances (inline styles can't carry :hover) ---- */
+  .ew-row { transition: background .1s ease; }
+  .ew-row:hover { background: #f4f8fb; }
+
+  /* ---- collapsed page groups (act detail Monitor bucket) ---- */
+  details > summary::-webkit-details-marker { display: none; }
+  details:not([open]) .ew-open-only { display: none; }
+  details[open] .ew-closed-only { display: none; }
+  .ew-btn-green { background: #00703c; color: #fff; border: none; box-shadow: 0 2px 0 #00451f; transition: background .1s ease; }
+  .ew-btn-green:hover { background: #005a30; }
+
+  /* ---- view-transition crossfade (ported from the canvas helmet) ---- */
+  @keyframes ew-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes ew-out { from { opacity: 1; } to { opacity: 0; } }
+  ::view-transition-old(root) { animation: ew-out .16s ease both; }
+  ::view-transition-new(root) { animation: ew-in .26s ease both; }
+
+  /* ---- mobile / narrow viewport ---- */
+  /* The board was authored at a fixed ~1180px canvas; below ~640px the rigid
+     300px 1fr 150px runway grid overflows. Collapse to single-column, drop the
+     horizontal timeline (its runwayLabel already carries the same info), stack
+     the header, wrap the stats, and full-width the page-card CTA. */
+  @media (max-width: 640px) {
+    .ew-main { padding-left: 14px !important; padding-right: 14px !important; }
+    .ew-header-inner { flex-wrap: wrap !important; gap: 4px 12px !important; padding: 12px 14px !important; }
+    .ew-header-meta { text-align: left !important; }
+    .ew-stats { flex-wrap: wrap !important; }
+    .ew-stats > div { flex: 1 0 42% !important; }
+    .ew-axis-grid { display: none !important; }
+    .ew-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+    .ew-row .ew-timeline { display: none !important; }
+    .ew-row .ew-counts { text-align: left !important; }
+    .ew-plan-grid { display: none !important; }
+    .ew-plan-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+    .ew-plan-row .ew-plan-timeline { display: none !important; }
+    .ew-page-card { flex-wrap: wrap !important; }
+    .ew-page-cta { order: 3; flex: 1 0 100% !important; margin-top: 8px; }
+  }
+</style>
+</head>
+<body>
+<div id="ew-app"><div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#6f777b">Loading the queue…</div></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ============================== helpers ==============================
+  const MS = 86400000;
+  const MON  = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const MONF = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const iso   = s => new Date(s + "T00:00:00Z");
+  const dleft = (a, b) => Math.round((iso(b) - iso(a)) / MS);
+  const esc   = s => String(s == null ? "" : s).replace(/[&<>"']/g,
+    c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+  // ============================== state ==============================
+  let Q = null;
+  const state = { view:"overview", actIdx:null, pageIdx:null, q:"", owner:"all", prio:"review", sort:"commencement", ready:false };
+  const root = document.getElementById("ew-app");
+
+  // ============================== view model ==============================
+  // Faithful port of the canvas component's renderVals(): turns EW_QUEUE
+  // (== queue.json, the planning_queue.py output) into the three view models.
+  function computeVM() {
+    if (!state.ready || !Q || !Q.items) {
+      return { loading:true, isOverview:false, isAct:false, isPage:false,
+        header:{ updated:"Loading…", discoveryLine:"" }, overview:null, act:null, page:null };
+    }
+
+    // ---- queue metadata ----
+    const genAt   = Q.generated_at || "";
+    const genDate = genAt ? genAt.slice(0, 10) : new Date().toISOString().slice(0, 10);
+    const NOW     = genDate;                  // "now" is the build date, so the board is deterministic
+    const disc    = Q.discovery || {};
+
+    const fmtMed  = s => { const d = iso(s); const b = d.getUTCDate() + " " + MON[d.getUTCMonth()];
+      return d.getUTCFullYear() !== iso(NOW).getUTCFullYear() ? b + " " + d.getUTCFullYear() : b; };
+    const fmtFull = s => { const d = iso(s); return d.getUTCDate() + " " + MONF[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+
+    const headerUpdated = "Built " + fmtFull(genDate) + (genAt ? " · " + genAt.slice(11, 16) + " UTC" : "");
+    let discoveryLine = disc.mode === "orders" ? "Commencement orders" : "Registry scan";
+    discoveryLine += " · " + (disc.in_window || Q.items.length) + " of " + (disc.considered || Q.items.length) + " in window";
+    if (disc.llm_verify) discoveryLine += " · LLM-verified";
+
+    // ---- runway scale: fit the data window (divergence from the canvas's
+    //      hard-coded May–Nov 2026 axis) so bars never run off-canvas ----
+    const monthStart = s => { const d = iso(s); return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)); };
+    const addMonths  = (dt, n) => new Date(Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth() + n, 1));
+    const allDates = [];
+    for (const it of Q.items) { if (it.date) allDates.push(it.date); if (it.start_by) allDates.push(it.start_by); }
+    allDates.push(NOW);
+    allDates.sort();
+    const lo = allDates[0] || NOW, hi = allDates[allDates.length - 1] || NOW;
+    const scaleA = monthStart(lo);
+    let scaleB = addMonths(monthStart(hi), 1);             // first of the month after the last date
+    if ((scaleB - scaleA) / MS < 45) scaleB = addMonths(scaleA, 2);   // keep at least a couple of months
+    const span   = (scaleB - scaleA) / MS;
+    const pct    = s => Math.round((((iso(s) - scaleA) / MS / span) * 100) * 100) / 100;
+    const nowPct = Math.round((((iso(NOW) - scaleA) / MS / span) * 100) * 100) / 100;
+    const startY = scaleA.getUTCFullYear();
+    const axis = [];
+    for (let m = scaleA; m < scaleB; m = addMonths(m, 1)) {
+      const label = MON[m.getUTCMonth()] + (m.getUTCFullYear() !== startY ? " " + String(m.getUTCFullYear()).slice(2) : "");
+      axis.push({ label, leftPct: pct(m.toISOString().slice(0, 10)) });
+    }
+
+    // ---- constants aligned with the codebase board ----
+    // Status combines TWO axes:
+    //  - lead-time (suggested start-by date vs today) — always known from data
+    //  - progress (per-page work_state, merged in nightly from configs/work_state.json)
+    //    — known ONLY for pages someone has recorded. An absent record is
+    //    indistinguishable from "nobody has looked", so the board must never
+    //    assert "not started" from it (ISS from T-079).
+    // `done`/`inprogress` reflect recorded progress; the start-by keys
+    // (overdue/startnow/ontrack) state date facts only. `carried` = commencement
+    // has passed without a done record, re-admitted so the rolling window can't
+    // hide it — again a record fact ("not marked done"), not a work claim.
+    const STAT = {
+      overdue:   { label:"Past start-by",         color:"#d4351c", tint:"#fbe3e0", ink:"#942514" },
+      startnow:  { label:"Start soon",            color:"#f47738", tint:"#fdeee2", ink:"#9c4915" },
+      ontrack:   { label:"Lead time in hand",     color:"#00703c", tint:"#e2efe8", ink:"#00402a" },
+      inprogress:{ label:"In progress",           color:"#1d70b8", tint:"#d2e2f1", ink:"#0b3d66" },
+      done:      { label:"Done",                  color:"#00703c", tint:"#cce2d8", ink:"#00402a" },
+      carried:   { label:"In force — not marked done", color:"#942514", tint:"#f6d4cf", ink:"#5c1710" },
+      monitor:   { label:"Monitor only",          color:"#6f777b", tint:"#edeeef", ink:"#505a5f" }
+    };
+    const CONF  = { high:"#00703c", medium:"#f47738", low:"#6f777b" };
+    const CONFL = { high:"High confidence", medium:"Medium confidence", low:"Low confidence" };
+    const EST_COLORS = { mainstream:"#1d70b8", whitehall:"#7C3AED", specialist:"#0d9488", other:"#6f777b" };
+    const EST_TINTS  = { mainstream:"rgba(29,112,184,.12)", whitehall:"rgba(124,58,237,.12)", specialist:"rgba(13,148,136,.12)", other:"rgba(111,119,123,.12)" };
+    const EST_LABELS = { mainstream:"Mainstream", whitehall:"Whitehall", specialist:"Specialist", other:"Other" };
+    const OWN_COLORS = { gds:"#1d70b8", dept:"#7C3AED", specialist:"#0d9488", other:"#6f777b" };
+    const OWN_TINTS  = { gds:"rgba(29,112,184,.12)", dept:"rgba(124,58,237,.12)", specialist:"rgba(13,148,136,.12)", other:"rgba(111,119,123,.12)" };
+    const WORK = { content_update:"Content update", new_guidance:"New guidance", publication:"Publication" };
+    // Per-page progress badge (only shown once someone has recorded something).
+    const WSTAT = {
+      in_progress:{ label:"In progress", tint:"#d2e2f1", ink:"#0b3d66" },
+      done:       { label:"Done",        tint:"#cce2d8", ink:"#00402a" },
+      not_doing:  { label:"Not doing",   tint:"#edeeef", ink:"#505a5f" }
+    };
+    // Old-vs-new value diff (Phase 1, value_diff.py) → a per-page badge and the
+    // per-target status label in a snippet proposal. contradicts = page states a
+    // superseded value (red flag); stale_date = cites a superseded date; consistent
+    // = already states the new value (reassuring). not_asserted/unknown carry no
+    // signal and are never attached, so they need no colour.
+    const VD = {
+      contradicts:{ tint:"#fbe3e0", ink:"#942514" },
+      stale_date: { tint:"#fdeee2", ink:"#9c4915" },
+      consistent: { tint:"#e2efe8", ink:"#00402a" }
+    };
+    const vdBadge = vd => {
+      if (!vd || !VD[vd.status]) return null;
+      const v = VD[vd.status];
+      let label;
+      if (vd.status === "contradicts") {
+        // A discrete value ("£109.40", "6 weeks") reads well inside the uppercase
+        // status chip; a sentence-length assertion does not (ISS-030 follow-up —
+        // the same "don't chip a clause" fix, now on the per-page badge). Collapse
+        // a long value to a short status and let the readable detail note below
+        // carry the full "the page says … / the law says …" text.
+        const val = (vd.page_value || "").trim();
+        label = (val && val.length <= 40)
+          ? (vd.matched_old_value ? "Still says " : "Says ") + val
+          : "Value may be outdated";
+      }
+      else if (vd.status === "stale_date") label = "Cites an older date";
+      else label = "Already current";
+      return { label, tint:v.tint, ink:v.ink };
+    };
+    const vdTargetLabel = t => {
+      if (t.status === "contradicts") return (t.matched_old_value ? "still says " : "says ") + "“" + (t.page_value || "something different") + "”";
+      if (t.status === "stale_date") return "cites an older date";
+      if (t.status === "consistent") return "already up to date";
+      return t.status || "";
+    };
+
+    const shortOwner = o => {
+      if (!o) return "—";
+      if (/^GDS/.test(o)) { const m = o.match(/policy:\s*([^)]+)/); return "GDS GOV.UK" + (m ? " · " + m[1].trim() : ""); }
+      return o.replace(/ content team$/, "");
+    };
+    const ownerClassOf = o => {
+      if (/^GDS/.test(o)) return "gds";
+      if (/specialist publisher/.test(o)) return "specialist";
+      if (/content team$/.test(o)) return "dept";
+      return "other";
+    };
+    const ownerColorOf = o => OWN_COLORS[ownerClassOf(o)];
+    const ownerTintOf = o => OWN_TINTS[ownerClassOf(o)];
+    const deptOf = o => {
+      if (!o) return "the team";
+      if (/^GDS/.test(o)) { const m = o.match(/policy:\s*([^)]+)/); return m ? m[1].trim() : "policy"; }
+      return o.replace(/ content team$/, "");
+    };
+    const statusOf = sb => { if (!sb) return "monitor"; const d = dleft(NOW, sb); return d < 0 ? "overdue" : (d <= 14 ? "startnow" : "ontrack"); };
+
+    // Progress axis over an Act's ACTIONABLE pages (action/review; monitor pages
+    // need no work). "none" => nothing to produce; else done / in_progress /
+    // not_started. `not_doing` counts as settled (deliberately out of scope).
+    const actionable = it => (it.affected_pages || []).filter(p => p.priority === "action" || p.priority === "review");
+    const progressOf = it => {
+      const work = actionable(it);
+      if (!work.length) return "none";
+      const states = work.map(p => p.work_state || "not_started");
+      const outstanding = states.filter(s => s !== "done" && s !== "not_doing");
+      if (!outstanding.length) return "done";
+      if (states.some(s => s === "in_progress" || s === "done")) return "in_progress";
+      return "not_started";
+    };
+    // Combined display key: progress wins where it's known; otherwise fall back to
+    // the lead-time (start-by) key. Reaching overdue/startnow/ontrack means no
+    // recorded progress — which is NOT the same as "not started", so those
+    // labels and their banner lines speak only about dates and records.
+    const displayStatusOf = (it, dstatus) => {
+      if (it.carried_over) return "carried";
+      const prog = progressOf(it);
+      if (prog === "done") return "done";
+      if (prog === "in_progress") return "inprogress";
+      return dstatus;   // "none" (monitor-only) or "not_started" -> lead-time key
+    };
+    const outstandingCount = it => actionable(it).filter(p => (p.work_state || "not_started") !== "done" && (p.work_state || "not_started") !== "not_doing").length;
+
+    // ---- build one act model per queue item ----
+    const acts = Q.items.map((it, idx) => {
+      const D = it.date;
+      const S = it.start_by;          // commencement − lead_time.days (or null = monitor only)
+      const lt = it.lead_time;
+      const hasStart = !!S;
+      const dstatus = statusOf(S);          // lead-time axis (drives runway geometry)
+      const status = displayStatusOf(it, dstatus);   // combined key for the chip/banner
+      const st = STAT[status];
+      const dts = hasStart ? dleft(NOW, S) : null;
+      const outN = outstandingCount(it);
+
+      let urgency, bannerLine;
+      if (status === "carried")       { const past = dleft(NOW, D); urgency = outN + " page" + (outN === 1 ? "" : "s") + " open"; bannerLine = "Came into force " + Math.abs(past) + " days ago (" + fmtFull(D) + ") and " + outN + " page" + (outN === 1 ? " is" : "s are") + " not marked done. If the work happened, record it; if not, it needs picking up."; }
+      else if (status === "done")     { urgency = "done"; bannerLine = "All actionable pages marked done. Comes into force " + fmtFull(D) + "."; }
+      else if (status === "inprogress") { urgency = outN + " page" + (outN === 1 ? "" : "s") + " left"; bannerLine = "Work in progress — " + outN + " actionable page" + (outN === 1 ? "" : "s") + " still open" + (hasStart ? " (suggested start was " + fmtFull(S) + ")" : "") + "."; }
+      else if (status === "overdue")  { urgency = Math.abs(dts) + " days past start-by"; bannerLine = "The suggested start date was " + Math.abs(dts) + " days ago (" + fmtFull(S) + ") and no work is recorded here. If it isn't already in hand, treat it as urgent."; }
+      else if (status === "startnow") { urgency = "start within " + dts + " days"; bannerLine = "The suggested start date is about " + dts + " days away (" + fmtFull(S) + ")."; }
+      else if (status === "ontrack")  { urgency = dts + " days of lead time"; bannerLine = "Time in hand — suggested start " + fmtFull(S) + " (" + dts + " days away)."; }
+      else { urgency = "monitor only"; bannerLine = "Nothing to update yet. Check these pages still read true once the provisions are in force."; }
+
+      const wk = lt ? (lt.weeks_min === lt.weeks_max ? lt.weeks_max + " weeks" : lt.weeks_min + "–" + lt.weeks_max + " weeks") : null;
+      const workLabel = lt ? (WORK[lt.category] || lt.category).toLowerCase() : null;
+      const leadLine = hasStart ? ("Best started by " + fmtFull(S) + " — a " + workLabel + " usually takes about " + wk) : ("Comes into force " + fmtFull(D));
+
+      const parts = [];
+      if (it.action_count) parts.push(it.action_count + " to update");
+      if (it.review_count) parts.push(it.review_count + " to review");
+      if (!it.action_count && !it.review_count && it.monitor_count) parts.push(it.monitor_count + " to monitor");
+      const countsText = parts.join(" · ");
+
+      const ownersSrc = it.owners && it.owners.length ? it.owners : [...new Set((it.affected_pages || []).map(p => p.owner))].filter(Boolean);
+      const ownerLine = ownersSrc.length ? (shortOwner(ownersSrc[0]) + (ownersSrc.length > 1 ? "  +" + (ownersSrc.length - 1) : "")) : "—";
+      const runwayLabel = hasStart ? ("Start by " + fmtMed(S) + " · " + urgency) : ("In force " + fmtMed(D) + " · monitor only");
+
+      // runway geometry
+      const commencePct = pct(D);
+      const startPct = hasStart ? pct(S) : null;
+      let showOverdueSeg = false, segOverdueLeft = 0, segOverdueWidth = 0, showRunwaySeg = false, segRunwayLeft = 0, segRunwayWidth = 0;
+      if (hasStart) {
+        // Red "behind" segment only when genuinely behind (not started / not done
+        // past start-by). A done or in-progress item past its start-by shows a
+        // solid runway in its status colour, not a red bar.
+        if (dstatus === "overdue" && (status === "overdue" || status === "carried")) {
+          showOverdueSeg = true; segOverdueLeft = startPct; segOverdueWidth = Math.max(0, Math.min(nowPct, commencePct) - startPct);
+          segRunwayLeft = Math.max(startPct, nowPct); segRunwayWidth = Math.max(0, commencePct - segRunwayLeft); showRunwaySeg = segRunwayWidth > 0.4;
+        } else { showRunwaySeg = true; segRunwayLeft = startPct; segRunwayWidth = Math.max(0, commencePct - startPct); }
+      }
+
+      // commencements, grouped by date
+      const tidyQual = q => {
+        if (!q) return "";
+        const m = String(q).toLowerCase();
+        if (m.includes("wholly")) return "fully in force";
+        if (m.includes("not already")) return "remainder in force";
+        if (m.includes("specified")) return "in force for specified purposes";
+        if (m === "other") return "";   // legislation.gov.uk's junk catch-all — hide it
+        return q;
+      };
+      // Split a provision ref into its scannable section token and the noisy
+      // subsection enumeration: "s. 23(1)(2)(6)(8)(11)(b)(c)(12)-(15)" ->
+      // {main:"s. 23", detail:"(1)(2)(6)(8)(11)(b)(c)(12)-(15)"}. The section is
+      // shown prominently, the enumeration de-emphasised (full ref on hover).
+      const splitRef = r => {
+        const m = /^(s{1,2}\.\s*\d+[A-Z]?|sch\w*\.?\s*\d+(?:\s*para\.?\s*\d+)?)\s*(.*)$/i.exec(String(r || ""));
+        return m ? { main: m[1].replace(/\s+/g, " ").trim(), detail: m[2].trim() } : { main: String(r || "—"), detail: "" };
+      };
+      const byDate = new Map();
+      for (const c of (it.commencements || [])) { if (!byDate.has(c.date)) byDate.set(c.date, []); byDate.get(c.date).push(c); }
+      const commencements = [...byDate.keys()].sort().map(d => {
+        const list = byDate.get(d);
+        const isPrimary = d === D;
+        const provisions = list.map(c => {
+          const rf = c.provisions || "—";
+          const sp = splitRef(rf);
+          return {
+          ref: rf, refMain: sp.main, refDetail: sp.detail, refFull: rf,
+          subject: c.subject || "Provision comes into force",
+          qual: tidyQual(c.qualification),
+          affecting: c.affecting || null,
+          affectingLabel: c.affecting ? c.affecting.replace("https://www.legislation.gov.uk/", "").replace(/\/$/, "").toUpperCase() : null
+        };
+        });
+        return { dateFull:fmtFull(d), color:isPrimary ? st.color : "#6f777b", tagLabel:isPrimary ? "Primary commencement" : "Staged commencement",
+          countLabel:list.length + " provision" + (list.length > 1 ? "s" : ""), provisions };
+      });
+
+      // subject index for provision matching (topics ↔ commencement subjects)
+      const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+      const subjIndex = (it.commencements || []).map(c => ({ key:norm(c.subject), ref:c.provisions || "—", subject:c.subject || "" }));
+
+      const stepDefs = {
+        content_update: [
+          { l:"Work out which parts of the page actually change", f:0 },
+          { l:"Draft the changes", f:0.35 },
+          { l:"Check your wording against the Act and the commencement order", f:0.6 },
+          { l:"Get a second pair of eyes on it (2i)", f:0.78 },
+          { l:"Square it off with DEPT policy", f:0.9 },
+          { l:"Schedule it to go live before the law does", f:1.0 }
+        ],
+        new_guidance: [
+          { l:"Agree what the new guidance needs to cover", f:0 },
+          { l:"Draft it", f:0.4 },
+          { l:"Check it against the Act and the commencement order", f:0.62 },
+          { l:"Get a second pair of eyes on it (2i)", f:0.8 },
+          { l:"Square it off with DEPT policy", f:0.92 },
+          { l:"Publish it before the law goes live", f:1.0 }
+        ],
+        publication: [
+          { l:"Check the record still reflects the new provisions", f:0 },
+          { l:"Make any light touches and publish", f:1.0 }
+        ]
+      };
+
+      const pages = (it.affected_pages || []).map((p, pi) => {
+        const cat = lt ? lt.category : "content_update";
+        // Prefer the pipeline's authoritative page->provision provenance
+        // (queue.json `matched_provisions`, from planning_queue.py); fall back to
+        // the client-side topic<->subject heuristic only for pre-grounding caches.
+        let matchedProvisions;
+        if (Array.isArray(p.matched_provisions) && p.matched_provisions.length) {
+          matchedProvisions = p.matched_provisions.map(x => ({ ref: x.ref || "—", subject: x.subject || "" }));
+        } else {
+          const topicKeys = (p.topics || []).map(norm).filter(Boolean);
+          const matchMap = new Map();
+          for (const si of subjIndex) {
+            if (!si.key) continue;
+            if (topicKeys.some(tk => tk === si.key || tk.includes(si.key) || si.key.includes(tk))) {
+              if (!matchMap.has(si.ref)) matchMap.set(si.ref, si.subject);
+            }
+          }
+          matchedProvisions = [...matchMap.entries()].map(([ref, subject]) => ({ ref, subject }));
+        }
+        const isProvisionMatch = matchedProvisions.length > 0;
+        // Section-level, de-duplicated for the "Brought in by …" chip / why-line
+        // (the full subsection detail lives in the commencement block above).
+        const matchRefsText = [...new Set(matchedProvisions.map(m => splitRef(m.ref).main))].join(", ");
+
+        let steps;
+        if (p.priority === "monitor" || !hasStart) {
+          steps = [{ label:"Once the provisions are live, check the page still reads true", f:1.0 }];
+        } else {
+          steps = (stepDefs[cat] || stepDefs.content_update).map(s => ({ label:s.l.replace("DEPT", deptOf(p.owner)), f:s.f }));
+        }
+        const baseS = hasStart ? iso(S).getTime() : iso(D).getTime();
+        const baseD = iso(D).getTime();
+        const stepsOut = steps.map((s, si) => {
+          const t = new Date(baseS + s.f * (baseD - baseS));
+          const tIso = t.toISOString().slice(0, 10);
+          const dd = dleft(NOW, tIso);
+          let flag, tint, ink, dotColor;
+          if (dd < 0)       { flag="Date passed"; tint=STAT.overdue.tint;  ink=STAT.overdue.ink;  dotColor="#d4351c"; }
+          else if (dd <= 14){ flag="Due soon";    tint=STAT.startnow.tint; ink=STAT.startnow.ink; dotColor="#f47738"; }
+          else              { flag="Scheduled";   tint="#edeeef";          ink="#505a5f";         dotColor="#b1b4b6"; }
+          return { num:si + 1, label:s.label, dateLabel:fmtMed(tIso), flag, tint, ink, dotColor };
+        });
+
+        const confWord = p.confidence || "";
+        let whyLine;
+        if (isProvisionMatch) {
+          const subs = matchedProvisions.map(m => m.subject).filter(Boolean).slice(0, 2);
+          whyLine = "May need checking against " + matchRefsText + (subs.length ? " — " + subs.join("; ") + "." : ".");
+        } else {
+          whyLine = "May need checking against this Act. Check it against the commencement as a whole.";
+        }
+        const matchLabel = isProvisionMatch ? ("Brought in by " + matchRefsText) : "Act-level match";
+        const matchTint  = isProvisionMatch ? "#e2efe8" : "#f3f2f1";
+        const matchInk   = isProvisionMatch ? "#00402a" : "#505a5f";
+
+        let doNextHead, doNextSub;
+        const firstOverdue = stepsOut.find(s => s.flag === "Date passed");
+        const firstJob = stepsOut[0].label.charAt(0).toLowerCase() + stepsOut[0].label.slice(1);
+        if (p.priority === "monitor" || !hasStart) { doNextHead = "Just keep an eye on it"; doNextSub = "Nothing to change yet. Look in again once the provisions go live on " + fmtFull(D) + "."; }
+        else if (firstOverdue) { doNextHead = "Pick this up now"; doNextSub = "Start with: " + firstJob + ". The ideal start date was " + fmtFull(S) + ", so the sooner the better."; }
+        else { doNextHead = "Not urgent — but get it on the list"; doNextSub = "Aim to start around " + fmtFull(S) + ". First job: " + firstJob + "."; }
+
+        return {
+          pi, idx, url:p.url, title:p.title, description:p.description || "", priority:p.priority, confidence:p.confidence,
+          confColor:CONF[p.confidence] || "#6f777b", confLabel:CONFL[p.confidence] || "",
+          estateLabel:EST_LABELS[p.estate] || "Other", estateColor:EST_COLORS[p.estate] || EST_COLORS.other, estateTint:EST_TINTS[p.estate] || EST_TINTS.other,
+          docType:(p.doc_type || "page").replace(/_/g, " "),
+          publisher:p.publisher_short || "—", ownerShort:shortOwner(p.owner),
+          ownerColor:ownerColorOf(p.owner), ownerTint:ownerTintOf(p.owner),
+          // Show the publisher chip only when it isn't already the owner (whitehall/
+          // specialist pages publish and route to the same org — that was the dupe).
+          showPublisher: !!p.publisher_short && p.publisher_short !== shortOwner(p.owner),
+          cta: p.priority === "monitor" ? "Review" : "Plan update",
+          workState: p.work_state || "not_started", workBadge: WSTAT[p.work_state] || null, workOwner: p.work_owner || "",
+          valueBadge: vdBadge(p.value_diff), valueDiff: p.value_diff || null,
+          // Per-page handoff inputs (T-072): raw fields the panel derives
+          // stakeholder candidates + reviewing checks from, client-side.
+          provisions: matchedProvisions, tier: p.tier || "",
+          publisherFull: (p.publisher && p.publisher.title) || "", estate: p.estate || "",
+          ownerFull: p.owner || "", rawDocType: p.doc_type || "",
+          reviewDue: p.review_due || [],
+          matchLabel, matchTint, matchInk, isProvisionMatch,
+          steps:stepsOut, whyLine, doNextHead, doNextSub,
+          workType: hasStart ? (WORK[lt.category] || "Content update") : "Monitor",
+          startByFull: hasStart ? fmtFull(S) : "—", commenceFull: fmtFull(D),
+          statusColor: st.color, statusInk: st.ink, actTitle: it.legislation_title, actUrl: it.legislation_url
+        };
+      });
+
+      // "What changes" facts (component_drafter proposals, opt-in via
+      // --value-diff): each is one concrete value the Act changes — quality-
+      // gated upstream to short entities and checkable values — plus the pages
+      // whose value_diff says they still state the superseded value. The
+      // drafted callout markdown rides along only as a copy affordance; the
+      // board renders, never publishes (T-076).
+      const proposals = (it.proposals || []).map(pr => {
+        const c = pr.component || {}, src = c.source || {}, r = c.renderings || {};
+        return {
+          entity:c.affected_entity || "", oldVal:c.old_value || "", newVal:c.new_value || "",
+          inForce:c.in_force_date || "", provision:src.provision_ref || "", legisTitle:src.legislation_title || "",
+          callout:r.callout || "", tableRow:r.table_row || null,
+          needs:pr.needs_count | 0, already:pr.already_count | 0, pageCount:pr.page_count | 0,
+          targets:(pr.targets || []).map(t => {
+            const b = VD[t.status] || { tint:"#edeeef", ink:"#505a5f" };
+            return { url:t.url || "", title:t.title || t.url || "", status:t.status || "", statusLabel:vdTargetLabel(t),
+              tint:b.tint, ink:b.ink, pageValue:t.page_value || "", owner:t.owner || "" };
+          })
+        };
+      });
+
+      const groupsDef = [
+        { key:"action",  label:"To update", hint:"", st:STAT.ontrack },
+        { key:"review",  label:"To review", hint:"", st:STAT.startnow },
+        { key:"monitor", label:"Monitor",   hint:"probably fine as-is — check once the change is in force", st:STAT.monitor }
+      ];
+      const groups = groupsDef.map(gd => {
+        const items = pages.filter(p => p.priority === gd.key);
+        return { key:gd.key, label:gd.label, hint:gd.hint, count:items.length + " page" + (items.length === 1 ? "" : "s"), color:gd.st.color, tint:gd.st.tint, ink:gd.st.ink, items, has:items.length > 0 };
+      }).filter(g => g.has);
+
+      return {
+        idx, title:it.legislation_title, url:it.legislation_url, commence:D, startBy:S, hasStart,
+        status, statusLabel:st.label, statusColor:st.color, statusTint:st.tint, statusInk:st.ink,
+        urgency, bannerLine, leadLine, runwayLabel, countsText, ownerLine, ownersSrc,
+        action:it.action_count, review:it.review_count, monitor:it.monitor_count, pageCount:it.page_count,
+        commencePct, startPct, showOverdueSeg, segOverdueLeft, segOverdueWidth, showRunwaySeg, segRunwayLeft, segRunwayWidth,
+        commencements, pages, groups, proposals,
+        _sortKey: S || ("Z" + D)
+      };
+    });
+
+    // ---- filters (worklist rows only — the act drill-in shows everything) ----
+    const prioFilter = state.prio, sortMode = state.sort;
+
+    // ---- overview stats ----
+    const overdueN    = acts.filter(a => a.status === "overdue" || a.status === "carried").length;
+    const pagesAction = acts.reduce((s, a) => s + (a.action || 0), 0);
+    const pagesReview = acts.reduce((s, a) => s + (a.review || 0), 0);
+    const teamN       = new Set(acts.flatMap(a => a.ownersSrc)).size;
+    const soonN       = acts.filter(a => a.hasStart && dleft(NOW, a.commence) >= 0 && dleft(NOW, a.commence) <= 90).length;
+    const stats = [
+      { n:overdueN,    label:"past start-by",    color:"#d4351c" },
+      { n:pagesAction, label:"pages to update",  color:"#0b0c0c" },
+      { n:pagesReview, label:"pages to review",  color:"#0b0c0c" },
+      { n:teamN,       label:"content teams",    color:"#0b0c0c" },
+      { n:soonN,       label:"in force within 90 days", color:"#0b0c0c" }
+    ];
+
+    // ---- overview rows: filter + sort ----
+    const q = state.q.trim().toLowerCase();
+    const ownerFilter = state.owner;
+    let rowsActs = [...acts];
+    if (sortMode === "deadline") {
+      rowsActs.sort((a, b) => {
+        if (!a.startBy && !b.startBy) return a.commence < b.commence ? -1 : 1;
+        if (!a.startBy) return 1;
+        if (!b.startBy) return -1;
+        return a.startBy < b.startBy ? -1 : a.startBy > b.startBy ? 1 : 0;
+      });
+    } else {
+      rowsActs.sort((a, b) => a._sortKey < b._sortKey ? -1 : a._sortKey > b._sortKey ? 1 : 0);
+    }
+    if (ownerFilter !== "all") rowsActs = rowsActs.filter(a => a.ownersSrc.some(o => o === ownerFilter));
+    rowsActs = rowsActs.filter(a => {
+      if (prioFilter === "all") return true;
+      if (prioFilter === "action") return a.action > 0;
+      return (a.action + a.review) > 0;
+    });
+    if (q) rowsActs = rowsActs.filter(a => {
+      const hay = (a.title + " " + a.ownersSrc.join(" ") + " " + a.pages.map(p => p.title).join(" ")).toLowerCase();
+      return hay.includes(q);
+    });
+    const rows = rowsActs.map(a => ({ ...a, op:1 }));
+
+    const ownerOptions = [{ value:"all", label:"All teams" }].concat(
+      [...new Set(acts.flatMap(a => a.ownersSrc))].sort().map(o => ({ value:o, label:shortOwner(o) }))
+    );
+
+    const overview = {
+      stats, rows, axis, nowPct, ownerOptions,
+      q:state.q, owner:state.owner, prio:state.prio, sort:state.sort,
+      count: rows.length + " of " + acts.length + " Acts",
+      empty: rows.length === 0
+    };
+
+    // ---- plan (timeline): every Act on one shared axis, chronological ----
+    // Unfiltered on purpose — the plan is the whole window at a glance; the
+    // worklist (overview) is where you filter/sort. Reuses each Act's runway
+    // geometry (start-by → commencement, computed above) against the same axis.
+    const planRows = [...acts].sort((a, b) => a._sortKey < b._sortKey ? -1 : a._sortKey > b._sortKey ? 1 : 0);
+    const plan = {
+      rows: planRows, axis, nowPct,
+      count: acts.length + " Act" + (acts.length === 1 ? "" : "s") + " in the window",
+      empty: planRows.length === 0
+    };
+
+    // ---- act detail ----
+    // The drill-in never inherits the worklist filters: hiding matched pages
+    // here made the header count and the visible list disagree ("9 pages
+    // matched" over 3 rows, T-078). Every matched page is reachable — the
+    // Monitor bucket just renders collapsed (see actHTML).
+    let act = null;
+    if (state.view === "act" && state.actIdx != null && acts[state.actIdx]) {
+      const a = acts[state.actIdx];
+      act = { ...a, pageCountLabel:a.pageCount + " page" + (a.pageCount === 1 ? "" : "s") + " matched" };
+    }
+
+    // ---- page detail ----
+    let page = null;
+    if (state.view === "page" && state.actIdx != null && state.pageIdx != null && acts[state.actIdx]) {
+      const a = acts[state.actIdx];
+      page = a.pages.find(x => x.pi === state.pageIdx) || a.pages[0] || null;
+    }
+
+    // ---- horizon lane (T-082) ----
+    // Pre-enactment bills at late parliamentary stages. Deliberately a
+    // separate, plainly-labelled list: no dates exist yet, so these rows get
+    // no timeline geometry, no start-by and no status ramp — early warning,
+    // not commitments.
+    const horizon = ((Q.horizon && Q.horizon.items) || []).map(h => ({
+      title: h.title || "",
+      stage: (h.current_stage || "") + (h.current_house ? " · " + h.current_house : ""),
+      lastUpdate: h.last_update || "",
+      billUrl: h.bill_url || "",
+      note: h.note || "",
+      pageCount: h.page_count || 0,
+      pages: (h.affected_pages || []).map(p => ({ url:p.url, title:p.title || p.url })),
+    }));
+
+    // ---- due-for-review lane (T-071) ----
+    // Event-driven review prompts: a page lands here when a real change event
+    // touched it (commencement, fresh amendment, apparent value contradiction,
+    // silent body change) — or, failing any of those, when its stored review
+    // date elapsed. A heads-up to review, not a claim that anything is wrong.
+    const REVIEW_SIGNAL_LABELS = {
+      commencement_reached: "change now in force",
+      amendment_effect: "law amended again",
+      value_contradiction: "may assert a superseded value",
+      silent_page_change: "silent page change",
+      review_elapsed: "review date elapsed",
+    };
+    const review = (((Q.review || {}).due) || []).map(r => ({
+      url: r.url || "",
+      title: r.title || r.url || "",
+      owner: r.owner || "",
+      signals: (r.signals || []).map(s => REVIEW_SIGNAL_LABELS[s.signal] || s.signal),
+      nextReview: r.next_review || "",
+      aiPrompts: ((r.ai_snapshot || {}).prompts) || 0,
+    }));
+
+    // ---- prospective lane (T-090) ----
+    // Enacted provisions with no commencement date appointed yet. Like the
+    // horizon lane, no dates exist — so no timeline, no start-by, no status
+    // ramp. A longer-term backlog, plainly labelled, not a set of deadlines.
+    const prospective = ((Q.prospective && Q.prospective.items) || []).map(x => ({
+      title: x.legislation_title || "",
+      url: x.legislation_url || "",
+      provisionCount: x.provision_count || 0,
+      alsoOnWorklist: !!x.also_on_worklist,
+      pageCount: x.page_count || 0,
+      pages: (x.affected_pages || []).map(p => ({ url:p.url, title:p.title || p.url })),
+    }));
+
+    return {
+      loading:false,
+      isOverview: state.view === "overview",
+      isPlan: state.view === "plan",
+      isAct: state.view === "act" && !!act,
+      isPage: state.view === "page" && !!page,
+      header: { updated:headerUpdated, discoveryLine },
+      overview, plan, act, page, horizon, review, prospective
+    };
+  }
+
+  // ============================== HTML builders ==============================
+  function headerHTML(vm) {
+    return ''
+    + '<header style="background:#0b1f35;border-bottom:3px solid #1d70b8;view-transition-name:ew-header">'
+    +   '<div class="ew-header-inner" style="max-width:1120px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between">'
+    +     '<div style="display:flex;align-items:baseline;gap:12px">'
+    +       '<span style="font-family:var(--font-heading);font-weight:700;color:#fff;font-size:19px;letter-spacing:-.01em">EventWire</span>'
+    +       '<span style="color:#9fb3c8;font-size:12px">Legislation that may affect GOV.UK content</span>'
+    +     '</div>'
+    +     '<div class="ew-header-meta" style="text-align:right">'
+    +       '<div style="color:#e8eef4;font-size:12px;white-space:nowrap">' + esc(vm.header.updated) + '</div>'
+    +       '<div style="color:#9fb3c8;font-size:11px">' + esc(vm.header.discoveryLine) + '</div>'
+    +     '</div>'
+    +   '</div>'
+    + '</header>';
+  }
+
+  function statsHTML(stats) {
+    return stats.map(s =>
+      '<div style="flex:1;padding:14px 18px;border-left:1px solid #ebe9e6">'
+      + '<div style="font-family:var(--font-heading);font-weight:650;font-size:28px;line-height:1;color:' + s.color + '">' + esc(s.n) + '</div>'
+      + '<div class="t-caption t-muted" style="margin-top:3px">' + esc(s.label) + '</div>'
+      + '</div>').join("");
+  }
+
+  function optionsHTML(opts, sel) {
+    return opts.map(o => '<option value="' + esc(o.value) + '"' + (o.value === sel ? " selected" : "") + '>' + esc(o.label) + '</option>').join("");
+  }
+
+  function overviewRowHTML(it, nowPct) {
+    return ''
+    + '<div class="ew-row" data-open-act="' + it.idx + '" style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px;align-items:center;padding:11px 8px;margin:0 -8px;border-top:1px solid #ebe9e6;cursor:pointer;opacity:' + it.op + ';border-radius:4px">'
+    +   '<div>'
+    +     '<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">'
+    +       '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:2px 7px;border-radius:4px;background:' + it.statusTint + ';color:' + it.statusInk + '">' + esc(it.statusLabel) + '</span>'
+    +     '</div>'
+    +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:15px;line-height:1.25;letter-spacing:-.01em;color:#0b0c0c">' + esc(it.title) + '</div>'
+    +     '<div class="t-caption t-muted" style="margin-top:2px">' + esc(it.runwayLabel) + '</div>'
+    +   '</div>'
+    +   '<div class="ew-timeline" style="position:relative;height:34px">'
+    +     '<div style="position:absolute;left:0;right:0;top:16px;height:2px;background:#e7e5e2"></div>'
+    +     (it.showOverdueSeg ? '<div style="position:absolute;top:13px;height:8px;border-radius:4px;background:#d4351c;left:' + it.segOverdueLeft + '%;width:' + it.segOverdueWidth + '%"></div>' : '')
+    +     (it.showRunwaySeg ? '<div style="position:absolute;top:13px;height:8px;border-radius:4px;left:' + it.segRunwayLeft + '%;width:' + it.segRunwayWidth + '%;background:' + it.statusColor + '"></div>' : '')
+    +     (it.hasStart ? '<div style="position:absolute;top:9px;height:16px;width:2px;background:' + it.statusColor + ';left:' + it.startPct + '%"></div>' : '')
+    +     '<div style="position:absolute;top:9px;left:' + it.commencePct + '%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid ' + it.statusColor + '"></div>'
+    +     '<div style="position:absolute;top:2px;bottom:2px;width:1px;background:rgba(11,12,12,.42);left:' + nowPct + '%"></div>'
+    +   '</div>'
+    +   '<div class="ew-counts" style="text-align:right">'
+    +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + esc(it.countsText) + '</div>'
+    +     '<div class="t-caption t-muted" style="margin-top:1px">' + esc(it.ownerLine) + '</div>'
+    +     '<div style="font-size:12px;color:#1d70b8;font-weight:600;margin-top:4px">View pages →</div>'
+    +   '</div>'
+    + '</div>';
+  }
+
+  function overviewRowsHTML(ov) {
+    if (ov.empty) return '<div style="padding:30px 0;text-align:center;color:#6f777b">No Acts match these filters.</div>';
+    return ov.rows.map(it => overviewRowHTML(it, ov.nowPct)).join("");
+  }
+
+  function overviewHTML(vm) {
+    const ov = vm.overview;
+    const axisHTML = ov.axis.map(t => '<div style="position:absolute;top:0;font-size:10px;color:#6f777b;left:' + t.leftPct + '%">' + esc(t.label) + '</div>').join("");
+    return ''
+    + '<main class="ew-main" style="max-width:1120px;margin:0 auto;padding:26px 24px 0">'
+    +   viewTabsHTML("overview")
+    +   '<div class="t-overline" style="color:#1d70b8">Upcoming legislation</div>'
+    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">Upcoming changes to check</h1>'
+    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">Legislation coming into force soon, matched to GOV.UK pages that may need updating or reviewing. Suggested start dates are based on the likely size of the content work.</p>'
+    +   '<div class="ew-stats" style="display:flex;gap:0;background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:22px">' + statsHTML(ov.stats) + '</div>'
+    +   '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px">'
+    +     '<input type="search" data-ctl="q" placeholder="Filter by act, page or owner" value="' + esc(ov.q) + '" style="min-width:240px;font-size:13px;font-family:var(--font-stack);padding:8px 11px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
+    +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Team'
+    +       '<select data-ctl="owner" style="font-size:13px;font-family:var(--font-stack);padding:8px 10px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">' + optionsHTML(ov.ownerOptions, ov.owner) + '</select>'
+    +     '</label>'
+    +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Show'
+    +       '<select data-ctl="prio" style="font-size:13px;font-family:var(--font-stack);padding:8px 10px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
+    +         optionsHTML([{value:"review",label:"Acts needing work"},{value:"action",label:"Acts with pages to update"},{value:"all",label:"Everything"}], ov.prio)
+    +       '</select>'
+    +     '</label>'
+    +     '<label class="t-caption t-muted" style="display:flex;align-items:center;gap:6px">Sort'
+    +       '<select data-ctl="sort" style="font-size:13px;font-family:var(--font-stack);padding:8px 10px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">'
+    +         optionsHTML([{value:"commencement",label:"Commencement date"},{value:"deadline",label:"Suggested start date"}], ov.sort)
+    +       '</select>'
+    +     '</label>'
+    +     '<span class="t-caption t-muted" id="ew-count" style="margin-left:auto">' + esc(ov.count) + '</span>'
+    +   '</div>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px">'
+    +     '<div class="ew-axis-grid" style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px">'
+    +       '<div></div>'
+    +       '<div style="position:relative;height:16px;border-bottom:1px solid #e1dfdc">' + axisHTML
+    +         '<div style="position:absolute;top:-1px;font-size:9px;font-weight:700;color:#0b0c0c;left:' + ov.nowPct + '%;transform:translateX(-50%)">TODAY</div>'
+    +       '</div>'
+    +       '<div></div>'
+    +     '</div>'
+    +     '<div id="ew-rows">' + overviewRowsHTML(ov) + '</div>'
+    +   '</div>'
+    +   reviewHTML(vm.review)
+    +   horizonHTML(vm.horizon)
+    +   prospectiveHTML(vm.prospective)
+    + '</main>';
+  }
+
+  // "Due for review" — event-driven review prompts (T-071). Distinct from the
+  // dated worklist: these are pages a real change event has touched (or whose
+  // stored review date elapsed), asking a designer to look, not asserting a
+  // defect. Signal chips say why in plain language.
+  function reviewHTML(rows) {
+    if (!rows || !rows.length) return "";
+    const MAX_ROWS = 12;
+    const chip = label => '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:2px 7px;border-radius:4px;background:rgba(29,112,184,.12);color:#144e81;margin-right:5px">' + esc(label) + '</span>';
+    const rowHTML = r => ''
+      + '<div style="display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:center;padding:10px 8px;margin:0 -8px;border-top:1px solid #ebe9e6">'
+      +   '<div>'
+      +     '<a href="' + esc(r.url) + '" target="_blank" rel="noopener" style="font-family:var(--font-heading);font-weight:650;font-size:14px;line-height:1.25;color:#1d70b8">' + esc(r.title) + '</a>'
+      +     '<div style="margin-top:5px">' + r.signals.map(chip).join("") + '</div>'
+      +   '</div>'
+      +   '<div class="t-caption t-muted" style="text-align:right">'
+      +     (r.owner ? esc(r.owner) : 'no owner routed')
+      +     (r.nextReview ? '<br>review date ' + esc(r.nextReview) : '')
+      +   '</div>'
+      + '</div>';
+    return ''
+    + '<div style="background:#f4f8fb;border:1px solid #b7cfe3;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
+    +   '<div class="t-overline" style="color:#144e81">Due for review</div>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Pages to check because something changed: the law came into force, was amended again, a value may now be out of date, the page changed quietly, or its review date has passed. This is a prompt to review, not a finding of error.</p>'
+    +   rows.slice(0, MAX_ROWS).map(rowHTML).join("")
+    +   (rows.length > MAX_ROWS ? '<div class="t-caption t-muted" style="padding:10px 0 0">+' + (rows.length - MAX_ROWS) + ' more page(s) due.</div>' : '')
+    + '</div>';
+  }
+
+  // "On the horizon" — pre-enactment bills (T-082). Visually distinct from the
+  // dated worklist (dashed border, amber chip) and honest about uncertainty:
+  // these have no in-force dates, no start-by, and may still change.
+  function horizonHTML(rows) {
+    if (!rows || !rows.length) return "";
+    const rowHTML = h => ''
+      + '<div style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px;align-items:center;padding:11px 8px;margin:0 -8px;border-top:1px solid #ebe9e6">'
+      +   '<div>'
+      +     '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:2px 7px;border-radius:4px;background:rgba(244,119,56,.14);color:#a04d0a">Early warning</span>'
+      +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:15px;line-height:1.25;margin-top:5px;color:#0b0c0c">' + esc(h.title) + '</div>'
+      +     '<div class="t-caption t-muted" style="margin-top:2px">' + esc(h.stage) + (h.lastUpdate ? ' · updated ' + esc(h.lastUpdate) : '') + '</div>'
+      +   '</div>'
+      +   '<div class="t-caption t-secondary" style="line-height:1.5">'
+      +     (h.pages.length
+              ? 'Likely pages: ' + h.pages.slice(0, 4).map(p => '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">' + esc(p.title) + '</a>').join(' · ')
+                + (h.pageCount > 4 ? ' (+' + (h.pageCount - 4) + ' more)' : '')
+              : '')
+      +   '</div>'
+      +   '<div style="text-align:right">'
+      +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + h.pageCount + ' page' + (h.pageCount === 1 ? '' : 's') + '</div>'
+      +     (h.billUrl ? '<a href="' + esc(h.billUrl) + '" target="_blank" rel="noopener" style="font-size:12px;color:#1d70b8;font-weight:600">Bill progress ↗</a>' : '')
+      +   '</div>'
+      + '</div>';
+    return ''
+    + '<div style="background:#fffbf5;border:1px dashed #f47738;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
+    +   '<div class="t-overline" style="color:#a04d0a">On the horizon</div>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Bills that may affect these pages but do not yet have in-force dates. They may still change. Once dates are known, they move into the worklist.</p>'
+    +   rows.map(rowHTML).join("")
+    + '</div>';
+  }
+
+  // "Enacted — not yet commenced" (T-090). A longer-term radar: real law already
+  // on the statute book whose commencement date has not been appointed. Like the
+  // horizon lane it is dateless — no start-by, no deadline — and visually distinct
+  // (dotted grey) so it never reads as a commitment.
+  function prospectiveHTML(rows) {
+    if (!rows || !rows.length) return "";
+    const rowHTML = x => ''
+      + '<div style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px;align-items:center;padding:11px 8px;margin:0 -8px;border-top:1px solid #ebe9e6">'
+      +   '<div>'
+      +     '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:2px 7px;border-radius:4px;background:rgba(80,90,100,.14);color:#4c5560">No date yet</span>'
+      +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:15px;line-height:1.25;margin-top:5px;color:#0b0c0c">' + esc(x.title) + '</div>'
+      +     '<div class="t-caption t-muted" style="margin-top:2px">' + x.provisionCount + ' provision' + (x.provisionCount === 1 ? '' : 's') + ' awaiting commencement'
+      +       (x.alsoOnWorklist ? ' · some already dated on the worklist' : '') + '</div>'
+      +   '</div>'
+      +   '<div class="t-caption t-secondary" style="line-height:1.5">'
+      +     (x.pages.length
+              ? 'Likely pages: ' + x.pages.slice(0, 4).map(p => '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">' + esc(p.title) + '</a>').join(' · ')
+                + (x.pageCount > 4 ? ' (+' + (x.pageCount - 4) + ' more)' : '')
+              : '')
+      +   '</div>'
+      +   '<div style="text-align:right">'
+      +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + x.pageCount + ' page' + (x.pageCount === 1 ? '' : 's') + '</div>'
+      +     (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener" style="font-size:12px;color:#1d70b8;font-weight:600">Legislation ↗</a>' : '')
+      +   '</div>'
+      + '</div>';
+    return ''
+    + '<div style="background:#fafafa;border:1px dotted #9aa2ab;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:22px">'
+    +   '<div class="t-overline" style="color:#4c5560">Enacted — not yet commenced</div>'
+    +   '<p class="t-caption t-muted" style="max-width:720px;margin:4px 0 8px">Acts that have passed but do not yet have commencement dates for these provisions. Keep them in view; no deadline exists yet.</p>'
+    +   rows.map(rowHTML).join("")
+    + '</div>';
+  }
+
+  // Worklist ⇄ Plan toggle, shown on both top-level views (same data, two lenses).
+  function viewTabsHTML(active) {
+    const tab = (nav, label) => {
+      const on = nav === active;
+      return '<span data-nav="' + nav + '" role="link" tabindex="0" style="cursor:pointer;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;'
+        + (on ? 'background:#0b1f35;color:#fff' : 'background:#fff;color:#1d70b8;border:1px solid #b1b4b6')
+        + '">' + esc(label) + '</span>';
+    };
+    return '<div style="display:flex;gap:8px;margin-bottom:16px">' + tab("overview", "Worklist") + tab("plan", "Plan") + '</div>';
+  }
+
+  // One Act as a full-width runway bar on the shared axis (Gantt row). Same
+  // geometry as the overview mini-timeline, given room by dropping the counts
+  // column; clicking opens the Act.
+  function planRowHTML(a, nowPct) {
+    return ''
+    + '<div class="ew-plan-row" data-open-act="' + a.idx + '" style="display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:center;padding:12px 8px;margin:0 -8px;border-top:1px solid #ebe9e6;cursor:pointer;border-radius:4px">'
+    +   '<div>'
+    +     '<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px">'
+    +       '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:2px 7px;border-radius:4px;background:' + a.statusTint + ';color:' + a.statusInk + '">' + esc(a.statusLabel) + '</span>'
+    +     '</div>'
+    +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:14px;line-height:1.25;letter-spacing:-.01em;color:#0b0c0c">' + esc(a.title) + '</div>'
+    +     '<div class="t-caption t-muted" style="margin-top:2px">' + esc(a.runwayLabel) + '</div>'
+    +   '</div>'
+    +   '<div class="ew-plan-timeline" style="position:relative;height:34px">'
+    +     '<div style="position:absolute;left:0;right:0;top:16px;height:2px;background:#e7e5e2"></div>'
+    +     (a.showOverdueSeg ? '<div style="position:absolute;top:13px;height:8px;border-radius:4px;background:#d4351c;left:' + a.segOverdueLeft + '%;width:' + a.segOverdueWidth + '%"></div>' : '')
+    +     (a.showRunwaySeg ? '<div style="position:absolute;top:13px;height:8px;border-radius:4px;left:' + a.segRunwayLeft + '%;width:' + a.segRunwayWidth + '%;background:' + a.statusColor + '"></div>' : '')
+    +     (a.hasStart ? '<div style="position:absolute;top:9px;height:16px;width:2px;background:' + a.statusColor + ';left:' + a.startPct + '%"></div>' : '')
+    +     '<div style="position:absolute;top:9px;left:' + a.commencePct + '%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid ' + a.statusColor + '"></div>'
+    +     '<div style="position:absolute;top:2px;bottom:2px;width:1px;background:rgba(11,12,12,.42);left:' + nowPct + '%"></div>'
+    +   '</div>'
+    + '</div>';
+  }
+
+  function planHTML(vm) {
+    const p = vm.plan;
+    const axisHTML = p.axis.map(t => '<div style="position:absolute;top:0;font-size:10px;color:#6f777b;left:' + t.leftPct + '%">' + esc(t.label) + '</div>').join("");
+    const rowsHTML = p.empty
+      ? '<div style="padding:30px 0;text-align:center;color:#6f777b">Nothing in the window yet.</div>'
+      : p.rows.map(a => planRowHTML(a, p.nowPct)).join("");
+    return ''
+    + '<main class="ew-main" style="max-width:1120px;margin:0 auto;padding:26px 24px 0">'
+    +   viewTabsHTML("plan")
+    +   '<div class="t-overline" style="color:#1d70b8">Upcoming legislation</div>'
+    +   '<h1 class="t-h2" style="margin:3px 0 6px;font-size:32px">Timeline of upcoming work</h1>'
+    +   '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 20px">See where content work may cluster across the worklist. Bars run from the suggested start date to the in-force date. The vertical line is today.</p>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px">'
+    +     '<div class="ew-plan-grid" style="display:grid;grid-template-columns:260px 1fr;gap:16px">'
+    +       '<div></div>'
+    +       '<div style="position:relative;height:16px;border-bottom:1px solid #e1dfdc">' + axisHTML
+    +         '<div style="position:absolute;top:-1px;font-size:9px;font-weight:700;color:#0b0c0c;left:' + p.nowPct + '%;transform:translateX(-50%)">TODAY</div>'
+    +       '</div>'
+    +     '</div>'
+    +     rowsHTML
+    +   '</div>'
+    +   '<div class="t-caption t-muted" style="margin:10px 2px 0">' + esc(p.count) + '</div>'
+    + '</main>';
+  }
+
+  function actHTML(vm) {
+    const a = vm.act;
+    const commHTML = a.commencements.map(c =>
+      '<div style="background:#fff;border:1px solid #e1dfdc;border-left:4px solid ' + c.color + ';box-shadow:0 1px 3px rgba(0,0,0,.05)">'
+      + '<div style="display:flex;gap:12px;align-items:baseline;padding:12px 20px;border-bottom:1px solid #ebe9e6;flex-wrap:wrap">'
+      +   '<span style="font-weight:650;font-family:var(--font-heading);font-size:16px;color:' + c.color + '">' + esc(c.dateFull) + '</span>'
+      +   '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#505a5f">' + esc(c.tagLabel) + '</span>'
+      +   '<span class="t-caption t-muted" style="margin-left:auto">' + esc(c.countLabel) + '</span>'
+      + '</div>'
+      + '<div style="padding:4px 20px 8px">'
+      + c.provisions.map(p =>
+          '<div style="display:flex;gap:14px;padding:9px 0;border-top:1px solid #f3f1ef;align-items:baseline">'
+          + '<span title="' + esc(p.refFull) + '" style="flex:none;min-width:74px;font-family:var(--font-mono,monospace);font-size:13px;color:#0b0c0c">'
+          +   '<span style="font-weight:700">' + esc(p.refMain) + '</span>'
+          +   (p.refDetail ? '<span style="font-weight:400;color:#8a9196;font-size:12px"> ' + esc(p.refDetail) + '</span>' : '')
+          + '</span>'
+          + '<div style="flex:1;min-width:0">'
+          +   '<div class="t-body-sm" style="color:#0b0c0c;line-height:1.35">' + esc(p.subject) + '</div>'
+          +   '<div class="t-caption t-muted" style="margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
+          +     (p.qual ? '<span>' + esc(p.qual) + '</span>' : '')
+          +     (p.affecting ? (p.qual ? '<span style="opacity:.4">·</span>' : '') + '<a href="' + esc(p.affecting) + '" target="_blank" rel="noopener" style="color:#1d70b8">brought in by ' + esc(p.affectingLabel) + '</a>' : '')
+          +   '</div>'
+          + '</div>'
+          + '</div>').join("")
+      + '</div>'
+      + '</div>').join("");
+
+    // Every matched page renders — the Monitor bucket is collapsed by default
+    // (native <details>) rather than hidden, so the "N pages matched" header
+    // always agrees with what's on screen.
+    const groupsHTML = a.groups.map(g => {
+      const head = expandHint =>
+        '<div style="display:flex;align-items:center;gap:9px;padding:7px 12px;background:' + g.tint + ';border-left:4px solid ' + g.color + '">'
+        + '<span style="font-family:var(--font-heading);font-weight:650;font-size:14px;white-space:nowrap;color:' + g.ink + '">' + esc(g.label) + '</span>'
+        + '<span class="t-caption" style="color:' + g.ink + ';opacity:.85">' + esc(g.count) + (g.hint ? ' · ' + esc(g.hint) : '') + '</span>'
+        + (expandHint ? '<span class="t-caption" style="margin-left:auto;color:' + g.ink + ';font-weight:600">' + expandHint + '</span>' : '')
+        + '</div>';
+      const cards = g.items.map(p => actPageCardHTML(p, a.idx)).join("");
+      if (g.key === "monitor") {
+        return '<details style="margin-bottom:18px">'
+          + '<summary style="cursor:pointer;list-style:none">'
+          + head('<span class="ew-closed-only">show pages ▸</span><span class="ew-open-only">hide pages ▴</span>')
+          + '</summary>'
+          + cards
+          + '</details>';
+      }
+      return '<div style="margin-bottom:18px">' + head('') + cards + '</div>';
+    }).join("")
+    || '<div style="padding:24px 0;color:#6f777b">No GOV.UK pages matched this Act.</div>';
+
+    return ''
+    + '<main class="ew-main" style="max-width:1000px;margin:0 auto;padding:22px 24px 0">'
+    +   '<div style="font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">'
+    +     '<span data-nav="overview" style="color:#1d70b8;cursor:pointer;font-weight:600">Worklist</span>'
+    +     '<span style="color:#6f777b">›</span><span class="t-muted">' + esc(a.title) + '</span>'
+    +   '</div>'
+    +   '<div style="background:#fff;border-left:5px solid ' + a.statusColor + ';box-shadow:0 1px 3px rgba(0,0,0,.06);padding:18px 22px;margin-bottom:18px">'
+    +     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">'
+    +       '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:3px 9px;border-radius:4px;background:' + a.statusTint + ';color:' + a.statusInk + '">' + esc(a.statusLabel) + '</span>'
+    +     '</div>'
+    +     '<h1 class="t-h3" style="margin:0 0 6px;font-size:26px">' + esc(a.title) + '</h1>'
+    +     '<p class="t-body" style="margin:0 0 10px;font-size:17px;color:#0b0c0c">' + esc(a.bannerLine) + '</p>'
+    +     '<div class="t-caption t-secondary" style="display:flex;gap:14px;flex-wrap:wrap">'
+    +       '<span>' + esc(a.leadLine) + '</span>'
+    +       '<a href="' + esc(a.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">View on legislation.gov.uk →</a>'
+    +     '</div>'
+    +   '</div>'
+    +   '<div style="margin-bottom:8px" class="t-overline">What comes into force, and when</div>'
+    +   '<div style="margin-bottom:24px;display:flex;flex-direction:column;gap:14px">' + commHTML + '</div>'
+    +   actProposalsHTML(a)
+    +   '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">'
+    +     '<h2 class="t-h4" style="margin:0;font-size:21px">Affected GOV.UK content</h2>'
+    +     '<span class="t-caption t-muted">' + esc(a.pageCountLabel) + '</span>'
+    +   '</div>'
+    +   groupsHTML
+    + '</main>';
+  }
+
+  // "What changes" — the Act's concrete value changes (queue.json `proposals`,
+  // present only on a --value-diff build). One card per fact: the thing that
+  // changes in plain words, old → new, when, and the pages that still state the
+  // superseded value. The drafted callout markdown is behind a "copy suggested
+  // wording" button — a convenience, not the headline (T-076). Nothing here
+  // publishes; every value traces to the legislation.
+  function actProposalsHTML(a) {
+    if (!a.proposals || !a.proposals.length) return "";
+    const cards = a.proposals.map(pr => {
+      const name = pr.entity ? pr.entity.charAt(0).toUpperCase() + pr.entity.slice(1) : "Value change";
+      const valueLine = pr.oldVal
+        ? '<span style="color:#6f777b">' + esc(pr.oldVal) + '</span> <span style="color:#6f777b">→</span> <strong>' + esc(pr.newVal) + '</strong>'
+        : 'now <strong>' + esc(pr.newVal) + '</strong>';
+      const rows = pr.targets.map(t =>
+        '<div style="display:flex;gap:10px;align-items:baseline;padding:7px 0;border-top:1px solid #f3f1ef">'
+        + '<span title="' + esc(t.statusLabel) + '" style="flex:none;width:8px;height:8px;border-radius:50%;background:' + t.ink + ';margin-top:5px"></span>'
+        + '<div style="flex:1;min-width:0">'
+        +   (t.url ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener" style="color:#1d70b8;font-size:14px;font-weight:600;text-decoration:none">' + esc(t.title) + '</a>' : '<span style="font-size:14px">' + esc(t.title) + '</span>')
+        +   (t.statusLabel ? ' <span class="t-caption t-muted" style="line-height:1.4">— ' + esc(t.statusLabel) + '</span>' : '')
+        + '</div>'
+        + '<span class="t-caption t-muted" style="flex:none;white-space:nowrap">' + esc(t.owner || "—") + '</span>'
+        + '</div>').join("");
+      return ''
+      + '<div style="background:#fff;border:1px solid #e1dfdc;border-left:4px solid #1d70b8;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 18px;margin-bottom:12px">'
+      +   '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">'
+      +     '<span style="font-family:var(--font-heading);font-weight:650;font-size:17px;color:#0b0c0c;line-height:1.3">' + esc(name) + '</span>'
+      +     (pr.inForce ? '<span class="t-caption t-muted">from ' + esc(pr.inForce) + '</span>' : '')
+      +   '</div>'
+      +   '<div style="font-size:19px;margin-top:3px;line-height:1.3">' + valueLine + '</div>'
+      +   ((pr.provision || pr.legisTitle) ? '<div class="t-caption t-muted" style="margin-top:3px">Source: ' + esc([pr.legisTitle, pr.provision].filter(Boolean).join(" · ")) + '</div>' : '')
+      +   (pr.callout ? '<div style="margin-top:9px"><button data-copy="' + esc(pr.callout) + '" style="font-family:var(--font-stack);font-size:12px;font-weight:600;color:#1d70b8;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:5px 10px;cursor:pointer">Copy suggested wording</button></div>' : '')
+      +   (rows ? '<div style="margin-top:9px">' + rows + '</div>' : '')
+      + '</div>';
+    }).join("");
+    return ''
+    + '<div style="margin:6px 0 8px" class="t-overline">What changes</div>'
+    + '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 12px">Values that may need updating on matched pages. Confirm the page before editing.</p>'
+    + cards;
+  }
+
+  function actPageCardHTML(p, actIdx) {
+    return ''
+    + '<div class="ew-page-card" style="background:#fff;border:1px solid #e1dfdc;border-top:none;padding:13px 16px;display:flex;gap:14px;align-items:flex-start">'
+    +   '<span title="' + esc(p.confLabel) + '" style="width:9px;height:9px;border-radius:50%;background:' + p.confColor + ';flex:none;margin-top:6px"></span>'
+    +   '<div style="flex:1;min-width:0">'
+    +     '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-family:var(--font-heading);font-weight:600;font-size:16px;color:#1d70b8;text-decoration:none;line-height:1.25">' + esc(p.title) + '</a>'
+    +     (p.description ? '<div class="t-caption t-secondary" style="margin-top:2px;line-height:1.35">' + esc(p.description) + '</div>' : '')
+    +     '<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">'
+    +       (p.workBadge ? '<span title="' + esc(p.workOwner ? "Owner: " + p.workOwner : "Recorded work progress") + '" style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.workBadge.tint + ';color:' + p.workBadge.ink + '">' + esc(p.workBadge.label) + '</span>' : '')
+    +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
+    +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
+    +       (p.showPublisher ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f"><span style="font-weight:400;color:#6f777b">Published by · </span>' + esc(p.publisher) + '</span>' : '')
+    +       '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:' + p.ownerTint + ';color:' + p.ownerColor + '"><span style="font-weight:400;opacity:.7">Team · </span>' + esc(p.ownerShort) + '</span>'
+    +     '</div>'
+    // Value-diff finding rendered as a flag, NOT a chip (ISS-031): a red flag is not
+    // a category. Own line, flag glyph + sentence-case warning text, matching the
+    // readable-finding style ISS-030 gave the proposal rows. (Comment lines here must
+    // not start with '+', or the leading '+' becomes a unary plus on the next operand.)
+    +     (p.valueBadge ? '<div style="margin-top:6px;display:flex;gap:6px;align-items:baseline" title="Value diff — a red flag to confirm, not a verdict">'
+    +       '<span aria-hidden="true" style="flex:none;color:' + p.valueBadge.ink + ';font-size:12px;line-height:1.35">⚑</span>'
+    +       '<span style="font-size:12px;line-height:1.35;color:' + p.valueBadge.ink + '"><span style="font-weight:600">' + esc(p.valueBadge.label) + '</span><span style="color:#6f777b;font-weight:400"> · flag to confirm, not a verdict</span></span>'
+    +     '</div>' : '')
+    +     '<div style="margin-top:6px"><span style="display:inline-block;font-size:11px;font-family:var(--font-mono,monospace);font-weight:700;padding:2px 8px;border-radius:4px;background:' + p.matchTint + ';color:' + p.matchInk + '">' + esc(p.matchLabel) + '</span></div>'
+    +   '</div>'
+    +   '<button class="ew-btn-green ew-page-cta" data-open-page="' + actIdx + ':' + p.pi + '" style="flex:none;font-family:var(--font-stack);font-size:13px;font-weight:600;border-radius:4px;padding:8px 13px;cursor:pointer">' + esc(p.cta) + ' →</button>'
+    + '</div>';
+  }
+
+  // A value-diff note on the page-detail view (value_diff.py output). Frames the
+  // diff as a red flag to confirm, never a verdict; the law value and the page's
+  // asserted value both trace to a source span. Renders nothing when there is no
+  // attached diff (or only a signal-free status).
+  function valueDiffNoteHTML(vd) {
+    if (!vd || !vd.status) return "";
+    let border, head, body;
+    if (vd.status === "contradicts") {
+      border = "#d4351c"; head = "Check this value first";
+      body = "This page appears to say " + esc(vd.page_value || "one thing")
+        + "; " + (vd.in_force_date ? "from " + esc(vd.in_force_date) + " " : "") + "the law says " + esc(vd.law_value || "something different") + "."
+        + (vd.matched_old_value ? " That is exactly the value being replaced, so it very likely needs updating — confirm on the page." : " Read the page before deciding — this is a flag, not a verdict.");
+    } else if (vd.status === "stale_date") {
+      border = "#f47738"; head = "Cites an older date";
+      body = "The page cites " + esc(vd.page_date || "an earlier date") + ", which this change"
+        + (vd.in_force_date ? " (" + esc(vd.in_force_date) + ")" : "") + " supersedes. Check it still reads true.";
+    } else if (vd.status === "consistent") {
+      border = "#00703c"; head = "Already states the new value";
+      body = "This page already says " + esc(vd.law_value || "the new value") + " — probably no change needed, but worth a glance.";
+    } else {
+      return "";
+    }
+    return '<div style="margin-top:10px;background:#fff;border-left:3px solid ' + border + ';border-top:1px solid #ebe9e6;border-right:1px solid #ebe9e6;border-bottom:1px solid #ebe9e6;padding:10px 14px;font-size:14px;color:#0b0c0c">'
+      + '<span style="font-weight:700">' + esc(head) + '</span> — ' + body + '</div>';
+  }
+
+  // Per-page hand-off brief (T-072): stakeholder candidates + what-to-check
+  // lines derived client-side from fields already on the page dict. The full
+  // owner-grouped pack (with register stakeholders) is generated server-side.
+  function handoffPanelHTML(p) {
+    const stakeholders = [];
+    if (p.ownerFull) stakeholders.push({ name: p.ownerFull, role: "likely content owner" });
+    if (p.publisherFull && p.publisherFull !== p.ownerFull)
+      stakeholders.push({ name: p.publisherFull, role: "publishing organisation" });
+
+    const checks = [];
+    for (const prov of (p.provisions || []).slice(0, 4)) {
+      checks.push("Check the page against " + (prov.ref || "the commencing change")
+        + (prov.subject ? " (" + prov.subject + ")" : "") + ".");
+    }
+    if ((p.provisions || []).length > 4) checks.push("(+" + (p.provisions.length - 4) + " more matched provisions.)");
+    const vd = p.valueDiff || {};
+    if (vd.status === "contradicts" || vd.status === "stale_date") {
+      checks.push("The page appears to state '" + (vd.page_value || "a superseded value")
+        + "' where the law now says '" + (vd.law_value || "a new value")
+        + "' — verify on the live page (a red flag to investigate, not a verdict).");
+    }
+    if (p.rawDocType === "guide") checks.push("Multi-part guide: check every chapter, not just the landing page.");
+    else if (p.tier === "service") checks.push("Transactional page: check computed results against the new values, not just body copy.");
+    else if (p.tier === "collection") checks.push("Collection page: check the linked set is current — add/remove links rather than editing copy.");
+    else if (p.tier === "publication") checks.push("Publication: consider an inline note or withdraw-and-replace rather than an edit.");
+    if (p.estate === "mainstream") checks.push("Mainstream page: edits route through the GDS content team, with policy input from " + (p.publisherFull || "the policy department") + ".");
+    if (!stakeholders.length && !checks.length) return "";
+
+    return ''
+    + '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">Who to involve</h2>'
+    + '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:16px 20px;margin-bottom:24px">'
+    +   '<p class="t-caption t-muted" style="margin:0 0 10px">Who to involve and what to check when this page comes up for review. Stakeholders are candidates to confirm, not authority.</p>'
+    +   (stakeholders.length
+          ? '<div class="t-caption" style="font-weight:700;margin-bottom:4px">People and teams to confirm</div>'
+            + stakeholders.map(s => '<div class="t-body-sm" style="padding:3px 0">' + esc(s.name) + ' <span class="t-caption t-muted">— ' + esc(s.role) + '</span></div>').join("")
+          : '')
+    +   (checks.length
+          ? '<div class="t-caption" style="font-weight:700;margin:10px 0 4px">What to check</div>'
+            + checks.map(c => '<div class="t-body-sm" style="padding:3px 0;line-height:1.4">· ' + esc(c) + '</div>').join("")
+          : '')
+    + '</div>';
+  }
+
+  function pageHTML(vm) {
+    const p = vm.page;
+    const stepsHTML = p.steps.map(st =>
+      '<div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #ebe9e6;align-items:flex-start">'
+      + '<div style="flex:none;width:26px;height:26px;border-radius:50%;border:2px solid ' + st.dotColor + ';color:' + st.dotColor + ';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:var(--font-heading)">' + esc(st.num) + '</div>'
+      + '<div style="flex:1;min-width:0"><div class="t-body" style="font-size:16px;color:#0b0c0c;line-height:1.35">' + esc(st.label) + '</div></div>'
+      + '<div style="flex:none;text-align:right;min-width:120px">'
+      +   '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;background:' + st.tint + ';color:' + st.ink + '">' + esc(st.flag) + '</span>'
+      +   '<div class="t-caption t-muted" style="margin-top:3px">by ' + esc(st.dateLabel) + '</div>'
+      + '</div>'
+      + '</div>').join("");
+
+    return ''
+    + '<main class="ew-main" style="max-width:920px;margin:0 auto;padding:22px 24px 0">'
+    +   '<div style="font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">'
+    +     '<span data-nav="overview" style="color:#1d70b8;cursor:pointer;font-weight:600">Worklist</span>'
+    +     '<span style="color:#6f777b">›</span>'
+    +     '<span data-nav="act" style="color:#1d70b8;cursor:pointer;font-weight:600">' + esc(p.actTitle) + '</span>'
+    +     '<span style="color:#6f777b">›</span><span class="t-muted">' + esc(p.title) + '</span>'
+    +   '</div>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:20px 22px;margin-bottom:18px">'
+    +     '<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px">'
+    +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
+    +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
+    +     '</div>'
+    +     '<h1 class="t-h3" style="margin:0 0 6px;font-size:25px;line-height:1.2">' + esc(p.title) + '</h1>'
+    +     (p.description ? '<p class="t-body-sm t-secondary" style="margin:0 0 8px;line-height:1.4">' + esc(p.description) + '</p>' : '')
+    +     '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-size:13px;color:#1d70b8;word-break:break-all">' + esc(p.url) + '</a>'
+    +     '<div style="margin-top:14px;background:#f4f8fb;border-left:3px solid #1d70b8;padding:10px 14px;font-size:14px;color:#0b0c0c">'
+    +       '<span style="font-weight:700">Why you\'re seeing this</span> — ' + esc(p.whyLine)
+    +     '</div>'
+    +     valueDiffNoteHTML(p.valueDiff)
+    +   '</div>'
+    +   '<div style="background:#fff;border-left:5px solid ' + p.statusColor + ';box-shadow:0 1px 3px rgba(0,0,0,.06);padding:18px 22px;margin-bottom:20px">'
+    +     '<div class="t-overline" style="color:' + p.statusInk + ';margin-bottom:5px">Do next</div>'
+    +     '<div class="t-h4" style="margin:0 0 5px;font-size:20px">' + esc(p.doNextHead) + '</div>'
+    +     '<p class="t-body-sm" style="margin:0;color:#0b0c0c">' + esc(p.doNextSub) + '</p>'
+    +     '<div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #ebe9e6">'
+    +       '<div><div class="t-caption t-muted">Start by</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.startByFull) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">In force</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.commenceFull) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">Work type</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.workType) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">Team</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.ownerShort) + '</div></div>'
+    +     '</div>'
+    +   '</div>'
+    +   '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">What to do, in order</h2>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:4px 20px 8px;margin-bottom:24px">' + stepsHTML + '</div>'
+    +   handoffPanelHTML(p)
+    +   '<div style="display:flex;gap:12px;flex-wrap:wrap">'
+    +     '<a class="ew-btn-green" href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-family:var(--font-stack);font-size:14px;font-weight:600;border-radius:4px;padding:10px 16px;text-decoration:none">Open the page →</a>'
+    +     '<a href="' + esc(p.actUrl) + '" target="_blank" rel="noopener" style="font-family:var(--font-stack);font-size:14px;font-weight:600;color:#1d70b8;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:10px 16px;text-decoration:none">View the Act</a>'
+    +     '<button data-nav="act" style="font-family:var(--font-stack);font-size:14px;font-weight:600;color:#0b0c0c;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:10px 16px;cursor:pointer">← Back to affected content</button>'
+    +   '</div>'
+    + '</main>';
+  }
+
+  // ============================== render + nav ==============================
+  function footerHTML() {
+    return '<footer style="max-width:1120px;margin:44px auto 0;padding:20px 24px;border-top:1px solid #d0d3d5;color:#6f777b;font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
+      +   '<span aria-hidden="true" style="display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;background:#ee802f;color:#fff;border-radius:3px;font-size:9px;font-weight:800;letter-spacing:.02em">RSS</span>'
+      +   '<a href="feed.atom" style="color:#1d70b8;font-weight:600;text-decoration:none">Subscribe to updates</a>'
+      +   '<span>— follow new and changed items in any feed reader.</span>'
+      +   '</footer>';
+  }
+
+  function fullRender() {
+    const vm = computeVM();
+    let body;
+    if (vm.loading) body = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#6f777b">Loading the queue…</div>';
+    else if (vm.isOverview) body = overviewHTML(vm);
+    else if (vm.isPlan) body = planHTML(vm);
+    else if (vm.isAct) body = actHTML(vm);
+    else if (vm.isPage) body = pageHTML(vm);
+    else body = overviewHTML(computeVM());   // fall back to overview if a detail view lost its target
+    root.innerHTML = '<div style="min-height:100vh;background:#f3f2f1;font-family:var(--font-stack);color:#0b0c0c;padding-bottom:60px">' + headerHTML(vm) + body + footerHTML() + '</div>';
+  }
+
+  // Filter changes only swap the overview rows + count — never the controls,
+  // so the search box keeps focus and caret while typing.
+  function rowsRender() {
+    const vm = computeVM();
+    if (!vm.isOverview) return;
+    const rowsEl = document.getElementById("ew-rows");
+    if (rowsEl) rowsEl.innerHTML = overviewRowsHTML(vm.overview);
+    const countEl = document.getElementById("ew-count");
+    if (countEl) countEl.textContent = vm.overview.count;
+  }
+
+  // ============================== hash routing ==============================
+  // Each view gets a real, shareable URL so deep links, bookmarks, open-in-new-
+  // tab and the browser back/forward buttons all work. We use *hash* routes
+  // (never path routes) because GitHub Pages serves static files only: the path
+  // is always index.html, so #/act/… can't 404 and needs no SPA fallback.
+  //   #/                       overview / worklist (filterable Act list)
+  //   #/plan                   the whole window on one timeline (Gantt)
+  //   #/act/<slug>             one Act's affected content
+  //   #/act/<slug>/page/<pi>   a single page's detail
+  // <slug> derives from the Act's legislation.gov.uk URL so a shared link
+  // survives the nightly rebuild (which can reorder Q.items); <pi> is the page's
+  // index within that Act. An unknown slug/pi falls back to the nearest valid
+  // view rather than erroring.
+  const actSlug = it => {
+    const s = String((it && it.legislation_url) || "")
+      .replace(/^https?:\/\/(www\.)?legislation\.gov\.uk\//i, "")
+      .replace(/[#?].*$/, "").replace(/\/+$/, "")
+      .replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").toLowerCase();
+    return s || "act";
+  };
+  function actIdxForSlug(slug) {
+    const items = (Q && Q.items) || [];
+    for (let i = 0; i < items.length; i++) if (actSlug(items[i]) === slug) return i;
+    return null;
+  }
+  function stateToHash(s) {
+    const items = (Q && Q.items) || [];
+    if (s.view === "plan") return "#/plan";
+    if ((s.view === "act" || s.view === "page") && s.actIdx != null && items[s.actIdx]) {
+      const base = "#/act/" + actSlug(items[s.actIdx]);
+      if (s.view === "page" && s.pageIdx != null) return base + "/page/" + s.pageIdx;
+      return base;
+    }
+    return "#/";
+  }
+  function hashToState() {
+    const items = (Q && Q.items) || [];
+    const seg = (location.hash || "").replace(/^#\/?/, "").split("/").filter(Boolean);
+    if (seg[0] === "plan") return { view:"plan", actIdx:null, pageIdx:null };
+    if (seg[0] === "act" && seg[1] != null) {
+      const ai = actIdxForSlug(decodeURIComponent(seg[1]));
+      if (ai == null) return { view:"overview", actIdx:null, pageIdx:null };
+      if (seg[2] === "page" && seg[3] != null) {
+        const pi = Number(seg[3]);
+        const pages = (items[ai].affected_pages || []);
+        if (Number.isInteger(pi) && pi >= 0 && pi < pages.length)
+          return { view:"page", actIdx:ai, pageIdx:pi };
+        return { view:"act", actIdx:ai, pageIdx:null };   // stale page ref -> its Act
+      }
+      return { view:"act", actIdx:ai, pageIdx:null };
+    }
+    return { view:"overview", actIdx:null, pageIdx:null };
+  }
+
+  function setDocTitle() {
+    const items = (Q && Q.items) || [];
+    let t = "EventWire — legislative change board";
+    const it = state.actIdx != null ? items[state.actIdx] : null;
+    if (state.view === "plan") t = "Plan — EventWire";
+    else if (state.view === "act" && it) t = it.legislation_title + " — EventWire";
+    else if (state.view === "page" && it) {
+      const p = (it.affected_pages || [])[state.pageIdx];
+      t = ((p && p.title) || "Affected page") + " — EventWire";
+    }
+    document.title = t;
+  }
+
+  function withTransition(fn) {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !reduce) {
+      try {
+        const vt = document.startViewTransition(fn);
+        if (vt && vt.ready) vt.ready.catch(() => {});
+        if (vt && vt.finished) vt.finished.catch(() => {});
+      } catch (_) { fn(); }
+    } else { fn(); }
+  }
+
+  // The single place that turns the URL into a rendered view. Folds only the
+  // routed keys (view/actIdx/pageIdx) onto state so the overview filter state
+  // (q/owner/prio/conf/sort) survives a round-trip into an Act and back.
+  function applyRoute() {
+    const route = hashToState();
+    withTransition(() => {
+      state.view = route.view;
+      state.actIdx = route.actIdx != null ? route.actIdx : null;
+      state.pageIdx = route.pageIdx != null ? route.pageIdx : null;
+      window.scrollTo(0, 0);
+      fullRender();
+      setDocTitle();
+    });
+  }
+
+  // Navigation is expressed as a route change: click handlers still call
+  // navTo({view,…}); we translate that to a hash and let hashchange -> applyRoute
+  // do the render, so history is populated automatically.
+  function navTo(patch) {
+    const hash = stateToHash(Object.assign({}, state, patch));
+    if (hash === (location.hash || "#/")) { applyRoute(); return; }  // same view: re-render in place
+    location.hash = hash;   // fires "hashchange" -> applyRoute()
+  }
+
+  // ---- delegated events (root persists across innerHTML swaps) ----
+  root.addEventListener("click", e => {
+    const copyEl = e.target.closest("[data-copy]");
+    if (copyEl) {
+      const txt = copyEl.getAttribute("data-copy") || "";
+      const done = () => {
+        copyEl.textContent = "Copied ✓";
+        setTimeout(() => { copyEl.textContent = "Copy suggested wording"; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, () => {});
+      return;
+    }
+    const pageEl = e.target.closest("[data-open-page]");
+    if (pageEl) { const [ai, pi] = pageEl.dataset.openPage.split(":").map(Number); navTo({ view:"page", actIdx:ai, pageIdx:pi }); return; }
+    const actEl = e.target.closest("[data-open-act]");
+    if (actEl) { navTo({ view:"act", actIdx:Number(actEl.dataset.openAct) }); return; }
+    const navEl = e.target.closest("[data-nav]");
+    if (navEl) { navTo({ view:navEl.dataset.nav }); }
+  });
+  root.addEventListener("input", e => {
+    const el = e.target.closest('[data-ctl="q"]');
+    if (el) { state.q = el.value; rowsRender(); }
+  });
+  root.addEventListener("change", e => {
+    const el = e.target.closest("[data-ctl]");
+    if (!el) return;
+    const key = el.dataset.ctl;
+    if (key === "q") return;
+    state[key] = el.value;
+    rowsRender();
+  });
+
+  // ============================== boot ==============================
+  // Cache-bust the data fetch: a per-load query param gives the CDN edge a fresh
+  // key (Pages caches queue.json ~10 min) and no-store skips the browser cache,
+  // so a returning visitor always sees the latest nightly build. serve.py and
+  // Pages both ignore the query string when resolving the static file.
+  fetch("queue.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).then(d => {
+    Q = d;
+    // Tolerate a pre-enrichment queue (older cache): default any missing fields.
+    for (const it of (Q.items || [])) {
+      it.owners = it.owners || [];
+      it.action_count = it.action_count | 0; it.review_count = it.review_count | 0; it.monitor_count = it.monitor_count | 0;
+      it.lead_time = it.lead_time || null;
+      it.commencements = it.commencements || [];
+      it.affected_pages = it.affected_pages || [];
+      it.proposals = it.proposals || [];
+      for (const p of it.affected_pages) {
+        p.priority = p.priority || "action"; p.estate = p.estate || "other";
+        p.owner = p.owner || "Unknown owner"; p.publisher_short = p.publisher_short || ""; p.topics = p.topics || [];
+      }
+    }
+    state.ready = true;
+    if (d.error) { root.innerHTML = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#6f777b">' + esc(d.error) + '</div>'; return; }
+    // Honour a deep link on first paint (no view transition on cold start),
+    // then let the URL drive every subsequent navigation.
+    Object.assign(state, hashToState());
+    fullRender();
+    setDocTitle();
+    window.addEventListener("hashchange", applyRoute);
+  }).catch(e => {
+    root.innerHTML = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#6f777b">Could not load queue.json: ' + esc(String(e)) + '</div>';
+  });
+})();
+</script>
+</body>
+</html>
