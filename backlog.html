@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Page findings — EventWire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  /* ============================================================= EventWire
+     Canonical design tokens (T-100). This block is BYTE-IDENTICAL in every
+     page under automation/web/ and tests/test_web_design_system.py fails the
+     build if it drifts. It is duplicated rather than shared because the pages
+     must stay self-contained static files (no external stylesheet) — see
+     tests/test_wire_desk_ui.py.
+
+     GOV.UK palette and conventions, because the audience already works in
+     them. Editorial structure — masthead, lede, section rules, dense rows —
+     carries the newsroom voice; the colour does not need to.
+     ========================================================================= */
+  :root {
+    --font-stack: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-heading: "Libre Franklin", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --font-size-base: 19px; --font-size-sm: 16px; --font-size-xs: 14px;
+    --font-size-2xs: 12px; --font-size-3xs: 13px; --font-size-lead: 21px;
+    --font-size-title: 22px; --font-size-2xl: 28px; --font-size-xl: 36px; --font-size-xxl: 48px;
+
+    --leading-heading: 1.1; --leading-snug: 1.2; --leading-title: 1.3; --leading-body: 1.5;
+    --tracking-tight: -0.02em; --tracking-snug: -0.01em; --tracking-wider: 0.08em;
+
+    --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
+    --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+
+    /* Text — every pair verified at 4.5:1 or better on both surface and page. */
+    --color-text-primary: #0b0c0c; --color-text-secondary: #505a5f; --color-text-muted: #687074;
+    --color-gov-blue: #1d70b8;
+    --color-bg-page: #f3f2f1; --color-surface: #ffffff; --color-masthead: #0b1f35;
+    --color-masthead-text: #ffffff; --color-masthead-subtle: #c3d3e3; --color-masthead-link: #a8c7e8;
+    --color-border: #b1b4b6; --color-border-light: #e1dfdc; --color-rule: #ebe9e6;
+    --color-red: #d4351c; --color-red-ink: #942514; --color-red-tint: #fbe5e1;
+    --color-green: #00703c; --color-green-ink: #005a30; --color-green-tint: #e4f3ea;
+    --color-amber-ink: #6b4700; --color-amber-tint: #fdf2d8;
+    --color-blue-ink: #144e81; --color-blue-tint: #e8f1f8;
+    --color-neutral-ink: #383f43; --color-neutral-tint: #eceded;
+    --color-focus: #ffdd00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-stack); font-size: var(--font-size-sm); font-weight: 400;
+    line-height: var(--leading-body); color: var(--color-text-primary);
+    background: var(--color-bg-page);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-text-primary); margin: 0; }
+  a { color: var(--color-gov-blue); }
+  /* GDS focus: yellow block with a black underline. Never removed. */
+  a:focus, button:focus, summary:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid transparent;
+    background: var(--color-focus); color: var(--color-text-primary);
+    box-shadow: 0 -2px var(--color-focus), 0 4px var(--color-text-primary);
+    text-decoration: none;
+  }
+  input:focus, select:focus, textarea:focus { background: var(--color-surface); box-shadow: none; outline: 3px solid var(--color-text-primary); outline-offset: 0; }
+  /* --------------------------------------------------- shared wire-page shell
+     Masthead, nav, page frame, lede, filter bar, notes, empty/error, footer.
+     Identical across the wire views; page-specific rules follow below.
+     Deliberately rule-and-tint based: no coloured side-stripes, no card grids,
+     no hero-metric blocks. Dividers where a divider will do.
+     ------------------------------------------------------------------------ */
+  .mast { background: var(--color-masthead); color: var(--color-masthead-text); border-bottom: 3px solid var(--color-gov-blue); }
+  .mast-in, .page { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-lg); }
+  .mast-in { padding-top: 13px; padding-bottom: 13px; }
+  .brand { font-family: var(--font-heading); font-weight: 700; font-size: 19px; letter-spacing: var(--tracking-snug); }
+  .brand span { color: var(--color-masthead-subtle); font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-2xs); margin-left: var(--space-xs); letter-spacing: 0; }
+  .nav { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: 10px; font-size: var(--font-size-xs); }
+  .nav a { color: var(--color-masthead-link); text-decoration: none; padding-bottom: 4px; }
+  .nav a:hover { color: var(--color-masthead-text); }
+  .nav a[aria-current] { color: var(--color-masthead-text); font-weight: 600; border-bottom: 3px solid var(--color-gov-blue); }
+
+  .page { padding-top: var(--space-lg); padding-bottom: var(--space-2xl); }
+  .overline { font-family: var(--font-stack); font-weight: 600; font-size: var(--font-size-3xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--color-gov-blue); }
+  h1 { font-size: var(--font-size-xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); margin: 3px 0 6px; }
+  h2 { font-size: var(--font-size-title); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .lede { max-width: 62ch; color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-lg); }
+
+  /* Summary figures read as a sentence, not as a row of dashboard tiles. */
+  .summary { font-size: var(--font-size-sm); color: var(--color-text-primary); margin: 0 0 var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--color-border-light); }
+  .summary b { font-family: var(--font-heading); font-weight: 700; }
+  .summary span { color: var(--color-text-muted); }
+
+  /* A note, not an alert: full border and a tint, no coloured edge stripe. */
+  .note { background: var(--color-surface); border: 1px solid var(--color-border-light); padding: var(--space-sm) var(--space-md); margin: 0 0 var(--space-lg); font-size: var(--font-size-xs); }
+  .note strong { display: block; margin-bottom: 2px; }
+  .note-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .note-split > div { padding: var(--space-sm) var(--space-md); }
+  .note-split > div + div { border-left: 1px solid var(--color-border-light); }
+  .note-split .eyebrow { text-transform: uppercase; letter-spacing: var(--tracking-wider); font-size: 11px; font-weight: 700; color: var(--color-text-muted); }
+
+  .tools { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: end; margin: 0 0 var(--space-sm); }
+  .field { display: grid; gap: var(--space-2xs); }
+  .field label { font-size: var(--font-size-2xs); font-weight: 600; color: var(--color-text-secondary); }
+  .field input, .field select { font: inherit; font-size: var(--font-size-xs); border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-surface); color: var(--color-text-primary); padding: 8px 10px; min-height: 44px; min-width: 170px; }
+  .field.search { flex: 1; }
+  .field.search input { width: 100%; }
+  .count { margin-left: auto; font-size: var(--font-size-3xs); color: var(--color-text-muted); padding-bottom: 12px; }
+
+  .panel { background: var(--color-surface); border: 1px solid var(--color-border-light); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .empty { padding: var(--space-lg); color: var(--color-text-muted); font-size: var(--font-size-xs); }
+  .error { max-width: 62ch; margin: var(--space-2xl) auto; background: var(--color-surface); border: 1px solid var(--color-red); padding: var(--space-lg); }
+  .error strong { display: block; margin-bottom: 4px; color: var(--color-red-ink); }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; background: var(--color-neutral-tint); color: var(--color-neutral-ink); }
+  .tag-red { background: var(--color-red-tint); color: var(--color-red-ink); }
+  .tag-amber { background: var(--color-amber-tint); color: var(--color-amber-ink); }
+  .tag-green { background: var(--color-green-tint); color: var(--color-green-ink); }
+  .tag-blue { background: var(--color-blue-tint); color: var(--color-blue-ink); }
+
+  footer { max-width: 1120px; margin: var(--space-xl) auto 0; padding: var(--space-lg); border-top: 1px solid var(--color-border-light); font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+
+  @media (max-width: 760px) {
+    h1 { font-size: var(--font-size-2xl); }
+    .note-split { grid-template-columns: 1fr; }
+    .note-split > div + div { border-left: 0; border-top: 1px solid var(--color-border-light); }
+    .count { width: 100%; margin: 0; }
+  }
+  /* --------------------------------------------------------- findings only */
+  /* Gaps are a short list, not a grid of matching cards: each is one page that
+     does not exist, and the leading label carries the meaning. */
+  .gap { border-top: 1px solid var(--color-rule); padding: var(--space-sm) 20px; }
+  .gap:first-child { border-top: 0; }
+  .gap h3 { font-family: var(--font-heading); font-size: var(--font-size-sm); font-weight: 600; margin: 3px 0; }
+  .gap-measure { font-family: var(--font-mono); font-size: var(--font-size-2xs); font-weight: 700; color: var(--color-text-secondary); }
+  .nearest { font-size: var(--font-size-3xs); color: var(--color-text-secondary); margin-top: 6px; word-break: break-word; }
+  .nearest b { display: block; font-weight: 600; color: var(--color-text-primary); }
+  .prompt { font-size: var(--font-size-xs); font-weight: 600; margin-top: 8px; }
+
+  .row { display: grid; grid-template-columns: minmax(240px,1.4fr) 165px 90px minmax(200px,1fr); gap: var(--space-md); align-items: start; border-top: 1px solid var(--color-rule); padding: var(--space-sm) 20px; }
+  .row:first-child { border-top: 0; }
+  /* Adjacent context is de-emphasised by tint and label, never by opacity —
+     dimming dropped the meta text to 3.03:1 (T-099). */
+  .row.adjacent { background: #faf9f8; }
+  .title { font-family: var(--font-heading); font-size: var(--font-size-sm); font-weight: 600; line-height: var(--leading-snug); }
+  .url { font-size: var(--font-size-2xs); word-break: break-word; }
+  .meta { font-size: var(--font-size-2xs); color: var(--color-text-muted); margin-top: 4px; }
+  .severity { font-family: var(--font-heading); font-weight: 700; font-size: var(--font-size-xs); }
+  .severity.P0, .severity.P0-review { color: var(--color-red-ink); }
+  .severity.P1 { color: var(--color-amber-ink); }
+  .snippet { font-size: var(--font-size-3xs); color: var(--color-text-secondary); }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md); margin: var(--space-xl) 0 var(--space-xs); }
+  .section-head p { color: var(--color-text-muted); margin: 2px 0 0; font-size: var(--font-size-xs); }
+  .section-count { font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="mast"><div class="mast-in">
+    <div class="brand">EventWire<span>Legislation that may affect GOV.UK content</span></div>
+    <nav class="nav" aria-label="EventWire views">
+      <a href="./">Upcoming changes</a><a href="./wire-desk.html">Wire desk</a><a href="./backlog.html" aria-current="page">Page findings</a><a href="./judgments.html">Record a decision</a><a href="./#/escalation">Overdue work</a>
+    </nav>
+  </div></header>
+  <main class="page">
+    <div class="overline">Findings by page</div>
+    <h1>Pages worth a look, and why</h1>
+    <p class="lede">Every finding says where it came from. A link someone has confirmed is not the same as a word match nobody has checked, and neighbouring context is not something to rewrite.</p>
+    <div class="note"><strong>A finding is a prompt, not a fault.</strong><span id="backlog-copy">Word matches are unchecked. Confirm or rule out the link before treating a row as work to do.</span></div>
+
+    <div class="section-head">
+      <div><h2>Nowhere to put it</h2><p>No page covers this yet. The blank address is the finding.</p></div>
+      <div class="section-count" id="gap-count"></div>
+    </div>
+    <section class="panel" id="gaps"><div class="empty">Loading…</div></section>
+
+    <div class="section-head"><div><h2>Pages with findings</h2></div></div>
+    <section class="tools" aria-label="Filter findings">
+      <div class="field search"><label for="q">Find a page or measure</label><input id="q" type="search" placeholder="Title, address, measure or team"></div>
+      <div class="field"><label for="status">Where it came from</label><select id="status"><option value="">Any source</option></select></div>
+      <div class="field"><label for="severity">Priority</label><select id="severity"><option value="">Any priority</option></select></div>
+      <div class="count" id="count" aria-live="polite"></div>
+    </section>
+    <section class="panel" id="rows"><div class="empty">Loading…</div></section>
+  </main>
+  <footer>Filters change what you see, nothing else. Priority weighs how soon the change lands, not how certain the finding is.</footer>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let pageRows = [];
+  // Where a finding came from, in the reader's language, with the tint that
+  // matches its standing: confirmed by a person, or matched by a machine.
+  const provenance = {
+    human_confirmed:["Confirmed by a person","tag-green"], keyword_candidate:["Word match, unchecked","tag-amber"],
+    human_adjacent:["Nearby context","tag"], evidence_sweep:["Found by sweep","tag-amber"]
+  };
+  const STATUS_TO_PROV = {candidate:"keyword_candidate", registry_confirmed:"human_confirmed",
+    adjacent_context:"human_adjacent", sweep_candidate:"evidence_sweep"};
+  function gapHTML(r) {
+    const nearest = (r.nearest_context || []).map(u => '<div>' + esc(u) + '</div>').join("") || "Nothing close by.";
+    return '<article class="gap"><div class="gap-measure">' + esc((r.measure_ids || []).join(", ")) + '</div>'
+      + '<h3>No page covers this</h3>'
+      + '<div class="meta">' + esc(r.owning_team || "No team recorded") + ' · priority ' + esc(r.severity || "not set") + '</div>'
+      + '<div class="nearest"><b>Closest existing pages</b>' + nearest + '</div>'
+      + '<div class="prompt">Write something, or confirm this belongs to another department?</div></article>';
+  }
+  function rowHTML(r) {
+    const p = provenance[r.provenance] || [r.status_label || r.status, ""];
+    const link = r.url ? '<a class="url" href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.url) + '</a>' : '<span class="url">No address</span>';
+    return '<article class="row' + (r.status === "adjacent_context" ? " adjacent" : "") + '">'
+      + '<div><div class="title">' + esc(r.title || "Untitled page") + '</div>' + link + '<div class="meta">' + esc((r.measure_ids || []).join(", ")) + ' · ' + esc(r.document_type || "type not recorded") + '</div></div>'
+      + '<div><span class="tag ' + esc(p[1]) + '">' + esc(p[0]) + '</span></div>'
+      + '<div><div class="severity ' + esc(r.severity) + '">' + esc(r.severity || "—") + '</div></div>'
+      + '<div class="snippet">' + esc(r.matched_text || "No wording recorded.") + '<div class="meta">' + esc(r.owning_team || "No team recorded") + '</div></div></article>';
+  }
+  function render() {
+    const q=$("q").value.trim().toLowerCase(), status=$("status").value, sev=$("severity").value;
+    const filtered=pageRows.filter(r=>{
+      const hay=[r.title,r.url,(r.measure_ids||[]).join(" "),r.owning_team,r.matched_text].join(" ").toLowerCase();
+      return (!q||hay.includes(q))&&(!status||r.status===status)&&(!sev||r.severity===sev);
+    });
+    $("count").textContent=filtered.length+" of "+pageRows.length+" findings";
+    $("rows").innerHTML=filtered.map(rowHTML).join("")||'<div class="empty">No findings match these filters.</div>';
+  }
+  // The result count is the live region, not the list: re-announcing all 186
+  // findings on each keystroke made the filter unusable with a screen reader.
+  // Typing is debounced so the count settles before it is read out (T-099).
+  let debounce=null;
+  const renderSoon=()=>{clearTimeout(debounce);debounce=setTimeout(render,200);};
+  $("q").addEventListener("input",renderSoon);
+  ["status","severity"].forEach(id=>$(id).addEventListener("change",render));
+  fetch("wire_desk.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();}).then(d=>{
+    const rows=(d.backlog&&d.backlog.rows)||[], gaps=rows.filter(r=>r.is_gap); pageRows=rows.filter(r=>!r.is_gap);
+    $("gap-count").textContent=gaps.length+(gaps.length===1?" gap":" gaps");
+    $("gaps").innerHTML=gaps.map(gapHTML).join("")||'<div class="empty">No missing-page findings this time.</div>';
+    const labels=(d.backlog&&d.backlog.status_labels)||{};
+    $("status").innerHTML+=Object.keys(labels).filter(s=>s!=="net_new_content_needed").map(s=>{
+      const readable=(provenance[STATUS_TO_PROV[s]]||[labels[s]||s])[0];
+      return '<option value="'+esc(s)+'">'+esc(readable)+'</option>';
+    }).join("");
+    const severities=[...new Set(pageRows.map(r=>r.severity).filter(Boolean))].sort();
+    $("severity").innerHTML+=severities.map(s=>'<option>'+esc(s)+'</option>').join(""); render();
+  }).catch(()=>{$("gaps").innerHTML="";$("rows").innerHTML='<div class="error"><strong>This page could not load its findings.</strong>Try again in a few minutes. If it keeps happening, last night’s update may not have finished.</div>';});
+})();
+</script>
+</body>
+</html>
