@@ -1,0 +1,2172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventWire — legislation that may affect GOV.UK content</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap">
+<!--
+  EventWire content-readiness board.
+
+  Ported from the Claude Design canvas "EventWire Flow v2.dc.html" (guvnor design
+  system) into a single self-contained page the stdlib serve.py can render: no
+  external JS/CSS, the DCLogic component reworked as vanilla JS, design-system
+  tokens (Noto Sans body / Libre Franklin headings, GOV.UK palette, the .t-* type
+  ramp) inlined. Reads outputs/queue.json over fetch() and computes nothing on the
+  server. Hash-routed views (see the "hash routing" block): the Worklist (#/) at
+  the top level, drilling into Act detail -> Page next-steps.
+
+  One deliberate divergence from the canvas: the runway time-axis is derived from
+  the data window (start-by .. commencement across in-window Acts) rather than the
+  canvas's hard-coded May–Nov 2026 scale, so the board stays correct as the
+  plan-window shifts.
+-->
+<style>
+  :root {
+    --font-stack: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-heading: "Libre Franklin", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --font-size-base: 19px; --font-size-sm: 16px; --font-size-xs: 14px;
+    --font-size-2xs: 12px; --font-size-3xs: 13px; --font-size-lead: 21px;
+    --font-size-title: 22px; --font-size-2xl: 28px; --font-size-xl: 36px; --font-size-xxl: 48px;
+
+    --leading-heading: 1.1; --leading-snug: 1.2; --leading-title: 1.3; --leading-body: 1.5;
+    --tracking-tight: -0.02em; --tracking-snug: -0.01em; --tracking-wider: 0.08em;
+
+    --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
+    --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+
+    /* Text — every pair verified at 4.5:1 or better on both surface and page. */
+    --color-text-primary: #0b0c0c; --color-text-secondary: #505a5f; --color-text-muted: #687074;
+    --color-gov-blue: #1d70b8;
+    --color-bg-page: #f3f2f1; --color-surface: #ffffff; --color-masthead: #0b1f35;
+    --color-masthead-text: #ffffff; --color-masthead-subtle: #c3d3e3; --color-masthead-link: #a8c7e8;
+    --color-border: #b1b4b6; --color-border-light: #e1dfdc; --color-rule: #ebe9e6;
+    --color-red: #d4351c; --color-red-ink: #942514; --color-red-tint: #fbe5e1;
+    --color-green: #00703c; --color-green-ink: #005a30; --color-green-tint: #e4f3ea;
+    --color-amber-ink: #6b4700; --color-amber-tint: #fdf2d8;
+    --color-blue-ink: #144e81; --color-blue-tint: #e8f1f8;
+    --color-neutral-ink: #383f43; --color-neutral-tint: #eceded;
+    --color-focus: #ffdd00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-stack); font-size: var(--font-size-base); font-weight: 400;
+    line-height: var(--leading-body); color: var(--color-text-primary); background: var(--color-bg-page);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-text-primary); margin: 0; }
+
+  /* ---- design-system type ramp (.t-*) ---- */
+  .t-overline { font-family: var(--font-stack); font-weight: 600; font-size: var(--font-size-3xs);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-wider); text-transform: uppercase; }
+  .t-h2 { font-family: var(--font-heading); font-weight: 600; font-size: var(--font-size-xl);
+    line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); }
+  .t-h3 { font-family: var(--font-heading); font-weight: 650; font-size: var(--font-size-2xl);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .t-h4 { font-family: var(--font-heading); font-weight: 650; font-size: var(--font-size-title);
+    line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .t-body { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-base); line-height: var(--leading-body); }
+  .t-body-sm { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-sm); line-height: var(--leading-body); }
+  .t-caption { font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-xs);
+    line-height: 1.45; color: var(--color-text-secondary); }
+  .t-muted { color: var(--color-text-muted); }
+  .t-secondary { color: var(--color-text-secondary); }
+
+  /* ---- form controls ---- */
+  input[type=search], select { font-family: var(--font-stack); color: #0b0c0c; }
+  a:focus { outline: 3px solid transparent; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; color: #0b0c0c; text-decoration: none; }
+
+  /* ---- hover affordances (inline styles can't carry :hover) ---- */
+  .ew-row { transition: background .1s ease; }
+  .ew-row:hover { background: #f4f8fb; }
+  /* Act rows are links (T-099). The global GDS yellow-fill focus would flood a
+     full-width grid row and recolour the status chips inside it, so the rows get
+     a ring instead. Class+pseudo outranks the `a:focus` rule above. */
+  .ew-row:focus {
+    outline: 4px solid #0b0c0c; outline-offset: -2px;
+    background: #f4f8fb; box-shadow: none; color: inherit;
+  }
+
+  /* ---- collapsed page groups (act detail Monitor bucket) ---- */
+  details > summary::-webkit-details-marker { display: none; }
+  details:not([open]) .ew-open-only { display: none; }
+  details[open] .ew-closed-only { display: none; }
+  /* Child-scoped variants for a <details> nested inside another (the act-detail
+     "show more" pager inside the Monitor bucket), so an open ancestor's rule
+     can't hide the inner summary's label. */
+  details:not([open]) > summary .ew-more-open { display: none; }
+  details[open] > summary .ew-more-closed { display: none; }
+  .ew-btn-green { background: #00703c; color: #fff; border: none; box-shadow: 0 2px 0 #00451f; transition: background .1s ease; }
+  .ew-btn-green:hover { background: #005a30; }
+
+  /* ---- filter bar ----
+     Labels sit ABOVE their control, not inline beside it. Inline, "Team" and
+     "Show" read as part of the sentence the option makes ("Show Needing work"),
+     and the eye has to work out which words are the question and which are the
+     answer. Stacked, the question is always the small caps line and the answer
+     is always the box under it. */
+  .ew-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .ew-flabel { font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: #505a5f; }
+  .ew-field > input, .ew-field > select {
+    font-size: 14px; font-family: var(--font-stack); padding: 8px 10px; min-width: 0;
+    /* #b1b4b6 on white is 2.2:1 — under the 3:1 WCAG floor for control
+       boundaries, so the box a filter lives in was itself hard to see. */
+    border: 1px solid #6f777b; border-radius: 4px; background: #fff; color: #0b0c0c;
+  }
+  .ew-field > input:focus-visible, .ew-field > select:focus-visible {
+    outline: 3px solid #ffdd00; outline-offset: 0; box-shadow: inset 0 0 0 2px #0b0c0c;
+  }
+  /* Each headline number is a way into the rows it counts, so it is a real
+     button: keyboard-reachable, and it says which one is active. */
+  .ew-stat { background: none; border: 0; padding: 3px 0; margin: 0; cursor: pointer;
+    display: inline-flex; align-items: baseline; gap: 6px; font: inherit; }
+  .ew-stat:hover .ew-stat-label { text-decoration: underline; }
+  .ew-stat:focus-visible { outline: 3px solid #ffdd00; box-shadow: 0 2px #0b0c0c; }
+  .ew-stat[aria-pressed="true"] .ew-stat-label { color: #0b0c0c; font-weight: 600;
+    text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---- view-transition crossfade (ported from the canvas helmet) ---- */
+  @keyframes ew-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes ew-out { from { opacity: 1; } to { opacity: 0; } }
+  ::view-transition-old(root) { animation: ew-out .16s ease both; }
+  ::view-transition-new(root) { animation: ew-in .26s ease both; }
+
+  /* ---- mobile / narrow viewport ---- */
+  /* The board was authored at a fixed ~1180px canvas; below ~640px the rigid
+     300px 1fr 150px runway grid overflows. Collapse to single-column, drop the
+     horizontal timeline (its runwayLabel already carries the same info), stack
+     the header, wrap the stats, and full-width the page-card CTA. */
+  @media (max-width: 640px) {
+    .ew-main { padding-left: 14px !important; padding-right: 14px !important; }
+    .ew-header-inner { flex-wrap: wrap !important; gap: 4px 12px !important; padding: 12px 14px !important; }
+    .ew-header-meta { text-align: left !important; }
+    .ew-filters { gap: 10px !important; }
+    .ew-filters > .ew-field { flex: 1 1 100% !important; }
+    /* The one-line row needs its own stacking on narrow screens: the title must
+       be allowed to wrap rather than ellipsis away to nothing in a 200px cell.
+       The three metadata columns fold under the title in reading order. */
+    .ew-row { grid-template-columns: 52px minmax(0,1fr) !important; gap: 4px 10px !important; }
+    .ew-row .ew-counts { overflow: visible !important; }
+    .ew-row > span:nth-child(2) { white-space: normal !important; }
+    .ew-row .ew-flags, .ew-row .ew-owner, .ew-row .ew-counts {
+      grid-column: 2 !important; text-align: left !important; min-width: 0 !important; }
+    .ew-page-card { flex-wrap: wrap !important; }
+    .ew-page-cta { order: 3; flex: 1 0 100% !important; margin-top: 8px; }
+  }
+</style>
+</head>
+<body>
+<div id="ew-app"><div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#687074">Loading the queue…</div></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ============================== helpers ==============================
+  const MS = 86400000;
+  const MON  = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const MONF = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const iso   = s => new Date(s + "T00:00:00Z");
+  const dleft = (a, b) => Math.round((iso(b) - iso(a)) / MS);
+  const esc   = s => String(s == null ? "" : s).replace(/[&<>"']/g,
+    c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+  // ============================== state ==============================
+  let Q = null;
+  // The reader is one content team among ~88, and the same one every visit.
+  // Remembering the choice is the difference between landing on your five items
+  // and re-filtering 86 every time. Fail-open: private browsing or a blocked
+  // store just means no memory, never a broken board.
+  const TEAM_KEY = "eventwire.team";
+  const rememberedTeam = (() => {
+    try { return localStorage.getItem(TEAM_KEY) || "all"; } catch (_) { return "all"; }
+  })();
+  // `owner` filters the worklist and is remembered; `team` (T-103) filters the
+  // page list inside one Act's detail view and is deliberately not.
+  const state = { view:"overview", actIdx:null, pageIdx:null, q:"",
+    owner: rememberedTeam, prio:"review", type:"all", team:"all", ready:false };
+
+  // Primary legislation (Acts) vs secondary (statutory instruments — the
+  // regulations and orders made under an Act). Both come into force on a date
+  // and both need the same content work, so they share the worklist; the type
+  // is a filter because a team often wants one or the other.
+  const TYPE_LABEL = { primary: "Act", secondary: "Regulations or order" };
+  const kindLabel = a => {
+    if (a.legType !== "secondary") return "Act";
+    const t = (a.siType || "").toLowerCase();
+    return t === "order" ? "Order" : t === "rules" ? "Rules" : t === "regulation" ? "Regulations" : "Regulations or order";
+  };
+  const root = document.getElementById("ew-app");
+
+  // ============================== view model ==============================
+  // Faithful port of the canvas component's renderVals(): turns EW_QUEUE
+  // (== queue.json, the planning_queue.py output) into the three view models.
+  function computeVM() {
+    if (!state.ready || !Q || !Q.items) {
+      return { loading:true, isOverview:false, isAct:false, isPage:false,
+        header:{ updated:"Loading…" }, overview:null, act:null, page:null };
+    }
+
+    // ---- queue metadata ----
+    const genAt   = Q.generated_at || "";
+    const genDate = genAt ? genAt.slice(0, 10) : new Date().toISOString().slice(0, 10);
+    const NOW     = genDate;                  // "now" is the build date, so the board is deterministic
+
+    const fmtMed  = s => { const d = iso(s); const b = d.getUTCDate() + " " + MON[d.getUTCMonth()];
+      return d.getUTCFullYear() !== iso(NOW).getUTCFullYear() ? b + " " + d.getUTCFullYear() : b; };
+    const fmtFull = s => { const d = iso(s); return d.getUTCDate() + " " + MONF[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+    // Worklist rows sit inside a dated band, so the year is already established
+    // and the day is all a row needs. Tabular figures keep the column aligned.
+    const fmtDay = s => { const d = iso(s); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
+
+    // "Built" dates the discovery run. The file is legitimately rewritten
+    // afterwards without a fresh crawl, so show that separately rather than
+    // letting the header under-report how current the data is.
+    const stampAt = Q.stamped_at || "";
+    const stampedLater = stampAt && stampAt.slice(0, 10) !== genDate;
+    const headerUpdated = "Built " + fmtFull(genDate) + (genAt ? " · " + genAt.slice(11, 16) + " UTC" : "")
+      + (stampedLater ? " · updated " + fmtFull(stampAt.slice(0, 10)) : "");
+
+    // ---- runway scale: fit the data window (divergence from the canvas's
+    //      hard-coded May–Nov 2026 axis) so bars never run off-canvas ----
+    const monthStart = s => { const d = iso(s); return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)); };
+    const addMonths  = (dt, n) => new Date(Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth() + n, 1));
+    const allDates = [];
+    for (const it of Q.items) { if (it.date) allDates.push(it.date); if (it.start_by) allDates.push(it.start_by); }
+    allDates.push(NOW);
+    allDates.sort();
+    const lo = allDates[0] || NOW, hi = allDates[allDates.length - 1] || NOW;
+    const scaleA = monthStart(lo);
+    let scaleB = addMonths(monthStart(hi), 1);             // first of the month after the last date
+    if ((scaleB - scaleA) / MS < 45) scaleB = addMonths(scaleA, 2);   // keep at least a couple of months
+    const span   = (scaleB - scaleA) / MS;
+    const pct    = s => Math.round((((iso(s) - scaleA) / MS / span) * 100) * 100) / 100;
+    const nowPct = Math.round((((iso(NOW) - scaleA) / MS / span) * 100) * 100) / 100;
+    const startY = scaleA.getUTCFullYear();
+    const axis = [];
+    for (let m = scaleA; m < scaleB; m = addMonths(m, 1)) {
+      const label = MON[m.getUTCMonth()] + (m.getUTCFullYear() !== startY ? " " + String(m.getUTCFullYear()).slice(2) : "");
+      axis.push({ label, leftPct: pct(m.toISOString().slice(0, 10)) });
+    }
+
+    // ---- constants aligned with the codebase board ----
+    // Status combines TWO axes:
+    //  - lead-time (suggested start-by date vs today) — always known from data
+    //  - progress (per-page work_state, merged in nightly from configs/work_state.json)
+    //    — known ONLY for pages someone has recorded. An absent record is
+    //    indistinguishable from "nobody has looked", so the board must never
+    //    assert "not started" from it (ISS from T-079).
+    // `done`/`inprogress` reflect recorded progress; the start-by keys
+    // (overdue/startnow/ontrack) state date facts only. `carried` = commencement
+    // has passed without a done record, re-admitted so the rolling window can't
+    // hide it — again a record fact ("not marked done"), not a work claim.
+    const STAT = {
+      overdue:   { label:"Past start-by",         color:"#d4351c", tint:"#fbe3e0", ink:"#942514" },
+      startnow:  { label:"Start soon",            color:"#f47738", tint:"#fdeee2", ink:"#9c4915" },
+      ontrack:   { label:"Lead time in hand",     color:"#00703c", tint:"#e2efe8", ink:"#00402a" },
+      inprogress:{ label:"In progress",           color:"#1d70b8", tint:"#d2e2f1", ink:"#0b3d66" },
+      done:      { label:"Done",                  color:"#00703c", tint:"#cce2d8", ink:"#00402a" },
+      carried:   { label:"In force — check it's done", color:"#942514", tint:"#f6d4cf", ink:"#5c1710" },
+      monitor:   { label:"Monitor only",          color:"#687074", tint:"#edeeef", ink:"#505a5f" },
+      // Not a backlog. A statutory instrument is usually made about three weeks
+      // before it comes into force, which is less than a content update takes —
+      // so it is past its start-by from the moment it exists, and counting it
+      // as overdue buries the Acts somebody genuinely could have started.
+      shortnotice:{ label:"Short notice",          color:"#a8620a", tint:"#fdf0dc", ink:"#7a4a00" }
+    };
+    const CONF  = { high:"#00703c", medium:"#f47738", low:"#687074" };
+    const CONFL = { high:"High confidence", medium:"Medium confidence", low:"Low confidence" };
+    const EST_COLORS = { mainstream:"#1d70b8", whitehall:"#7C3AED", specialist:"#0d9488", other:"#687074" };
+    const EST_TINTS  = { mainstream:"rgba(29,112,184,.12)", whitehall:"rgba(124,58,237,.12)", specialist:"rgba(13,148,136,.12)", other:"rgba(111,119,123,.12)" };
+    const EST_LABELS = { mainstream:"Mainstream", whitehall:"Whitehall", specialist:"Specialist", other:"Other" };
+    const OWN_COLORS = { gds:"#1d70b8", dept:"#7C3AED", specialist:"#0d9488", other:"#687074" };
+    const OWN_TINTS  = { gds:"rgba(29,112,184,.12)", dept:"rgba(124,58,237,.12)", specialist:"rgba(13,148,136,.12)", other:"rgba(111,119,123,.12)" };
+    const WORK = { content_update:"Content update", new_guidance:"New guidance", publication:"Publication" };
+    // Per-page progress badge (only shown once someone has recorded something).
+    const WSTAT = {
+      in_progress:{ label:"In progress", tint:"#d2e2f1", ink:"#0b3d66" },
+      done:       { label:"Done",        tint:"#cce2d8", ink:"#00402a" },
+      not_doing:  { label:"Not doing",   tint:"#edeeef", ink:"#505a5f" }
+    };
+    // Old-vs-new value diff (Phase 1, value_diff.py) → a per-page badge and the
+    // per-target status label in a snippet proposal. contradicts = page states a
+    // superseded value (red flag); stale_date = cites a superseded date; consistent
+    // = already states the new value (reassuring). not_asserted/unknown carry no
+    // signal and are never attached, so they need no colour.
+    const VD = {
+      contradicts:{ tint:"#fbe3e0", ink:"#942514" },
+      stale_date: { tint:"#fdeee2", ink:"#9c4915" },
+      consistent: { tint:"#e2efe8", ink:"#00402a" }
+    };
+    const vdBadge = vd => {
+      if (!vd || !VD[vd.status]) return null;
+      const v = VD[vd.status];
+      let label;
+      if (vd.status === "contradicts") {
+        // A discrete value ("£109.40", "6 weeks") reads well inside the uppercase
+        // status chip; a sentence-length assertion does not (ISS-030 follow-up —
+        // the same "don't chip a clause" fix, now on the per-page badge). Collapse
+        // a long value to a short status and let the readable detail note below
+        // carry the full "the page says … / the law says …" text.
+        const val = (vd.page_value || "").trim();
+        label = (val && val.length <= 40)
+          ? (vd.matched_old_value ? "Still says " : "Says ") + val
+          : "Value may be outdated";
+      }
+      else if (vd.status === "stale_date") label = "Cites an older date";
+      else label = "Already current";
+      return { label, tint:v.tint, ink:v.ink };
+    };
+    const vdTargetLabel = t => {
+      if (t.status === "contradicts") return (t.matched_old_value ? "still says " : "says ") + "“" + (t.page_value || "something different") + "”";
+      if (t.status === "stale_date") return "cites an older date";
+      if (t.status === "consistent") return "already up to date";
+      return t.status || "";
+    };
+
+    const shortOwner = o => {
+      if (!o) return "—";
+      if (/^GDS/.test(o)) { const m = o.match(/policy:\s*([^)]+)/); return "GDS GOV.UK" + (m ? " · " + m[1].trim() : ""); }
+      return o.replace(/ content team$/, "");
+    };
+    const ownerClassOf = o => {
+      if (/^GDS/.test(o)) return "gds";
+      if (/specialist publisher/.test(o)) return "specialist";
+      if (/content team$/.test(o)) return "dept";
+      return "other";
+    };
+    const ownerColorOf = o => OWN_COLORS[ownerClassOf(o)];
+    const ownerTintOf = o => OWN_TINTS[ownerClassOf(o)];
+    const deptOf = o => {
+      if (!o) return "the team";
+      if (/^GDS/.test(o)) { const m = o.match(/policy:\s*([^)]+)/); return m ? m[1].trim() : "policy"; }
+      return o.replace(/ content team$/, "");
+    };
+    const statusOf = sb => { if (!sb) return "monitor"; const d = dleft(NOW, sb); return d < 0 ? "overdue" : (d <= 14 ? "startnow" : "ontrack"); };
+
+    // Progress axis over an Act's ACTIONABLE pages (action/review; monitor pages
+    // need no work). "none" => nothing to produce; else done / in_progress /
+    // not_started. `not_doing` counts as settled (deliberately out of scope).
+    const actionable = it => (it.affected_pages || []).filter(p => p.priority === "action" || p.priority === "review");
+    const progressOf = it => {
+      const work = actionable(it);
+      if (!work.length) return "none";
+      const states = work.map(p => p.work_state || "not_started");
+      const outstanding = states.filter(s => s !== "done" && s !== "not_doing");
+      if (!outstanding.length) return "done";
+      if (states.some(s => s === "in_progress" || s === "done")) return "in_progress";
+      return "not_started";
+    };
+    // Combined display key: progress wins where it's known; otherwise fall back to
+    // the lead-time (start-by) key. Reaching overdue/startnow/ontrack means no
+    // recorded progress — which is NOT the same as "not started", so those
+    // labels and their banner lines speak only about dates and records.
+    // Was there ever enough runway? An instrument's notice period is
+    // commencement − made. If that was already shorter than the content work
+    // needs, the start-by could not have been met by anyone, so "past start-by"
+    // describes the legislative timetable rather than this team's performance.
+    const noticeDays = it => {
+      if (!it.made_date || !it.date) return null;
+      return dleft(it.made_date, it.date);
+    };
+    const bornShort = it => {
+      const n = noticeDays(it);
+      return n !== null && it.lead_time && n < it.lead_time.days;
+    };
+    const displayStatusOf = (it, dstatus) => {
+      if (it.carried_over) return "carried";
+      const prog = progressOf(it);
+      if (prog === "done") return "done";
+      if (prog === "in_progress") return "inprogress";
+      // An instrument that never had the runway is short-notice, not overdue.
+      // One that WAS made in good time and is still untouched stays overdue —
+      // that is a real backlog and must not be excused.
+      if (dstatus === "overdue" && bornShort(it)) return "shortnotice";
+      return dstatus;   // "none" (monitor-only) or "not_started" -> lead-time key
+    };
+    const outstandingCount = it => actionable(it).filter(p => (p.work_state || "not_started") !== "done" && (p.work_state || "not_started") !== "not_doing").length;
+
+    // ---- build one act model per queue item ----
+    // Dated work and prospective work are separate queue lanes because only
+    // the former has deadlines. On an Act page, join them by Act URL so the
+    // user can see the full set of matched measures without changing the
+    // worklist's counts or urgency.
+    const prospectiveByUrl = new Map(((Q.prospective && Q.prospective.items) || [])
+      .filter(x => x.legislation_url)
+      .map(x => [x.legislation_url, x]));
+    const acts = Q.items.map((it, idx) => {
+      // Copy written for Acts reads wrong on an instrument: "the Act itself",
+      // "Primary commencement" (on a piece of secondary legislation), and
+      // "Act-level match" all mislead.
+      const isSecondary = it.legislation_type === "secondary";
+      const prospectiveMatch = prospectiveByUrl.get(it.legislation_url);
+      const datedUrls = new Set((it.affected_pages || []).map(p => p.url).filter(Boolean));
+      const longerTermPages = prospectiveMatch
+        ? (prospectiveMatch.affected_pages || [])
+            .filter(p => p.url && !datedUrls.has(p.url))
+            .map(p => Object.assign({}, p, {
+              priority: "monitor",
+              long_term: true,
+              long_term_provisions: prospectiveMatch.provisions_sample || []
+            }))
+        : [];
+      const affectedPages = (it.affected_pages || []).concat(longerTermPages);
+      const D = it.date;
+      const S = it.start_by;          // commencement − lead_time.days (or null = monitor only)
+      const lt = it.lead_time;
+      const hasStart = !!S;
+      const dstatus = statusOf(S);          // lead-time axis (drives runway geometry)
+      const status = displayStatusOf(it, dstatus);   // combined key for the chip/banner
+      const st = STAT[status];
+      const dts = hasStart ? dleft(NOW, S) : null;
+      const outN = outstandingCount(it);
+
+      let urgency, bannerLine;
+      if (status === "carried")       { const past = dleft(NOW, D); urgency = outN + " page" + (outN === 1 ? "" : "s") + " open"; bannerLine = "In force since " + fmtFull(D) + " — " + Math.abs(past) + " days ago — and " + outN + " matched page" + (outN === 1 ? " is" : "s are") + " still listed here. If they are already updated there is nothing to do: this board follows the law, not your team's work."; }
+      else if (status === "done")     { urgency = "done"; bannerLine = "Every page needing work here has been reported done. Comes into force " + fmtFull(D) + "."; }
+      else if (status === "inprogress") { urgency = outN + " page" + (outN === 1 ? "" : "s") + " left"; bannerLine = "Reported as in progress — " + outN + " page" + (outN === 1 ? "" : "s") + " still open" + (hasStart ? " (suggested start was " + fmtFull(S) + ")" : "") + "."; }
+      else if (status === "overdue")  { urgency = Math.abs(dts) + " days past start-by"; bannerLine = "The suggested start date was " + Math.abs(dts) + " days ago (" + fmtFull(S) + "). If this is not already in hand, treat it as urgent."; }
+      else if (status === "shortnotice") {
+        const nd = noticeDays(it);
+        urgency = nd + " days' notice";
+        bannerLine = "Made " + fmtFull(it.made_date) + " and in force " + fmtFull(D)
+          + " — " + nd + " days' notice, less than a " + (WORK[(lt || {}).category] || "content update").toLowerCase()
+          + " usually takes. Nobody could have started this sooner, so treat it as new work rather than late work.";
+      }
+      else if (status === "startnow") { urgency = "start within " + dts + " days"; bannerLine = "The suggested start date is about " + dts + " days away (" + fmtFull(S) + ")."; }
+      else if (status === "ontrack")  { urgency = dts + " days of lead time"; bannerLine = "Time in hand — suggested start " + fmtFull(S) + " (" + dts + " days away)."; }
+      else { urgency = "monitor only"; bannerLine = "Nothing to update yet. Check these pages still read true once the provisions are in force."; }
+
+      const wk = lt ? (lt.weeks_min === lt.weeks_max ? lt.weeks_max + " weeks" : lt.weeks_min + "–" + lt.weeks_max + " weeks") : null;
+      const workLabel = lt ? (WORK[lt.category] || lt.category).toLowerCase() : null;
+      const leadLine = hasStart ? ("Best started by " + fmtFull(S) + " — a " + workLabel + " usually takes about " + wk) : ("Comes into force " + fmtFull(D));
+
+      // Split rather than one joined string: "6 to update" is work somebody has
+      // to do and "1 to review" is a page somebody has to look at, and the row
+      // should not weight them the same. The worklist renders the first in full
+      // ink and the second muted; everything else still wants the joined form.
+      const updateText = it.action_count ? it.action_count + " to update" : "";
+      let reviewText = it.review_count ? it.review_count + " to review" : "";
+      if (!it.action_count && !it.review_count && it.monitor_count) reviewText = it.monitor_count + " to monitor";
+      const countsText = [updateText, reviewText].filter(Boolean).join(" · ");
+
+      // The TEAM axis is who would fix the page now — not who published it.
+      // `content_team` resolves a closed publisher to its successor (Highways
+      // England -> National Highways) and is free of the content estate, which
+      // otherwise split one team three ways ("HMRC content team" / "HMRC
+      // (specialist publisher)" / "HMRC"). Falls back through the estate-free
+      // publisher to the raw owner for data predating either.
+      const teamOf = p => p.content_team || p.owner_org || p.owner;
+      const ownersSrc = [...new Set((it.affected_pages || []).map(teamOf))].filter(Boolean);
+      const deptsSrc = [...new Set((it.affected_pages || []).map(p => p.department))].filter(Boolean);
+      const ownerLine = ownersSrc.length ? (ownersSrc[0] + (ownersSrc.length > 1 ? "  +" + (ownersSrc.length - 1) : "")) : "—";
+      // Pages whose publisher no longer exists and was split several ways, so no
+      // successor is right for all of them. Shown, not silently routed.
+      const needsRouting = (it.affected_pages || []).filter(p => p.needs_routing).length;
+      const runwayLabel = hasStart ? ("Start by " + fmtMed(S) + " · " + urgency) : ("In force " + fmtMed(D) + " · monitor only");
+
+      // runway geometry
+      const commencePct = pct(D);
+      const startPct = hasStart ? pct(S) : null;
+      let showOverdueSeg = false, segOverdueLeft = 0, segOverdueWidth = 0, showRunwaySeg = false, segRunwayLeft = 0, segRunwayWidth = 0;
+      if (hasStart) {
+        // Red "behind" segment only when genuinely behind (not started / not done
+        // past start-by). A done or in-progress item past its start-by shows a
+        // solid runway in its status colour, not a red bar.
+        if (dstatus === "overdue" && (status === "overdue" || status === "carried")) {
+          showOverdueSeg = true; segOverdueLeft = startPct; segOverdueWidth = Math.max(0, Math.min(nowPct, commencePct) - startPct);
+          segRunwayLeft = Math.max(startPct, nowPct); segRunwayWidth = Math.max(0, commencePct - segRunwayLeft); showRunwaySeg = segRunwayWidth > 0.4;
+        } else { showRunwaySeg = true; segRunwayLeft = startPct; segRunwayWidth = Math.max(0, commencePct - startPct); }
+      }
+
+      // commencements, grouped by date
+      const tidyQual = q => {
+        if (!q) return "";
+        const m = String(q).toLowerCase();
+        if (m.includes("wholly")) return "fully in force";
+        if (m.includes("not already")) return "remainder in force";
+        if (m.includes("specified")) return "in force for specified purposes";
+        if (m === "other") return "subject to qualifications";
+        return q;
+      };
+      // Split a provision ref into its scannable section token and the noisy
+      // subsection enumeration: "s. 23(1)(2)(6)(8)(11)(b)(c)(12)-(15)" ->
+      // {main:"s. 23", detail:"(1)(2)(6)(8)(11)(b)(c)(12)-(15)"}. The section is
+      // shown prominently, the enumeration de-emphasised (full ref on hover).
+      const splitRef = r => {
+        const m = /^(s{1,2}\.\s*\d+[A-Z]?|sch\w*\.?\s*(?:(?:\d+\s*(?:(?:para|pt)\.?\s*\d+)?)|(?:para\.?\s*\d+)))\s*(.*)$/i.exec(String(r || ""));
+        return m ? { main: m[1].replace(/\s+/g, " ").trim(), detail: m[2].trim() } : { main: String(r || "—"), detail: "" };
+      };
+      const byDate = new Map();
+      for (const c of (it.commencements || [])) { if (!byDate.has(c.date)) byDate.set(c.date, []); byDate.get(c.date).push(c); }
+      const commencements = [...byDate.keys()].sort().map(d => {
+        const list = byDate.get(d);
+        const isPrimary = d === D;
+        const provisions = list.map(c => {
+          const rf = c.provisions || "—";
+          const sp = splitRef(rf);
+          const isSelfCommencement = c.affecting === "self";
+          const sourceUrl = isSelfCommencement ? it.legislation_url : (c.affecting || null);
+          return {
+          ref: rf, refMain: sp.main, refDetail: sp.detail, refFull: rf,
+          // An instrument appoints its own in-force date for itself as a whole —
+          // legislation.gov.uk states no per-regulation breakdown, and there is
+          // none to state. Saying "provision details not supplied" implies
+          // something is missing; nothing is.
+          subject: c.description || c.subject
+            || (isSecondary ? "The whole instrument comes into force"
+                : /^sch/i.test(rf) ? "Schedule amendment" : "Provision details not supplied"),
+          qual: tidyQual(c.qualification),
+          sourceUrl,
+          sourceLead: isSelfCommencement ? "commenced by " : "brought in by ",
+          sourceLabel: isSelfCommencement
+            ? (isSecondary ? "the regulations themselves" : "the Act itself")
+            : (c.affecting ? c.affecting.replace("https://www.legislation.gov.uk/", "").replace(/\/$/, "").toUpperCase() : null)
+        };
+        });
+        // "Primary" here means the earliest date, not primary legislation — on a
+        // secondary item those two readings collide, so name the thing itself.
+        return { date:d, dateFull:fmtFull(d), color:isPrimary ? st.color : "#687074",
+          tagLabel: isPrimary
+            ? (isSecondary ? "Comes into force" : "Primary commencement")
+            : "Staged commencement",
+          countLabel: isSecondary && list.length === 1 && !list[0].provisions
+            ? "whole instrument"
+            : list.length + " provision" + (list.length > 1 ? "s" : ""),
+          provisions };
+      });
+
+      // Does the commencement section carry anything the header cannot?
+      //
+      // An instrument appoints one in-force date for itself as a whole:
+      // legislation.gov.uk publishes no per-regulation breakdown because there
+      // is none. All 74 instruments in the live window are exactly this. So the
+      // section renders a bordered panel, a header row, and a provision row —
+      // roughly 230px — to say one date, three times over ("1 September 2026 ·
+      // COMES INTO FORCE · whole instrument", then "The whole instrument comes
+      // into force", then a link back to the document the header already links).
+      //
+      // Keyed on the DATA, not on `legislation_type`: an instrument may stage
+      // its own commencement across several dates (parse_secondary_metadata
+      // returns every ukm:ComingIntoForce), and an Act can just as well commence
+      // in one go. Either way the test is the same — one date, one entry, no
+      // provisions named, nothing qualified — and the full table returns the
+      // moment there is more than that to show.
+      const singleWholeCommencement =
+        commencements.length === 1
+        && commencements[0].provisions.length === 1
+        && !(it.commencements || [])[0].provisions
+        && !(it.commencements || [])[0].qualification
+        && !(it.commencements || [])[0].description
+        && !(it.commencements || [])[0].subject;
+      const wholeCommencementLine = singleWholeCommencement
+        ? {
+            dateFull: commencements[0].dateFull,
+            color: commencements[0].color,
+            what: isSecondary ? "the whole instrument" : "the whole Act",
+          }
+        : null;
+
+      // subject index for provision matching (topics ↔ commencement subjects)
+      const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+      const subjIndex = (it.commencements || []).map(c => ({ key:norm(c.subject), ref:c.provisions || "—", subject:c.subject || "" }));
+
+      const stepDefs = {
+        content_update: [
+          { l:"Work out which parts of the page actually change", f:0 },
+          { l:"Draft the changes", f:0.35 },
+          { l:"Check your wording against LAWREF", f:0.6 },
+          { l:"Get a second pair of eyes on it (2i)", f:0.78 },
+          { l:"Square it off with DEPT policy", f:0.9 },
+          { l:"Schedule it to go live before the law does", f:1.0 }
+        ],
+        new_guidance: [
+          { l:"Agree what the new guidance needs to cover", f:0 },
+          { l:"Draft it", f:0.4 },
+          { l:"Check it against LAWREF", f:0.62 },
+          { l:"Get a second pair of eyes on it (2i)", f:0.8 },
+          { l:"Square it off with DEPT policy", f:0.92 },
+          { l:"Publish it before the law goes live", f:1.0 }
+        ],
+        publication: [
+          { l:"Check the record still reflects what LAWREF changes", f:0 },
+          { l:"Make any light touches and publish", f:1.0 }
+        ]
+      };
+
+      const pages = affectedPages.map((p, pi) => {
+        const cat = lt ? lt.category : "content_update";
+        const isLongTerm = !!p.long_term;
+        // Prefer the pipeline's authoritative page->provision provenance
+        // (queue.json `matched_provisions`, from planning_queue.py); fall back to
+        // the client-side topic<->subject heuristic only for pre-grounding caches.
+        let matchedProvisions;
+        if (Array.isArray(p.matched_provisions) && p.matched_provisions.length) {
+          matchedProvisions = p.matched_provisions.map(x => ({ ref: x.ref || "—", subject: x.subject || "" }));
+        } else {
+          const topicKeys = (p.topics || []).map(norm).filter(Boolean);
+          const matchMap = new Map();
+          for (const si of subjIndex) {
+            if (!si.key) continue;
+            if (topicKeys.some(tk => tk === si.key || tk.includes(si.key) || si.key.includes(tk))) {
+              if (!matchMap.has(si.ref)) matchMap.set(si.ref, si.subject);
+            }
+          }
+          matchedProvisions = [...matchMap.entries()].map(([ref, subject]) => ({ ref, subject }));
+        }
+        const isProvisionMatch = matchedProvisions.length > 0;
+        // Section-level, de-duplicated for the "Brought in by …" chip / why-line
+        // (the full subsection detail lives in the commencement block above).
+        const matchRefsText = [...new Set(matchedProvisions.map(m => splitRef(m.ref).main))].join(", ");
+
+        let steps;
+        if (p.priority === "monitor" || !hasStart) {
+          steps = [{ label:"Once the provisions are live, check the page still reads true", f:1.0 }];
+        } else {
+          // An instrument has no commencement order — it appoints its own date — so
+          // "check it against the Act and the commencement order" sends the reader
+          // looking for a document that does not exist, on 74 of 87 items.
+          const lawRef = isSecondary ? "these regulations" : "the Act and the commencement order";
+          steps = (stepDefs[cat] || stepDefs.content_update)
+            .map(s => ({ label:s.l.replace("DEPT", deptOf(p.owner)).replace("LAWREF", lawRef), f:s.f }));
+        }
+        const pageHasStart = hasStart && !isLongTerm;
+        const baseS = pageHasStart ? iso(S).getTime() : iso(D).getTime();
+        const baseD = iso(D).getTime();
+        const stepsOut = steps.map((s, si) => {
+          const t = new Date(baseS + s.f * (baseD - baseS));
+          const tIso = t.toISOString().slice(0, 10);
+          const dd = dleft(NOW, tIso);
+          let flag, tint, ink, dotColor;
+          if (dd < 0)       { flag="Date passed"; tint=STAT.overdue.tint;  ink=STAT.overdue.ink;  dotColor="#d4351c"; }
+          else if (dd <= 14){ flag="Due soon";    tint=STAT.startnow.tint; ink=STAT.startnow.ink; dotColor="#f47738"; }
+          else              { flag="Scheduled";   tint="#edeeef";          ink="#505a5f";         dotColor="#b1b4b6"; }
+          return { num:si + 1, label:s.label, dateLabel:fmtMed(tIso), flag, tint, ink, dotColor };
+        });
+
+        const confWord = p.confidence || "";
+        let whyLine;
+        if (isLongTerm) {
+          whyLine = "May be affected by provisions that are not yet in force. Check the Act again when commencement dates are set.";
+        } else if (isProvisionMatch) {
+          const subs = matchedProvisions.map(m => m.subject).filter(Boolean).slice(0, 2);
+          whyLine = "May need checking against " + matchRefsText + (subs.length ? " — " + subs.join("; ") + "." : ".");
+        } else {
+          whyLine = isSecondary
+            // An instrument commences whole, so matching it whole is the only
+            // granularity available — not a weaker result, as it is for an Act
+            // where it means the commencing provisions could not be pinned down.
+            ? "May need checking against these regulations as a whole."
+            : "May need checking against this Act. Check it against the commencement as a whole.";
+        }
+        const matchLabel = isProvisionMatch
+          ? ("Brought in by " + matchRefsText)
+          : (isSecondary ? "Whole-instrument match" : "Act-level match");
+        const matchTint  = isProvisionMatch ? "#e2efe8" : "#f3f2f1";
+        const matchInk   = isProvisionMatch ? "#00402a" : "#505a5f";
+
+        let doNextHead, doNextSub;
+        const firstOverdue = stepsOut.find(s => s.flag === "Date passed");
+        const firstJob = stepsOut[0].label.charAt(0).toLowerCase() + stepsOut[0].label.slice(1);
+        if (isLongTerm) { doNextHead = "Keep it in view"; doNextSub = "No commencement date yet. Check again when dates are set for these provisions."; }
+        else if (p.priority === "monitor" || !hasStart) { doNextHead = "Just keep an eye on it"; doNextSub = "Nothing to change yet. Look in again once the provisions go live on " + fmtFull(D) + "."; }
+        else if (firstOverdue) { doNextHead = "Worth starting now"; doNextSub = "If it is not already in hand, start with: " + firstJob + ". The suggested start date was " + fmtFull(S) + "."; }
+        else { doNextHead = "Not urgent yet"; doNextSub = "Worth getting on the list. Aim to start around " + fmtFull(S) + ". First job: " + firstJob + "."; }
+
+        return {
+          pi, idx, url:p.url, title:p.title, description:p.description || "", priority:p.priority, confidence:p.confidence,
+          confColor:CONF[p.confidence] || "#687074", confLabel:CONFL[p.confidence] || "",
+          estateLabel:EST_LABELS[p.estate] || "Other", estateColor:EST_COLORS[p.estate] || EST_COLORS.other, estateTint:EST_TINTS[p.estate] || EST_TINTS.other,
+          docType:(p.doc_type || "page").replace(/_/g, " "),
+          publisher:p.publisher_short || "—", ownerShort:shortOwner(p.owner),
+          // Estate-free team identity, shared with the worklist filter.
+          contentTeam:p.content_team || "", ownerOrg:p.owner_org || "",
+          ownerColor:ownerColorOf(p.owner), ownerTint:ownerTintOf(p.owner),
+          // Show the publisher chip only when it isn't already the owner (whitehall/
+          // specialist pages publish and route to the same org — that was the dupe).
+          showPublisher: !!p.publisher_short && p.publisher_short !== shortOwner(p.owner),
+          // A button that opens a page of explanation, labelled as though it queued
+          // up a task. Nothing here plans anything, and "Plan update" told a reader
+          // to do something the board cannot help them do. It navigates — so it says
+          // where it goes.
+          cta: "What to check",
+          workState: p.work_state || "not_started", workBadge: WSTAT[p.work_state] || null, workOwner: p.work_owner || "",
+          valueBadge: vdBadge(p.value_diff), valueDiff: p.value_diff || null,
+          // Per-page handoff inputs (T-072): raw fields the panel derives
+          // stakeholder candidates + reviewing checks from, client-side.
+          provisions: matchedProvisions, tier: p.tier || "",
+          publisherFull: (p.publisher && p.publisher.title) || "", estate: p.estate || "",
+          ownerFull: p.owner || "", ownerOrg: p.owner_org || p.owner || "", rawDocType: p.doc_type || "",
+          teamName: p.content_team || p.owner_org || p.owner || "", department: p.department || "",
+          needsRouting: !!p.needs_routing,
+          reviewDue: p.review_due || [],
+          matchLabel, matchTint, matchInk, isProvisionMatch, isLongTerm,
+          steps:stepsOut, whyLine, doNextHead, doNextSub,
+          workType: pageHasStart ? (WORK[lt.category] || "Content update") : "Monitor",
+          startByFull: pageHasStart ? fmtFull(S) : "—", commenceFull: isLongTerm ? "No date yet" : fmtFull(D),
+          statusColor: st.color, statusInk: st.ink, actTitle: it.legislation_title, actUrl: it.legislation_url,
+          // "View the Act" is wrong for an instrument — name what it actually opens.
+          actKind: it.legislation_type === "secondary" ? "regulations" : "Act",
+          actHref: "#/act/" + actSlug(it)
+        };
+      });
+
+      // Report only undated measures that led to a matched GOV.UK page. New
+      // payloads carry exact page->provision provenance; older queue files fall
+      // back to the matched provision headings already stored as page topics.
+      // Grouping here turns the former 40-reference dump into a small, useful
+      // measure -> page report while the full prospective count stays visible.
+      const futureMeasureMap = new Map();
+      for (const p of ((prospectiveMatch && prospectiveMatch.affected_pages) || [])) {
+        const exact = Array.isArray(p.matched_provisions) ? p.matched_provisions : [];
+        const candidates = exact.length
+          ? exact.map(m => ({ ref:m.ref || "", subject:m.subject || "" }))
+          : (p.topics || []).map(subject => ({ ref:"", subject }));
+        for (const m of candidates) {
+          if (!m.ref && !m.subject) continue;
+          const key = m.ref || ("subject:" + norm(m.subject));
+          if (!futureMeasureMap.has(key)) {
+            const sp = m.ref ? splitRef(m.ref) : { main:"", detail:"" };
+            futureMeasureMap.set(key, {
+              ref:m.ref, refMain:sp.main, refDetail:sp.detail,
+              subject:m.subject || "Measure awaiting commencement", pages:new Map()
+            });
+          }
+          const rec = futureMeasureMap.get(key);
+          if (p.url && !rec.pages.has(p.url)) rec.pages.set(p.url, p.title || p.url);
+        }
+      }
+      const futureMeasures = [...futureMeasureMap.values()].map(m => ({
+        ref:m.ref, refMain:m.refMain, refDetail:m.refDetail, subject:m.subject,
+        pages:[...m.pages.entries()].map(([url, title]) => ({ url, title }))
+      })).sort((a, b) => b.pages.length - a.pages.length || a.subject.localeCompare(b.subject));
+
+      // "What changes" facts (component_drafter proposals, opt-in via
+      // --value-diff): each is one concrete value the Act changes — quality-
+      // gated upstream to short entities and checkable values — plus the pages
+      // whose value_diff says they still state the superseded value. The
+      // drafted callout markdown rides along only as a copy affordance; the
+      // board renders, never publishes (T-076).
+      const proposals = (it.proposals || []).map(pr => {
+        const c = pr.component || {}, src = c.source || {}, r = c.renderings || {};
+        return {
+          entity:c.affected_entity || "", oldVal:c.old_value || "", newVal:c.new_value || "",
+          inForce:c.in_force_date || "", provision:src.provision_ref || "", legisTitle:src.legislation_title || "",
+          callout:r.callout || "", tableRow:r.table_row || null,
+          needs:pr.needs_count | 0, already:pr.already_count | 0, pageCount:pr.page_count | 0,
+          targets:(pr.targets || []).map(t => {
+            const b = VD[t.status] || { tint:"#edeeef", ink:"#505a5f" };
+            return { url:t.url || "", title:t.title || t.url || "", status:t.status || "", statusLabel:vdTargetLabel(t),
+              tint:b.tint, ink:b.ink, pageValue:t.page_value || "", owner:t.owner || "" };
+          })
+        };
+      });
+
+      // The same redundancy one level down from the commencement block. "How was
+      // this page matched?" is an item-level fact here, not a page-level one: no
+      // instrument names provisions, so all 931 instrument pages in the live
+      // window carry an identical "Whole-instrument match" chip, and within
+      // every Act the answer is uniform too (11/11 items). A label that reads
+      // the same on every row it appears on distinguishes nothing — it states
+      // the item's own property once per page. Said once, above the list; the
+      // per-page chip returns the moment a list is genuinely mixed.
+      const matchLabels = new Set(pages.filter(p => !p.isLongTerm).map(p => p.matchLabel));
+      const uniformMatchLabel = matchLabels.size === 1 ? [...matchLabels][0] : "";
+
+      const groupsDef = [
+        { key:"action",  label:"To update", hint:"", st:STAT.ontrack },
+        { key:"review",  label:"To review", hint:"", st:STAT.startnow },
+        { key:"monitor", label:"Monitor",   hint:"probably fine as-is — check once the change is in force", st:STAT.monitor }
+      ];
+      const groups = groupsDef.map(gd => {
+        const items = pages.filter(p => p.priority === gd.key);
+        return { key:gd.key, label:gd.label, hint:gd.hint, count:items.length + " page" + (items.length === 1 ? "" : "s"), color:gd.st.color, tint:gd.st.tint, ink:gd.st.ink, items, has:items.length > 0 };
+      }).filter(g => g.has);
+
+      return {
+        idx, title:it.legislation_title, url:it.legislation_url, commence:D, startBy:S, hasStart,
+        dayLabel: fmtDay(D),
+        // Every instrument is titled "The … Regulations 2026". On a list where
+        // the definite article opens all 73 of them it is four characters of
+        // pure noise at the exact point the eye starts reading, and the titles
+        // are long enough to be truncated at the other end. Dropped on the
+        // worklist row only — everywhere the title is the subject rather than an
+        // index entry, it keeps its proper name.
+        rowTitle: String(it.legislation_title || "").replace(/^The\s+/, ""),
+        legType: it.legislation_type === "secondary" ? "secondary" : "primary",
+        siType: it.si_type || "",
+        kindShort: (it.si_type || "").toLowerCase() === "order" ? "Order"
+          : (it.si_type || "").toLowerCase() === "rules" ? "Rules" : "Regs",
+        statusKey: status,
+        madeDate: it.made_date || "",
+        enablingActs: it.enabling_acts || [],
+        // Real route href so the row can be an <a>: keyboard, Enter, middle-click
+        // and "open in new tab" all come free from the platform (T-099).
+        href: "#/act/" + actSlug(it),
+        status, statusLabel:st.label, statusColor:st.color, statusTint:st.tint, statusInk:st.ink,
+        wholeCommencementLine, uniformMatchLabel,
+        urgency, bannerLine, leadLine, runwayLabel, countsText, updateText, reviewText,
+        ownerLine, ownersSrc, deptsSrc, needsRouting,
+        action:it.action_count, review:it.review_count, monitor:it.monitor_count, pageCount:pages.length,
+        outstanding:outN,   // actionable pages still open (T-098 grouping)
+        commencePct, startPct, showOverdueSeg, segOverdueLeft, segOverdueWidth, showRunwaySeg, segRunwayLeft, segRunwayWidth,
+        commencements, pages, groups, proposals,
+        futureMeasures,
+        futureProvisionCount: prospectiveMatch ? (prospectiveMatch.provision_count || 0) : 0,
+        futurePageCount: prospectiveMatch ? (prospectiveMatch.page_count || 0) : 0
+      };
+    });
+
+    // ---- filters (worklist rows only — the act drill-in shows everything) ----
+    const prioFilter = state.prio;
+
+    // ---- overview stats ----
+    // Overdue and short-notice are counted apart on purpose. Rolled together,
+    // the headline was 37 — of which 33 were instruments made weeks after the
+    // work would have had to start. One number cannot mean both "we are behind"
+    // and "the law gave no notice", and the first is the one to act on.
+    const overdueN     = acts.filter(a => a.status === "overdue" || a.status === "carried").length;
+    const shortNoticeN = acts.filter(a => a.status === "shortnotice").length;
+    const pagesAction  = acts.reduce((s, a) => s + (a.action || 0), 0);
+    const pagesReview  = acts.reduce((s, a) => s + (a.review || 0), 0);
+    const soonN        = acts.filter(a => a.hasStart && dleft(NOW, a.commence) >= 0 && dleft(NOW, a.commence) <= 90).length;
+    // Two numbers, not five, and no longer two big boxes. As tiles they were the
+    // hero-metric template — 145px of chrome stating figures you could not act
+    // on. As a single line of type they cost ~30px, and each number is a way
+    // into the rows it counts, so reading one and acting on it is the same
+    // gesture. The first now also names the top band, which is where it lands.
+    const stats = [
+      { n:overdueN,     label:"to start now",      color:"#d4351c", filter:"escalate" },
+      { n:shortNoticeN, label:"on short notice",   color:"#a8620a", filter:"shortnotice" },
+      { n:acts.length,  label:"in the window",     color:"#0b0c0c", filter:"all" }
+    ];
+
+    // ---- overview rows: filter + sort ----
+    const q = state.q.trim().toLowerCase();
+    const ownerFilter = state.owner;
+    // One order: commencement, the axis the bands are cut on. The Sort control
+    // offered "suggested start date" as an alternative, but rows are grouped by
+    // commencement — so choosing it shuffled rows *within* a date band into an
+    // order the band heading contradicted. Worse, the default branch sorted on
+    // `start_by` too (via the old `_sortKey`), so "Commencement date" never
+    // actually sorted by commencement; lead times differ per item, so rows could
+    // sit out of date order inside their own band. Start-by urgency is now
+    // structural — it is the top band — which is what the control was reaching
+    // for and could not deliver.
+    let rowsActs = [...acts];
+    rowsActs.sort((a, b) =>
+      a.commence < b.commence ? -1 : a.commence > b.commence ? 1
+      : (a.startBy || "") < (b.startBy || "") ? -1 : (a.startBy || "") > (b.startBy || "") ? 1 : 0);
+    // One value covers both levels: "dept:Ministry of Justice" or a team name.
+    if (ownerFilter !== "all") {
+      rowsActs = ownerFilter.startsWith("dept:")
+        ? rowsActs.filter(a => a.deptsSrc.includes(ownerFilter.slice(5)))
+        : rowsActs.filter(a => a.ownersSrc.includes(ownerFilter));
+    }
+    if (state.type !== "all") rowsActs = rowsActs.filter(a => a.legType === state.type);
+    rowsActs = rowsActs.filter(a => {
+      if (prioFilter === "all") return true;
+      if (prioFilter === "action") return a.action > 0;
+      // T-098: the escalation page was this filter plus a group-by. An Act
+      // escalates when its start-by has passed with nothing recorded, or it is
+      // in force with pages still open — undone work, not merely a passed date.
+      if (prioFilter === "escalate") return a.status === "overdue" || a.status === "carried";
+      // The other half of the headline split: work the timetable left no runway
+      // for. Reachable as a filter so the number in the summary line is a way in,
+      // not just a statistic.
+      if (prioFilter === "shortnotice") return a.status === "shortnotice";
+      return (a.action + a.review) > 0;
+    });
+    if (q) rowsActs = rowsActs.filter(a => {
+      const hay = (a.title + " " + a.ownersSrc.join(" ") + " " + a.pages.map(p => p.title).join(" ")).toLowerCase();
+      return hay.includes(q);
+    });
+    const rows = rowsActs;
+
+    // One control, both levels. Department and Team were two selects doing one
+    // job, and the second had to be kept in sync with the first. An <optgroup>
+    // says the same thing natively: pick your department heading or the team
+    // under it, with keyboard and screen-reader behaviour for free.
+    const byDeptTeams = new Map();
+    for (const p of acts.flatMap(a => a.pages)) {
+      if (!p.teamName) continue;
+      const d = p.department || "Other bodies";
+      if (!byDeptTeams.has(d)) byDeptTeams.set(d, new Set());
+      byDeptTeams.get(d).add(p.teamName);
+    }
+    const ownerGroups = [...byDeptTeams.entries()].sort((x, y) => x[0] < y[0] ? -1 : 1)
+      .map(([dept, teams]) => ({
+        label: dept,
+        // The department itself is selectable, so "everything under DfT" needs
+        // no second control; its teams sit beneath it.
+        options: [{ value: "dept:" + dept, label: "All of " + dept }].concat(
+          [...teams].sort().map(t => ({ value: t, label: t }))
+        ),
+      }));
+
+    // Counts come from the unfiltered set so the option itself says whether
+    // picking it is worth it — an empty "Regulations and orders" is a fact
+    // about the window, not a broken filter.
+    const primaryN   = acts.filter(a => a.legType === "primary").length;
+    const secondaryN = acts.filter(a => a.legType === "secondary").length;
+    // Short enough to read inside the control. "Regulations and orders only (73)"
+    // did not fit and clipped mid-word, which is worse than no count at all.
+    const typeOptions = [
+      { value:"all",       label:"Everything (" + (primaryN + secondaryN) + ")" },
+      { value:"primary",   label:"Acts (" + primaryN + ")" },
+      { value:"secondary", label:"Regulations, orders (" + secondaryN + ")" }
+    ];
+
+    // ---- time bands ----
+    // The organising axis is WHEN, because a commencement date is the one thing
+    // an item has exactly one of. Departments and teams are many-per-item, so
+    // grouping on them duplicates: 73 items rendered as 196 rows across 32
+    // groups, ten of them singletons and seven with none of their own pages
+    // open. Filtering is the right tool for a many-to-many; banding for a date.
+    //
+    // Near bands are relative because that is how urgency is felt; far ones are
+    // calendar months because that is how planning is done.
+    // Bands must not overlap or the remainder reads as a mistake: a "next 30
+    // days" band running into late August left an "August · 2 pages" band
+    // beside it, which looks like August is nearly empty when most of it sat in
+    // the band above. So: relative only within the current month, calendar
+    // months after that. Every date lands in exactly one band.
+    //
+    // The first band is URGENCY, not date. Sorting purely by commencement put
+    // the flagged work — past its start-by with nothing recorded — wherever its
+    // commencement happened to fall, so an Act you should already have started
+    // sat below a comfortable one merely because it lands later. The thing you
+    // are behind on has to be the thing you see first. It is still a clean
+    // partition: an item is either behind or it is in its date band, never both.
+    const bandOf = a => {
+      if (a.status === "overdue" || a.status === "carried") {
+        return { key:"0", label:"Start now", tone:"red" };
+      }
+      const d = dleft(NOW, a.commence);
+      if (d < 0) return { key:"1", label:"Already in force", tone:"red" };
+      if (d <= 7) return { key:"2", label:"This week", tone:"amber" };
+      const dt = new Date(a.commence + "T00:00:00");
+      const now = new Date(NOW + "T00:00:00");
+      if (dt.getFullYear() === now.getFullYear() && dt.getMonth() === now.getMonth()) {
+        return { key:"3", label:"Later this month", tone:"amber" };
+      }
+      if (d > 365) return { key:"9", label:"More than a year away", tone:"far" };
+      const y = dt.getFullYear();
+      return {
+        key: "4" + a.commence.slice(0, 7),
+        label: MONF[dt.getMonth()] + (y === now.getFullYear() ? "" : " " + y),
+        tone: d > 120 ? "far" : "near",
+      };
+    };
+    // Why the top band exists, in the reader's terms. Only the flagged band gets
+    // one — the date bands say what they are.
+    // The board has no idea whether a team has started: it reads the law, and
+    // nothing a reader of this page can do would tell it otherwise. Saying "no
+    // work recorded" describes a record the reader cannot create, and reads as
+    // an accusation of inaction rather than a fact about a date.
+    const BAND_NOTE = { "Start now": "Their suggested start date has passed. This board follows the law, so it cannot see work already in hand." };
+    const bandMap = new Map();
+    for (const a of rows) {
+      const b = bandOf(a);
+      if (!bandMap.has(b.key)) bandMap.set(b.key, { label: b.label, tone: b.tone, rows: [] });
+      bandMap.get(b.key).rows.push(a);
+    }
+    const groups = [...bandMap.entries()]
+      .sort((x, y) => x[0] < y[0] ? -1 : 1)
+      .map(([, g]) => {
+        const pages = g.rows.reduce((s, a) => s + (a.action || 0) + (a.review || 0), 0);
+        return {
+          label: g.label,
+          tone: g.tone,
+          note: BAND_NOTE[g.label] || "",
+          rows: g.rows,
+          count: g.rows.length + (g.rows.length === 1 ? " change · " : " changes · ")
+            + pages + (pages === 1 ? " page" : " pages"),
+        };
+      });
+
+    const overview = {
+      stats, rows, groups, ownerGroups, typeOptions,
+      q:state.q, owner:state.owner, prio:state.prio, type:state.type,
+      count: "Showing " + rows.length + " of " + acts.length,
+      empty: rows.length === 0
+    };
+
+    // ---- act detail ----
+    // The drill-in never inherits the worklist filters: hiding matched pages
+    // here made the header count and the visible list disagree ("9 pages
+    // matched" over 3 rows, T-078). Every matched page is reachable — the
+    // Monitor bucket just renders collapsed (see actHTML).
+    let act = null;
+    if (state.view === "act" && state.actIdx != null && acts[state.actIdx]) {
+      const a = acts[state.actIdx];
+      act = { ...a, pageCountLabel:a.pageCount + " page" + (a.pageCount === 1 ? "" : "s") + " matched" };
+    }
+
+    // ---- page detail ----
+    let page = null;
+    if (state.view === "page" && state.actIdx != null && state.pageIdx != null && acts[state.actIdx]) {
+      const a = acts[state.actIdx];
+      page = a.pages.find(x => x.pi === state.pageIdx) || a.pages[0] || null;
+    }
+
+    // ---- horizon lane (T-082) ----
+    // Pre-enactment bills at late parliamentary stages. Deliberately a
+    // separate, plainly-labelled list: no dates exist yet, so these rows get
+    // no timeline geometry, no start-by and no status ramp — early warning,
+    // not commitments.
+    const horizon = ((Q.horizon && Q.horizon.items) || []).map(h => ({
+      title: h.title || "",
+      stage: (h.current_stage || "") + (h.current_house ? " · " + h.current_house : ""),
+      lastUpdate: h.last_update || "",
+      billUrl: h.bill_url || "",
+      note: h.note || "",
+      pageCount: h.page_count || 0,
+      pages: (h.affected_pages || []).map(p => ({ url:p.url, title:p.title || p.url })),
+    }));
+
+    // ---- due-for-review lane (T-071) ----
+    // Event-driven review prompts: a page lands here when a real change event
+    // touched it (commencement, fresh amendment, apparent value contradiction,
+    // silent body change) — or, failing any of those, when its stored review
+    // date elapsed. A heads-up to review, not a claim that anything is wrong.
+    // Presented GROUPED BY THE CHANGE THAT TRIGGERED THEM, because that is what
+    // the lane actually is. Rendered flat, 64 rows carried the same chip
+    // ("change now in force") and the same owner over and over, never naming
+    // *which* change — so the reader could not connect a page here to the item
+    // above that caused it, and the 12-row cap meant only the first change's
+    // pages were ever visible. Those 64 rows are three changes. The commencement
+    // signal always names legislation[0] (60/60 in the live payload), so the
+    // grouping key needs no guessing.
+    const REVIEW_SIGNAL_LABELS = {
+      amendment_effect: "law amended again",
+      value_contradiction: "may state an old value",
+      silent_page_change: "page changed quietly",
+      review_elapsed: "review date passed",
+    };
+    const reviewGroups = (() => {
+      const bySlug = new Map(Q.items.map(it => [it.legislation_url, "#/act/" + actSlug(it)]));
+      const groups = new Map();
+      for (const r of ((Q.review || {}).due) || []) {
+        const lead = (r.legislation || [])[0] || null;
+        const key = lead ? lead.url : "__other__";
+        if (!groups.has(key)) {
+          groups.set(key, {
+            title: lead ? lead.title.replace(/^The\s+/, "") : "Other reasons to look",
+            date: lead ? lead.date || "" : "",
+            // Straight back to the same detail page the worklist row opens —
+            // the relationship between the two sections, made clickable.
+            href: lead ? (bySlug.get(lead.url) || lead.url) : "",
+            owners: new Set(), pages: [],
+          });
+        }
+        const g = groups.get(key);
+        // `deptOf`, not `shortOwner`: shortOwner returns "GDS GOV.UK · DVLA",
+        // and a value containing " · " inside a line whose own separator is
+        // " · " reads as one long run of unrelated words.
+        if (r.owner) g.owners.add(deptOf(r.owner));
+        g.pages.push({
+          url: r.url || "",
+          title: r.title || r.url || "",
+          // Only reasons the group heading does NOT already imply. Every page
+          // under a commenced change is here because it commenced; repeating
+          // that on all 26 of them is ink that says nothing.
+          flags: (r.signals || [])
+            .map(s => REVIEW_SIGNAL_LABELS[s.signal])
+            .filter(Boolean),
+        });
+      }
+      return [...groups.values()]
+        .sort((a, b) => b.pages.length - a.pages.length)
+        .map(g => {
+          // A reason every page shares belongs to the group, not to each page.
+          // Two groups here are driven entirely by a value contradiction, and
+          // stamping "(may state an old value)" on all of their pages repeated
+          // the heading once per row.
+          const shared = g.pages.length && g.pages[0].flags.length
+            ? g.pages[0].flags.filter(f => g.pages.every(p => p.flags.includes(f)))
+            : [];
+          const pages = shared.length
+            ? g.pages.map(p => ({ ...p, flags: p.flags.filter(f => !shared.includes(f)) }))
+            : g.pages;
+          // "In force 1 Oct" for a date three months away is simply false. The
+          // lane is not only commenced changes: a page can be flagged for
+          // stating a value the new law supersedes BEFORE that law lands.
+          // <= 0, not < 0: something commencing today is in force today.
+          const past = g.date ? dleft(NOW, g.date) <= 0 : false;
+          return {
+            ...g,
+            pages,
+            owners: [...g.owners],
+            ownerLine: [...g.owners].slice(0, 3).join(", ")
+              + (g.owners.size > 3 ? " +" + (g.owners.size - 3) : ""),
+            dateLabel: g.date ? (past ? "In force " : "Comes into force ") + fmtMed(g.date) : "",
+            sharedLabel: shared.join(", "),
+            countLabel: g.pages.length + " page" + (g.pages.length === 1 ? "" : "s"),
+          };
+        });
+    })();
+    const reviewTotal = (((Q.review || {}).due) || []).length;
+
+    // ---- prospective lane (T-090) ----
+    // Enacted provisions with no commencement date appointed yet. Like the
+    // horizon lane, no dates exist — so no timeline, no start-by, no status
+    // ramp. A longer-term backlog, plainly labelled, not a set of deadlines.
+    const prospective = ((Q.prospective && Q.prospective.items) || []).map(x => ({
+      title: x.legislation_title || "",
+      url: x.legislation_url || "",
+      provisionCount: x.provision_count || 0,
+      alsoOnWorklist: !!x.also_on_worklist,
+      pageCount: x.page_count || 0,
+      pages: (x.affected_pages || []).map(p => ({ url:p.url, title:p.title || p.url })),
+      // Stated commencement aims (T-119): quoted, sourced statements only.
+      // Rendered as aims, never as dates — nothing here has a date.
+      windows: (x.expected_windows || []).map(w => ({
+        window: w.window || "",
+        scope: w.scope || "",
+        sourceTitle: w.source_title || "",
+        sourceUrl: w.source_url || "",
+        statedOn: w.stated_on || "",
+      })),
+    }));
+
+    return {
+      loading:false,
+      isOverview: state.view === "overview",
+      isAct: state.view === "act" && !!act,
+      isPage: state.view === "page" && !!page,
+      header: { updated:headerUpdated },
+      overview, act, page, horizon, prospective,
+      review: { groups: reviewGroups, total: reviewTotal }
+    };
+  }
+
+  // ============================== HTML builders ==============================
+  // Masthead, not a hero. Two facts: whose wire this is, and how fresh it is.
+  // The old second meta line ("Commencement orders · 86 of 86 in window ·
+  // LLM-verified") described how the board was assembled — a reassurance about
+  // the machine that a content designer cannot act on and did not ask for.
+  function headerHTML(vm) {
+    return ''
+    + '<header style="background:#0b1f35;border-bottom:3px solid #1d70b8;view-transition-name:ew-header">'
+    +   '<div class="ew-header-inner" style="max-width:1120px;margin:0 auto;padding:11px 24px;display:flex;align-items:baseline;justify-content:space-between">'
+    +     '<span style="font-family:var(--font-heading);font-weight:700;color:#fff;font-size:19px;letter-spacing:-.01em">EventWire</span>'
+    +     '<span class="ew-header-meta" style="color:#c3d3e3;font-size:12px;white-space:nowrap">' + esc(vm.header.updated) + '</span>'
+    +   '</div>'
+    + '</header>';
+  }
+
+  // One line of type where two 28px tiles used to be. Each figure is a button
+  // that narrows the list to exactly the rows it counts, so the number and the
+  // way to act on it are the same object.
+  function statsHTML(stats, prio) {
+    return stats.map((s, i) =>
+      (i ? '<span aria-hidden="true" style="color:#b1b4b6">·</span>' : '')
+      + '<button type="button" class="ew-stat" data-stat="' + esc(s.filter) + '"'
+      + ' aria-pressed="' + (s.filter === prio ? "true" : "false") + '">'
+      +   '<span style="font-family:var(--font-heading);font-weight:700;font-size:21px;line-height:1;color:' + s.color + '">' + esc(s.n) + '</span>'
+      +   '<span class="ew-stat-label t-caption t-secondary">' + esc(s.label) + '</span>'
+      + '</button>').join("");
+  }
+
+  function optionsHTML(opts, sel) {
+    return opts.map(o => '<option value="' + esc(o.value) + '"' + (o.value === sel ? " selected" : "") + '>' + esc(o.label) + '</option>').join("");
+  }
+
+  // Teams nested under their department. <optgroup> is the native way to say
+  // "these belong together", so it needs no second control and no dependent
+  // state to keep in sync.
+  function ownerOptionsHTML(groups, sel) {
+    return optionsHTML([{ value:"all", label:"All teams" }], sel)
+      + groups.map(g => '<optgroup label="' + esc(g.label) + '">'
+          + optionsHTML(g.options, sel) + '</optgroup>').join("");
+  }
+
+  // A wire line, not a card. One row per item, scannable in a single pass:
+  // when · what · how much · who. The per-row timeline moved to the item page,
+  // where there is room for it to mean something; here it cost 60px of height
+  // per row and said less than the date it sits beside.
+  const chip = (label, bg, ink, title) =>
+    '<span' + (title ? ' title="' + esc(title) + '"' : '')
+    + ' style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;'
+    + 'white-space:nowrap;padding:1px 6px;border-radius:3px;background:' + bg + ';color:' + ink + '">'
+    + esc(label) + '</span>';
+
+  // The date is the one element every row has, sits at the start of the scan, and
+  // was carrying no information beyond its own value. Inking it by urgency turns
+  // the left edge into a colour spine you can read down at a glance — and it is
+  // never the only carrier: the band, the flags and the counts all say it too.
+  const DATE_INK = {
+    overdue:"#d4351c", carried:"#d4351c", shortnotice:"#a8620a", startnow:"#9c4915",
+    inprogress:"#1d70b8", done:"#00703c", ontrack:"#0b0c0c", monitor:"#687074"
+  };
+
+  function overviewRowHTML(it, band) {
+    // A status chip in a band that already means the same thing says nothing:
+    // with a 4–6 week lead time, everything in "Start now", "Already in force"
+    // or "This week" is past its start-by by definition. Flags earn their place
+    // only where they are NOT implied.
+    const impliedByBand = band === "Start now" || band === "Already in force" || band === "This week";
+    // ONE fixed slot, so the flags column starts at the same x on every row
+    // instead of trailing a title of arbitrary length — and ONE flag in it.
+    // Two chips need 152px in the worst case, and buying that width out of the
+    // title column to serve a handful of rows is a bad trade; clipping the
+    // second chip instead just looks broken. So they are ranked and the row
+    // shows its most consequential one: the timetable status first (it explains
+    // the date), then unresolved ownership (it blocks the work being routed at
+    // all), then the Act marker (useful, but nothing turns on it).
+    const flags = [];
+    if (!impliedByBand && it.statusKey === "shortnotice") flags.push(chip("short notice", "#fdf0dc", "#7a4a00", it.bannerLine));
+    else if (!impliedByBand && (it.statusKey === "overdue" || it.statusKey === "carried")) flags.push(chip(it.statusLabel, it.statusTint, it.statusInk));
+    if (it.needsRouting) flags.push(chip("owner?", "#f3f2f1", "#505a5f", "Published by an organisation that has closed and was split up, so who owns these pages now needs deciding"));
+    // Mark the exception, not the rule. 73 of 86 items are instruments, so a
+    // REGS chip on nearly every row was ink spent to say "normal"; the 13 Acts
+    // are the rare, wide-reaching ones and are worth spotting.
+    if (it.legType === "primary") flags.push(chip("Act", "#e8f1f8", "#144e81", "An Act of Parliament, not an instrument made under one"));
+    return ''
+    + '<a class="ew-row" href="' + esc(it.href) + '" title="' + esc(it.title) + '" style="display:grid;grid-template-columns:52px minmax(0,1fr) 100px 150px 176px;gap:12px;align-items:baseline;padding:7px 8px;margin:0 -8px;border-top:1px solid #ebe9e6;text-decoration:none;color:inherit">'
+    +   '<time datetime="' + esc(it.commence) + '" class="t-caption" style="font-variant-numeric:tabular-nums;font-weight:700;color:' + (DATE_INK[it.statusKey] || "#0b0c0c") + ';white-space:nowrap">' + esc(it.dayLabel) + '</time>'
+    +   '<span style="min-width:0;font-family:var(--font-heading);font-weight:650;font-size:14px;line-height:1.35;letter-spacing:-.01em;color:#0b0c0c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(it.rowTitle || it.title) + '</span>'
+    +   '<span class="ew-flags" style="display:flex;align-items:baseline;min-width:0;overflow:hidden">' + (flags[0] || "") + '</span>'
+    // Who would do the work is the axis the reader is really filtering on — they
+    // are one team among ~88 — so it reads at secondary weight, not muted.
+    +   '<span class="ew-owner t-caption t-secondary" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + esc(it.ownerLine) + '</span>'
+    +   '<span class="ew-counts t-caption" style="text-align:right;white-space:nowrap">'
+    +     (it.updateText ? '<span style="color:#0b0c0c;font-weight:700">' + esc(it.updateText) + '</span>' : '')
+    +     (it.updateText && it.reviewText ? '<span class="t-muted"> · </span>' : '')
+    +     (it.reviewText ? '<span class="t-muted">' + esc(it.reviewText) + '</span>' : '')
+    +   '</span>'
+    + '</a>';
+  }
+
+  function overviewRowsHTML(ov) {
+    if (ov.empty) {
+      // The escalation filter finding nothing is good news, not an empty result.
+      return ov.prio === "escalate"
+        ? '<div style="padding:30px 0;text-align:center;color:#00703c;font-weight:600">Nothing overdue and nothing in force with work still open.</div>'
+        : '<div style="padding:30px 0;text-align:center;color:#687074">No legislation matches these filters.</div>';
+    }
+    // Bands are headings, not containers — a rule and a label the eye skips to.
+    // They partition rather than duplicate, which grouping by department could
+    // not: an Act touches many departments, so it rendered under each and 73
+    // items became 196 rows across 32 collapsed accordions.
+    //
+    // The rule carries the urgency: red and heavy at the top, thinning to a hair
+    // rule and grey type for months that are still a long way off. Weight decays
+    // down the page, so the eye is pulled to the work that is actually pressing
+    // instead of treating thirteen months as thirteen equals.
+    const TONE = {
+      red:   { rule:"2px solid #d4351c", ink:"#942514" },
+      amber: { rule:"2px solid #a8620a", ink:"#7a4a00" },
+      near:  { rule:"2px solid #0b0c0c", ink:"#0b0c0c" },
+      far:   { rule:"1px solid #b1b4b6", ink:"#505a5f" }
+    };
+    return ov.groups.map(g => {
+      const t = TONE[g.tone] || TONE.near;
+      return ''
+      + '<section style="margin-top:' + (g.note ? 18 : 22) + 'px">'
+      +   '<h2 class="t-overline" style="font-size:11px;color:' + t.ink + ';margin:0 0 2px;padding-bottom:5px;border-bottom:' + t.rule + ';display:flex;gap:8px;align-items:baseline;justify-content:space-between">'
+      +     '<span>' + esc(g.label) + '</span>'
+      +     '<span class="t-caption" style="color:' + t.ink + ';font-weight:400;text-transform:none;letter-spacing:0">' + esc(g.count) + '</span>'
+      +   '</h2>'
+      +   (g.note ? '<p class="t-caption t-muted" style="margin:5px 0 0">' + esc(g.note) + '</p>' : '')
+      +   g.rows.map(it => overviewRowHTML(it, g.label)).join("")
+      + '</section>';
+    }).join("");
+  }
+
+  function overviewHTML(vm) {
+    const ov = vm.overview;
+    return ''
+    + '<main class="ew-main" style="max-width:1120px;margin:0 auto;padding:20px 24px 0">'
+    // Heading and headline figures on ONE line. The overline, the 32px title and
+    // a two-line paragraph explaining what the board is took 130px above the
+    // fold to say what the masthead and the column headings already say — and
+    // the reader arriving each morning has read it before.
+    +   '<div class="ew-head" style="display:flex;align-items:baseline;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin-bottom:12px">'
+    +     '<h1 class="t-h4" style="font-size:23px">Upcoming changes to check</h1>'
+    +     '<div class="ew-stats" style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">' + statsHTML(ov.stats, ov.prio) + '</div>'
+    +   '</div>'
+    // The filter bar is fixed to the top of the list it governs rather than
+    // floating above it, so it reads as the list's own controls.
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05)">'
+    +     '<div class="ew-filters" style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;padding:12px 20px;background:#fbfaf9;border-bottom:1px solid #e1dfdc">'
+    +       '<label class="ew-field" style="flex:1 1 230px">'
+    +         '<span class="ew-flabel">Search</span>'
+    +         '<input type="search" data-ctl="q" placeholder="Legislation, page or team" value="' + esc(ov.q) + '">'
+    +       '</label>'
+    +       '<label class="ew-field" style="flex:0 1 208px">'
+    +         '<span class="ew-flabel">Team</span>'
+    +         '<select data-ctl="owner">' + ownerOptionsHTML(ov.ownerGroups, ov.owner) + '</select>'
+    +       '</label>'
+    +       '<label class="ew-field" style="flex:0 1 196px">'
+    +         '<span class="ew-flabel">Show</span>'
+    +         '<select data-ctl="prio">'
+    +           optionsHTML([{value:"review",label:"Needing work"},{value:"action",label:"With pages to update"},{value:"escalate",label:"To start now"},{value:"shortnotice",label:"On short notice"},{value:"all",label:"Everything"}], ov.prio)
+    +         '</select>'
+    +       '</label>'
+    +       '<label class="ew-field" style="flex:0 1 196px">'
+    +         '<span class="ew-flabel">Type</span>'
+    +         '<select data-ctl="type">' + optionsHTML(ov.typeOptions, ov.type) + '</select>'
+    +       '</label>'
+    +       '<span class="t-caption t-muted" id="ew-count" style="margin-left:auto;padding-bottom:9px;white-space:nowrap">' + esc(ov.count) + '</span>'
+    +     '</div>'
+    // The timeline axis went with the per-row timelines. It labelled a track the
+    // rows no longer draw, and the bands now say when far more directly.
+    +     '<div style="padding:2px 20px 20px">'
+    +       '<div id="ew-rows">' + overviewRowsHTML(ov) + '</div>'
+    +     '</div>'
+    +   '</div>'
+    // Read down the page, the sections now descend by how settled things are:
+    // dated and coming (the worklist) -> already happened (review) -> no date
+    // at all. Horizon and prospective were the other way round, which put a
+    // bill that is not law yet ABOVE an Act that already is.
+    +   reviewHTML(vm.review)
+    +   noDatesHTML(vm)
+    + '</main>';
+  }
+
+  // One way of showing "here are the pages", used by all three lower blocks.
+  // They previously each invented their own: the review lane made every page a
+  // heading-sized row, while the other two ran them inline. Layout variety is
+  // fine where it signals a different KIND of thing — colour and framing do
+  // that here — but the same object should be presented the same way, or the
+  // reader has to re-learn the pattern three times down one page.
+  const MAX_PAGE_LINKS = 6;
+  function pageRunHTML(pages, total) {
+    if (!pages.length) return "";
+    const shown = pages.slice(0, MAX_PAGE_LINKS).map(p =>
+      '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">' + esc(p.title) + '</a>'
+      + ((p.flags && p.flags.length)
+          ? ' <span class="t-muted" style="font-size:11px">(' + esc(p.flags.join(", ")) + ')</span>'
+          : "")
+    ).join('<span class="t-muted"> · </span>');
+    const more = (total || pages.length) - Math.min(pages.length, MAX_PAGE_LINKS);
+    return '<div class="t-caption t-secondary" style="line-height:1.6;margin-top:4px">'
+      + shown + (more > 0 ? '<span class="t-muted"> · +' + more + ' more</span>' : '')
+      + '</div>';
+  }
+
+  // A block heading that says what the block is and how big it is.
+  function laneHeadHTML(label, ink, count, lead) {
+    return '<div class="t-overline" style="color:' + ink + ';display:flex;gap:10px;align-items:baseline;justify-content:space-between">'
+      + '<span>' + esc(label) + '</span>'
+      + (count ? '<span class="t-caption" style="color:' + ink + ';font-weight:400;text-transform:none;letter-spacing:0">' + esc(count) + '</span>' : '')
+      + '</div>'
+      + '<p class="t-caption t-secondary" style="max-width:760px;margin:5px 0 10px">' + lead + '</p>';
+  }
+
+  // "Due for review" — event-driven review prompts (T-071), grouped by the
+  // change that triggered them. The group heading carries the relationship the
+  // flat list could not: it names the change, and clicking it opens the very
+  // same detail page the worklist row above opens.
+  function reviewHTML(review) {
+    const groups = (review && review.groups) || [];
+    if (!groups.length) return "";
+    const n = groups.length;
+    return ''
+    + '<div style="background:#f4f8fb;border:1px solid #b7cfe3;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:26px">'
+    +   laneHeadHTML("Due for review", "#144e81",
+          n + " change" + (n === 1 ? "" : "s") + " · " + review.total + " page" + (review.total === 1 ? "" : "s"),
+          "Pages worth checking <strong>now</strong>, grouped under the change that flagged them — "
+          + "the same changes listed above, so a heading here opens the same page a row up there does. "
+          + "Most are here because the change has come into force; a few because the page may already "
+          + "state a value the new law replaces. A prompt to check, not a finding of error.")
+    +   groups.map(g => ''
+        + '<div style="padding:11px 8px 12px;margin:0 -8px;border-top:1px solid #d3e2ee">'
+        +   '<a href="' + esc(g.href) + '" style="font-family:var(--font-heading);font-weight:650;font-size:14px;line-height:1.3;color:#0b0c0c;text-decoration:none;border-bottom:1px solid #9dbdd8">' + esc(g.title) + '</a>'
+        +   '<div class="t-caption t-muted" style="margin-top:3px">'
+        +     esc([g.dateLabel, g.sharedLabel, g.ownerLine || "no owner routed", g.countLabel]
+                .filter(Boolean).join(" · "))
+        +   '</div>'
+        +   pageRunHTML(g.pages, g.pages.length)
+        + '</div>').join("")
+    + '</div>';
+  }
+
+  // The two dateless lanes share a heading, because their whole similarity —
+  // no date, so nothing to schedule — is exactly what made them read as
+  // duplicates of each other. Said once, the space below is free to state the
+  // one thing that actually differs: how settled the law is.
+  function noDatesHTML(vm) {
+    const p = prospectiveHTML(vm.prospective);
+    const h = horizonHTML(vm.horizon);
+    if (!p && !h) return "";
+    return ''
+    + '<section style="margin-top:30px">'
+    +   '<h2 class="t-overline" style="font-size:11px;margin:0;padding-bottom:5px;border-bottom:1px solid #b1b4b6;color:#505a5f">No dates yet</h2>'
+    +   '<p class="t-caption t-muted" style="max-width:760px;margin:7px 0 0">'
+    +     'Neither of these has a commencement date, so neither has a deadline and neither is on the worklist. '
+    +     'They differ in how settled the law is — the first is finished and waiting, the second could still change.'
+    +   '</p>'
+    +   p + h
+    + '</section>';
+  }
+
+  // "On the horizon" — pre-enactment bills (T-082). Visually distinct from the
+  // dated worklist (dashed border, amber chip) and honest about uncertainty:
+  // these have no in-force dates, no start-by, and may still change.
+  function horizonHTML(rows) {
+    if (!rows || !rows.length) return "";
+    const rowHTML = h => ''
+      + '<div style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px;align-items:center;padding:11px 8px;margin:0 -8px;border-top:1px solid #ebe9e6">'
+      +   '<div>'
+      // Likewise no "EARLY WARNING" chip — the block heading and its lead line
+      // already say the bill is not law yet, which is the whole warning.
+      +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:15px;line-height:1.25;color:#0b0c0c">' + esc(h.title) + '</div>'
+      +     '<div class="t-caption t-muted" style="margin-top:2px">' + esc(h.stage) + (h.lastUpdate ? ' · updated ' + esc(h.lastUpdate) : '') + '</div>'
+      +   '</div>'
+      +   '<div class="t-caption t-secondary" style="line-height:1.5">'
+      +     (h.pages.length ? 'Pages it could affect:' : '')
+      +     pageRunHTML(h.pages, h.pageCount)
+      +   '</div>'
+      +   '<div style="text-align:right">'
+      +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + h.pageCount + ' page' + (h.pageCount === 1 ? '' : 's') + '</div>'
+      +     (h.billUrl ? '<a href="' + esc(h.billUrl) + '" target="_blank" rel="noopener" style="font-size:12px;color:#1d70b8;font-weight:600">Bill progress ↗</a>' : '')
+      +   '</div>'
+      + '</div>';
+    return ''
+    + '<div style="background:#fffbf5;border:1px dashed #f47738;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:16px">'
+    +   laneHeadHTML("Still going through Parliament", "#a04d0a",
+          rows.length + " bill" + (rows.length === 1 ? "" : "s"),
+          "Not law yet, and the wording can still change before it is — so anything written now may need rewriting. "
+          + "The earliest warning available. A bill joins the worklist once it passes and its dates are set.")
+    +   rows.map(rowHTML).join("")
+    + '</div>';
+  }
+
+  // "Enacted — not yet commenced" (T-090). A longer-term radar: real law already
+  // on the statute book whose commencement date has not been appointed. Like the
+  // horizon lane it is dateless — no start-by, no deadline — and visually distinct
+  // (dotted grey) so it never reads as a commitment.
+  function prospectiveHTML(rows) {
+    if (!rows || !rows.length) return "";
+    const rowHTML = x => ''
+      + '<div style="display:grid;grid-template-columns:300px 1fr 150px;gap:16px;align-items:center;padding:11px 8px;margin:0 -8px;border-top:1px solid #ebe9e6">'
+      +   '<div>'
+      // No "NO DATE YET" chip: the block is called "waiting for a start date",
+      // under a heading that says "No dates yet". Stamping it on every row is
+      // the third telling, and it pushed the Act's name — the thing you scan
+      // for — down the row.
+      +     '<div style="font-family:var(--font-heading);font-weight:650;font-size:15px;line-height:1.25;color:#0b0c0c">' + esc(x.title) + '</div>'
+      +     '<div class="t-caption t-muted" style="margin-top:2px">' + x.provisionCount + ' provision' + (x.provisionCount === 1 ? '' : 's') + ' awaiting commencement'
+      +       (x.alsoOnWorklist ? ' · some already dated on the worklist' : '') + '</div>'
+      // A stated aim is government's quoted words, not an appointed date, and
+      // must never carry a date's typographic authority: amber ink, aim-first
+      // copy, source named. Full-border/tint treatments only (no side stripes).
+      +     (x.windows || []).map(w => ''
+      +       '<div class="t-caption" style="margin-top:6px;color:var(--color-amber-ink)">Ministers have said: <b>' + esc(w.window) + '</b> — an aim they stated, not a set date</div>'
+      +       (w.scope ? '<div class="t-caption t-muted" style="margin-top:1px">' + esc(w.scope) + '</div>' : '')
+      +       (w.sourceTitle ? '<div class="t-caption t-muted" style="margin-top:1px">Said in: '
+      +         (w.sourceUrl ? '<a href="' + esc(w.sourceUrl) + '" target="_blank" rel="noopener" style="color:inherit">' + esc(w.sourceTitle) + '</a>' : esc(w.sourceTitle))
+      +         (w.statedOn ? ' (' + esc(w.statedOn) + ')' : '') + '</div>' : '')
+      +     '').join('')
+      +   '</div>'
+      +   '<div class="t-caption t-secondary" style="line-height:1.5">'
+      +     (x.pages.length ? 'Pages it will affect:' : '')
+      +     pageRunHTML(x.pages, x.pageCount)
+      +   '</div>'
+      +   '<div style="text-align:right">'
+      +     '<div class="t-body-sm" style="font-weight:600;font-size:13px;color:#0b0c0c">' + x.pageCount + ' page' + (x.pageCount === 1 ? '' : 's') + '</div>'
+      +     (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener" style="font-size:12px;color:#1d70b8;font-weight:600">Read the Act ↗</a>' : '')
+      +   '</div>'
+      + '</div>';
+    return ''
+    + '<div style="background:#fafafa;border:1px dotted #9aa2ab;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 20px 18px;margin-top:16px">'
+    +   laneHeadHTML("Already law — waiting for a start date", "#4c5560",
+          rows.length + " Act" + (rows.length === 1 ? "" : "s"),
+          "Passed and final: the wording will not change now. All that is missing is the date ministers appoint "
+          + "for it to take effect, which can be years. Each one joins the worklist the day it gets a date. "
+          + "Where ministers have publicly said when they aim to switch a change on, that is shown — their stated aim, not a date.")
+    +   rows.map(rowHTML).join("")
+    + '</div>';
+  }
+
+  function actHTML(vm) {
+    const a = vm.act;
+    // Affected-content team filter (T-103) + per-group pagination (T-104). A user
+    // with a large Act (100+ affected pages) can narrow to their own team and the
+    // long groups reveal the tail on demand rather than rendering all at once.
+    const allPages = a.groups.flatMap(g => g.items);
+    const teamOf = p => p.contentTeam || p.ownerOrg || p.ownerShort;
+    const teamSet = new Set(allPages.map(teamOf).filter(Boolean));
+    const teamOpts = [{ value:"all", label:"All teams" }]
+      .concat([...teamSet].sort().map(t => ({ value:t, label:t })));
+    const activeTeam = teamSet.has(state.team) ? state.team : "all";
+    const teamMatch = p => activeTeam === "all" || teamOf(p) === activeTeam;
+    const filteredTotal = allPages.filter(teamMatch).length;
+    const PAGE_CAP = 25;   // rows shown per group before a native "show more"
+    const commHTML = a.commencements.map(c =>
+      '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05)">'
+      + '<div style="display:flex;gap:12px;align-items:baseline;padding:12px 20px;border-bottom:1px solid #ebe9e6;flex-wrap:wrap">'
+      +   '<span style="font-weight:650;font-family:var(--font-heading);font-size:16px;color:' + c.color + '">' + esc(c.dateFull) + '</span>'
+      +   '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#505a5f">' + esc(c.tagLabel) + '</span>'
+      +   '<span class="t-caption t-muted" style="margin-left:auto">' + esc(c.countLabel) + '</span>'
+      + '</div>'
+      + '<div style="padding:4px 20px 8px">'
+      + c.provisions.map(p =>
+          '<div style="display:flex;gap:14px;padding:9px 0;border-top:1px solid #f3f1ef;align-items:baseline">'
+          + '<span title="' + esc(p.refFull) + '" style="flex:none;min-width:74px;font-family:var(--font-mono,monospace);font-size:13px;color:#0b0c0c">'
+          +   '<span style="font-weight:700">' + esc(p.refMain) + '</span>'
+          +   (p.refDetail ? '<span style="font-weight:400;color:#8a9196;font-size:12px"> ' + esc(p.refDetail) + '</span>' : '')
+          + '</span>'
+          + '<div style="flex:1;min-width:0">'
+          +   '<div class="t-body-sm" style="color:#0b0c0c;line-height:1.35">' + esc(p.subject) + '</div>'
+          +   '<div class="t-caption t-muted" style="margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
+          +     (p.qual ? '<span>' + esc(p.qual) + '</span>' : '')
+          +     (p.sourceUrl ? (p.qual ? '<span style="opacity:.4">·</span>' : '') + '<a href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener" style="color:#1d70b8">' + esc(p.sourceLead) + esc(p.sourceLabel) + '</a>' : '')
+          +   '</div>'
+          + '</div>'
+          + '</div>').join("")
+      + '</div>'
+      + '</div>').join("");
+
+    const futureMeasureRowHTML = m => {
+      const pageLinks = m.pages.slice(0, 3).map(p =>
+        '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">' + esc(p.title) + '</a>'
+      ).join(' · ');
+      return '<div style="display:grid;grid-template-columns:minmax(74px,auto) 1fr;gap:12px;padding:9px 0;border-top:1px solid #ebe9e6;align-items:baseline">'
+        + '<span title="' + esc(m.ref) + '" style="font-family:var(--font-mono,monospace);font-size:12px;white-space:nowrap;color:#0b0c0c">'
+        +   (m.refMain ? '<strong>' + esc(m.refMain) + '</strong>' : '<span class="t-muted">Measure</span>')
+        +   (m.refDetail ? ' <span class="t-muted">' + esc(m.refDetail) + '</span>' : '')
+        + '</span>'
+        + '<div><div class="t-body-sm" style="color:#0b0c0c;line-height:1.35">' + esc(m.subject) + '</div>'
+        +   (pageLinks ? '<div class="t-caption t-muted" style="margin-top:2px;line-height:1.45">May affect ' + pageLinks + (m.pages.length > 3 ? ' · +' + (m.pages.length - 3) + ' more' : '') + '</div>' : '')
+        + '</div></div>';
+    };
+    const futureHTML = a.futureProvisionCount
+      ? (() => {
+          const shown = (a.futureMeasures || []).slice(0, 6);
+          const rest = (a.futureMeasures || []).slice(6);
+          const connected = a.futureMeasures.length;
+          const summary = a.futureProvisionCount + ' provision' + (a.futureProvisionCount === 1 ? '' : 's') + ' still await commencement dates.'
+            + (connected
+                ? ' ' + connected + ' matched measure' + (connected === 1 ? ' is' : 's are') + ' connected to ' + a.futurePageCount + ' GOV.UK page' + (a.futurePageCount === 1 ? '' : 's') + '.'
+                : ' No page-specific measure matches were found.');
+          return '<div style="margin:0 0 24px">'
+            + '<div class="t-overline">Other measures without dates</div>'
+            + '<div style="background:#fafafa;border:1px dotted #9aa2ab;padding:12px 20px">'
+            + '<p class="t-body-sm t-secondary" style="margin:0 0 8px">' + esc(summary) + ' These are prompts to keep in view, not work with a deadline.</p>'
+            + shown.map(futureMeasureRowHTML).join('')
+            + (rest.length ? '<details style="border-top:1px solid #ebe9e6;padding-top:8px"><summary class="t-caption" style="cursor:pointer;color:#1d70b8;font-weight:600">Show ' + rest.length + ' more matched measure' + (rest.length === 1 ? '' : 's') + '</summary>' + rest.map(futureMeasureRowHTML).join('') + '</details>' : '')
+            + '</div></div>';
+        })()
+      : '';
+
+    // Every matched page renders — the Monitor bucket is collapsed by default
+    // (native <details>) rather than hidden, so the "N pages matched" header
+    // always agrees with what's on screen.
+    const groupsHTML = a.groups.map(g => {
+      const items = g.items.filter(teamMatch);
+      if (!items.length) return "";   // group empty under the active team filter
+      // Keep the group header count honest when a team filter is applied.
+      const countLabel = activeTeam === "all"
+        ? g.count
+        : (items.length + " page" + (items.length === 1 ? "" : "s"));
+      const head = expandHint =>
+        '<div style="display:flex;align-items:center;gap:9px;padding:7px 12px;background:' + g.tint + '">'
+        + '<span style="font-family:var(--font-heading);font-weight:650;font-size:14px;white-space:nowrap;color:' + g.ink + '">' + esc(g.label) + '</span>'
+        + '<span class="t-caption" style="color:' + g.ink + ';opacity:.85">' + esc(countLabel) + (activeTeam === "all" && g.hint ? ' · ' + esc(g.hint) : '') + '</span>'
+        + (expandHint ? '<span class="t-caption" style="margin-left:auto;color:' + g.ink + ';font-weight:600">' + expandHint + '</span>' : '')
+        + '</div>';
+      // Pagination (T-104): show the first PAGE_CAP rows, reveal the rest via a
+      // native <details> so a 100+ list is a short scroll until expanded.
+      const shown = items.slice(0, PAGE_CAP);
+      const rest = items.slice(PAGE_CAP);
+      const cards = shown.map(p => actPageCardHTML(p, a.idx, a.uniformMatchLabel)).join("")
+        + (rest.length
+            ? '<details style="border:1px solid #e1dfdc;border-top:none">'
+              + '<summary style="cursor:pointer;list-style:none;padding:11px 16px;color:#1d70b8;font-weight:600;font-size:13px;font-family:var(--font-stack)">'
+              + '<span class="ew-more-closed">Show ' + rest.length + ' more page' + (rest.length === 1 ? '' : 's') + ' ▸</span>'
+              + '<span class="ew-more-open">Show fewer ▴</span></summary>'
+              + rest.map(p => actPageCardHTML(p, a.idx, a.uniformMatchLabel)).join("")
+              + '</details>'
+            : "");
+      if (g.key === "monitor") {
+        return '<details style="margin-bottom:18px">'
+          + '<summary style="cursor:pointer;list-style:none">'
+          + head('<span class="ew-closed-only">show pages ▸</span><span class="ew-open-only">hide pages ▴</span>')
+          + '</summary>'
+          + cards
+          + '</details>';
+      }
+      return '<div style="margin-bottom:18px">' + head('') + cards + '</div>';
+    }).join("")
+    || '<div style="padding:24px 0;color:#687074">' + (activeTeam === "all"
+          ? 'No GOV.UK pages matched this ' + (a.legType === "secondary" ? "instrument" : "Act") + '.'
+          : 'No affected pages for ' + esc(activeTeam) + ' on this ' + (a.legType === "secondary" ? "instrument" : "Act") + '.') + '</div>';
+
+    return ''
+    + '<main class="ew-main" style="max-width:1000px;margin:0 auto;padding:22px 24px 0">'
+    +   '<nav aria-label="Breadcrumb" style="font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">'
+    +     '<a href="#/" style="color:#1d70b8;font-weight:600">Worklist</a>'
+    +     '<span aria-hidden="true" style="color:#687074">›</span><span class="t-muted">' + esc(a.title) + '</span>'
+    +   '</nav>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:18px 22px;margin-bottom:18px">'
+    +     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">'
+    +       '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:3px 9px;border-radius:4px;background:' + a.statusTint + ';color:' + a.statusInk + '">' + esc(a.statusLabel) + '</span>'
+    +     '</div>'
+    +     '<h1 class="t-h3" style="margin:0 0 6px;font-size:26px">' + esc(a.title) + '</h1>'
+    +     '<p class="t-body" style="margin:0 0 10px;font-size:17px;color:#0b0c0c">' + esc(a.bannerLine) + '</p>'
+    // When the whole thing commences on one date there is no table worth
+    // drawing, so the date moves up here — the one fact the section carried,
+    // beside the other dates it belongs with.
+    +     (a.wholeCommencementLine
+        ? '<p class="t-body-sm" style="margin:0 0 8px;color:#0b0c0c">'
+          + '<strong style="color:' + a.wholeCommencementLine.color + '">'
+          + esc(a.wholeCommencementLine.dateFull) + '</strong> — '
+          + esc(a.wholeCommencementLine.what) + ' comes into force'
+          + '</p>'
+        : '')
+    +     '<div class="t-caption t-secondary" style="display:flex;gap:14px;flex-wrap:wrap">'
+    +       '<span>' + esc(a.leadLine) + '</span>'
+    +       '<a href="' + esc(a.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">View on legislation.gov.uk →</a>'
+    +     '</div>'
+    // Regulations do not stand alone: they exercise a power in an Act, and that
+    // Act is the body of law a designer already knows. Naming it gives an
+    // otherwise unfamiliar instrument somewhere to sit.
+    +     (a.enablingActs && a.enablingActs.length
+        ? '<div class="t-caption t-secondary" style="margin-top:6px">Made under '
+          + a.enablingActs.map(x => '<a href="' + esc(x.url) + '" target="_blank" rel="noopener" style="color:#1d70b8">'
+              + esc(x.title || x.url.replace("https://www.legislation.gov.uk/", "")) + '</a>').join(", ")
+          + '</div>'
+        : '')
+    +   '</div>'
+    +   (a.wholeCommencementLine ? ''
+        : '<div style="margin-bottom:8px" class="t-overline">What comes into force, and when</div>'
+          + '<div style="margin-bottom:24px;display:flex;flex-direction:column;gap:14px">' + commHTML + '</div>')
+    +   futureHTML
+    +   actProposalsHTML(a)
+    +   '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap">'
+    +     '<h2 class="t-h4" style="margin:0;font-size:21px">Affected GOV.UK content</h2>'
+    +     '<div style="display:flex;align-items:center;gap:10px">'
+    +       (teamOpts.length > 2 ? '<label style="font-size:13px;color:#505a5f;display:flex;align-items:center;gap:6px">Team <select data-ctl="team" style="font-size:13px;font-family:var(--font-stack);padding:7px 9px;border:1px solid #b1b4b6;border-radius:4px;background:#fff;color:#0b0c0c">' + optionsHTML(teamOpts, activeTeam) + '</select></label>' : '')
+    +       '<span class="t-caption t-muted">' + esc(activeTeam === "all" ? a.pageCountLabel : (filteredTotal + ' page' + (filteredTotal === 1 ? '' : 's') + ' · ' + activeTeam)) + '</span>'
+    +     '</div>'
+    +   '</div>'
+    +   (a.uniformMatchLabel
+        ? '<p class="t-caption t-muted" style="margin:-2px 0 10px">'
+          + esc(a.uniformMatchLabel === "Whole-instrument match"
+              ? "Matched against the whole instrument — it names no individual regulations to match against."
+              : a.uniformMatchLabel === "Act-level match"
+              ? "Matched against the Act as a whole — the commencing provisions could not be pinned down."
+              : "Every page below was matched the same way: " + a.uniformMatchLabel.toLowerCase() + ".")
+          + '</p>'
+        : '')
+    +   groupsHTML
+    + '</main>';
+  }
+
+  // "What changes" — the Act's concrete value changes (queue.json `proposals`,
+  // present only on a --value-diff build). One card per fact: the thing that
+  // changes in plain words, old → new, when, and the pages that still state the
+  // superseded value. The drafted callout markdown is behind a "copy suggested
+  // wording" button — a convenience, not the headline (T-076). Nothing here
+  // publishes; every value traces to the legislation.
+  function actProposalsHTML(a) {
+    if (!a.proposals || !a.proposals.length) return "";
+    const cards = a.proposals.map(pr => {
+      const name = pr.entity ? pr.entity.charAt(0).toUpperCase() + pr.entity.slice(1) : "Value change";
+      const valueLine = pr.oldVal
+        ? '<span style="color:#687074">' + esc(pr.oldVal) + '</span> <span style="color:#687074">→</span> <strong>' + esc(pr.newVal) + '</strong>'
+        : 'now <strong>' + esc(pr.newVal) + '</strong>';
+      const rows = pr.targets.map(t =>
+        '<div style="display:flex;gap:10px;align-items:baseline;padding:7px 0;border-top:1px solid #f3f1ef">'
+        + '<span title="' + esc(t.statusLabel) + '" style="flex:none;width:8px;height:8px;border-radius:50%;background:' + t.ink + ';margin-top:5px"></span>'
+        + '<div style="flex:1;min-width:0">'
+        +   (t.url ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener" style="color:#1d70b8;font-size:14px;font-weight:600;text-decoration:none">' + esc(t.title) + '</a>' : '<span style="font-size:14px">' + esc(t.title) + '</span>')
+        +   (t.statusLabel ? ' <span class="t-caption t-muted" style="line-height:1.4">— ' + esc(t.statusLabel) + '</span>' : '')
+        + '</div>'
+        + '<span class="t-caption t-muted" style="flex:none;white-space:nowrap">' + esc(t.owner || "—") + '</span>'
+        + '</div>').join("");
+      return ''
+      + '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:14px 18px;margin-bottom:12px">'
+      +   '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">'
+      +     '<span style="font-family:var(--font-heading);font-weight:650;font-size:17px;color:#0b0c0c;line-height:1.3">' + esc(name) + '</span>'
+      +     (pr.inForce ? '<span class="t-caption t-muted">from ' + esc(pr.inForce) + '</span>' : '')
+      +   '</div>'
+      +   '<div style="font-size:19px;margin-top:3px;line-height:1.3">' + valueLine + '</div>'
+      +   ((pr.provision || pr.legisTitle) ? '<div class="t-caption t-muted" style="margin-top:3px">Source: ' + esc([pr.legisTitle, pr.provision].filter(Boolean).join(" · ")) + '</div>' : '')
+      +   (pr.callout ? '<div style="margin-top:9px"><button data-copy="' + esc(pr.callout) + '" style="font-family:var(--font-stack);font-size:12px;font-weight:600;color:#1d70b8;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:5px 10px;cursor:pointer">Copy suggested wording</button></div>' : '')
+      +   (rows ? '<div style="margin-top:9px">' + rows + '</div>' : '')
+      + '</div>';
+    }).join("");
+    return ''
+    + '<div style="margin:6px 0 8px" class="t-overline">What changes</div>'
+    + '<p class="t-body-sm t-secondary" style="max-width:720px;margin:0 0 12px">Values that may need updating on matched pages. Confirm the page before editing.</p>'
+    + cards;
+  }
+
+  function actPageCardHTML(p, actIdx, uniformMatchLabel) {
+    return ''
+    + '<div class="ew-page-card" style="background:#fff;border:1px solid #e1dfdc;border-top:none;padding:13px 16px;display:flex;gap:14px;align-items:flex-start">'
+    +   '<span title="' + esc(p.confLabel) + '" style="width:9px;height:9px;border-radius:50%;background:' + p.confColor + ';flex:none;margin-top:6px"></span>'
+    +   '<div style="flex:1;min-width:0">'
+    +     '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-family:var(--font-heading);font-weight:600;font-size:16px;color:#1d70b8;text-decoration:none;line-height:1.25">' + esc(p.title) + '</a>'
+    +     (p.description ? '<div class="t-caption t-secondary" style="margin-top:2px;line-height:1.35">' + esc(p.description) + '</div>' : '')
+    +     '<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">'
+    +       (p.workBadge ? '<span title="' + esc(p.workOwner ? "Owner: " + p.workOwner : "Progress reported by the team") + '" style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.workBadge.tint + ';color:' + p.workBadge.ink + '">' + esc(p.workBadge.label) + '</span>' : '')
+    +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
+    +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
+    +       (p.showPublisher ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f"><span style="font-weight:400;color:#687074">Published by · </span>' + esc(p.publisher) + '</span>' : '')
+    +       (p.isLongTerm ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#4c5560">Longer-term measure</span>' : '')
+    +       '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:' + p.ownerTint + ';color:' + p.ownerColor + '"><span style="font-weight:400;opacity:.7">Team · </span>' + esc(p.ownerShort) + '</span>'
+    +     '</div>'
+    // Value-diff finding rendered as a flag, NOT a chip (ISS-031): a red flag is not
+    // a category. Own line, flag glyph + sentence-case warning text, matching the
+    // readable-finding style ISS-030 gave the proposal rows. (Comment lines here must
+    // not start with '+', or the leading '+' becomes a unary plus on the next operand.)
+    +     (p.valueBadge ? '<div style="margin-top:6px;display:flex;gap:6px;align-items:baseline" title="Value diff — a red flag to confirm, not a verdict">'
+    +       '<span aria-hidden="true" style="flex:none;color:' + p.valueBadge.ink + ';font-size:12px;line-height:1.35">⚑</span>'
+    +       '<span style="font-size:12px;line-height:1.35;color:' + p.valueBadge.ink + '"><span style="font-weight:600">' + esc(p.valueBadge.label) + '</span><span style="color:#687074;font-weight:400"> · flag to confirm, not a verdict</span></span>'
+    +     '</div>' : '')
+    +     (uniformMatchLabel && !p.isLongTerm ? ''
+        : '<div style="margin-top:6px"><span style="display:inline-block;font-size:11px;font-family:var(--font-mono,monospace);font-weight:700;padding:2px 8px;border-radius:4px;background:' + p.matchTint + ';color:' + p.matchInk + '">' + esc(p.matchLabel) + '</span></div>')
+    +   '</div>'
+    +   '<button class="ew-btn-green ew-page-cta" data-open-page="' + actIdx + ':' + p.pi + '" style="flex:none;font-family:var(--font-stack);font-size:13px;font-weight:600;border-radius:4px;padding:8px 13px;cursor:pointer">' + esc(p.cta) + ' →</button>'
+    + '</div>';
+  }
+
+  // A value-diff note on the page-detail view (value_diff.py output). Frames the
+  // diff as a red flag to confirm, never a verdict; the law value and the page's
+  // asserted value both trace to a source span. Renders nothing when there is no
+  // attached diff (or only a signal-free status).
+  function valueDiffNoteHTML(vd) {
+    if (!vd || !vd.status) return "";
+    let border, head, body;
+    if (vd.status === "contradicts") {
+      border = "#d4351c"; head = "Check this value first";
+      body = "This page appears to say " + esc(vd.page_value || "one thing")
+        + "; " + (vd.in_force_date ? "from " + esc(vd.in_force_date) + " " : "") + "the law says " + esc(vd.law_value || "something different") + "."
+        + (vd.matched_old_value ? " That is exactly the value being replaced, so it very likely needs updating — confirm on the page." : " Read the page before deciding — this is a flag, not a verdict.");
+    } else if (vd.status === "stale_date") {
+      border = "#f47738"; head = "Cites an older date";
+      body = "The page cites " + esc(vd.page_date || "an earlier date") + ", which this change"
+        + (vd.in_force_date ? " (" + esc(vd.in_force_date) + ")" : "") + " supersedes. Check it still reads true.";
+    } else if (vd.status === "consistent") {
+      border = "#00703c"; head = "Already states the new value";
+      body = "This page already says " + esc(vd.law_value || "the new value") + " — probably no change needed, but worth a glance.";
+    } else {
+      return "";
+    }
+    return '<div style="margin-top:10px;background:#fff;border:1px solid ' + border + ';padding:10px 14px;font-size:14px;color:#0b0c0c">'
+      + '<span style="font-weight:700;color:' + border + '">' + esc(head) + '</span> — ' + body + '</div>';
+  }
+
+  // Per-page hand-off brief (T-072), split by provenance (T-098).
+  //
+  // Two kinds of line used to render identically here, which overstated how much
+  // the tool actually knows about *this* page:
+  //
+  //   found   — observed evidence about this page: the provisions it matched, a
+  //             value on the page that the change contradicts.
+  //   general — a template keyed off a metadata field (doc type, estate). True
+  //             of every page of that type; says nothing about this one.
+  //
+  // They are now separate lists with separate headings, and a page with no
+  // observed evidence says so instead of padding the gap with boilerplate.
+  function handoffPanelHTML(p) {
+    const stakeholders = [];
+    if (p.ownerFull) stakeholders.push({ name: p.ownerFull, role: "likely content owner" });
+    if (p.publisherFull && p.publisherFull !== p.ownerFull)
+      stakeholders.push({ name: p.publisherFull, role: "publishing organisation" });
+
+    const found = [];
+    for (const prov of (p.provisions || []).slice(0, 4)) {
+      found.push("Check the page against " + (prov.ref || "the commencing change")
+        + (prov.subject ? " (" + prov.subject + ")" : "") + ".");
+    }
+    if ((p.provisions || []).length > 4) found.push("(+" + (p.provisions.length - 4) + " more matched provisions.)");
+    const vd = p.valueDiff || {};
+    if (vd.status === "contradicts" || vd.status === "stale_date") {
+      found.push("The page appears to state '" + (vd.page_value || "a superseded value")
+        + "' where the law now says '" + (vd.law_value || "a new value")
+        + "' — verify on the live page (a red flag to investigate, not a verdict).");
+    }
+
+    const general = [];
+    if (p.rawDocType === "guide") general.push("Multi-part guide: check every chapter, not just the landing page.");
+    else if (p.tier === "service") general.push("Transactional page: check computed results against the new values, not just body copy.");
+    else if (p.tier === "collection") general.push("Collection page: check the linked set is current — add/remove links rather than editing copy.");
+    else if (p.tier === "publication") general.push("Publication: consider an inline note or withdraw-and-replace rather than an edit.");
+    if (p.estate === "mainstream") general.push("Mainstream page: edits route through the GDS content team, with policy input from " + (p.publisherFull || "the policy department") + ".");
+    if (!stakeholders.length && !found.length && !general.length) return "";
+
+    const list = items => items.map(c =>
+      '<div class="t-body-sm" style="padding:3px 0;line-height:1.4">· ' + esc(c) + '</div>').join("");
+    const heading = text =>
+      '<div class="t-caption" style="font-weight:700;margin:10px 0 4px">' + text + '</div>';
+
+    return ''
+    + '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">Who to involve</h2>'
+    + '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:16px 20px;margin-bottom:24px">'
+    +   '<p class="t-caption t-muted" style="margin:0 0 10px">Who to involve and what to check when this page comes up for review. Stakeholders are candidates to confirm, not authority.</p>'
+    +   (stakeholders.length
+          ? '<div class="t-caption" style="font-weight:700;margin-bottom:4px">People and teams to confirm</div>'
+            + stakeholders.map(s => '<div class="t-body-sm" style="padding:3px 0">' + esc(s.name) + ' <span class="t-caption t-muted">— ' + esc(s.role) + '</span></div>').join("")
+          : '')
+    +   (found.length
+          ? heading("What was found on this page") + list(found)
+          : heading("What was found on this page")
+            + '<div class="t-body-sm t-muted" style="padding:3px 0;line-height:1.4">'
+            + 'Nothing specific to this page. It matched the change as a whole, not a '
+            + 'named provision, and no value on it was checked against the new law. '
+            + 'Read the change and judge whether this page is affected.</div>')
+    +   (general.length
+          ? heading("General for this kind of page")
+            + '<div class="t-caption t-muted" style="margin:-2px 0 4px">Applies to every ' + esc(p.docType || "page") + ', not just this one.</div>'
+            + list(general)
+          : '')
+    + '</div>';
+  }
+
+  function pageHTML(vm) {
+    const p = vm.page;
+    const stepsHTML = p.steps.map(st =>
+      '<div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #ebe9e6;align-items:flex-start">'
+      + '<div style="flex:none;width:26px;height:26px;border-radius:50%;border:2px solid ' + st.dotColor + ';color:' + st.dotColor + ';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:var(--font-heading)">' + esc(st.num) + '</div>'
+      + '<div style="flex:1;min-width:0"><div class="t-body" style="font-size:16px;color:#0b0c0c;line-height:1.35">' + esc(st.label) + '</div></div>'
+      + '<div style="flex:none;text-align:right;min-width:120px">'
+      +   '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;background:' + st.tint + ';color:' + st.ink + '">' + esc(st.flag) + '</span>'
+      +   '<div class="t-caption t-muted" style="margin-top:3px">by ' + esc(st.dateLabel) + '</div>'
+      + '</div>'
+      + '</div>').join("");
+
+    return ''
+    + '<main class="ew-main" style="max-width:920px;margin:0 auto;padding:22px 24px 0">'
+    +   '<nav aria-label="Breadcrumb" style="font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">'
+    +     '<a href="#/" style="color:#1d70b8;font-weight:600">Worklist</a>'
+    +     '<span aria-hidden="true" style="color:#687074">›</span>'
+    +     '<a href="' + esc(p.actHref) + '" style="color:#1d70b8;font-weight:600">' + esc(p.actTitle) + '</a>'
+    +     '<span aria-hidden="true" style="color:#687074">›</span><span class="t-muted">' + esc(p.title) + '</span>'
+    +   '</nav>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:20px 22px;margin-bottom:18px">'
+    +     '<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px">'
+    +       '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;background:' + p.estateTint + ';color:' + p.estateColor + '">' + esc(p.estateLabel) + '</span>'
+    +       (p.docType ? '<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f3f2f1;color:#505a5f">' + esc(p.docType) + '</span>' : '')
+    +     '</div>'
+    +     '<h1 class="t-h3" style="margin:0 0 6px;font-size:25px;line-height:1.2">' + esc(p.title) + '</h1>'
+    +     (p.description ? '<p class="t-body-sm t-secondary" style="margin:0 0 8px;line-height:1.4">' + esc(p.description) + '</p>' : '')
+    +     '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-size:13px;color:#1d70b8;word-break:break-all">' + esc(p.url) + '</a>'
+    +     '<div style="margin-top:14px;background:#f4f8fb;border:1px solid #d6e4f0;padding:10px 14px;font-size:14px;color:#0b0c0c">'
+    +       '<span style="font-weight:700">Why you\'re seeing this</span> — ' + esc(p.whyLine)
+    +     '</div>'
+    +     valueDiffNoteHTML(p.valueDiff)
+    +   '</div>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:18px 22px;margin-bottom:20px">'
+    +     '<div class="t-overline" style="color:' + p.statusInk + ';margin-bottom:5px">Do next</div>'
+    +     '<div class="t-h4" style="margin:0 0 5px;font-size:20px">' + esc(p.doNextHead) + '</div>'
+    +     '<p class="t-body-sm" style="margin:0;color:#0b0c0c">' + esc(p.doNextSub) + '</p>'
+    +     '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:13px">'
+    +       '<a class="ew-btn-green" href="' + esc(p.url) + '" target="_blank" rel="noopener" style="font-family:var(--font-stack);font-size:14px;font-weight:600;border-radius:4px;padding:9px 15px;text-decoration:none">Open the page →</a>'
+    +       '<a href="' + esc(p.actUrl) + '" target="_blank" rel="noopener" style="font-family:var(--font-stack);font-size:14px;font-weight:600;color:#1d70b8;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:9px 15px;text-decoration:none">Read ' + esc(p.actKind === "Act" ? "the Act" : "the regulations") + '</a>'
+    +     '</div>'
+    +     '<div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #ebe9e6">'
+    +       '<div><div class="t-caption t-muted">Start by</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.startByFull) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">In force</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.commenceFull) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">Work type</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.workType) + '</div></div>'
+    +       '<div><div class="t-caption t-muted">Team</div><div style="font-weight:650;font-family:var(--font-heading)">' + esc(p.ownerShort) + '</div></div>'
+    +     '</div>'
+    +   '</div>'
+    +   '<h2 class="t-h4" style="margin:0 0 12px;font-size:19px">What to do, in order</h2>'
+    +   '<div style="background:#fff;border:1px solid #e1dfdc;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:4px 20px 8px;margin-bottom:24px">' + stepsHTML + '</div>'
+    +   handoffPanelHTML(p)
+    +   '<div style="display:flex;gap:12px;flex-wrap:wrap">'
+    +     '<button data-nav="act" style="font-family:var(--font-stack);font-size:14px;font-weight:600;color:#0b0c0c;background:#fff;border:1px solid #b1b4b6;border-radius:4px;padding:10px 16px;cursor:pointer">← Back to affected content</button>'
+    +   '</div>'
+    + '</main>';
+  }
+
+  // ============================== render + nav ==============================
+  // The board is cross-government and the reader is one team among ~95, so a
+  // single feed serves none of them well — and the deployed one was silently
+  // scoped to one department. Static hosting has no query string, so each team
+  // gets its own file and the Team filter, where a reader has already said who
+  // they are, points at it. Fail-open: no index (older mirror, failed fetch)
+  // simply leaves the whole-board feed in place.
+  let FEEDS = {};
+  function feedForTeam(owner) {
+    const rec = FEEDS[owner];
+    return rec
+      ? { href: rec.file, label: "Subscribe to " + owner + " updates" }
+      : { href: "feed.atom", label: "Subscribe to updates" };
+  }
+
+  function footerHTML() {
+    const f = feedForTeam(state.owner);
+    return '<footer style="max-width:1120px;margin:44px auto 0;padding:20px 24px;border-top:1px solid #d0d3d5;color:#687074;font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
+      +   '<a href="wire-desk.html" style="color:#1d70b8;font-weight:600;text-decoration:none">Open the wire desk</a>'
+      +   '<span aria-hidden="true">·</span>'
+      +   '<span aria-hidden="true" style="display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;background:#ee802f;color:#fff;border-radius:3px;font-size:9px;font-weight:800;letter-spacing:.02em">RSS</span>'
+      +   '<a id="ew-feed" href="' + esc(f.href) + '" style="color:#1d70b8;font-weight:600;text-decoration:none">' + esc(f.label) + '</a>'
+      +   '<span>— follow new and changed items in any feed reader.'
+      +     (FEEDS[state.owner] ? '' : ' Choose your team above for a feed of just your work.') + '</span>'
+      +   '</footer>';
+  }
+
+  function fullRender() {
+    const vm = computeVM();
+    let body;
+    if (vm.loading) body = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#687074">Loading the queue…</div>';
+    else if (vm.isOverview) body = overviewHTML(vm);
+    else if (vm.isAct) body = actHTML(vm);
+    else if (vm.isPage) body = pageHTML(vm);
+    else body = overviewHTML(computeVM());   // fall back to overview if a detail view lost its target
+    root.innerHTML = '<div style="min-height:100vh;background:#f3f2f1;font-family:var(--font-stack);color:#0b0c0c;padding-bottom:60px">' + headerHTML(vm) + body + footerHTML() + '</div>';
+  }
+
+  // Filter changes only swap the overview rows + count — never the controls,
+  // so the search box keeps focus and caret while typing.
+  function rowsRender() {
+    const vm = computeVM();
+    if (!vm.isOverview) return;
+    const rowsEl = document.getElementById("ew-rows");
+    if (rowsEl) rowsEl.innerHTML = overviewRowsHTML(vm.overview);
+    const countEl = document.getElementById("ew-count");
+    if (countEl) countEl.textContent = vm.overview.count;
+    // The Team options are built from every Act in the window, not from the
+    // filtered rows, so they never change and need no refresh. The code that
+    // used to rebuild them here read `overview.ownerOptions`, which the view
+    // model does not have — so this threw a TypeError on every keystroke and
+    // every filter change, silently, after the rows had already repainted.
+    //
+    // The two controls that DO have to be kept in step are the Show select and
+    // the headline figures, because both set the same filter.
+    const prioEl = document.querySelector('[data-ctl="prio"]');
+    if (prioEl && prioEl.value !== state.prio) prioEl.value = state.prio;
+    for (const b of document.querySelectorAll(".ew-stat")) {
+      b.setAttribute("aria-pressed", b.dataset.stat === state.prio ? "true" : "false");
+    }
+    // The footer is not re-rendered when only the rows swap, so the feed link
+    // has to be kept in step with the Team filter explicitly.
+    const feedEl = document.getElementById("ew-feed");
+    if (feedEl) {
+      const f = feedForTeam(state.owner);
+      feedEl.setAttribute("href", f.href);
+      feedEl.textContent = f.label;
+    }
+  }
+
+  // ============================== hash routing ==============================
+  // Each view gets a real, shareable URL so deep links, bookmarks, open-in-new-
+  // tab and the browser back/forward buttons all work. We use *hash* routes
+  // (never path routes) because GitHub Pages serves static files only: the path
+  // is always index.html, so #/act/… can't 404 and needs no SPA fallback.
+  //   #/                       overview / worklist (filterable Act list)
+  //   #/plan                   the whole window on one timeline (Gantt)
+  //   #/act/<slug>             one Act's affected content
+  //   #/act/<slug>/page/<pi>   a single page's detail
+  // <slug> derives from the Act's legislation.gov.uk URL so a shared link
+  // survives the nightly rebuild (which can reorder Q.items); <pi> is the page's
+  // index within that Act. An unknown slug/pi falls back to the nearest valid
+  // view rather than erroring.
+  const actSlug = it => {
+    const s = String((it && it.legislation_url) || "")
+      .replace(/^https?:\/\/(www\.)?legislation\.gov\.uk\//i, "")
+      .replace(/[#?].*$/, "").replace(/\/+$/, "")
+      .replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").toLowerCase();
+    return s || "act";
+  };
+  function actIdxForSlug(slug) {
+    const items = (Q && Q.items) || [];
+    for (let i = 0; i < items.length; i++) if (actSlug(items[i]) === slug) return i;
+    return null;
+  }
+  function stateToHash(s) {
+    const items = (Q && Q.items) || [];
+    if ((s.view === "act" || s.view === "page") && s.actIdx != null && items[s.actIdx]) {
+      const base = "#/act/" + actSlug(items[s.actIdx]);
+      if (s.view === "page" && s.pageIdx != null) return base + "/page/" + s.pageIdx;
+      return base;
+    }
+    return "#/";
+  }
+  function hashToState() {
+    const items = (Q && Q.items) || [];
+    const seg = (location.hash || "").replace(/^#\/?/, "").split("/").filter(Boolean);
+    // #/plan was a separate timeline view until T-098 found it was the worklist's
+    // own rows, on the worklist's own axis, minus the counts column — a sort order
+    // wearing a tab. Old links still work: they land on the worklist configured
+    // the way the plan presented it (everything, chronological).
+    if (seg[0] === "plan") {
+      state.prio = "all";
+      return { view:"overview", actIdx:null, pageIdx:null };
+    }
+    // #/escalation was a separate page until T-098 found it was the worklist's
+    // own overdue/in-force rows transposed by team. It is a saved view now: the
+    // worklist narrowed to the work that is behind — which is also the top band.
+    if (seg[0] === "escalation") {
+      state.prio = "escalate";
+      return { view:"overview", actIdx:null, pageIdx:null };
+    }
+    if (seg[0] === "act" && seg[1] != null) {
+      const ai = actIdxForSlug(decodeURIComponent(seg[1]));
+      if (ai == null) return { view:"overview", actIdx:null, pageIdx:null };
+      if (seg[2] === "page" && seg[3] != null) {
+        const pi = Number(seg[3]);
+        const pages = (items[ai].affected_pages || []);
+        if (Number.isInteger(pi) && pi >= 0 && pi < pages.length)
+          return { view:"page", actIdx:ai, pageIdx:pi };
+        return { view:"act", actIdx:ai, pageIdx:null };   // stale page ref -> its Act
+      }
+      return { view:"act", actIdx:ai, pageIdx:null };
+    }
+    return { view:"overview", actIdx:null, pageIdx:null };
+  }
+
+  function setDocTitle() {
+    const items = (Q && Q.items) || [];
+    let t = "EventWire — legislative change board";
+    const it = state.actIdx != null ? items[state.actIdx] : null;
+    if (state.view === "act" && it) t = it.legislation_title + " — EventWire";
+    else if (state.view === "page" && it) {
+      const p = (it.affected_pages || [])[state.pageIdx];
+      t = ((p && p.title) || "Affected page") + " — EventWire";
+    }
+    document.title = t;
+  }
+
+  function withTransition(fn) {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !reduce) {
+      try {
+        const vt = document.startViewTransition(fn);
+        if (vt && vt.ready) vt.ready.catch(() => {});
+        if (vt && vt.finished) vt.finished.catch(() => {});
+      } catch (_) { fn(); }
+    } else { fn(); }
+  }
+
+  // The single place that turns the URL into a rendered view. Folds only the
+  // routed keys (view/actIdx/pageIdx) onto state so the overview filter state
+  // (q/owner/prio/conf/sort) survives a round-trip into an Act and back.
+  function applyRoute() {
+    const route = hashToState();
+    withTransition(() => {
+      state.view = route.view;
+      state.actIdx = route.actIdx != null ? route.actIdx : null;
+      state.pageIdx = route.pageIdx != null ? route.pageIdx : null;
+      window.scrollTo(0, 0);
+      fullRender();
+      setDocTitle();
+    });
+  }
+
+  // Navigation is expressed as a route change: click handlers still call
+  // navTo({view,…}); we translate that to a hash and let hashchange -> applyRoute
+  // do the render, so history is populated automatically.
+  function navTo(patch) {
+    const hash = stateToHash(Object.assign({}, state, patch));
+    if (hash === (location.hash || "#/")) { applyRoute(); return; }  // same view: re-render in place
+    location.hash = hash;   // fires "hashchange" -> applyRoute()
+  }
+
+  // ---- delegated events (root persists across innerHTML swaps) ----
+  root.addEventListener("click", e => {
+    const copyEl = e.target.closest("[data-copy]");
+    if (copyEl) {
+      const txt = copyEl.getAttribute("data-copy") || "";
+      const done = () => {
+        copyEl.textContent = "Copied ✓";
+        setTimeout(() => { copyEl.textContent = "Copy suggested wording"; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, () => {});
+      return;
+    }
+    // Act rows, view tabs and breadcrumbs are real <a href="#/…"> now, so the
+    // platform routes them (T-099). Only the native controls that carry no
+    // href — the page CTA button and the "back" button — are handled here.
+    const pageEl = e.target.closest("[data-open-page]");
+    if (pageEl) { const [ai, pi] = pageEl.dataset.openPage.split(":").map(Number); navTo({ view:"page", actIdx:ai, pageIdx:pi }); return; }
+    const navEl = e.target.closest("[data-nav]");
+    if (navEl) { navTo({ view:navEl.dataset.nav }); return; }
+    // A headline figure is a filter. Clicking the one you are already on clears
+    // it, so the same click both narrows and widens and nothing gets stuck.
+    const statEl = e.target.closest("[data-stat]");
+    if (statEl) {
+      state.prio = state.prio === statEl.dataset.stat ? "review" : statEl.dataset.stat;
+      rowsRender();
+    }
+  });
+  root.addEventListener("input", e => {
+    const el = e.target.closest('[data-ctl="q"]');
+    if (el) { state.q = el.value; rowsRender(); }
+  });
+  root.addEventListener("change", e => {
+    const el = e.target.closest("[data-ctl]");
+    if (!el) return;
+    const key = el.dataset.ctl;
+    if (key === "q") return;
+    state[key] = el.value;
+    if (key === "owner") {
+      try { localStorage.setItem(TEAM_KEY, el.value); } catch (_) { /* no memory, no harm */ }
+    }
+    // Overview filters swap just the rows (keeps search focus); the Act-view team
+    // filter (T-103) needs a full re-render of the detail view.
+    (state.view === "overview" ? rowsRender : fullRender)();
+  });
+
+  // ============================== boot ==============================
+  // Cache-bust the data fetch: a per-load query param gives the CDN edge a fresh
+  // key (Pages caches queue.json ~10 min) and no-store skips the browser cache,
+  // so a returning visitor always sees the latest nightly build. serve.py and
+  // Pages both ignore the query string when resolving the static file.
+  fetch("feeds/index.json?t=" + Date.now(), { cache: "no-store" })
+    .then(r => r.ok ? r.json() : [])
+    .then(rows => { for (const r of rows || []) if (r && r.team) FEEDS[r.team] = r; })
+    .catch(() => { /* no per-team feeds on this mirror; whole-board link stands */ });
+
+  fetch("queue.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).then(d => {
+    Q = d;
+    // Tolerate a pre-enrichment queue (older cache): default any missing fields.
+    for (const it of (Q.items || [])) {
+      it.owners = it.owners || [];
+      it.action_count = it.action_count | 0; it.review_count = it.review_count | 0; it.monitor_count = it.monitor_count | 0;
+      it.lead_time = it.lead_time || null;
+      it.commencements = it.commencements || [];
+      it.affected_pages = it.affected_pages || [];
+      it.proposals = it.proposals || [];
+      for (const p of it.affected_pages) {
+        p.priority = p.priority || "action"; p.estate = p.estate || "other";
+        p.owner = p.owner || "Unknown owner"; p.publisher_short = p.publisher_short || ""; p.topics = p.topics || [];
+      }
+    }
+    // Make longer-term matches addressable from an Act's page-detail routes as
+    // well as visible in the Act model. They remain monitor-only and do not
+    // alter the dated counts above.
+    const prospectiveByUrl = new Map(((Q.prospective && Q.prospective.items) || [])
+      .filter(x => x.legislation_url)
+      .map(x => [x.legislation_url, x]));
+    for (const it of (Q.items || [])) {
+      const x = prospectiveByUrl.get(it.legislation_url);
+      if (!x) continue;
+      const known = new Set(it.affected_pages.map(p => p.url).filter(Boolean));
+      for (const p of (x.affected_pages || [])) {
+        if (!p.url || known.has(p.url)) continue;
+        const copy = Object.assign({}, p, { priority: "monitor", long_term: true, long_term_provisions: x.provisions_sample || [] });
+        copy.estate = copy.estate || "other"; copy.owner = copy.owner || "Unknown owner";
+        copy.publisher_short = copy.publisher_short || ""; copy.topics = copy.topics || [];
+        it.affected_pages.push(copy); known.add(p.url);
+      }
+    }
+    state.ready = true;
+    if (d.error) { root.innerHTML = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#687074">' + esc(d.error) + '</div>'; return; }
+    // Honour a deep link on first paint (no view transition on cold start),
+    // then let the URL drive every subsequent navigation.
+    Object.assign(state, hashToState());
+    fullRender();
+    setDocTitle();
+    window.addEventListener("hashchange", applyRoute);
+  }).catch(e => {
+    root.innerHTML = '<div style="max-width:1120px;margin:0 auto;padding:60px 24px;color:#687074">Could not load queue.json: ' + esc(String(e)) + '</div>';
+  });
+})();
+</script>
+</body>
+</html>

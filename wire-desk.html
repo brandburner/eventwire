@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wire desk — EventWire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  /* ============================================================= EventWire
+     Canonical design tokens (T-100). This block is BYTE-IDENTICAL in every
+     page under automation/web/ and tests/test_web_design_system.py fails the
+     build if it drifts. It is duplicated rather than shared because the pages
+     must stay self-contained static files (no external stylesheet) — see
+     tests/test_wire_desk_ui.py.
+
+     GOV.UK palette and conventions, because the audience already works in
+     them. Editorial structure — masthead, lede, section rules, dense rows —
+     carries the newsroom voice; the colour does not need to.
+     ========================================================================= */
+  :root {
+    --font-stack: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-heading: "Libre Franklin", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --font-size-base: 19px; --font-size-sm: 16px; --font-size-xs: 14px;
+    --font-size-2xs: 12px; --font-size-3xs: 13px; --font-size-lead: 21px;
+    --font-size-title: 22px; --font-size-2xl: 28px; --font-size-xl: 36px; --font-size-xxl: 48px;
+
+    --leading-heading: 1.1; --leading-snug: 1.2; --leading-title: 1.3; --leading-body: 1.5;
+    --tracking-tight: -0.02em; --tracking-snug: -0.01em; --tracking-wider: 0.08em;
+
+    --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
+    --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+
+    /* Text — every pair verified at 4.5:1 or better on both surface and page. */
+    --color-text-primary: #0b0c0c; --color-text-secondary: #505a5f; --color-text-muted: #687074;
+    --color-gov-blue: #1d70b8;
+    --color-bg-page: #f3f2f1; --color-surface: #ffffff; --color-masthead: #0b1f35;
+    --color-masthead-text: #ffffff; --color-masthead-subtle: #c3d3e3; --color-masthead-link: #a8c7e8;
+    --color-border: #b1b4b6; --color-border-light: #e1dfdc; --color-rule: #ebe9e6;
+    --color-red: #d4351c; --color-red-ink: #942514; --color-red-tint: #fbe5e1;
+    --color-green: #00703c; --color-green-ink: #005a30; --color-green-tint: #e4f3ea;
+    --color-amber-ink: #6b4700; --color-amber-tint: #fdf2d8;
+    --color-blue-ink: #144e81; --color-blue-tint: #e8f1f8;
+    --color-neutral-ink: #383f43; --color-neutral-tint: #eceded;
+    --color-focus: #ffdd00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-stack); font-size: var(--font-size-sm); font-weight: 400;
+    line-height: var(--leading-body); color: var(--color-text-primary);
+    background: var(--color-bg-page);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-text-primary); margin: 0; }
+  a { color: var(--color-gov-blue); }
+  /* GDS focus: yellow block with a black underline. Never removed. */
+  a:focus, button:focus, summary:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid transparent;
+    background: var(--color-focus); color: var(--color-text-primary);
+    box-shadow: 0 -2px var(--color-focus), 0 4px var(--color-text-primary);
+    text-decoration: none;
+  }
+  input:focus, select:focus, textarea:focus { background: var(--color-surface); box-shadow: none; outline: 3px solid var(--color-text-primary); outline-offset: 0; }
+  /* --------------------------------------------------- shared wire-page shell
+     Masthead, nav, page frame, lede, filter bar, notes, empty/error, footer.
+     Identical across the wire views; page-specific rules follow below.
+     Deliberately rule-and-tint based: no coloured side-stripes, no card grids,
+     no hero-metric blocks. Dividers where a divider will do.
+     ------------------------------------------------------------------------ */
+  .mast { background: var(--color-masthead); color: var(--color-masthead-text); border-bottom: 3px solid var(--color-gov-blue); }
+  .mast-in, .page { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-lg); }
+  .mast-in { padding-top: 13px; padding-bottom: 13px; }
+  .brand { font-family: var(--font-heading); font-weight: 700; font-size: 19px; letter-spacing: var(--tracking-snug); }
+  .brand span { color: var(--color-masthead-subtle); font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-2xs); margin-left: var(--space-xs); letter-spacing: 0; }
+  .nav { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: 10px; font-size: var(--font-size-xs); }
+  .nav a { color: var(--color-masthead-link); text-decoration: none; padding-bottom: 4px; }
+  .nav a:hover { color: var(--color-masthead-text); }
+  .nav a[aria-current] { color: var(--color-masthead-text); font-weight: 600; border-bottom: 3px solid var(--color-gov-blue); }
+
+  .page { padding-top: var(--space-lg); padding-bottom: var(--space-2xl); }
+  .overline { font-family: var(--font-stack); font-weight: 600; font-size: var(--font-size-3xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--color-gov-blue); }
+  h1 { font-size: var(--font-size-xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); margin: 3px 0 6px; }
+  h2 { font-size: var(--font-size-title); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .lede { max-width: 62ch; color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-lg); }
+
+  /* Summary figures read as a sentence, not as a row of dashboard tiles. */
+  .summary { font-size: var(--font-size-sm); color: var(--color-text-primary); margin: 0 0 var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--color-border-light); }
+  .summary b { font-family: var(--font-heading); font-weight: 700; }
+  .summary span { color: var(--color-text-muted); }
+
+  /* A note, not an alert: full border and a tint, no coloured edge stripe. */
+  .note { background: var(--color-surface); border: 1px solid var(--color-border-light); padding: var(--space-sm) var(--space-md); margin: 0 0 var(--space-lg); font-size: var(--font-size-xs); }
+  .note strong { display: block; margin-bottom: 2px; }
+  .note-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .note-split > div { padding: var(--space-sm) var(--space-md); }
+  .note-split > div + div { border-left: 1px solid var(--color-border-light); }
+  .note-split .eyebrow { text-transform: uppercase; letter-spacing: var(--tracking-wider); font-size: 11px; font-weight: 700; color: var(--color-text-muted); }
+
+  .tools { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: end; margin: 0 0 var(--space-sm); }
+  .field { display: grid; gap: var(--space-2xs); }
+  .field label { font-size: var(--font-size-2xs); font-weight: 600; color: var(--color-text-secondary); }
+  .field input, .field select { font: inherit; font-size: var(--font-size-xs); border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-surface); color: var(--color-text-primary); padding: 8px 10px; min-height: 44px; min-width: 170px; }
+  .field.search { flex: 1; }
+  .field.search input { width: 100%; }
+  .count { margin-left: auto; font-size: var(--font-size-3xs); color: var(--color-text-muted); padding-bottom: 12px; }
+
+  .panel { background: var(--color-surface); border: 1px solid var(--color-border-light); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .empty { padding: var(--space-lg); color: var(--color-text-muted); font-size: var(--font-size-xs); }
+  .error { max-width: 62ch; margin: var(--space-2xl) auto; background: var(--color-surface); border: 1px solid var(--color-red); padding: var(--space-lg); }
+  .error strong { display: block; margin-bottom: 4px; color: var(--color-red-ink); }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; background: var(--color-neutral-tint); color: var(--color-neutral-ink); }
+  .tag-red { background: var(--color-red-tint); color: var(--color-red-ink); }
+  .tag-amber { background: var(--color-amber-tint); color: var(--color-amber-ink); }
+  .tag-green { background: var(--color-green-tint); color: var(--color-green-ink); }
+  .tag-blue { background: var(--color-blue-tint); color: var(--color-blue-ink); }
+
+  footer { max-width: 1120px; margin: var(--space-xl) auto 0; padding: var(--space-lg); border-top: 1px solid var(--color-border-light); font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+
+  @media (max-width: 760px) {
+    h1 { font-size: var(--font-size-2xl); }
+    .note-split { grid-template-columns: 1fr; }
+    .note-split > div + div { border-left: 0; border-top: 1px solid var(--color-border-light); }
+    .count { width: 100%; margin: 0; }
+  }
+  /* ------------------------------------------------------- wire-desk only */
+  .measure { border-top: 1px solid var(--color-rule); }
+  .measure:first-child { border-top: 0; }
+  .measure summary { list-style: none; cursor: pointer; padding: 14px 20px 14px 42px; position: relative; }
+  .measure summary::-webkit-details-marker { display: none; }
+  /* The native marker is hidden for layout, so the row needs its own visible
+     "this expands" affordance — without one the rows read as inert (T-099). */
+  .measure summary:before { content: ""; position: absolute; left: 20px; top: 22px; width: 8px; height: 8px; border-right: 2px solid var(--color-text-muted); border-bottom: 2px solid var(--color-text-muted); transform: rotate(-45deg); transition: transform .12s ease; }
+  .measure[open] summary:before { transform: rotate(45deg); top: 20px; }
+  @media (prefers-reduced-motion: reduce) { .measure summary:before { transition: none; } }
+  .measure summary:hover { background: #f7fafc; }
+  .measure-grid { display: grid; grid-template-columns: minmax(240px,1.3fr) minmax(200px,1fr) minmax(200px,1fr); gap: var(--space-md); align-items: baseline; }
+  .measure-id { font-family: var(--font-mono); font-size: var(--font-size-2xs); font-weight: 700; color: var(--color-text-secondary); letter-spacing: .04em; }
+  .measure-title { font-family: var(--font-heading); font-size: var(--font-size-sm); font-weight: 600; line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); margin: 1px 0 2px; }
+  .meta { font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+  .axis-title { font-size: 11px; text-transform: uppercase; letter-spacing: var(--tracking-wider); font-weight: 700; color: var(--color-text-muted); margin-bottom: 4px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .work { font-size: var(--font-size-xs); font-weight: 600; }
+  .work.outstanding { color: var(--color-red-ink); }
+  .quiet { font-size: var(--font-size-2xs); color: var(--color-text-muted); margin-top: 2px; }
+
+  /* Evidence sits flush inside the open row — a rule, not a card inside a card. */
+  .detail { border-top: 1px solid var(--color-rule); background: #fbfaf9; padding: var(--space-sm) 20px var(--space-md) 42px; }
+  .detail h2 { font-size: var(--font-size-2xs); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--color-text-muted); margin: 0 0 4px; }
+  .signal { display: grid; grid-template-columns: 130px 120px 1fr; gap: var(--space-sm); padding: 10px 0; border-top: 1px solid var(--color-rule); font-size: var(--font-size-xs); }
+  .signal-class { font-weight: 600; }
+  .signal-date, .basis { font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+  .signal.provisional .signal-class:after { content: " — not settled"; font-weight: 400; color: var(--color-amber-ink); }
+
+  /* Inbox strip: arrival order, judgment links as the desk's main act. */
+  .deskbar { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: end; margin: 0 0 var(--space-sm); }
+  .deskbar .meta { padding-bottom: 12px; }
+  .await { border-top: 1px solid var(--color-rule); padding: 10px 20px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--space-sm); align-items: baseline; font-size: var(--font-size-xs); }
+  .await:first-child { border-top: 0; }
+  .await .meta { margin-top: 1px; }
+  .dates-list { margin: 0 0 var(--space-sm); padding: 0; list-style: none; font-size: var(--font-size-xs); }
+  .dates-list li { padding: 4px 0; border-top: 1px solid var(--color-rule); }
+  .dates-list li:first-child { border-top: 0; }
+  .page-links { margin: 0; padding: 0; list-style: none; font-size: var(--font-size-xs); }
+  .page-links li { padding: 4px 0; border-top: 1px solid var(--color-rule); display: flex; gap: var(--space-sm); justify-content: space-between; flex-wrap: wrap; }
+  .page-links li:first-child { border-top: 0; }
+
+  @media (max-width: 760px) {
+    .measure-grid, .signal { grid-template-columns: 1fr; }
+    .await { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+  <header class="mast"><div class="mast-in">
+    <div class="brand">EventWire<span>Legislation that may affect GOV.UK content</span></div>
+    <nav class="nav" aria-label="EventWire views">
+      <a href="./">Upcoming changes</a><a href="./wire-desk.html" aria-current="page">Wire desk</a><a href="./backlog.html">Page findings</a><a href="./judgments.html">Record a decision</a><a href="./#/escalation">Overdue work</a>
+    </nav>
+  </div></header>
+  <main class="page">
+    <div class="overline">Signals by law</div>
+    <h1>What has arrived, and what is still to do</h1>
+    <p class="lede">Each law lists what has arrived about it, and separately what is still to do. A quiet law is not a finished one.</p>
+    <div class="note note-split">
+      <div><div class="eyebrow">Incoming change</div><strong>One source, or several?</strong><p id="posture-copy" style="margin:2px 0 0">Several separate sources pointing the same way make a stronger case for looking. It is still a prompt to look, not a list of work.</p></div>
+      <div><div class="eyebrow">Recorded work</div><strong>Quiet does not mean done</strong><p id="work-copy" style="margin:2px 0 0">A law can go quiet after it comes into force and still have content work nobody has finished.</p></div>
+    </div>
+    <p class="summary" id="summary"></p>
+    <section class="deskbar" aria-label="What to show">
+      <div class="field"><label for="mode">Show</label><select id="mode"><option value="all">Everything</option><option value="inbox">New since you last checked</option></select></div>
+      <button class="button secondary" id="close-desk" type="button">Mark all as read</button>
+      <div class="meta" id="closed-at"></div>
+    </section>
+    <section class="tools" aria-label="Filter laws">
+      <div class="field search"><label for="q">Find a law</label><input id="q" type="search" placeholder="Name, reference or programme code"></div>
+      <div class="field"><label for="posture">Sources agreeing</label><select id="posture"><option value="">Any number</option><option value="action">3 or more sources</option><option value="prepare">2 sources</option><option value="monitor">1 source only</option><option value="none">No sources yet</option></select></div>
+      <div class="field"><label for="class-filter">Where it came from</label><select id="class-filter"><option value="">Anywhere</option></select></div>
+      <div class="field"><label for="work">Work still open</label><select id="work"><option value="">Any</option><option value="yes">In force, work still open</option><option value="no">Nothing outstanding</option></select></div>
+      <div class="count" id="count" aria-live="polite"></div>
+    </section>
+    <section class="panel" id="measures"><div class="empty">Loading…</div></section>
+    <h2 style="margin:var(--space-lg) 0 var(--space-xs)">Waiting for a decision</h2>
+    <p class="lede" style="margin-bottom:var(--space-sm)">Findings nobody has said yes or no to yet. Deciding them is the most useful thing you can do here — ruling one out stops the same false lead coming back.</p>
+    <section class="panel" id="awaiting"><div class="empty">Loading…</div></section>
+  </main>
+  <footer>Figures come from the overnight update. Nothing here is a verdict — it is a prompt to look. Marking things as read only affects this device.</footer>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  // Where a signal came from, named as the reader would name it. "Dependency
+  // estate" and "quasi-law" are the internal classes; nobody outside the tool
+  // holds those concepts, so they never reach the page (T-135).
+  const labels = {statute:"Legislation",consultation:"Consultation",caselaw:"Court ruling",cycle:"Yearly rates review",dependency:"Linked page changed",quasi_law:"Guidance changed"};
+  // Plain-language strength in place of the internal posture keyword. The
+  // wording matches the filter options exactly — "several" left it unclear
+  // whether the two-source case was included.
+  const POSTURE = {action:["3 or more sources","tag-red"],prepare:["2 sources","tag-amber"],monitor:["1 source only","tag-blue"],none:["No sources yet",""]};
+  // The basis strings describe how the tool reached this law. Rendered raw they
+  // read as plumbing ("dependents → queue page sources"); the map says the same
+  // thing in the reader's language and falls open to the original.
+  const BASIS = {
+    "dependents → queue page sources":"A linked GOV.UK page changed",
+    "dependents → backlog pages":"A linked GOV.UK page changed",
+    "cycle legal sources (config)":"The yearly rates calendar",
+    "cycle notes / affected pages":"The yearly rates calendar",
+    "watchlist legal sources (config)":"A guidance source being watched",
+    "curated watchlist measure link":"A guidance source being watched",
+    "draft identity + cited Acts":"A draft instrument naming this law",
+    "citation in title/description":"This law named in a title or summary",
+    "signature match on title/description":"Wording matched in a title or summary"
+  };
+  const DATE_KIND = {
+    "commencement":"Comes into force",
+    "commencement (expected)":"Expected to come into force",
+    "commencement (no-instrument-cycle)":"Expected — nothing published yet"
+  };
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  // ISO dates are how the data stores them, not how anyone reads them.
+  const fmtDate = v => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(v || ""));
+    return m ? Number(m[3]) + " " + MONTHS[Number(m[2]) - 1] + " " + m[1] : String(v || ""); };
+  const plural = (n, one, many) => n + " " + (Number(n) === 1 ? one : many);
+  const basisText = b => String(b || "").split(" · ").map(part => {
+    const via = /^reached via the programme lens \((.+)\)$/.exec(part);
+    return via ? "linked through programme code " + via[1] : (BASIS[part] || part);
+  }).join(" · ");
+  const dateKind = k => DATE_KIND[k] || String(k || "").replace(/[_-]/g, " ");
+  // The evidence line is the reader's only look at the underlying change, so
+  // it is worth saying in words: "redirected (redirects to X)" is doubled up,
+  // and a pair of content hashes tells them nothing they can act on.
+  const evidenceText = v => String(v || "")
+    .replace(/^(\S+) redirected \(redirects to (\S+)\)$/, "$1 now redirects to $2")
+    .replace(/^(\S+) withdrawn \(withdrawn (\d{4}-\d{2}-\d{2})\)$/,
+             (all, u, d) => u + " was withdrawn on " + fmtDate(d))
+    .replace(/^(\S+) changed \((?:extracted-text hash [0-9a-f]+ -> [0-9a-f]+|content hash moved)\)$/,
+             "The wording on $1 changed")
+    .replace(/\s*\((?:extracted-text hash [0-9a-f]+ -> [0-9a-f]+|content hash moved)\)/, "")
+    .replace(/(?<![\d\/-])(\d{4}-\d{2}-\d{2})(?![\d-])/g, m => fmtDate(m));
+  const CLOSED_KEY = "eventwire-desk-closed-at", SEEN_KEY = "eventwire-desk-seen";
+  let data = null;
+  const classLabel = c => labels[c] || String(c).replaceAll("_"," ");
+  const badge = c => '<span class="tag">' + esc(classLabel(c)) + '</span>';
+  const lawRef = uri => String(uri || "").replace("https://www.legislation.gov.uk/", "");
+  const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+                  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+  const closedAt = () => store.get(CLOSED_KEY) || "";
+  const seenMap = () => { try { return JSON.parse(store.get(SEEN_KEY) || "{}"); } catch(e){ return {}; } };
+  function summary() {
+    const s = data.summary || {};
+    const laws = data.subjects || [];
+    const open = laws.filter(x => x.commenced_outstanding).length;
+    // A bare "0 in force with work still open" reads as all-clear when it can
+    // equally mean nothing has reached its date yet. Point at the next date
+    // instead, which is checked; "no law has come into force yet" would be an
+    // inference this figure does not support. The old parenthetical ("none has
+    // started yet") read as "no work has started" — the opposite of its meaning.
+    const today = new Date().toISOString().slice(0, 10);
+    const ahead = laws.flatMap(x => (x.dates || []).map(d => d && d.date))
+                      .filter(d => d && d > today).sort();
+    const openBit = open
+      ? '<b>' + esc(open) + '</b> already in force with work still open'
+      : '<b>none</b> in force with work still open'
+        + (ahead.length ? ' <span>(the next date to land is ' + esc(fmtDate(ahead[0])) + ')</span>' : '');
+    $("summary").innerHTML =
+      '<b>' + esc(laws.length) + '</b> laws watched · <b>' + esc(s.corroborated_subjects || 0)
+      + '</b> backed by two or more sources · ' + openBit
+      + ' <span>· ' + esc(s.registry_judgments || 0) + ' decisions recorded</span>';
+  }
+  function signalHTML(s) {
+    const provisional = !!s.provisional;
+    return '<div class="signal' + (provisional ? ' provisional' : '') + '">'
+      + '<div class="signal-class">' + esc(classLabel(s.class)) + '</div>'
+      + '<div class="signal-date">' + esc(s.date ? fmtDate(s.date) : "No date") + (provisional ? '<br>' + esc(s.provisional_label || "Date not settled") : '') + '</div>'
+      + '<div><div>' + esc(evidenceText(s.evidence)) + '</div><div class="basis">' + esc(basisText(s.basis)) + '</div></div></div>';
+  }
+  function aliasChips(ids) {
+    // Programme codes are an alias on the law, shown small and deduped —
+    // the row itself is the law, so the codes never repeat the binding.
+    if (!ids || !ids.length) return "";
+    // "???" is a real programme code (a measure with no stable id yet), so it
+    // travels through the data untouched — but it is not a label anyone can
+    // act on, so the chip says what it means.
+    const label = m => m === "???" ? "unassigned code" : m;
+    const shown = ids.slice(0, 3).map(m => '<span class="tag">' + esc(label(m)) + '</span>').join("");
+    const more = ids.length > 3 ? '<span class="meta" title="' + esc(ids.map(label).join(", ")) + '">+' + (ids.length - 3) + ' more</span>' : "";
+    return '<div class="badges">' + shown + more + '</div>';
+  }
+  function newestDate(x) {
+    return (x.signals || []).reduce((acc, s) => (s.date || "") > acc ? s.date : acc, "");
+  }
+  function judgeLink(page) {
+    return '<a href="judgments.html?page=' + esc(encodeURIComponent(page)) + '">Record a decision</a>';
+  }
+  function subjectHTML(x, marks) {
+    const classes = (x.classes || []).map(badge).join("") || '<span class="meta">Nothing has arrived yet</span>';
+    const workLabel = x.commenced_outstanding ? "In force — work still open" : "Nothing outstanding";
+    const w = x.work_recorded || {};
+    const workDetail = (w.total || 0)
+      ? esc(w.done || 0) + " of " + esc(plural(w.total, "linked page", "linked pages")) + " marked done"
+      : "No linked pages yet";
+    const p = POSTURE[x.suggested_posture] || POSTURE.none;
+    const delta = marks && marks[x.legal_source_uri] === "delta"
+      ? '<span class="tag tag-amber">More sources than last time</span>' : "";
+    const signals = (x.signals || []).map(signalHTML).join("")
+      || '<div class="empty" style="padding:10px 0">Nothing has arrived about this law recently. That says nothing about whether the content work is finished.</div>';
+    const dates = (x.dates || []).map(d =>
+      '<li><b>' + esc(fmtDate(d.date)) + '</b> — ' + esc(dateKind(d.kind)) + (d.evidence ? ' <span class="meta">' + esc(d.evidence) + '</span>' : "") + '</li>').join("");
+    const pages = (x.pages || []).slice(0, 8).map(u =>
+      '<li><a href="' + esc(u) + '">' + esc(u.replace("https://www.gov.uk", "")) + '</a>' + judgeLink(u) + '</li>').join("");
+    const morePages = (x.pages || []).length > 8 ? '<li class="meta">' + ((x.pages || []).length - 8) + ' more pages linked to this law</li>' : "";
+    const counts = esc(plural((x.pages || []).length, "linked page", "linked pages"))
+      + ' · ' + esc(plural(x.backlog_total || 0, "finding", "findings"));
+    return '<details class="measure"><summary><div class="measure-grid">'
+      + '<div><div class="measure-id">' + esc(lawRef(x.legal_source_uri)) + '</div><div class="measure-title">' + esc(x.label || "Untitled law") + '</div><div class="meta">' + counts + (newestDate(x) ? ' · latest ' + esc(fmtDate(newestDate(x))) : "") + '</div>' + aliasChips(x.measure_ids) + '</div>'
+      + '<div><div class="axis-title">What has arrived</div><span class="tag ' + esc(p[1]) + '">' + esc(p[0]) + '</span> ' + delta + '<div class="badges">' + classes + '</div></div>'
+      + '<div><div class="axis-title">Work still open</div><div class="work ' + (x.commenced_outstanding ? "outstanding" : "") + '">' + esc(workLabel) + '</div><div class="quiet">' + workDetail + '</div></div>'
+      + '</div></summary><div class="detail"><h2>What has arrived</h2>' + signals
+      + (dates ? '<h2 style="margin-top:var(--space-sm)">Dates</h2><ul class="dates-list">' + dates + '</ul>' : "")
+      + (pages ? '<h2 style="margin-top:var(--space-sm)">Linked pages</h2><ul class="page-links">' + pages + morePages + '</ul>' : "")
+      + '</div></details>';
+  }
+  // A signal's own date can sit in the future (an expected commencement), so
+  // "new since close" compares what was on the desk when it was closed, not
+  // event dates: each law's signals are fingerprinted at close time.
+  const signalKey = s => [s.class, s.date, s.evidence].join("|");
+  function inboxMarks() {
+    const seen = seenMap(), marks = {};
+    for (const x of data.subjects || []) {
+      const entry = seen[x.legal_source_uri];
+      if (!entry || typeof entry !== "object") { marks[x.legal_source_uri] = "new"; continue; }
+      if ((x.corroboration || 0) > (entry.c || 0)) marks[x.legal_source_uri] = "delta";
+      else if ((x.signals || []).some(s => !(entry.s || []).includes(signalKey(s)))) marks[x.legal_source_uri] = "new";
+    }
+    return marks;
+  }
+  function render() {
+    const q = $("q").value.trim().toLowerCase(), posture = $("posture").value, cls = $("class-filter").value, work = $("work").value;
+    const inbox = $("mode").value === "inbox";
+    const marks = inbox ? inboxMarks() : null;
+    let rows = (data.subjects || []).filter(x => {
+      const hay = [x.label, x.legal_source_uri, (x.measure_ids || []).join(" ")].join(" ").toLowerCase();
+      return (!q || hay.includes(q)) && (!posture || x.suggested_posture === posture)
+        && (!cls || (x.classes || []).includes(cls))
+        && (!work || (work === "yes") === !!x.commenced_outstanding)
+        && (!inbox || !closedAt() || marks[x.legal_source_uri]);
+    });
+    if (inbox) rows = rows.slice().sort((a, b) => newestDate(b) < newestDate(a) ? -1 : 1);
+    const note = inbox && !closedAt() ? " — you have not marked anything as read on this device yet, so everything is showing" : "";
+    $("count").textContent = rows.length + " of " + (data.subjects || []).length + " laws" + note;
+    $("measures").innerHTML = rows.map(x => subjectHTML(x, marks)).join("")
+      || '<div class="empty">' + (inbox ? "Nothing new since you last marked things as read." : "No laws match these filters.") + '</div>';
+  }
+  function renderAwaiting() {
+    const rows = ((data.backlog || {}).rows || []).filter(r => r.status === "candidate").slice(0, 12);
+    $("awaiting").innerHTML = rows.map(r =>
+      '<div class="await"><div><div>' + esc(r.title || r.url || "Untitled finding") + '</div>'
+      + '<div class="meta">' + esc((r.measure_ids || []).join(", ") || "no programme code") + (r.owning_team ? ' · ' + esc(r.owning_team) : "") + '</div></div>'
+      + '<div>' + (r.url ? judgeLink(r.url) : '<span class="meta">No page address</span>') + '</div></div>').join("")
+      || '<div class="empty">Nothing is waiting — every finding has been decided or ruled out.</div>';
+  }
+  function closeDeskNote() {
+    const at = closedAt();
+    $("closed-at").textContent = at
+      ? "Last marked as read " + fmtDate(at.slice(0, 10)) + " on this device"
+      : "You have not marked anything as read on this device yet";
+  }
+  $("close-desk").addEventListener("click", () => {
+    const seen = {};
+    for (const x of data.subjects || []) {
+      seen[x.legal_source_uri] = {c: x.corroboration || 0, s: (x.signals || []).map(signalKey)};
+    }
+    store.set(CLOSED_KEY, new Date().toISOString());
+    store.set(SEEN_KEY, JSON.stringify(seen));
+    closeDeskNote(); render();
+  });
+  // The result count is the live region, not the list: re-announcing every
+  // law on each keystroke made the filter unusable with a screen reader.
+  // Typing is debounced so the count settles before it is read out (T-099).
+  let debounce = null;
+  const renderSoon = () => { clearTimeout(debounce); debounce = setTimeout(render, 200); };
+  $("q").addEventListener("input", renderSoon);
+  ["posture","class-filter","work","mode"].forEach(id => $(id).addEventListener("change", render));
+  fetch("wire_desk.json?t=" + Date.now(), {cache:"no-store"}).then(r => {if(!r.ok) throw new Error("HTTP " + r.status); return r.json();}).then(d => {
+    data = d;
+    $("class-filter").innerHTML += (d.classes || []).map(c => '<option value="' + esc(c) + '">' + esc(classLabel(c)) + '</option>').join("");
+    if (closedAt()) $("mode").value = "inbox";
+    summary(); closeDeskNote(); render(); renderAwaiting();
+  }).catch(() => {$("measures").innerHTML = '<div class="error"><strong>This page could not load its figures.</strong>Try again in a few minutes. If it keeps happening, last night’s update may not have finished.</div>';$("awaiting").innerHTML = "";});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+[
+  {
+    "team": "HMRC",
+    "slug": "hm-revenue-customs",
+    "file": "feeds/hm-revenue-customs.atom",
+    "pages": 203
+  },
+  {
+    "team": "HMCTS",
+    "slug": "hm-courts-and-tribunals-service",
+    "file": "feeds/hm-courts-and-tribunals-service.atom",
+    "pages": 84
+  },
+  {
+    "team": "Defra",
+    "slug": "department-for-environment-food-rural-affairs",
+    "file": "feeds/department-for-environment-food-rural-affairs.atom",
+    "pages": 75
+  },
+  {
+    "team": "MHCLG",
+    "slug": "ministry-of-housing-communities-local-government",
+    "file": "feeds/ministry-of-housing-communities-local-government.atom",
+    "pages": 67
+  },
+  {
+    "team": "SLC",
+    "slug": "student-loans-company",
+    "file": "feeds/student-loans-company.atom",
+    "pages": 66
+  },
+  {
+    "team": "DfE",
+    "slug": "department-for-education",
+    "file": "feeds/department-for-education.atom",
+    "pages": 64
+  },
+  {
+    "team": "Environment Agency",
+    "slug": "environment-agency",
+    "file": "feeds/environment-agency.atom",
+    "pages": 53
+  },
+  {
+    "team": "DBT",
+    "slug": "department-for-business-and-trade",
+    "file": "feeds/department-for-business-and-trade.atom",
+    "pages": 37
+  },
+  {
+    "team": "Ofsted",
+    "slug": "ofsted",
+    "file": "feeds/ofsted.atom",
+    "pages": 36
+  },
+  {
+    "team": "DWP",
+    "slug": "department-for-work-pensions",
+    "file": "feeds/department-for-work-pensions.atom",
+    "pages": 30
+  },
+  {
+    "team": "MoJ",
+    "slug": "ministry-of-justice",
+    "file": "feeds/ministry-of-justice.atom",
+    "pages": 30
+  },
+  {
+    "team": "Home Office",
+    "slug": "home-office",
+    "file": "feeds/home-office.atom",
+    "pages": 25
+  },
+  {
+    "team": "Planning Inspectorate",
+    "slug": "planning-inspectorate",
+    "file": "feeds/planning-inspectorate.atom",
+    "pages": 22
+  },
+  {
+    "team": "DHSC",
+    "slug": "department-of-health-and-social-care",
+    "file": "feeds/department-of-health-and-social-care.atom",
+    "pages": 21
+  },
+  {
+    "team": "LAA",
+    "slug": "legal-aid-agency",
+    "file": "feeds/legal-aid-agency.atom",
+    "pages": 19
+  },
+  {
+    "team": "HM Land Registry",
+    "slug": "land-registry",
+    "file": "feeds/land-registry.atom",
+    "pages": 18
+  },
+  {
+    "team": "DfT",
+    "slug": "department-for-transport",
+    "file": "feeds/department-for-transport.atom",
+    "pages": 17
+  },
+  {
+    "team": "HMT",
+    "slug": "hm-treasury",
+    "file": "feeds/hm-treasury.atom",
+    "pages": 17
+  },
+  {
+    "team": "DESNZ",
+    "slug": "department-for-energy-security-and-net-zero",
+    "file": "feeds/department-for-energy-security-and-net-zero.atom",
+    "pages": 15
+  },
+  {
+    "team": "Office for Product Safety and Standards",
+    "slug": "office-for-product-safety-and-standards",
+    "file": "feeds/office-for-product-safety-and-standards.atom",
+    "pages": 14
+  },
+  {
+    "team": "CAC",
+    "slug": "central-arbitration-committee",
+    "file": "feeds/central-arbitration-committee.atom",
+    "pages": 9
+  },
+  {
+    "team": "CPRC",
+    "slug": "civil-procedure-rules-committee",
+    "file": "feeds/civil-procedure-rules-committee.atom",
+    "pages": 9
+  },
+  {
+    "team": "Parole Board",
+    "slug": "parole-board",
+    "file": "feeds/parole-board.atom",
+    "pages": 9
+  },
+  {
+    "team": "DBS",
+    "slug": "disclosure-and-barring-service",
+    "file": "feeds/disclosure-and-barring-service.atom",
+    "pages": 8
+  },
+  {
+    "team": "GDS",
+    "slug": "government-digital-service",
+    "file": "feeds/government-digital-service.atom",
+    "pages": 8
+  },
+  {
+    "team": "HM Passport Office",
+    "slug": "hm-passport-office",
+    "file": "feeds/hm-passport-office.atom",
+    "pages": 8
+  },
+  {
+    "team": "HMPPS",
+    "slug": "hm-prison-and-probation-service",
+    "file": "feeds/hm-prison-and-probation-service.atom",
+    "pages": 8
+  },
+  {
+    "team": "APHA",
+    "slug": "animal-and-plant-health-agency",
+    "file": "feeds/animal-and-plant-health-agency.atom",
+    "pages": 6
+  },
+  {
+    "team": "Department for Digital, Culture, Media & Sport (2017 to 2023)",
+    "slug": "department-for-digital-culture-media-sport",
+    "file": "feeds/department-for-digital-culture-media-sport.atom",
+    "pages": 6
+  },
+  {
+    "team": "FSA",
+    "slug": "food-standards-agency",
+    "file": "feeds/food-standards-agency.atom",
+    "pages": 6
+  },
+  {
+    "team": "Highways England",
+    "slug": "highways-england",
+    "file": "feeds/highways-england.atom",
+    "pages": 6
+  },
+  {
+    "team": "MHRA",
+    "slug": "medicines-and-healthcare-products-regulatory-agency",
+    "file": "feeds/medicines-and-healthcare-products-regulatory-agency.atom",
+    "pages": 6
+  },
+  {
+    "team": "RPC",
+    "slug": "regulatory-policy-committee",
+    "file": "feeds/regulatory-policy-committee.atom",
+    "pages": 6
+  },
+  {
+    "team": "CMA",
+    "slug": "competition-and-markets-authority",
+    "file": "feeds/competition-and-markets-authority.atom",
+    "pages": 5
+  },
+  {
+    "team": "DVLA",
+    "slug": "driver-and-vehicle-licensing-agency",
+    "file": "feeds/driver-and-vehicle-licensing-agency.atom",
+    "pages": 5
+  },
+  {
+    "team": "Gwasanaeth Llysoedd a Thribiwnlysoedd EF",
+    "slug": "hm-courts-and-tribunals-service.cy",
+    "file": "feeds/hm-courts-and-tribunals-service.cy.atom",
+    "pages": 5
+  },
+  {
+    "team": "OZEV",
+    "slug": "office-for-zero-emission-vehicles",
+    "file": "feeds/office-for-zero-emission-vehicles.atom",
+    "pages": 5
+  },
+  {
+    "team": "OSA",
+    "slug": "office-of-the-schools-adjudicator",
+    "file": "feeds/office-of-the-schools-adjudicator.atom",
+    "pages": 5
+  },
+  {
+    "team": "Cabinet Office",
+    "slug": "cabinet-office",
+    "file": "feeds/cabinet-office.atom",
+    "pages": 4
+  },
+  {
+    "team": "CNPA",
+    "slug": "civil-nuclear-police-authority",
+    "file": "feeds/civil-nuclear-police-authority.atom",
+    "pages": 4
+  },
+  {
+    "team": "FCDO",
+    "slug": "foreign-commonwealth-development-office",
+    "file": "feeds/foreign-commonwealth-development-office.atom",
+    "pages": 4
+  },
+  {
+    "team": "GO-Science",
+    "slug": "government-office-for-science",
+    "file": "feeds/government-office-for-science.atom",
+    "pages": 4
+  },
+  {
+    "team": "UKVI",
+    "slug": "uk-visas-and-immigration",
+    "file": "feeds/uk-visas-and-immigration.atom",
+    "pages": 4
+  },
+  {
+    "team": "Border Force",
+    "slug": "border-force",
+    "file": "feeds/border-force.atom",
+    "pages": 3
+  },
+  {
+    "team": "Criminal Procedure Rule Committee",
+    "slug": "criminal-procedure-rule-committee",
+    "file": "feeds/criminal-procedure-rule-committee.atom",
+    "pages": 3
+  },
+  {
+    "team": "DCMS",
+    "slug": "department-for-culture-media-and-sport",
+    "file": "feeds/department-for-culture-media-and-sport.atom",
+    "pages": 3
+  },
+  {
+    "team": "DSIT",
+    "slug": "department-for-science-innovation-and-technology",
+    "file": "feeds/department-for-science-innovation-and-technology.atom",
+    "pages": 3
+  },
+  {
+    "team": "EHRC",
+    "slug": "equality-and-human-rights-commission",
+    "file": "feeds/equality-and-human-rights-commission.atom",
+    "pages": 3
+  },
+  {
+    "team": "Ministry of Housing, Communities & Local Government (2018 to 2021)",
+    "slug": "ministry-of-housing-communities-and-local-government-2018-2021",
+    "file": "feeds/ministry-of-housing-communities-and-local-government-2018-2021.atom",
+    "pages": 3
+  },
+  {
+    "team": "Natural England",
+    "slug": "natural-england",
+    "file": "feeds/natural-england.atom",
+    "pages": 3
+  },
+  {
+    "team": "OHID",
+    "slug": "office-for-health-improvement-and-disparities",
+    "file": "feeds/office-for-health-improvement-and-disparities.atom",
+    "pages": 3
+  },
+  {
+    "team": "CCAV",
+    "slug": "centre-for-connected-and-autonomous-vehicles",
+    "file": "feeds/centre-for-connected-and-autonomous-vehicles.atom",
+    "pages": 2
+  },
+  {
+    "team": "Companies House",
+    "slug": "companies-house",
+    "file": "feeds/companies-house.atom",
+    "pages": 2
+  },
+  {
+    "team": "Adran Gwaith a Phensiynau",
+    "slug": "department-for-work-pensions.cy",
+    "file": "feeds/department-for-work-pensions.cy.atom",
+    "pages": 2
+  },
+  {
+    "team": "DECC",
+    "slug": "department-of-energy-climate-change",
+    "file": "feeds/department-of-energy-climate-change.atom",
+    "pages": 2
+  },
+  {
+    "team": "Driver and Vehicle Standards Agency",
+    "slug": "driver-and-vehicle-standards-agency",
+    "file": "feeds/driver-and-vehicle-standards-agency.atom",
+    "pages": 2
+  },
+  {
+    "team": "Cyllid a Thollau EF",
+    "slug": "hm-revenue-customs.cy",
+    "file": "feeds/hm-revenue-customs.cy.atom",
+    "pages": 2
+  },
+  {
+    "team": "IAA",
+    "slug": "immigration-advice-authority",
+    "file": "feeds/immigration-advice-authority.atom",
+    "pages": 2
+  },
+  {
+    "team": "Cofrestrfa Tir EF",
+    "slug": "land-registry.cy",
+    "file": "feeds/land-registry.cy.atom",
+    "pages": 2
+  },
+  {
+    "team": "MMO",
+    "slug": "marine-management-organisation",
+    "file": "feeds/marine-management-organisation.atom",
+    "pages": 2
+  },
+  {
+    "team": "MOD",
+    "slug": "ministry-of-defence",
+    "file": "feeds/ministry-of-defence.atom",
+    "pages": 2
+  },
+  {
+    "team": "OFSI",
+    "slug": "office-of-financial-sanctions-implementation",
+    "file": "feeds/office-of-financial-sanctions-implementation.atom",
+    "pages": 2
+  },
+  {
+    "team": "Rural Payments Agency",
+    "slug": "rural-payments-agency",
+    "file": "feeds/rural-payments-agency.atom",
+    "pages": 2
+  },
+  {
+    "team": "STA",
+    "slug": "standards-and-testing-agency",
+    "file": "feeds/standards-and-testing-agency.atom",
+    "pages": 2
+  },
+  {
+    "team": "Administrative Court",
+    "slug": "administrative-court",
+    "file": "feeds/administrative-court.atom",
+    "pages": 1
+  },
+  {
+    "team": "Cefas",
+    "slug": "centre-for-environment-fisheries-and-aquaculture-science",
+    "file": "feeds/centre-for-environment-fisheries-and-aquaculture-science.atom",
+    "pages": 1
+  },
+  {
+    "team": "GLP",
+    "slug": "civil-service-government-legal-profession",
+    "file": "feeds/civil-service-government-legal-profession.atom",
+    "pages": 1
+  },
+  {
+    "team": "Criminal Injuries Compensation Authority",
+    "slug": "criminal-injuries-compensation-authority",
+    "file": "feeds/criminal-injuries-compensation-authority.atom",
+    "pages": 1
+  },
+  {
+    "team": "BIS",
+    "slug": "department-for-business-innovation-skills",
+    "file": "feeds/department-for-business-innovation-skills.atom",
+    "pages": 1
+  },
+  {
+    "team": "DLUHC",
+    "slug": "department-for-levelling-up-housing-and-communities",
+    "file": "feeds/department-for-levelling-up-housing-and-communities.atom",
+    "pages": 1
+  },
+  {
+    "team": "DPMO",
+    "slug": "deputy-prime-ministers-office",
+    "file": "feeds/deputy-prime-ministers-office.atom",
+    "pages": 1
+  },
+  {
+    "team": "Employment Appeal Tribunal",
+    "slug": "employment-appeal-tribunal",
+    "file": "feeds/employment-appeal-tribunal.atom",
+    "pages": 1
+  },
+  {
+    "team": "Employment Tribunal",
+    "slug": "employment-tribunal",
+    "file": "feeds/employment-tribunal.atom",
+    "pages": 1
+  },
+  {
+    "team": "FPRC",
+    "slug": "family-procedure-rule-committee",
+    "file": "feeds/family-procedure-rule-committee.atom",
+    "pages": 1
+  },
+  {
+    "team": "First-tier Tribunal (Property Chamber)",
+    "slug": "first-tier-tribunal-property-chamber",
+    "file": "feeds/first-tier-tribunal-property-chamber.atom",
+    "pages": 1
+  },
+  {
+    "team": "Government Chemist",
+    "slug": "government-chemist",
+    "file": "feeds/government-chemist.atom",
+    "pages": 1
+  },
+  {
+    "team": "GEO",
+    "slug": "government-equalities-office",
+    "file": "feeds/government-equalities-office.atom",
+    "pages": 1
+  },
+  {
+    "team": "Government Legal Department",
+    "slug": "government-legal-department",
+    "file": "feeds/government-legal-department.atom",
+    "pages": 1
+  },
+  {
+    "team": "HESA",
+    "slug": "higher-education-statistical-agency",
+    "file": "feeds/higher-education-statistical-agency.atom",
+    "pages": 1
+  },
+  {
+    "team": "Independent Review Mechanism",
+    "slug": "independent-review-mechanism",
+    "file": "feeds/independent-review-mechanism.atom",
+    "pages": 1
+  },
+  {
+    "team": "The Insolvency Service",
+    "slug": "insolvency-service",
+    "file": "feeds/insolvency-service.atom",
+    "pages": 1
+  },
+  {
+    "team": "NCTL",
+    "slug": "national-college-for-teaching-and-leadership",
+    "file": "feeds/national-college-for-teaching-and-leadership.atom",
+    "pages": 1
+  },
+  {
+    "team": "Northern Ireland Executive",
+    "slug": "northern-ireland-executive",
+    "file": "feeds/northern-ireland-executive.atom",
+    "pages": 1
+  },
+  {
+    "team": "Nuclear Waste Services",
+    "slug": "nuclear-waste-services",
+    "file": "feeds/nuclear-waste-services.atom",
+    "pages": 1
+  },
+  {
+    "team": "Ofcom",
+    "slug": "ofcom",
+    "file": "feeds/ofcom.atom",
+    "pages": 1
+  },
+  {
+    "team": "OEO",
+    "slug": "office-for-equality-and-opportunity",
+    "file": "feeds/office-for-equality-and-opportunity.atom",
+    "pages": 1
+  },
+  {
+    "team": "OPRED",
+    "slug": "offshore-petroleum-regulator-for-environment-and-decommissioning",
+    "file": "feeds/offshore-petroleum-regulator-for-environment-and-decommissioning.atom",
+    "pages": 1
+  },
+  {
+    "team": "OPRC",
+    "slug": "online-procedure-rule-committee",
+    "file": "feeds/online-procedure-rule-committee.atom",
+    "pages": 1
+  },
+  {
+    "team": "Number 10",
+    "slug": "prime-ministers-office-10-downing-street",
+    "file": "feeds/prime-ministers-office-10-downing-street.atom",
+    "pages": 1
+  },
+  {
+    "team": "Regional Department for Education (DfE) Directors ",
+    "slug": "regional-department-for-education-dfe-directors",
+    "file": "feeds/regional-department-for-education-dfe-directors.atom",
+    "pages": 1
+  },
+  {
+    "team": "RSH",
+    "slug": "regulator-of-social-housing",
+    "file": "feeds/regulator-of-social-housing.atom",
+    "pages": 1
+  },
+  {
+    "team": "Regulatory Delivery",
+    "slug": "regulatory-delivery",
+    "file": "feeds/regulatory-delivery.atom",
+    "pages": 1
+  },
+  {
+    "team": "SC",
+    "slug": "the-sentencing-council-for-england-and-wales",
+    "file": "feeds/the-sentencing-council-for-england-and-wales.atom",
+    "pages": 1
+  },
+  {
+    "team": "Veterans UK",
+    "slug": "veterans-uk",
+    "file": "feeds/veterans-uk.atom",
+    "pages": 1
+  },
+  {
+    "team": "WEU",
+    "slug": "women-and-equalities-unit",
+    "file": "feeds/women-and-equalities-unit.atom",
+    "pages": 1
+  }
+]
