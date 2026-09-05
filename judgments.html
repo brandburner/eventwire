@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Record a decision — EventWire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  /* ============================================================= EventWire
+     Canonical design tokens (T-100). This block is BYTE-IDENTICAL in every
+     page under automation/web/ and tests/test_web_design_system.py fails the
+     build if it drifts. It is duplicated rather than shared because the pages
+     must stay self-contained static files (no external stylesheet) — see
+     tests/test_wire_desk_ui.py.
+
+     GOV.UK palette and conventions, because the audience already works in
+     them. Editorial structure — masthead, lede, section rules, dense rows —
+     carries the newsroom voice; the colour does not need to.
+     ========================================================================= */
+  :root {
+    --font-stack: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-heading: "Libre Franklin", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --font-size-base: 19px; --font-size-sm: 16px; --font-size-xs: 14px;
+    --font-size-2xs: 12px; --font-size-3xs: 13px; --font-size-lead: 21px;
+    --font-size-title: 22px; --font-size-2xl: 28px; --font-size-xl: 36px; --font-size-xxl: 48px;
+
+    --leading-heading: 1.1; --leading-snug: 1.2; --leading-title: 1.3; --leading-body: 1.5;
+    --tracking-tight: -0.02em; --tracking-snug: -0.01em; --tracking-wider: 0.08em;
+
+    --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
+    --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+
+    /* Text — every pair verified at 4.5:1 or better on both surface and page. */
+    --color-text-primary: #0b0c0c; --color-text-secondary: #505a5f; --color-text-muted: #687074;
+    --color-gov-blue: #1d70b8;
+    --color-bg-page: #f3f2f1; --color-surface: #ffffff; --color-masthead: #0b1f35;
+    --color-masthead-text: #ffffff; --color-masthead-subtle: #c3d3e3; --color-masthead-link: #a8c7e8;
+    --color-border: #b1b4b6; --color-border-light: #e1dfdc; --color-rule: #ebe9e6;
+    --color-red: #d4351c; --color-red-ink: #942514; --color-red-tint: #fbe5e1;
+    --color-green: #00703c; --color-green-ink: #005a30; --color-green-tint: #e4f3ea;
+    --color-amber-ink: #6b4700; --color-amber-tint: #fdf2d8;
+    --color-blue-ink: #144e81; --color-blue-tint: #e8f1f8;
+    --color-neutral-ink: #383f43; --color-neutral-tint: #eceded;
+    --color-focus: #ffdd00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-stack); font-size: var(--font-size-sm); font-weight: 400;
+    line-height: var(--leading-body); color: var(--color-text-primary);
+    background: var(--color-bg-page);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-text-primary); margin: 0; }
+  a { color: var(--color-gov-blue); }
+  /* GDS focus: yellow block with a black underline. Never removed. */
+  a:focus, button:focus, summary:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid transparent;
+    background: var(--color-focus); color: var(--color-text-primary);
+    box-shadow: 0 -2px var(--color-focus), 0 4px var(--color-text-primary);
+    text-decoration: none;
+  }
+  input:focus, select:focus, textarea:focus { background: var(--color-surface); box-shadow: none; outline: 3px solid var(--color-text-primary); outline-offset: 0; }
+  /* --------------------------------------------------- shared wire-page shell
+     Masthead, nav, page frame, lede, filter bar, notes, empty/error, footer.
+     Identical across the wire views; page-specific rules follow below.
+     Deliberately rule-and-tint based: no coloured side-stripes, no card grids,
+     no hero-metric blocks. Dividers where a divider will do.
+     ------------------------------------------------------------------------ */
+  .mast { background: var(--color-masthead); color: var(--color-masthead-text); border-bottom: 3px solid var(--color-gov-blue); }
+  .mast-in, .page { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-lg); }
+  .mast-in { padding-top: 13px; padding-bottom: 13px; }
+  .brand { font-family: var(--font-heading); font-weight: 700; font-size: 19px; letter-spacing: var(--tracking-snug); }
+  .brand span { color: var(--color-masthead-subtle); font-family: var(--font-stack); font-weight: 400; font-size: var(--font-size-2xs); margin-left: var(--space-xs); letter-spacing: 0; }
+  .nav { display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: 10px; font-size: var(--font-size-xs); }
+  .nav a { color: var(--color-masthead-link); text-decoration: none; padding-bottom: 4px; }
+  .nav a:hover { color: var(--color-masthead-text); }
+  .nav a[aria-current] { color: var(--color-masthead-text); font-weight: 600; border-bottom: 3px solid var(--color-gov-blue); }
+
+  .page { padding-top: var(--space-lg); padding-bottom: var(--space-2xl); }
+  .overline { font-family: var(--font-stack); font-weight: 600; font-size: var(--font-size-3xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--color-gov-blue); }
+  h1 { font-size: var(--font-size-xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); margin: 3px 0 6px; }
+  h2 { font-size: var(--font-size-title); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .lede { max-width: 62ch; color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-lg); }
+
+  /* Summary figures read as a sentence, not as a row of dashboard tiles. */
+  .summary { font-size: var(--font-size-sm); color: var(--color-text-primary); margin: 0 0 var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--color-border-light); }
+  .summary b { font-family: var(--font-heading); font-weight: 700; }
+  .summary span { color: var(--color-text-muted); }
+
+  /* A note, not an alert: full border and a tint, no coloured edge stripe. */
+  .note { background: var(--color-surface); border: 1px solid var(--color-border-light); padding: var(--space-sm) var(--space-md); margin: 0 0 var(--space-lg); font-size: var(--font-size-xs); }
+  .note strong { display: block; margin-bottom: 2px; }
+  .note-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .note-split > div { padding: var(--space-sm) var(--space-md); }
+  .note-split > div + div { border-left: 1px solid var(--color-border-light); }
+  .note-split .eyebrow { text-transform: uppercase; letter-spacing: var(--tracking-wider); font-size: 11px; font-weight: 700; color: var(--color-text-muted); }
+
+  .tools { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: end; margin: 0 0 var(--space-sm); }
+  .field { display: grid; gap: var(--space-2xs); }
+  .field label { font-size: var(--font-size-2xs); font-weight: 600; color: var(--color-text-secondary); }
+  .field input, .field select { font: inherit; font-size: var(--font-size-xs); border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-surface); color: var(--color-text-primary); padding: 8px 10px; min-height: 44px; min-width: 170px; }
+  .field.search { flex: 1; }
+  .field.search input { width: 100%; }
+  .count { margin-left: auto; font-size: var(--font-size-3xs); color: var(--color-text-muted); padding-bottom: 12px; }
+
+  .panel { background: var(--color-surface); border: 1px solid var(--color-border-light); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .empty { padding: var(--space-lg); color: var(--color-text-muted); font-size: var(--font-size-xs); }
+  .error { max-width: 62ch; margin: var(--space-2xl) auto; background: var(--color-surface); border: 1px solid var(--color-red); padding: var(--space-lg); }
+  .error strong { display: block; margin-bottom: 4px; color: var(--color-red-ink); }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; background: var(--color-neutral-tint); color: var(--color-neutral-ink); }
+  .tag-red { background: var(--color-red-tint); color: var(--color-red-ink); }
+  .tag-amber { background: var(--color-amber-tint); color: var(--color-amber-ink); }
+  .tag-green { background: var(--color-green-tint); color: var(--color-green-ink); }
+  .tag-blue { background: var(--color-blue-tint); color: var(--color-blue-ink); }
+
+  footer { max-width: 1120px; margin: var(--space-xl) auto 0; padding: var(--space-lg); border-top: 1px solid var(--color-border-light); font-size: var(--font-size-3xs); color: var(--color-text-muted); }
+
+  @media (max-width: 760px) {
+    h1 { font-size: var(--font-size-2xl); }
+    .note-split { grid-template-columns: 1fr; }
+    .note-split > div + div { border-left: 0; border-top: 1px solid var(--color-border-light); }
+    .count { width: 100%; margin: 0; }
+  }
+  /* -------------------------------------------------------- decisions only */
+  .subject { background: var(--color-surface); border: 1px solid var(--color-border-light); padding: var(--space-md) 20px; margin: 0 0 var(--space-lg); }
+  .subject label, .field label { display: block; font-size: var(--font-size-2xs); font-weight: 600; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .subject-row { display: flex; gap: var(--space-xs); }
+  .subject input { flex: 1; font: inherit; font-size: var(--font-size-xs); border: 1px solid var(--color-border); border-radius: 4px; padding: 10px; min-height: 44px; }
+  .button { font: inherit; font-size: var(--font-size-xs); font-weight: 600; border: 1px solid transparent; border-radius: 4px; background: var(--color-green); color: #fff; box-shadow: 0 2px 0 #00451f; padding: 10px 16px; min-height: 44px; cursor: pointer; }
+  .button:hover { background: #005a30; }
+  .button.secondary { background: var(--color-surface); color: var(--color-gov-blue); border-color: var(--color-border); box-shadow: none; }
+  .layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(330px,.8fr); gap: var(--space-lg); }
+  .panel-pad { padding: var(--space-md) 20px; }
+  .panel-pad h2 { font-size: var(--font-size-title); margin: 0 0 var(--space-sm); }
+  .history { display: grid; }
+  /* A decision reads as a labelled entry, not a colour-striped card: the
+     verdict word does the work the stripe used to. */
+  .judgment { border-top: 1px solid var(--color-rule); padding: var(--space-sm) 0; }
+  .judgment:first-child { border-top: 0; }
+  .verdict { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; border-radius: 4px; background: var(--color-neutral-tint); color: var(--color-neutral-ink); }
+  .judgment.confirmed .verdict { background: var(--color-green-tint); color: var(--color-green-ink); }
+  .judgment.denied .verdict { background: var(--color-red-tint); color: var(--color-red-ink); }
+  .judgment.adjacent .verdict { background: var(--color-amber-tint); color: var(--color-amber-ink); }
+  .j-head { display: flex; justify-content: space-between; gap: var(--space-sm); align-items: baseline; }
+  .j-head strong { font-family: var(--font-mono); font-size: var(--font-size-2xs); }
+  .meta { font-size: var(--font-size-2xs); color: var(--color-text-muted); margin-top: 3px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+  .field.wide { grid-column: 1/-1; }
+  .field input, .field select, .field textarea { width: 100%; font: inherit; font-size: var(--font-size-xs); border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-surface); color: var(--color-text-primary); padding: 9px 10px; min-height: 44px; }
+  .field textarea { min-height: 88px; resize: vertical; }
+  .hint { font-size: var(--font-size-2xs); color: var(--color-text-muted); margin-top: 3px; }
+  .actions { grid-column: 1/-1; display: flex; gap: var(--space-xs); flex-wrap: wrap; }
+  .output { margin-top: var(--space-md); background: var(--color-bg-page); border: 1px solid var(--color-border-light); color: var(--color-text-primary); padding: var(--space-sm); white-space: pre-wrap; word-break: break-word; max-height: 400px; overflow: auto; font: 13px/1.5 var(--font-mono); }
+  .file { font-size: var(--font-size-2xs); font-weight: 600; margin: var(--space-sm) 0 4px; }
+  .status { font-size: var(--font-size-2xs); color: var(--color-green-ink); min-height: 18px; margin-top: 6px; }
+  .status.error, .empty.error { color: var(--color-red-ink); }
+  @media (max-width: 860px) { .layout, form { grid-template-columns: 1fr; } .subject-row { display: grid; } .field.wide, .actions { grid-column: 1; } }
+  </style>
+</head>
+<body>
+  <header class="mast"><div class="mast-in">
+    <div class="brand">EventWire<span>Legislation that may affect GOV.UK content</span></div>
+    <nav class="nav" aria-label="EventWire views">
+      <a href="./">Upcoming changes</a><a href="./wire-desk.html">Wire desk</a><a href="./backlog.html">Page findings</a><a href="./judgments.html" aria-current="page">Record a decision</a><a href="./#/escalation">Overdue work</a>
+    </nav>
+  </div></header>
+  <main class="page">
+    <div class="overline">Decisions on record</div>
+    <h1>Say whether a finding was right</h1>
+    <p class="lede">Look up what has already been decided about a GOV.UK page, then write down your own decision. Ruling a finding out matters as much as confirming one — it stops the same false lead coming back.</p>
+    <div class="note"><strong>Nothing here changes a GOV.UK page.</strong>This writes the ledger command that records your decision. It only counts once someone with the ledger has run it and committed the result. Earlier decisions were saved as page records; those are kept as written and still shown below.</div>
+    <section class="subject">
+      <label for="subject">GOV.UK page address</label>
+      <div class="subject-row"><input id="subject" list="subjects" type="url" placeholder="https://www.gov.uk/…" autocomplete="off"><datalist id="subjects"></datalist><button class="button secondary" id="load" type="button">Look it up</button></div>
+      <div class="hint" id="registry-summary">Loading…</div>
+    </section>
+    <div class="layout">
+      <section class="panel panel-pad"><h2>Decided so far</h2><div class="history" id="history"><div class="empty" style="padding:0">Choose a page to see what has been decided about it.</div></div></section>
+      <section class="panel panel-pad"><h2>Your decision</h2>
+        <form id="form">
+          <div class="field"><label for="curator">Curator assignment id (cur-YYYY-NNN)</label><input id="curator" required placeholder="cur-2026-001" pattern="cur-\d{4}-\d{3}" title="An assignment id like cur-2026-001 — never a name"><div class="hint">Your assignment id, not your name: the record is public. Ask the workstream desk for one if you have not been issued one.</div></div>
+          <div class="field"><label for="date">Date</label><input id="date" required type="date"></div>
+          <div class="field wide"><label for="law">The law this is about</label><input id="law" required placeholder="https://www.legislation.gov.uk/ukpga/1996/18 or *" pattern="(https://www\.legislation\.gov\.uk/.+|\*)" aria-describedby="law-hint" title="Paste the legislation.gov.uk address of the law — for example https://www.legislation.gov.uk/ukpga/1996/18. Or type a single asterisk (*) to cover every law linked to this page."><div class="hint" id="law-hint">Paste the legislation.gov.uk address of the law this is about — for example https://www.legislation.gov.uk/ukpga/1996/18. Or type * to cover every law linked to this page.</div></div>
+          <div class="field"><label for="verdict">Decision</label><select id="verdict"><option value="confirmed">Yes — this page is affected</option><option value="denied">No — false lead</option><option value="adjacent">Related, but not the page to change</option></select></div>
+          <div class="field wide"><label for="note">Why you decided that</label><textarea id="note" required maxlength="280" placeholder="What you checked, and what convinced you. At most 280 characters; no names, handles or internal codes — the note is public and permanent."></textarea></div>
+          <div class="actions"><button class="button" type="submit">Write it up</button><button class="button secondary" id="copy-command" type="button">Copy the ledger command</button></div>
+        </form>
+        <div class="file" id="command-label" hidden>Ledger command (each write-up mints a fresh command id; keep the one you ran, and reuse it if you retry):</div><pre class="output" id="command" hidden></pre>
+        <div class="status" id="status" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+  <footer>Decisions build up over time, so a page that was ruled out once stays ruled out until someone changes their mind on the record.</footer>
+<script>
+(() => {
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let data=null,current=null,entry=null,commandLine=null;
+  // A command id is a client-generated UUID minted at the moment of decision
+  // and kept across retries (contract §4.3). Never derived from the clock.
+  const freshUuid=()=>{
+    if(crypto&&crypto.randomUUID)return crypto.randomUUID();
+    const b=new Uint8Array(16);crypto.getRandomValues(b);b[6]=(b[6]&0x0f)|0x40;b[8]=(b[8]&0x3f)|0x80;
+    const h=[...b].map(x=>x.toString(16).padStart(2,"0")).join("");
+    return h.slice(0,8)+"-"+h.slice(8,12)+"-"+h.slice(12,16)+"-"+h.slice(16,20)+"-"+h.slice(20);
+  };
+  const shq=v=>"'"+String(v).replace(/'/g,"'\\''")+"'";
+  function ledgerCommand(e){
+    // The v2 write path (NW-4.10): one `ledger append` per decision. The page
+    // computes nothing about the decision itself — it only quotes the fields.
+    const parts=["python3 -m automation.cli ledger append","--curator "+shq(e.curator),"--command-id "+shq(freshUuid()),
+      "--page-url "+shq(e.page),"--subject-uri "+shq(e.legal_source_uri),"--verdict "+shq(e.verdict),"--decision-at "+shq(e.date+"T00:00:00Z")];
+    if(e.note)parts.push("--note "+shq(e.note));
+    return parts.join(" \\\n  ");
+  }
+  // Stored decisions keep their machine values; the history list is the only
+  // place a reader sees them, so it translates rather than printing the raw
+  // enum ("confirmed", "seeded_from_artefact") back at them (T-135).
+  const VERDICTS={confirmed:"Affected",denied:"False lead",adjacent:"Related"};
+  const BASES={human_curated:"Read the page and the law",seeded_from_artefact:"Taken from earlier work",authored_import:"Imported from authored content"};
+  const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const fmtDate=v=>{const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(v||""));
+    return m?Number(m[3])+" "+MONTHS[Number(m[2])-1]+" "+m[1]:String(v||"");};
+  const plural=(n,one,many)=>n+" "+(Number(n)===1?one:many);
+  const normalise=u=>String(u||"").trim().replace(/\/+$/,"");
+  function lookup(){const u=normalise($("subject").value);return ((data&&data.registry&&data.registry.subjects)||[]).find(s=>normalise(s.subject)===u)||null;}
+  function historyHTML(j){
+    // The law is the key a decision is recorded against (T-116); the public
+    // projection carries no programme alias beside it (T-158).
+    var law=(j.legal_source_uri||'').replace('https://www.legislation.gov.uk/','');
+    return '<article class="judgment '+esc(j.verdict)+'"><div class="j-head"><strong>'+esc(law||'Law not recorded')+'</strong><span class="verdict">'+esc(VERDICTS[j.verdict]||j.verdict)+'</span></div><div>'+esc(j.note)+'</div><div class="meta">'+esc(fmtDate(j.date))+' · '+esc(j.curator)+' · '+esc(BASES[j.basis]||j.basis)+'</div></article>';
+  }
+  // Ledger state (wire_desk.json registry schema 4, NW-4.13): what the reducer
+  // currently says about each human-decided assertion on the page. Read as
+  // given — the page never recomputes a verdict from the history above.
+  const STATUS={current:"Evidence current",aged:"Decided, evidence has moved on",blocked:"Blocked",candidate:"Awaiting a decision",contested:"Contested",settled:"Settled"};
+  function subjectLabel(s){
+    if(!s||s.type==="wildcard")return "Every law linked to this page";
+    var law=String(s.uri||"").replace("https://www.legislation.gov.uk/","");
+    return law+(s.provision?" / "+s.provision:"");
+  }
+  function stateHTML(a){
+    var st=(a.propositions&&a.propositions.page_relationship)||{};
+    var verdict=st.current_verdict?VERDICTS[st.current_verdict]||st.current_verdict:(st.last_known_verdict?"Last known: "+(VERDICTS[st.last_known_verdict]||st.last_known_verdict):"No current verdict");
+    var flags=[STATUS[st.evidence_status]||st.evidence_status||""];
+    if(st.unattributed_events)flags.push("Evidence status withheld: not every contributing event's basis is published.");
+    if(st.denial_active)flags.push("false lead still stands");
+    if(st.blocked_by==="override")flags.push("held by an override");
+    return '<article class="judgment state '+esc(st.current_verdict||"")+'"><div class="j-head"><strong>'+esc(subjectLabel(a.subject))+'</strong><span class="verdict">'+esc(verdict)+'</span></div><div class="meta">'+esc(flags.filter(Boolean).join(" · "))+(st.last_reviewed_at?' · reviewed '+esc(fmtDate(st.last_reviewed_at)):'')+'</div></article>';
+  }
+  function loadSubject(){
+    const u=normalise($("subject").value); $("subject").value=u; current=lookup();
+    if(!u){$("history").innerHTML='<div class="empty" style="padding:0">Enter a GOV.UK page address.</div>';return;}
+    if(!/^https:\/\/www\.gov\.uk\//.test(u)){$("history").innerHTML='<div class="empty error" style="padding:0">That needs to be a GOV.UK page address, starting https://www.gov.uk/</div>';return;}
+    const judgments=current?current.judgments:[]; const states=current?(current.assertions||[]):[];
+    var html=judgments.length?judgments.map(historyHTML).join(""):'<div class="empty" style="padding:0">Nothing has been decided about this page yet. Yours would be the first.</div>';
+    if(states.length)html+='<h3>Where the ledger stands</h3>'+states.map(stateHTML).join("");
+    $("history").innerHTML=html;
+  }
+  function generate(e){
+    if(e)e.preventDefault(); const u=normalise($("subject").value);
+    if(!/^https:\/\/www\.gov\.uk\//.test(u)){ $("status").textContent="Enter a GOV.UK page address first."; $("status").className="status error"; return; }
+    if(!$("form").reportValidity())return;
+    current=lookup();
+    // The decision is recorded only by `ledger append` (cutover, NW-4.12):
+    // the page quotes the fields and never writes a v1 record.
+    entry={curator:$("curator").value.trim(),date:$("date").value,legal_source_uri:$("law").value.trim(),verdict:$("verdict").value,note:$("note").value.trim()};
+    commandLine=ledgerCommand(Object.assign({page:u},entry));
+    $("command-label").hidden=false;$("command").hidden=false;$("command").textContent=commandLine;
+    $("status").textContent="Written up. Copy the ledger command and run it where the ledger lives."; $("status").className="status";
+  }
+  function copy(){
+    entry=null;generate();if(!entry)return;
+    const text=commandLine+"\n";
+    const done=()=>{$("status").textContent="Ledger command copied.";$("status").className="status";};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,()=>fallback(text,done));else fallback(text,done);
+  }
+  function fallback(text,done){const t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done();}
+  $("load").addEventListener("click",loadSubject);$("subject").addEventListener("change",loadSubject);$("form").addEventListener("submit",generate);
+  $("copy-command").addEventListener("click",copy);
+  $("date").value=new Date().toISOString().slice(0,10);
+  fetch("wire_desk.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();}).then(d=>{
+    data=d;const reg=d.registry||{subjects:[],counts:{}};$("subjects").innerHTML=(reg.subjects||[]).map(s=>'<option value="'+esc(s.subject)+'"></option>').join("");
+    $("registry-summary").textContent=plural(reg.counts.judgments||0,"decision","decisions")+" recorded across "+plural(reg.counts.subjects||0,"page","pages")+(reg.counts.assertions!=null?"; the ledger currently holds "+plural(reg.counts.assertions,"human-decided link","human-decided links"):"")+".";
+    const params=new URLSearchParams(location.search);
+    if(params.get("page")){$("subject").value=params.get("page");loadSubject();}
+    if(params.get("law"))$("law").value=params.get("law");
+    if(params.get("verdict")&&[...$("verdict").options].some(o=>o.value===params.get("verdict")))$("verdict").value=params.get("verdict");
+  }).catch(err=>{$("registry-summary").textContent="Past decisions could not be loaded — you can still write up a new one.";$("registry-summary").className="hint error";});
+})();
+</script>
+</body>
+</html>
