@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Escalation — EventWire</title>
+  <!--
+    T-098: this was a separate page until the audit found it was the board's own
+    overdue and in-force rows, transposed by team. The grouping was a real second
+    axis, so it moved onto the board rather than being dropped: the worklist now
+    carries a "Group: by team" control and an "Overdue or in force, work still
+    open" filter, and #/escalation is the saved view combining them.
+
+    The file stays as a redirect so existing links and bookmarks still land in the
+    right place. It holds no data and renders no view.
+  -->
+  <meta http-equiv="refresh" content="0; url=./#/escalation">
+  <link rel="canonical" href="./#/escalation">
+  <style>
+    body{margin:0;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f3ef;color:#17212b}
+    .page{max-width:640px;margin:0 auto;padding:80px 24px}
+    a{color:#1d70b8}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>This has moved</h1>
+    <p>Escalation is now part of the main board: the work list, filtered to
+      what is overdue or already in force with work still open, grouped by team.</p>
+    <p><a href="./#/escalation">Continue to the board</a></p>
+  </main>
+  <script>location.replace("./#/escalation");</script>
+</body>
+</html>
