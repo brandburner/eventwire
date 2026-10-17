@@ -1,0 +1,338 @@
+[
+  {
+    "team": "HMRC",
+    "slug": "hm-revenue-customs",
+    "file": "feeds/hm-revenue-customs.atom",
+    "pages": 124
+  },
+  {
+    "team": "MHCLG",
+    "slug": "ministry-of-housing-communities-local-government",
+    "file": "feeds/ministry-of-housing-communities-local-government.atom",
+    "pages": 40
+  },
+  {
+    "team": "Home Office",
+    "slug": "home-office",
+    "file": "feeds/home-office.atom",
+    "pages": 26
+  },
+  {
+    "team": "DBT",
+    "slug": "department-for-business-and-trade",
+    "file": "feeds/department-for-business-and-trade.atom",
+    "pages": 22
+  },
+  {
+    "team": "DESNZ",
+    "slug": "department-for-energy-security-and-net-zero",
+    "file": "feeds/department-for-energy-security-and-net-zero.atom",
+    "pages": 21
+  },
+  {
+    "team": "BIST",
+    "slug": "department-for-business-innovation-science-and-trade",
+    "file": "feeds/department-for-business-innovation-science-and-trade.atom",
+    "pages": 20
+  },
+  {
+    "team": "Defra",
+    "slug": "department-for-environment-food-rural-affairs",
+    "file": "feeds/department-for-environment-food-rural-affairs.atom",
+    "pages": 14
+  },
+  {
+    "team": "DHSC",
+    "slug": "department-of-health-and-social-care",
+    "file": "feeds/department-of-health-and-social-care.atom",
+    "pages": 14
+  },
+  {
+    "team": "Office for Product Safety and Standards",
+    "slug": "office-for-product-safety-and-standards",
+    "file": "feeds/office-for-product-safety-and-standards.atom",
+    "pages": 14
+  },
+  {
+    "team": "DWP",
+    "slug": "department-for-work-pensions",
+    "file": "feeds/department-for-work-pensions.atom",
+    "pages": 13
+  },
+  {
+    "team": "MMO",
+    "slug": "marine-management-organisation",
+    "file": "feeds/marine-management-organisation.atom",
+    "pages": 10
+  },
+  {
+    "team": "MOD",
+    "slug": "ministry-of-defence",
+    "file": "feeds/ministry-of-defence.atom",
+    "pages": 10
+  },
+  {
+    "team": "UKVI",
+    "slug": "uk-visas-and-immigration",
+    "file": "feeds/uk-visas-and-immigration.atom",
+    "pages": 10
+  },
+  {
+    "team": "HMCTS",
+    "slug": "hm-courts-and-tribunals-service",
+    "file": "feeds/hm-courts-and-tribunals-service.atom",
+    "pages": 7
+  },
+  {
+    "team": "DVSA",
+    "slug": "driver-and-vehicle-standards-agency",
+    "file": "feeds/driver-and-vehicle-standards-agency.atom",
+    "pages": 6
+  },
+  {
+    "team": "DBS",
+    "slug": "disclosure-and-barring-service",
+    "file": "feeds/disclosure-and-barring-service.atom",
+    "pages": 5
+  },
+  {
+    "team": "Environment Agency",
+    "slug": "environment-agency",
+    "file": "feeds/environment-agency.atom",
+    "pages": 5
+  },
+  {
+    "team": "HMT",
+    "slug": "hm-treasury",
+    "file": "feeds/hm-treasury.atom",
+    "pages": 5
+  },
+  {
+    "team": "MoJ",
+    "slug": "ministry-of-justice",
+    "file": "feeds/ministry-of-justice.atom",
+    "pages": 5
+  },
+  {
+    "team": "Criminal Procedure Rule Committee",
+    "slug": "criminal-procedure-rule-committee",
+    "file": "feeds/criminal-procedure-rule-committee.atom",
+    "pages": 4
+  },
+  {
+    "team": "Planning Inspectorate",
+    "slug": "planning-inspectorate",
+    "file": "feeds/planning-inspectorate.atom",
+    "pages": 4
+  },
+  {
+    "team": "CCAV",
+    "slug": "centre-for-connected-and-autonomous-vehicles",
+    "file": "feeds/centre-for-connected-and-autonomous-vehicles.atom",
+    "pages": 3
+  },
+  {
+    "team": "DVLA",
+    "slug": "driver-and-vehicle-licensing-agency",
+    "file": "feeds/driver-and-vehicle-licensing-agency.atom",
+    "pages": 3
+  },
+  {
+    "team": "FCDO",
+    "slug": "foreign-commonwealth-development-office",
+    "file": "feeds/foreign-commonwealth-development-office.atom",
+    "pages": 3
+  },
+  {
+    "team": "Department for Digital, Culture, Media & Sport (2017 to 2023)",
+    "slug": "department-for-digital-culture-media-sport",
+    "file": "feeds/department-for-digital-culture-media-sport.atom",
+    "pages": 2
+  },
+  {
+    "team": "DfE",
+    "slug": "department-for-education",
+    "file": "feeds/department-for-education.atom",
+    "pages": 2
+  },
+  {
+    "team": "DECC",
+    "slug": "department-of-energy-climate-change",
+    "file": "feeds/department-of-energy-climate-change.atom",
+    "pages": 2
+  },
+  {
+    "team": "Parole Board",
+    "slug": "parole-board",
+    "file": "feeds/parole-board.atom",
+    "pages": 2
+  },
+  {
+    "team": "SIA",
+    "slug": "security-industry-authority",
+    "file": "feeds/security-industry-authority.atom",
+    "pages": 2
+  },
+  {
+    "team": "SSAC",
+    "slug": "social-security-advisory-committee",
+    "file": "feeds/social-security-advisory-committee.atom",
+    "pages": 2
+  },
+  {
+    "team": "APHA",
+    "slug": "animal-and-plant-health-agency",
+    "file": "feeds/animal-and-plant-health-agency.atom",
+    "pages": 1
+  },
+  {
+    "team": "Border Force",
+    "slug": "border-force",
+    "file": "feeds/border-force.atom",
+    "pages": 1
+  },
+  {
+    "team": "BSR",
+    "slug": "building-safety-regulator",
+    "file": "feeds/building-safety-regulator.atom",
+    "pages": 1
+  },
+  {
+    "team": "Cabinet Office",
+    "slug": "cabinet-office",
+    "file": "feeds/cabinet-office.atom",
+    "pages": 1
+  },
+  {
+    "team": "CQC",
+    "slug": "care-quality-commission",
+    "file": "feeds/care-quality-commission.atom",
+    "pages": 1
+  },
+  {
+    "team": "CFP",
+    "slug": "committee-on-fuel-poverty",
+    "file": "feeds/committee-on-fuel-poverty.atom",
+    "pages": 1
+  },
+  {
+    "team": "BEIS",
+    "slug": "department-for-business-energy-and-industrial-strategy",
+    "file": "feeds/department-for-business-energy-and-industrial-strategy.atom",
+    "pages": 1
+  },
+  {
+    "team": "Department for Culture, Media and Sport",
+    "slug": "department-for-culture-media-and-sport",
+    "file": "feeds/department-for-culture-media-and-sport.atom",
+    "pages": 1
+  },
+  {
+    "team": "DLUHC",
+    "slug": "department-for-levelling-up-housing-and-communities",
+    "file": "feeds/department-for-levelling-up-housing-and-communities.atom",
+    "pages": 1
+  },
+  {
+    "team": "DfT",
+    "slug": "department-for-transport",
+    "file": "feeds/department-for-transport.atom",
+    "pages": 1
+  },
+  {
+    "team": "EHRC",
+    "slug": "equality-and-human-rights-commission",
+    "file": "feeds/equality-and-human-rights-commission.atom",
+    "pages": 1
+  },
+  {
+    "team": "ECJU",
+    "slug": "export-control-joint-unit",
+    "file": "feeds/export-control-joint-unit.atom",
+    "pages": 1
+  },
+  {
+    "team": "Gwasanaeth Llysoedd a Thribiwnlysoedd EF",
+    "slug": "hm-courts-and-tribunals-service.cy",
+    "file": "feeds/hm-courts-and-tribunals-service.cy.atom",
+    "pages": 1
+  },
+  {
+    "team": "Cyllid a Thollau EF",
+    "slug": "hm-revenue-customs.cy",
+    "file": "feeds/hm-revenue-customs.cy.atom",
+    "pages": 1
+  },
+  {
+    "team": "Immigration Enforcement",
+    "slug": "immigration-enforcement",
+    "file": "feeds/immigration-enforcement.atom",
+    "pages": 1
+  },
+  {
+    "team": "IOPC",
+    "slug": "independent-office-for-police-conduct",
+    "file": "feeds/independent-office-for-police-conduct.atom",
+    "pages": 1
+  },
+  {
+    "team": "ICO",
+    "slug": "information-commissioner-s-office",
+    "file": "feeds/information-commissioner-s-office.atom",
+    "pages": 1
+  },
+  {
+    "team": "The Insolvency Service",
+    "slug": "insolvency-service",
+    "file": "feeds/insolvency-service.atom",
+    "pages": 1
+  },
+  {
+    "team": "HM Land Registry",
+    "slug": "land-registry",
+    "file": "feeds/land-registry.atom",
+    "pages": 1
+  },
+  {
+    "team": "MCA",
+    "slug": "maritime-and-coastguard-agency",
+    "file": "feeds/maritime-and-coastguard-agency.atom",
+    "pages": 1
+  },
+  {
+    "team": "MHRA",
+    "slug": "medicines-and-healthcare-products-regulatory-agency",
+    "file": "feeds/medicines-and-healthcare-products-regulatory-agency.atom",
+    "pages": 1
+  },
+  {
+    "team": "OHID",
+    "slug": "office-for-health-improvement-and-disparities",
+    "file": "feeds/office-for-health-improvement-and-disparities.atom",
+    "pages": 1
+  },
+  {
+    "team": "OFSI",
+    "slug": "office-of-financial-sanctions-implementation",
+    "file": "feeds/office-of-financial-sanctions-implementation.atom",
+    "pages": 1
+  },
+  {
+    "team": "OPRED",
+    "slug": "offshore-petroleum-regulator-for-environment-and-decommissioning",
+    "file": "feeds/offshore-petroleum-regulator-for-environment-and-decommissioning.atom",
+    "pages": 1
+  },
+  {
+    "team": "Regulatory Delivery",
+    "slug": "regulatory-delivery",
+    "file": "feeds/regulatory-delivery.atom",
+    "pages": 1
+  },
+  {
+    "team": "VCA",
+    "slug": "vehicle-certification-agency",
+    "file": "feeds/vehicle-certification-agency.atom",
+    "pages": 1
+  }
+]

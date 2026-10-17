@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-05T08:33:14+00:00",
+  "artifacts": {
+    "canonical_register.csv": {
+      "schema_version": 1
+    },
+    "content_backlog.csv": {
+      "schema_version": 1
+    },
+    "steelman_qa.csv": {
+      "schema_version": 1
+    },
+    "backtest_results.csv": {
+      "schema_version": 1
+    },
+    "inputs/ai_citation_exposure.csv": {
+      "schema_version": 1
+    }
+  }
+}
