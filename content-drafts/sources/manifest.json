@@ -1048,5 +1048,82 @@
     "final_url": "https://www.gov.uk/api/content/staff-redundant",
     "captured_at": "2026-11-14T16:54:55.278116+00:00",
     "sha256": "577c5228dbfbd6a033e4dd28ec407604205c723439e9d4f5daebd052bd12f37c"
+  },
+  {
+    "name": "batch10-tips",
+    "url": "https://www.gov.uk/api/content/tips-at-work",
+    "final_url": "https://www.gov.uk/api/content/tips-at-work",
+    "captured_at": "2026-11-20T10:44:33.172356+00:00",
+    "sha256": "58c44574244fb6590adf5ff86edf67f5ff26ae8438f108f95791ffa805374a5a"
+  },
+  {
+    "name": "batch10-tronc",
+    "url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "final_url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "captured_at": "2026-11-20T10:44:33.332929+00:00",
+    "sha256": "ee8ab17cf3dd962afc5b7255410004760e40df173727a53adbd64d48ddb9bdc7"
+  },
+  {
+    "name": "batch10-employer",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "captured_at": "2026-11-20T10:44:33.501154+00:00",
+    "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08"
+  },
+  {
+    "name": "batch10-section14",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "captured_at": "2026-11-20T10:44:33.803717+00:00",
+    "sha256": "d0ac6082e49428299005c8b0ce0c6945171a159e76f49aa77a845bfa96bf5919"
+  },
+  {
+    "name": "batch10-section27I",
+    "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/27I/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1996/18/section/27I/data.xml",
+    "captured_at": "2026-11-20T10:44:34.347922+00:00",
+    "sha256": "945d7aaa950eafb321698b616d5a217f628374f6098a7c9e15f3c81d37bf47c9"
+  },
+  {
+    "name": "batch10-outcome",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-tipping-code-of-practice",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-tipping-code-of-practice",
+    "captured_at": "2026-11-20T10:44:34.503894+00:00",
+    "sha256": "809e3ac640b585e730e46e30b43effc3c86de9175b477396243c5893412e516c"
+  },
+  {
+    "name": "batch10-code",
+    "url": "https://assets.publishing.service.gov.uk/media/6af733ff740e16c0699ca83f/draft-revised-tipping-code-of-practice.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/6af733ff740e16c0699ca83f/draft-revised-tipping-code-of-practice.pdf",
+    "captured_at": "2026-11-20T10:44:34.813355+00:00",
+    "sha256": "c2a844f9b3b3c61e9c98d17aa0e0d708018ff545b5ede1bb698066b3397292ab"
+  },
+  {
+    "name": "batch10-response",
+    "url": "https://assets.publishing.service.gov.uk/media/6afae9f59be17c68c69ca897/government-response-to-consultation-on-revised-tipping-code-of-practice.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/6afae9f59be17c68c69ca897/government-response-to-consultation-on-revised-tipping-code-of-practice.pdf",
+    "captured_at": "2026-11-20T10:44:35.049710+00:00",
+    "sha256": "39d348c5f67cd19e4e33d37a8edc455e0098cebfe7206cb8be753975b3777346"
+  },
+  {
+    "name": "batch10-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "captured_at": "2026-11-20T10:44:36.145926+00:00",
+    "sha256": "998bb3b074ef2df04d8c7746a62afc2e35917f0c0d32fbdc508f524fe125bf33"
+  },
+  {
+    "name": "batch10-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "captured_at": "2026-11-20T10:44:36.528827+00:00",
+    "sha256": "ac83484d666d8999edc666c8d32fde79c5917417a2f918996189decc2b03cbf9"
+  },
+  {
+    "name": "government__publications__distributing-tips-fairly-non-statutory-guidance-for-employers__distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "captured_at": "2026-11-20T10:44:33.501154+00:00",
+    "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08"
   }
 ]

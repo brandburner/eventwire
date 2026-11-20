@@ -1120,64 +1120,46 @@
       "url": "https://www.gov.uk/tips-at-work",
       "captured": "2026-11-13T16:29:51.524790+00:00",
       "sha256": "61a09eb28aa79059f4ffbc2b05a3244b2a9c93f140db11756fb72067a69e2c8c",
-      "decision": "Optional copy correction; policy draft held",
-      "summary": "The overview discusses the existing written tipping policy but does not describe section 14 consultation, periodic review or anonymised consultation summaries. Section 14 supplies substantive duties and a Great Britain extent, but the captured provision is marked Prospective and says it was not in force at Royal Assent. The October 2026 audit target and August provision export cannot establish a publication date. An immediate present-tense edit is not defensible without appointed commencement and transition evidence; alignment with the linked Code and employer guidance also needs review.",
-      "rationale": "Section 14 consultation/review duty requires appointed commencement before policy draft; captured section lacks it. Separate literal stray backtick could be bounded editorial repair. Separately, Sol removed one stray backtick under an exact, parent-specified brief. This is not an automatically identified bounded policy change.",
-      "publicationDate": "2026-11-14",
+      "decision": "Draft for commencement · publication blocked",
+      "summary": "Explain consultation, regular policy reviews and anonymised feedback. January 2027 remains an expected implementation date.",
+      "rationale": "Section 14 provides the enacted core. The November Code and response inform the review, but commencement and transitional regulations remain release dependencies.",
+      "publicationDate": null,
       "blockers": [
-        "Appointed commencement instrument for section 14 and any staged commencement, savings or transition rules",
-        "Confirmed go-live date and application of the first-review clock to existing policies at commencement",
-        "Current captured section 27I and linked Code/employer guidance to establish the existing policy duty boundaries and coordinated wording",
-        "Offline triage of captured evidence only; no new wording drafted.",
-        "Prospective markup is evidence of this captured version, not proof that no later commencement exists.",
-        "Original reports are discovery leads and their target dates are not legal authority."
+        "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+        "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+        "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+        "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance.",
+        "Review scope and tax exceptions, compulsory service-charge terminology, and the warning that cash-in-hand acceptance risks employment rights. Retained text is not certified."
       ],
       "triage": {
-        "model": "gpt-6.1-sol",
-        "originalRoute": "unresolved",
-        "reviewedRoute": "unresolved",
-        "reason": "Section 14 consultation/review duty requires appointed commencement before policy draft; captured section lacks it. Separate literal stray backtick could be bounded editorial repair.",
-        "scope": "PAY-05 only: worker-facing explanation of consultation before the first written tipping policy, reviews and consultation summaries in overview/how-your-employer-handles-tips. Preserve tax, National Insurance, minimum-wage and complaint-route wording pending separate evidence.",
-        "triggers": [
-          "Missing appointed commencement and any transitional/saving provisions",
-          "Existing-policy first-review clock includes policies made available before commencement",
-          "Representative consultation has a direct-worker fallback",
-          "Linked statutory Code and employer guidance must remain consistent"
-        ],
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/tips-at-work.json",
-            "exact_quote": "<li>the need for a written tipping policy and accurate record-keeping</li>"
-          },
-          {
-            "source_file": "prototypes/content-drafts/sources/tips-at-work.json",
-            "exact_quote": "<p>There is a statutory <a href=\"/government/publications/distributing-tips-fairly-statutory-code-of-practice\">code of practice</a> on the distribution of tips.</p>"
-          },
-          {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
-            "exact_quote": "<P1group Match=\"false\" Status=\"Prospective\" RestrictExtent=\"E+W+S\">"
-          },
-          {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
+            "source_file": "sources/batch10-section14.xml",
             "exact_quote": "Before producing the first version of the written policy for a place of business, an employer must consult—"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
-            "exact_quote": "at least once during the period of three years beginning with the first day on which the first version of the policy is made available (including where that day precedes the coming into force of this subsection), and"
-          },
-          {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
+            "source_file": "sources/batch10-section14.xml",
             "exact_quote": "An employer must consult persons as described in subsection (2A) as part of every review of the written policy."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
+            "source_file": "sources/batch10-section14.xml",
             "exact_quote": "An employer who has carried out a consultation required by this section in relation to a written policy for a place of business must make a summary of the views expressed in the consultation available in anonymised form to all workers of the employer at the place of business."
           }
         ],
+        "triggers": [
+          "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+          "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+          "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+          "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance."
+        ],
+        "reason": "Replaces the previous evidence-incomplete hold with an enacted-core draft; publication remains blocked.",
+        "scope": "Section 14 consultation and review duties, with a bounded check of the November revised Code and connected tax journey.",
         "limitations": [
-          "Offline triage of captured evidence only; no new wording drafted.",
-          "Prospective markup is evidence of this captured version, not proof that no later commencement exists.",
-          "Original reports are discovery leads and their target dates are not legal authority."
+          "Single-agent source review; no independent legal or human approval."
         ]
       },
       "editorialReview": {
@@ -1189,7 +1171,16 @@
           "overview",
           "tips-and-tax"
         ]
-      }
+      },
+      "releaseBasis": "conditional_commencement",
+      "additionalReviews": [
+        {
+          "scope": "Previous tipping triage and punctuation repair",
+          "reason": "The earlier policy hold is superseded by this conditional draft. The existing stray-backtick repair is retained.",
+          "questions": [],
+          "report": "review-records.json"
+        }
+      ]
     },
     {
       "id": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
@@ -1251,7 +1242,17 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "additionalReviews": [
+        {
+          "scope": "Tipping consultation and independent troncs",
+          "reason": "No tax or National Insurance edit supported by section 14. Revised Code paragraph 47 retains employer consultation responsibility without directing independent tronc allocation.",
+          "questions": [
+            "HMRC and the tipping policy owner should agree any cross-reference and treatment of consultation versus independent allocation before a connected update."
+          ],
+          "report": "review-records.json"
+        }
+      ]
     },
     {
       "id": "guidance__advanced-notification-of-redundancies-hr1-form",
@@ -4377,6 +4378,56 @@
         ],
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
+        ]
+      }
+    },
+    {
+      "id": "government__publications__distributing-tips-fairly-non-statutory-guidance-for-employers__distributing-tips-fairly-non-statutory-guidance-for-employers",
+      "title": "Distributing tips fairly: non-statutory guidance for employers",
+      "url": "https://www.gov.uk/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+      "captured": "2026-11-20T10:44:33.501154+00:00",
+      "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08",
+      "decision": "Draft for commencement · publication blocked",
+      "summary": "Explain consultation, regular policy reviews and anonymised feedback. January 2027 remains an expected implementation date.",
+      "rationale": "Section 14 provides the enacted core. The November Code and response inform the review, but commencement and transitional regulations remain release dependencies.",
+      "publicationDate": null,
+      "releaseBasis": "conditional_commencement",
+      "blockers": [
+        "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+        "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+        "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+        "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance.",
+        "Recheck customer-contact wording against revised Code paragraph 27, which also covers preparing and handling the service. Outside the released consultation patch."
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
+        "evidence": [
+          {
+            "source_file": "sources/batch10-section14.xml",
+            "exact_quote": "Before producing the first version of the written policy for a place of business, an employer must consult—"
+          },
+          {
+            "source_file": "sources/batch10-section14.xml",
+            "exact_quote": "An employer must consult persons as described in subsection (2A) as part of every review of the written policy."
+          },
+          {
+            "source_file": "sources/batch10-section14.xml",
+            "exact_quote": "An employer who has carried out a consultation required by this section in relation to a written policy for a place of business must make a summary of the views expressed in the consultation available in anonymised form to all workers of the employer at the place of business."
+          }
+        ],
+        "triggers": [
+          "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+          "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+          "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+          "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance."
+        ],
+        "reason": "Replaces the previous evidence-incomplete hold with an enacted-core draft; publication remains blocked.",
+        "scope": "Section 14 consultation and review duties, with a bounded check of the November revised Code and connected tax journey.",
+        "limitations": [
+          "Single-agent source review; no independent legal or human approval."
         ]
       }
     }

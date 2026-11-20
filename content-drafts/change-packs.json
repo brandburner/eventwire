@@ -136,5 +136,86 @@
         "status": "Awaiting human review"
       }
     ]
+  },
+  "tipping-consultation": {
+    "title": "Tipping policy consultation and review",
+    "scope": "Section 14 consultation and review duties, with a bounded check of the November revised Code and connected tax journey.",
+    "effective_date": null,
+    "expected_window": "January 2027, subject to parliamentary approval and commencement",
+    "sources": [
+      "batch10-section14",
+      "batch10-section27I",
+      "batch10-code",
+      "batch10-response",
+      "batch10-outcome"
+    ],
+    "blockers": [
+      "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+      "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+      "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+      "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance."
+    ],
+    "scenarios": [
+      {
+        "situation": "Recognised independent union represents affected workers",
+        "expected": "Consult through qualifying representatives; do not default to a direct majority vote.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "No qualifying representatives",
+        "expected": "Consult affected workers directly.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Only part of the workforce is represented",
+        "expected": "Check final Code guidance on representation and include unrepresented/minority groups; no claim that consulting one group clears all others.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Workers disagree",
+        "expected": "Consider the views; neither unanimity nor acceptance of every suggestion is required.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Review finds policy remains fair",
+        "expected": "A review can retain the policy. Consultation and the anonymised summary are still required.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "First policy made available before commencement",
+        "expected": "Do not assume the three-year clock starts on commencement; confirm transition and the correct existing-policy deadline.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Employer uses an independent tronc",
+        "expected": "Employer consultation responsibility remains; do not direct independent allocation or infer a National Insurance exemption.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Only occasional and exceptional qualifying tips",
+        "expected": "Do not create a universal written-policy duty. Preserve existing allocation obligations.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Annual review in the template",
+        "expected": "This is a voluntary shorter interval, not the statutory minimum.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Northern Ireland workplace",
+        "expected": "Do not apply this Great Britain reform to Northern Ireland.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Consultation feedback identifies an individual",
+        "expected": "Provide an anonymised summary, not identifiable raw responses.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Tax chapter says compulsory service charge is not a tip",
+        "expected": "This is tax-context wording; do not infer that compulsory service charges are outside allocation law. Obtain joined-up wording review.",
+        "status": "Awaiting human review"
+      }
+    ]
   }
 }
