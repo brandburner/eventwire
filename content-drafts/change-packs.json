@@ -1,0 +1,221 @@
+{
+  "whistleblowing": {
+    "title": "FLX-09 · Sexual-harassment disclosures",
+    "effective_date": "2026-04-06",
+    "scope": "Check whether this page needs a sexual-harassment disclosure update. Preserve reasonable belief, public interest, reporting routes, territorial scope and all unrelated claims.",
+    "sources": [
+      "era-section-23",
+      "commencement-323",
+      "disclosure-conditions"
+    ],
+    "evidence_note": "Section 23 adds sexual harassment to section 43B. This does not remove the other protected-disclosure conditions.",
+    "blockers": [
+      "This is a scoped content decision, not a full legal assurance of the captured page."
+    ],
+    "scenarios": [
+      {
+        "situation": "Worker reports sexual harassment",
+        "expected": "The category is included where categories are listed; protection is not promised without the other conditions.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Personal grievance without public-interest grounds",
+        "expected": "Do not imply every complaint automatically becomes a protected disclosure.",
+        "status": "Awaiting human review"
+      }
+    ]
+  },
+  "protective-award": {
+    "title": "FLX-06 · Protective-award scope",
+    "scope": "Inspect the recorded 90-to-180-day finding. Distinguish a tribunal award period from the Insolvency Service payment cap. No new legal rule is drafted in this batch.",
+    "sources": [
+      "guidance__explaining-your-protective-award",
+      "guidance__explaining-your-redundancy-payments"
+    ],
+    "evidence_note": "Current captured official guidance already states 180 days; the companion page describes a separate payment limit. This pack supports a no-edit decision from official guidance, not an independently traced statutory rule.",
+    "blockers": [
+      "Any proposed change to the award or payment limits needs a separate traced legal-source pack."
+    ],
+    "scenarios": [
+      {
+        "situation": "Tribunal makes an award",
+        "expected": "Do not reintroduce an obsolete 90-day maximum.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Insolvent employer; government payment",
+        "expected": "Do not substitute 180 days for the separate combined eight-week payment cap.",
+        "status": "Awaiting human review"
+      }
+    ]
+  },
+  "paternity-scope": {
+    "title": "FFR-03 · Agency-worker scope check",
+    "scope": "Distinguish paternity-leave entitlement from the agency equal-treatment qualifying period. This page is not an eligibility decision for leave or pay.",
+    "sources": [
+      "agency-workers-your-rights",
+      "paternity-pay-leave",
+      "employers-paternity-pay-leave"
+    ],
+    "evidence_note": "The captured agency page describes the 12-week equal-treatment clock and how absences affect it. The paternity pages keep leave and pay conditions separate.",
+    "blockers": [
+      "Do not infer an agency worker’s leave or pay eligibility from this no-edit decision."
+    ],
+    "scenarios": [
+      {
+        "situation": "Agency worker on paternity leave",
+        "expected": "Keep the equal-treatment clock instructions.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Worker may qualify for pay but not leave",
+        "expected": "Do not infer identical eligibility from the two entitlements.",
+        "status": "Awaiting human review"
+      }
+    ]
+  },
+  "spl-order": {
+    "title": "Paternity / SPL · Order of leave",
+    "effective_date": "2026-04-06",
+    "scope": "A coordinated edit to existing GOV.UK pages about the order of Paternity Leave and Shared Parental Leave. Retain all other eligibility, pay, curtailment, notice and timing conditions. Draft as current on 13 November 2026, not as an advance announcement.",
+    "sources": [
+      "era-section-17",
+      "commencement-3",
+      "paternity-pay-leave"
+    ],
+    "evidence_note": "Section 17 removes the order restriction. SI 2026/3 regulation 4(4) commences the change on 6 April 2026, subject to Schedule 1: saved birth/adoption/overseas-adoption/parental-order cohorts, the early-birth exception and primary-carer-death exception. The broad current GOV.UK sentence does not spell out those boundaries.",
+    "blockers": [
+      "Policy review required: confirm the plain-language rendering of all Schedule 1 cohorts, particularly parental-order cases and the statutory meaning of primary carer.",
+      "This does not determine entitlement to SPL, Paternity Leave or either statutory pay. Their conditions and operational regulations are outside this edit.",
+      "Coordinate worker and employer pages and the linked paternity guide; do not approve just one side of the journey."
+    ],
+    "scenarios": [
+      {
+        "situation": "Birth on 6 April 2026; eligible for both types of leave",
+        "expected": "Order restriction removed; ordinary eligibility, notice and timing requirements still apply.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Birth before 6 April; expected week begins 5 April 2026",
+        "expected": "Early-birth exception: the earlier restriction does not apply.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Birth before 6 April; expected week also before 5 April",
+        "expected": "Earlier restriction remains unless the primary-carer-death exception applies.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "UK adoption placement before 6 April",
+        "expected": "Earlier restriction remains unless the death exception applies.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Overseas adoption; entry to Great Britain before 6 April",
+        "expected": "Use entry date, not birth date or matching date.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Parental-order case; child born before 6 April",
+        "expected": "Use the parental-order cohort rule; do not apply the ordinary-birth expected-week exception.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Primary carer dies on or after 6 April",
+        "expected": "Schedule 1 paragraphs 1 and 2 do not apply; eligibility is not otherwise established.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Not eligible for SPL, or pay eligibility differs",
+        "expected": "Do not turn the removal of an order restriction into entitlement to leave or pay.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Northern Ireland",
+        "expected": "Do not extend the Great Britain change to this jurisdiction.",
+        "status": "Awaiting human review"
+      }
+    ]
+  },
+  "tipping-consultation": {
+    "title": "Tipping policy consultation and review",
+    "scope": "Section 14 consultation and review duties, with a bounded check of the November revised Code and connected tax journey.",
+    "effective_date": null,
+    "expected_window": "January 2027, subject to parliamentary approval and commencement",
+    "sources": [
+      "batch10-section14",
+      "batch10-section27I",
+      "batch10-code",
+      "batch10-response",
+      "batch10-outcome"
+    ],
+    "blockers": [
+      "Verify the made commencement regulations for section 14 and the revised Code, including savings and staged application. January 2027 is currently an expected date, not a verified publication date.",
+      "Resolve existing-policy deadlines against the made regulations: section 14 refers to first availability and completed reviews; the response describes development or last review. Do not reset every existing policy clock to January 2027.",
+      "Agree which Code applies during each employer’s transition and verify the final link destination before release.",
+      "Human policy and content approval is pending. This scoped draft does not certify unchanged guidance."
+    ],
+    "scenarios": [
+      {
+        "situation": "Recognised independent union represents affected workers",
+        "expected": "Consult through qualifying representatives; do not default to a direct majority vote.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "No qualifying representatives",
+        "expected": "Consult affected workers directly.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Only part of the workforce is represented",
+        "expected": "Check final Code guidance on representation and include unrepresented/minority groups; no claim that consulting one group clears all others.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Workers disagree",
+        "expected": "Consider the views; neither unanimity nor acceptance of every suggestion is required.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Review finds policy remains fair",
+        "expected": "A review can retain the policy. Consultation and the anonymised summary are still required.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "First policy made available before commencement",
+        "expected": "Do not assume the three-year clock starts on commencement; confirm transition and the correct existing-policy deadline.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Employer uses an independent tronc",
+        "expected": "Employer consultation responsibility remains; do not direct independent allocation or infer a National Insurance exemption.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Only occasional and exceptional qualifying tips",
+        "expected": "Do not create a universal written-policy duty. Preserve existing allocation obligations.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Annual review in the template",
+        "expected": "This is a voluntary shorter interval, not the statutory minimum.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Northern Ireland workplace",
+        "expected": "Do not apply this Great Britain reform to Northern Ireland.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Consultation feedback identifies an individual",
+        "expected": "Provide an anonymised summary, not identifiable raw responses.",
+        "status": "Awaiting human review"
+      },
+      {
+        "situation": "Tax chapter says compulsory service charge is not a tip",
+        "expected": "This is tax-context wording; do not infer that compulsory service charges are outside allocation law. Obtain joined-up wording review.",
+        "status": "Awaiting human review"
+      }
+    ]
+  }
+}
