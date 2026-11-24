@@ -1125,5 +1125,54 @@
     "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
     "captured_at": "2026-11-20T10:44:33.501154+00:00",
     "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08"
+  },
+  {
+    "name": "government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs",
+    "url": "https://www.gov.uk/api/content/government/publications/e24-tips-gratuities-service-charges-and-troncs/guidance-on-tips-gratuities-service-charges-and-troncs",
+    "final_url": "https://www.gov.uk/api/content/government/publications/e24-tips-gratuities-service-charges-and-troncs/guidance-on-tips-gratuities-service-charges-and-troncs",
+    "captured_at": "2026-11-21T00:05:45.697396Z",
+    "sha256": "9ee298ee20ac5b1cf3d32ba7ec4334d04b32bb331f694c442acb3b52c938415f"
+  },
+  {
+    "name": "running-payroll",
+    "url": "https://www.gov.uk/api/content/running-payroll",
+    "final_url": "https://www.gov.uk/api/content/running-payroll",
+    "captured_at": "2026-11-22T16:06:05.508639Z",
+    "sha256": "37c2042c1566221155a84451d69a6344ed408c824100b3070197a2b68a2881da"
+  },
+  {
+    "name": "national-minimum-wage",
+    "url": "https://www.gov.uk/api/content/national-minimum-wage",
+    "final_url": "https://www.gov.uk/api/content/national-minimum-wage",
+    "captured_at": "2026-11-22T16:00:08.898776Z",
+    "sha256": "a266b81723362185d49522c02558dfd934772655db707781a66cb6ab981c79c3"
+  },
+  {
+    "name": "government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-statutory-code-of-practice/code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-statutory-code-of-practice/code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "captured_at": "2026-11-20T23:13:33.484843Z",
+    "sha256": "ef0f003536fe4351e814c1c3b60b8ce2c1678c71e55cc48de4e20becaab3093d"
+  },
+  {
+    "name": "guidance__director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "url": "https://www.gov.uk/api/content/guidance/director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "final_url": "https://www.gov.uk/api/content/guidance/director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "captured_at": "2026-11-20T21:41:51.234009Z",
+    "sha256": "9c4388b4d5d2d848767bac0061b4ed8d2c461a1eccfd6a1e2b8e35caffaf1895"
+  },
+  {
+    "name": "transfers-takeovers",
+    "url": "https://www.gov.uk/api/content/transfers-takeovers",
+    "final_url": "https://www.gov.uk/api/content/transfers-takeovers",
+    "captured_at": "2026-11-22T15:56:38.228646Z",
+    "sha256": "6c238699ce3a9ad496b786ac6529517087614dbce4b2e96be853d1726fd2fe80"
+  },
+  {
+    "name": "government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "final_url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "captured_at": "2026-11-21T01:22:32.239399Z",
+    "sha256": "96f1746b58b798597e0bb78e5344e77cc834ba951a2a2477ce065624baca36ca"
   }
 ]

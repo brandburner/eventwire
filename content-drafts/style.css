@@ -127,3 +127,14 @@
 @media(prefers-reduced-motion:no-preference){.review-panel:not([hidden]){animation:panel-appear .16s ease-out}@keyframes panel-appear{from{clip-path:inset(0 0 8px 0)}to{clip-path:inset(0)}}}
 
 .workbench .correction-chapter{border:0;padding:4px 0;background:transparent;color:var(--teal);font-size:12px;text-align:left;text-decoration:underline;text-underline-offset:3px}
+
+/* Scoped queue filters preserve the workbench's existing controls and reading area. */
+.queue-controls{flex-shrink:0;margin-bottom:12px;font-size:12px}
+.queue-controls label{display:block;margin:8px 0 4px}
+.queue-controls select{display:block;width:100%;min-width:0;padding:7px;font:inherit;color:var(--ink);background:#fff;border:1px solid #9aadb3;border-radius:0}
+.queue-controls details{margin-top:10px}
+.queue-controls summary{cursor:pointer}
+.queue-controls p{margin:10px 0 0;color:#4a6068;font-variant-numeric:tabular-nums}
+.queue-controls button{margin-top:8px}
+.workbench #queueFilter{margin-bottom:8px}
+@media(max-width:760px){.workbench .page-queue{max-height:80vh;overflow-y:auto}.workbench #queue{min-height:120px;flex-shrink:0}}

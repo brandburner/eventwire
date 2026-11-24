@@ -93,6 +93,9 @@
             }
           ]
         }
+      ],
+      "topics": [
+        "fire-rehire"
       ]
     },
     {
@@ -190,6 +193,9 @@
             }
           ]
         }
+      ],
+      "topics": [
+        "fire-rehire"
       ]
     },
     {
@@ -472,6 +478,9 @@
             }
           ]
         }
+      ],
+      "topics": [
+        "fire-rehire"
       ]
     },
     {
@@ -1180,6 +1189,9 @@
           "questions": [],
           "report": "review-records.json"
         }
+      ],
+      "topics": [
+        "tipping"
       ]
     },
     {
@@ -1252,6 +1264,9 @@
           ],
           "report": "review-records.json"
         }
+      ],
+      "topics": [
+        "tipping"
       ]
     },
     {
@@ -2459,7 +2474,10 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "topics": [
+        "fire-rehire"
+      ]
     },
     {
       "id": "employer-relocation-your-rights",
@@ -2598,7 +2616,10 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "topics": [
+        "fire-rehire"
+      ]
     },
     {
       "id": "informing-consulting-employees-law",
@@ -2663,7 +2684,10 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "topics": [
+        "fire-rehire"
+      ]
     },
     {
       "id": "flexible-working",
@@ -4379,7 +4403,10 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "topics": [
+        "fire-rehire"
+      ]
     },
     {
       "id": "government__publications__distributing-tips-fairly-non-statutory-guidance-for-employers__distributing-tips-fairly-non-statutory-guidance-for-employers",
@@ -4428,6 +4455,333 @@
         "scope": "Section 14 consultation and review duties, with a bounded check of the November revised Code and connected tax journey.",
         "limitations": [
           "Single-agent source review; no independent legal or human approval."
+        ]
+      },
+      "topics": [
+        "tipping"
+      ]
+    },
+    {
+      "id": "government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs",
+      "title": "Guidance on tips, gratuities, service charges and troncs",
+      "url": "https://www.gov.uk/government/publications/e24-tips-gratuities-service-charges-and-troncs/guidance-on-tips-gratuities-service-charges-and-troncs",
+      "captured": "2026-11-21T00:05:45.697396Z",
+      "sha256": "9ee298ee20ac5b1cf3d32ba7ec4334d04b32bb331f694c442acb3b52c938415f",
+      "decision": "Signposting draft · needs content review",
+      "summary": "Add a link from the tax introduction to employer guidance on distributing tips.",
+      "rationale": "The introduction distinguishes allocation legislation from tax treatment but offers no direct route to the practical allocation guidance. Add the route without changing PAYE, National Insurance, VAT or tronc rules.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "HMRC and the tipping policy owner should agree the cross-reference. The existing broad allocation statement and the transaction-fee example need separate scope review; neither is certified by this link.",
+        "This edit does not establish that PAY-05 changes tax treatment. Do not direct an independent tronc’s allocation through a tax edit."
+      ],
+      "reviewGroup": "content_review",
+      "topics": [
+        "tipping"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
+        "reason": "The introduction distinguishes allocation legislation from tax treatment but offers no direct route to the practical allocation guidance. Add the route without changing PAYE, National Insurance, VAT or tronc rules.",
+        "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
+        "evidence": [
+          {
+            "source_file": "sources/government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs.json",
+            "exact_quote": "<p>From 1 October 2024, new legislation has been introduced to make sure the distribution of tips and gratuities is fair and transparent. This means that employers, including agencies, are required to pass all tips, gratuities and service charges onto their employees. This legislation does not change how these payments should be assessed for tax and National Insurance contributions.</p>"
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "HMRC and the tipping policy owner should agree the cross-reference. The existing broad allocation statement and the transaction-fee example need separate scope review; neither is certified by this link.",
+          "This edit does not establish that PAY-05 changes tax treatment. Do not direct an independent tronc’s allocation through a tax edit."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "running-payroll",
+      "title": "Running payroll",
+      "url": "https://www.gov.uk/running-payroll",
+      "captured": "2026-11-22T16:06:05.508639Z",
+      "sha256": "37c2042c1566221155a84451d69a6344ed408c824100b3070197a2b68a2881da",
+      "decision": "Signposting draft · needs content review",
+      "summary": "Give payroll readers a route to tip-allocation guidance beside the existing tax instructions.",
+      "rationale": "The payments chapter links to tax and tronc instructions. A separate allocation link helps employers find their other responsibilities without replacing the payroll treatment.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "Retain the tax/tronc links and tax treatment. This is a navigation proposal, not a finding that the payroll rule changes under PAY-05.",
+        "Only the tips passage in Payments was assessed. Other payroll chapters, figures and thresholds are preserved without substantive review."
+      ],
+      "reviewGroup": "content_review",
+      "topics": [
+        "tipping"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
+        "reason": "The payments chapter links to tax and tronc instructions. A separate allocation link helps employers find their other responsibilities without replacing the payroll treatment.",
+        "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
+        "evidence": [
+          {
+            "source_file": "sources/running-payroll.json",
+            "exact_quote": "<p>Treat tips to your staff as normal pay if they’re paid into your till - this includes tips added to your customers’ card or cheque payments. The rules are different if tips are <a href=\"/tips-at-work/tips-and-tax\">given straight to your employees</a> by customers or <a href=\"/employee-gets-tips-gratuities-or-service-charges-through-a-tronc\">paid into a tronc</a>.</p>"
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "Retain the tax/tronc links and tax treatment. This is a navigation proposal, not a finding that the payroll rule changes under PAY-05.",
+          "Only the tips passage in Payments was assessed. Other payroll chapters, figures and thresholds are preserved without substantive review."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "national-minimum-wage",
+      "title": "The National Minimum Wage and Living Wage",
+      "url": "https://www.gov.uk/national-minimum-wage",
+      "captured": "2026-11-22T16:00:08.898776Z",
+      "sha256": "a266b81723362185d49522c02558dfd934772655db707781a66cb6ab981c79c3",
+      "decision": "No change evidenced within tipping scope",
+      "summary": "Retain the exclusion of tips from minimum-wage calculations.",
+      "rationale": "The retained PAY-05 evidence concerns consultation and review of tipping policies. It supplies no basis to change the minimum-wage exclusion.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "No whole-guide minimum-wage review was performed. Rates, arithmetic examples and enforcement wording require their own review if the page is updated."
+      ],
+      "reviewGroup": "no_change",
+      "topics": [
+        "tipping"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "no_change",
+        "reviewedRoute": "no_change",
+        "reviewMode": "single",
+        "reason": "The retained PAY-05 evidence concerns consultation and review of tipping policies. It supplies no basis to change the minimum-wage exclusion.",
+        "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
+        "evidence": [
+          {
+            "source_file": "sources/national-minimum-wage.json",
+            "exact_quote": "tips, service charges and cover charges"
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "No whole-guide minimum-wage review was performed. Rates, arithmetic examples and enforcement wording require their own review if the page is updated."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+      "title": "Code of practice on fair and transparent distribution of tips (HTML version)",
+      "url": "https://www.gov.uk/government/publications/distributing-tips-fairly-statutory-code-of-practice/code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+      "captured": "2026-11-20T23:13:33.484843Z",
+      "sha256": "ef0f003536fe4351e814c1c3b60b8ce2c1678c71e55cc48de4e20becaab3093d",
+      "decision": "Coordinate Code replacement · source retained",
+      "summary": "Keep the statutory Code unchanged and coordinate its replacement with the policy owner.",
+      "rationale": "This is the published statutory text. Updating the collection must not turn a generated amendment into a replacement Code. The November draft and transition evidence require a coordinated publication decision.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "Check the final approved Code, commencement, existing-policy transition and whether both versions need to remain available.",
+        "The foreword still describes non-statutory guidance as forthcoming. Coordinate any correction with the statutory-text owner; do not silently edit the laid Code."
+      ],
+      "reviewGroup": "policy_evidence",
+      "topics": [
+        "tipping"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "unresolved",
+        "reviewedRoute": "unresolved",
+        "reviewMode": "single",
+        "reason": "This is the published statutory text. Updating the collection must not turn a generated amendment into a replacement Code. The November draft and transition evidence require a coordinated publication decision.",
+        "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
+        "evidence": [
+          {
+            "source_file": "sources/government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version.json",
+            "exact_quote": "Further non-statutory guidance will be published in due course to accompany this code of practice to help employers and workers interpret the legislation."
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "Check the final approved Code, commencement, existing-policy transition and whether both versions need to remain available.",
+          "The foreword still describes non-statutory guidance as forthcoming. Coordinate any correction with the statutory-text owner; do not silently edit the laid Code."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "guidance__director-information-hub-unfair-dismissal-and-employment-tribunals",
+      "title": "Director information hub: Unfair dismissal and employment tribunals",
+      "url": "https://www.gov.uk/guidance/director-information-hub-unfair-dismissal-and-employment-tribunals",
+      "captured": "2026-11-20T21:41:51.234009Z",
+      "sha256": "9c4388b4d5d2d848767bac0061b4ed8d2c461a1eccfd6a1e2b8e35caffaf1895",
+      "decision": "Signposting draft · needs content review",
+      "summary": "Add an early route to contract-change guidance for directors considering dismissal after disagreement.",
+      "rationale": "The page explains dismissal and tribunal remedies, but has no route for a director considering dismissal because staff have refused changed terms. Its later use of “re-engagement” describes a tribunal remedy, not fire and rehire.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "The existing “Read about Dismissing an employee” link points to a draft-origin publishing address. Resolve that destination before release; this batch leaves captured source text intact.",
+        "The January 2027 qualifying-period announcement needs a separately timed update. Do not release unchanged future-tense copy after its stated date.",
+        "This cross-reference is not a complete section 28 explanation. Commencement, restricted-variation regulations, savings, financial exceptions and replacement by non-employees remain separate policy-review work."
+      ],
+      "reviewGroup": "content_review",
+      "topics": [
+        "fire-rehire"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
+        "reason": "The page explains dismissal and tribunal remedies, but has no route for a director considering dismissal because staff have refused changed terms. Its later use of “re-engagement” describes a tribunal remedy, not fire and rehire.",
+        "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
+        "evidence": [
+          {
+            "source_file": "sources/guidance__director-information-hub-unfair-dismissal-and-employment-tribunals.json",
+            "exact_quote": "<p>Dismissal is when an employer ends an employee’s contract. If you are considering dismissal, you must have a valid reason and act reasonably.</p>"
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "The existing “Read about Dismissing an employee” link points to a draft-origin publishing address. Resolve that destination before release; this batch leaves captured source text intact.",
+          "The January 2027 qualifying-period announcement needs a separately timed update. Do not release unchanged future-tense copy after its stated date.",
+          "This cross-reference is not a complete section 28 explanation. Commencement, restricted-variation regulations, savings, financial exceptions and replacement by non-employees remain separate policy-review work."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "transfers-takeovers",
+      "title": "Business transfers, takeovers and TUPE",
+      "url": "https://www.gov.uk/transfers-takeovers",
+      "captured": "2026-11-22T15:56:38.228646Z",
+      "sha256": "6c238699ce3a9ad496b786ac6529517087614dbce4b2e96be853d1726fd2fe80",
+      "decision": "Signposting draft · needs content review",
+      "summary": "Add a contract-change route beside the business-transfer dismissal guidance.",
+      "rationale": "The chapter says normal fair-dismissal rules still apply after an ETO-related dismissal. Link readers to the contract-change journey without asserting that an ETO reason satisfies the distinct fire-and-rehire exceptions.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "Policy owners must check how TUPE protections interact with section 28. An economic, technical or organisational reason is not assumed to satisfy its financial exceptions.",
+        "Do not describe all outsourcing as prohibited replacement. Section 104K has separate conditions, exceptions and a diminished-activities boundary.",
+        "Only the contract-transfer chapter was assessed for this link. Insolvency, pensions, overseas scope and the remaining chapters are retained without a full legal review."
+      ],
+      "reviewGroup": "content_review",
+      "topics": [
+        "fire-rehire"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "connected_change",
+        "reviewedRoute": "connected_change",
+        "reviewMode": "single",
+        "reason": "The chapter says normal fair-dismissal rules still apply after an ETO-related dismissal. Link readers to the contract-change journey without asserting that an ETO reason satisfies the distinct fire-and-rehire exceptions.",
+        "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
+        "evidence": [
+          {
+            "source_file": "sources/transfers-takeovers.json",
+            "exact_quote": "<p>Employers can dismiss employees for an ETO reason involving changes in the workforce, for example redundancies. The normal rules around fair dismissals will still apply.</p>"
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "Policy owners must check how TUPE protections interact with section 28. An economic, technical or organisational reason is not assumed to satisfy its financial exceptions.",
+          "Do not describe all outsourcing as prohibited replacement. Section 104K has separate conditions, exceptions and a diminished-activities boundary.",
+          "Only the contract-transfer chapter was assessed for this link. Insolvency, pensions, overseas scope and the remaining chapters are retained without a full legal review."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
+        ]
+      }
+    },
+    {
+      "id": "government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+      "title": "Code of practice on dismissal and re-engagement issued by the Secretary of State under section 203 of the Trade Union and Labour Relations (Consolidation) Act 1992 (HTML version)",
+      "url": "https://www.gov.uk/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+      "captured": "2026-11-21T01:22:32.239399Z",
+      "sha256": "96f1746b58b798597e0bb78e5344e77cc834ba951a2a2477ce065624baca36ca",
+      "decision": "Coordinate Code replacement · source retained",
+      "summary": "Keep the existing dismissal Code intact while its replacement and commencement are resolved.",
+      "rationale": "The captured statutory Code contains a last-resort dismissal route. It cannot be treated as authority to bypass the new restricted-dismissal rules or silently rewritten as the replacement Code.",
+      "publicationDate": null,
+      "blockers": [
+        "Human content and policy review is pending; no whole-page clearance is claimed.",
+        "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+        "The retained November evidence described a replacement-Code consultation, not an operative replacement. Confirm the final text and both commencement and revocation dates.",
+        "March 2027 was an aim in the retained timetable, not a verified publication date. Powers-only commencement does not establish substantive protection."
+      ],
+      "reviewGroup": "policy_evidence",
+      "topics": [
+        "fire-rehire"
+      ],
+      "triage": {
+        "model": "Session drafting agent",
+        "originalRoute": "unresolved",
+        "reviewedRoute": "unresolved",
+        "reviewMode": "single",
+        "reason": "The captured statutory Code contains a last-resort dismissal route. It cannot be treated as authority to bypass the new restricted-dismissal rules or silently rewritten as the replacement Code.",
+        "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
+        "evidence": [
+          {
+            "source_file": "sources/government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat.json",
+            "exact_quote": "The employer should treat this option as a last resort."
+          }
+        ],
+        "triggers": [
+          "Human content and policy review is pending; no whole-page clearance is claimed.",
+          "Compare the captured source and link destinations with live GOV.UK before publishing. No fresh source or commencement check was made for this batch.",
+          "The retained November evidence described a replacement-Code consultation, not an operative replacement. Confirm the final text and both commencement and revocation dates.",
+          "March 2027 was an aim in the retained timetable, not a verified publication date. Powers-only commencement does not establish substantive protection."
+        ],
+        "limitations": [
+          "Agent-authored decisions and first drafts; no independent human policy approval.",
+          "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
+          "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
       }
     }
