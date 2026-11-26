@@ -1,10 +1,10 @@
 'use strict';
 (function (root) {
   const labels = {
-    content_review: 'Draft to review',
-    policy_evidence: 'Awaiting policy evidence',
-    connected: 'Connected review',
-    no_change: 'No change identified',
+    content_review: 'Review draft',
+    policy_evidence: 'Check policy evidence',
+    connected: 'Review connected rules',
+    no_change: 'No change proposed in scope',
     excluded: 'Outside scope'
   };
   const order = Object.keys(labels);

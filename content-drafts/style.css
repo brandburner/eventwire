@@ -120,7 +120,7 @@
 .workbench .scenario h3{font-size:14px}
 .workbench .scenario select{font-size:12px}
 .workbench footer{font-size:12px;padding:16px 24px}
-@media(min-width:1101px){.workspace.panel-open .columns{grid-template-columns:1fr}}
+
 @media(max-width:1200px){.workbench .shell{grid-template-columns:220px minmax(0,1fr)}.workbench main{padding:24px}.workspace.panel-open{grid-template-columns:minmax(0,1fr) 320px;gap:24px}.workbench .review-panel{padding-left:18px}}
 @media(max-width:1100px){.workspace.panel-open{grid-template-columns:1fr}.workbench .review-panel{position:relative;top:0;grid-row:1;max-height:60vh;border:1px solid var(--line);padding:18px}.workbench .columns{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.workbench header{height:auto;min-height:56px;padding:12px 16px}.workbench .brand{font-size:17px}.workbench .pilot{display:none}#toggleQueue{display:block;margin-left:auto;background:transparent;color:white;border-color:#91a5ac}.workbench .shell{display:block}.workbench .page-queue{display:none;position:static;height:auto;max-height:65vh;padding:20px 16px}.workbench .page-queue.queue-open{display:flex}.workbench #queue{max-height:38vh;display:block}.workbench #queue small{display:block}.workbench main{padding:20px 16px 40px}.workbench .topline{margin-bottom:20px}.workbench .topline button{font-size:11px;padding:5px 7px}.workbench h1{font-size:26px}.workbench .page-heading{display:block}.page-heading>a{display:inline-block;margin-top:10px}.page-state{margin:12px 0 20px;gap:8px 12px}.workbench .sectionbar{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}.workbench .sectionbar select{min-width:0;width:100%;max-width:none;font-size:13px}#changeCount{grid-column:2}.workbench .toolbar{gap:12px}.workbench #tabs{width:100%;justify-content:space-between}.workbench #tabs button{padding:8px 9px}.copy-actions{width:100%}.copy-actions button{flex:1}.review-tools{gap:3px}.review-tools>span:first-child{display:none}#selectionSummary{width:100%;margin:4px 0 0}.workspace{margin-top:24px}.workbench .columns{grid-template-columns:1fr}.workbench .document{font-size:17px}.workbench #chapterTitle{font-size:24px}.workbench .review-panel{max-height:65vh;padding:14px}.chapter-navigation button{font-size:11px;padding:6px 8px}.workbench .queue-links a{display:inline}.workbench .queue-heading h2{display:block;margin:0}}
@@ -140,3 +140,23 @@
 @media(max-width:760px){.workbench .page-queue{max-height:80vh;overflow-y:auto}.workbench #queue{min-height:120px;flex-shrink:0}}
 
 .measure-summary{font-size:13px;color:#4a6068;max-width:85ch;margin:0 0 20px;overflow-wrap:anywhere}
+
+/* Comparison adapts to the reading area, including space used by review tools.
+   Narrow layouts show an explicit version switch, never a hidden second chapter. */
+.reading-area{container-type:inline-size;container-name:reading}
+.chapter-notice{max-width:75ch;margin:0 0 20px;color:var(--muted);font-size:13px}
+.comparison-guide{margin:0 0 18px;font-size:13px;color:var(--muted)}
+.comparison-guide p{margin:0 0 10px}
+.comparison-narrow{display:block}
+.comparison-wide{display:none}
+.comparison-narrow [role=group]{display:flex;gap:8px}
+.workbench .columns{display:block}
+.comparison-before,.comparison-after{display:none}
+.columns[data-side=before] .comparison-before,.columns[data-side=after] .comparison-after{display:block}
+.workbench .comparison-narrow button[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:var(--paper)}
+@container reading (min-width:700px){
+ .workbench .columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .comparison-before,.comparison-after{display:block}
+ .comparison-narrow{display:none}
+ .comparison-wide{display:block}
+}
