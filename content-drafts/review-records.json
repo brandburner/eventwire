@@ -96,7 +96,13 @@
       ],
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-08a",
+        "FLX-03",
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "dismiss-staff",
@@ -196,7 +202,13 @@
       ],
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-08a",
+        "FLX-03",
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "whistleblowing",
@@ -263,7 +275,12 @@
             }
           ]
         }
-      ]
+      ],
+      "measureIds": [
+        "FLX-09",
+        "FLX-13"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__whistleblowing-guidance-for-employers",
@@ -311,7 +328,12 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "FLX-09",
+        "FLX-13"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__whistleblowing-guidance-for-workers",
@@ -359,7 +381,12 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "FLX-09",
+        "FLX-13"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__whistleblowing-for-prescribed-persons",
@@ -395,7 +422,11 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-09"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "redundancy-your-rights",
@@ -481,7 +512,12 @@
       ],
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-09",
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employment-tribunals",
@@ -517,7 +553,11 @@
           "refund-tribunal-fees",
           "get-support-legal-advice"
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-09"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__explaining-your-protective-award",
@@ -545,7 +585,11 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-06"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__explaining-your-redundancy-payments",
@@ -573,7 +617,11 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-06"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-paternity-pay-leave",
@@ -623,7 +671,12 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "FFR-03b",
+        "FFR-04"
+      ],
+      "measureMappingNote": "The paternity/SPL leave-order draft is grouped with paternity entitlement as a related scope; the supplied catalogue does not separately identify the section 17 leave-order change. FFR-04 comes from the separate recorded dismissal-protection review."
     },
     {
       "id": "paternity-pay-leave",
@@ -672,7 +725,12 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "FFR-03b",
+        "FFR-04"
+      ],
+      "measureMappingNote": "The paternity/SPL leave-order draft is grouped with paternity entitlement as a related scope; the supplied catalogue does not separately identify the section 17 leave-order change. FFR-04 comes from the separate recorded dismissal-protection review."
     },
     {
       "id": "agency-workers-your-rights",
@@ -707,7 +765,11 @@
           "entertainment-and-modelling-agencies",
           "modelling-agencies"
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-03b"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "shared-parental-leave-and-pay",
@@ -789,7 +851,12 @@
             }
           ]
         }
-      ]
+      ],
+      "measureIds": [
+        "FFR-03b",
+        "FFR-04"
+      ],
+      "measureMappingNote": "The paternity/SPL leave-order draft is grouped with paternity entitlement as a related scope; the supplied catalogue does not separately identify the section 17 leave-order change. FFR-04 comes from the separate recorded dismissal-protection review."
     },
     {
       "id": "shared-parental-leave-and-pay-employer-guide",
@@ -871,7 +938,12 @@
             }
           ]
         }
-      ]
+      ],
+      "measureIds": [
+        "FFR-03b",
+        "FFR-04"
+      ],
+      "measureMappingNote": "The paternity/SPL leave-order draft is grouped with paternity entitlement as a related scope; the supplied catalogue does not separately identify the section 17 leave-order change. FFR-04 comes from the separate recorded dismissal-protection review."
     },
     {
       "id": "statutory-sick-pay",
@@ -942,7 +1014,12 @@
           "eligibility",
           "how-to-claim"
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-03",
+        "PAY-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-sick-pay",
@@ -1008,7 +1085,12 @@
           "notice-and-fit-notes",
           "help-with-sick-pay"
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-03",
+        "PAY-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments",
@@ -1075,7 +1157,12 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-03",
+        "PAY-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest",
@@ -1121,7 +1208,9 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [],
+      "measureMappingNote": "Retained Sudan Stability Programme false positive, explicitly outside employment scope; no MWP measure assigned."
     },
     {
       "id": "tips-at-work",
@@ -1192,7 +1281,11 @@
       ],
       "topics": [
         "tipping"
-      ]
+      ],
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
@@ -1267,7 +1360,11 @@
       ],
       "topics": [
         "tipping"
-      ]
+      ],
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__advanced-notification-of-redundancies-hr1-form",
@@ -1329,7 +1426,11 @@
         "reviewedChapters": [
           "body"
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-06"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "industrial-action-strikes",
@@ -1397,7 +1498,11 @@
           "your-employment-rights-during-industrial-action",
           "going-on-strike-and-picketing"
         ]
-      }
+      },
+      "measureIds": [
+        "VAW-04a"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__whistleblowing-to-the-sia",
@@ -1450,7 +1555,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-09"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency",
@@ -1503,7 +1612,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-09"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__protections-for-whistleblowers",
@@ -1550,7 +1663,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-09"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__seasonal-work-on-farms-guidance-for-workers",
@@ -1596,7 +1713,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "RAW-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__your-rights-at-work-homes-for-ukraine",
@@ -1665,7 +1786,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "RAW-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies",
@@ -1735,7 +1860,11 @@
         "limitations": [
           "Policy route is scoped; editorial suggestions are not policy approval."
         ]
-      }
+      },
+      "measureIds": [
+        "RAW-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "trade-union-recognition-employers",
@@ -1856,7 +1985,12 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "measureIds": [
+        "VAW-06a",
+        "VAW-06b"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__trade-union-recognition-how-to-apply-to-the-cac",
@@ -1963,7 +2097,12 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "measureIds": [
+        "VAW-06a",
+        "VAW-06b"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__complain-about-unfair-practice-during-a-recognition-ballot",
@@ -2063,7 +2202,12 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "measureIds": [
+        "VAW-06a",
+        "VAW-06b"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "working-with-trade-unions",
@@ -2148,7 +2292,14 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "VAW-09",
+        "VAW-10",
+        "VAW-11",
+        "VAW-12"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "rights-of-trade-union-reps",
@@ -2219,7 +2370,11 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "measureIds": [
+        "VAW-10"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "join-trade-union",
@@ -2297,7 +2452,14 @@
           "report": "review-records.json",
           "futureEdits": []
         }
-      ]
+      ],
+      "measureIds": [
+        "VAW-09",
+        "VAW-10",
+        "VAW-11",
+        "VAW-12"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "your-employment-contract-how-it-can-be-changed",
@@ -2477,7 +2639,11 @@
       },
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employer-relocation-your-rights",
@@ -2556,7 +2722,11 @@
         "limitations": [
           "Scoped AI review; no human approval or whole-page certification."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employment-contracts-and-conditions",
@@ -2619,7 +2789,11 @@
       },
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "informing-consulting-employees-law",
@@ -2687,7 +2861,11 @@
       },
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "flexible-working",
@@ -2797,7 +2975,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-01"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__get-help-with-flexible-working-in-schools",
@@ -2859,7 +3041,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-01"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "working-when-pregnant-your-rights",
@@ -2966,7 +3152,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-maternity-pay-leave",
@@ -3078,7 +3268,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "maternity-pay-leave",
@@ -3190,7 +3384,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employee-rights-when-on-leave",
@@ -3287,7 +3485,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "discrimination-your-rights",
@@ -3361,7 +3563,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-13"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "workplace-bullying-and-harassment",
@@ -3443,7 +3649,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-13"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "neonatal-care-pay-leave",
@@ -3534,7 +3744,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-neonatal-care-pay-leave",
@@ -3625,7 +3839,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "bereaved-partners-paternity-leave",
@@ -3718,7 +3936,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-bereaved-partners-paternity-leave",
@@ -3808,7 +4030,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "adoption-pay-leave",
@@ -3908,7 +4134,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-adoption-pay-leave",
@@ -4014,7 +4244,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "parental-leave",
@@ -4108,7 +4342,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "parental-bereavement-pay-leave",
@@ -4202,7 +4440,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "employers-parental-bereavement-pay-leave",
@@ -4294,7 +4536,11 @@
         "limitations": [
           "Target month does not establish commencement. All proposed wording requires human review."
         ]
-      }
+      },
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "staff-redundant",
@@ -4406,7 +4652,11 @@
       },
       "topics": [
         "fire-rehire"
-      ]
+      ],
+      "measureIds": [
+        "FFR-04"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "government__publications__distributing-tips-fairly-non-statutory-guidance-for-employers__distributing-tips-fairly-non-statutory-guidance-for-employers",
@@ -4459,7 +4709,11 @@
       },
       "topics": [
         "tipping"
-      ]
+      ],
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs",
@@ -4505,7 +4759,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "running-payroll",
@@ -4551,7 +4809,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "national-minimum-wage",
@@ -4595,7 +4857,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
@@ -4641,7 +4907,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "PAY-05"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "guidance__director-information-hub-unfair-dismissal-and-employment-tribunals",
@@ -4689,7 +4959,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "transfers-takeovers",
@@ -4737,7 +5011,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     },
     {
       "id": "government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
@@ -4783,7 +5061,11 @@
           "Selected local full-text results, not exhaustive MWP coverage or a new corpus classifier run.",
           "No new commencement or current-law assertion is made from stale evidence. Check live sources before release."
         ]
-      }
+      },
+      "measureIds": [
+        "FLX-03"
+      ],
+      "measureMappingNote": "Navigation grouping from the existing recorded review scope; not a new impact or publication decision."
     }
   ]
 }

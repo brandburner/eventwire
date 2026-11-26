@@ -138,3 +138,5 @@
 .queue-controls button{margin-top:8px}
 .workbench #queueFilter{margin-bottom:8px}
 @media(max-width:760px){.workbench .page-queue{max-height:80vh;overflow-y:auto}.workbench #queue{min-height:120px;flex-shrink:0}}
+
+.measure-summary{font-size:13px;color:#4a6068;max-width:85ch;margin:0 0 20px;overflow-wrap:anywhere}
