@@ -144,5 +144,5 @@ if(initialMeasure==='unassigned'||measureNames.has(initialMeasure))$('measureFil
 const initialSort=initialParams.get('sort');if(['review','measure','title','newest'].includes(initialSort))$('queueSort').value=initialSort;
 const initialDecision=initialParams.get('decision');if(Object.hasOwn(DraftQueue.labels,initialDecision))$('decisionFilter').value=initialDecision;
 const initialSelection=queueSelection();
-if(initialSelection.length&&!initialSelection.includes(pageIndex))pageIndex=initialSelection[0];
+if(initialSelection.length&&(!pages.some(p=>p.id===initialParams.get('page'))||!initialSelection.includes(pageIndex)))pageIndex=initialSelection[0];
 navigate(pageIndex,false);

@@ -550,7 +550,7 @@
 
       $('measureList').innerHTML = filteredCatalogue.map(m => {
         const draftCount = pilotCountByMeasure.get(m.id) || 0;
-        const href = 'index.html?measure=' + encodeURIComponent(m.id);
+        const href = 'drafts.html?measure=' + encodeURIComponent(m.id);
         return '<a class="measure-item" href="' + esc(href) + '" style="text-decoration:none">' +
           '<div class="measure-item-top"><span class="measure-code">' + esc(m.id) + '</span><span class="tag tag-neutral">Not loaded</span></div>' +
           '<span class="measure-label">' + esc(m.label) + '</span>' +
@@ -571,7 +571,7 @@
         '</div>' +
         '<p>' + esc(draftSummary) + '</p>' +
         '<div class="callout-actions">' +
-          '<a class="primary-link" href="index.html">Open Draft collection' + (pilotPages.length ? ' (' + formatNumber(pilotPages.length) + ' entries)' : '') + '</a>' +
+          '<a class="primary-link" href="drafts.html">Open Draft collection' + (pilotPages.length ? ' (' + formatNumber(pilotPages.length) + ' entries)' : '') + '</a>' +
         '</div>';
     }
 
@@ -843,7 +843,7 @@
         $('measureTitle').textContent = m.label;
         const draftCount = pilotCountByMeasure.get(m.id) || 0;
         const link = $('draftMeasureLink');
-        link.href = 'index.html?measure=' + encodeURIComponent(m.id);
+        link.href = 'drafts.html?measure=' + encodeURIComponent(m.id);
         link.textContent = 'Related drafts (' + draftCount + ')';
         link.hidden = draftCount === 0;
 
@@ -895,7 +895,7 @@
       } else {
         $('measureTitle').textContent = 'All measures';
         const link = $('draftMeasureLink');
-        link.href = 'index.html';
+        link.href = 'drafts.html';
         link.hidden = false;
         link.textContent = 'Draft collection' + (pilotPages.length ? ' (' + formatNumber(pilotPages.length) + ')' : '');
 
@@ -1207,12 +1207,12 @@
         draftBox.innerHTML =
           '<div><strong>' + esc(matchLabel) + ':</strong> ' + esc(draft.page.title) +
           ' <span class="candidate-stage-note">(' + (hasEdits ? 'has unapproved draft chapters' : 'recorded with no supplied amendment in its reviewed scope') + ')</span></div>' +
-          '<a class="action-link" href="index.html?page=' + esc(encodeURIComponent(draft.page.id)) + '">Open in Draft collection</a>';
+          '<a class="action-link" href="drafts.html?page=' + esc(encodeURIComponent(draft.page.id)) + '">Open in Draft collection</a>';
       } else if (draft && draft.rawDraftId) {
         draftBox.className = 'draft-link-box has-draft';
         draftBox.innerHTML =
           '<div><strong>Draft collection reference:</strong> <span class="mono">' + esc(draft.rawDraftId) + '</span></div>' +
-          '<a class="action-link" href="index.html?page=' + esc(encodeURIComponent(draft.rawDraftId)) + '">Open in Draft collection</a>';
+          '<a class="action-link" href="drafts.html?page=' + esc(encodeURIComponent(draft.rawDraftId)) + '">Open in Draft collection</a>';
       } else {
         draftBox.className = 'draft-link-box';
         draftBox.innerHTML =
