@@ -973,23 +973,23 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/statutory-sick-pay.json",
+            "source_file": "statutory-sick-pay.json",
             "exact_quote": "<li>have been ill for at least one full working day</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/statutory-sick-pay.json",
+            "source_file": "statutory-sick-pay.json",
             "exact_quote": "<p>You’ll be paid <abbr title=\"Statutory Sick Pay\">SSP</abbr> for all the full days you’re off sick that you normally would have worked.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/statutory-sick-pay.json",
+            "source_file": "statutory-sick-pay.json",
             "exact_quote": "<p>If you’re eligible, you can get £123.25 a week Statutory Sick Pay (<abbr title=\"Statutory Sick Pay\">SSP</abbr>) or 80% of your normal weekly earnings - whichever is lower. It’s paid for up to 28 weeks.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/statutory-sick-pay.json",
+            "source_file": "statutory-sick-pay.json",
             "exact_quote": "<li>last more than one full working day</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-sick-pay.json",
+            "source_file": "employers-sick-pay.json",
             "exact_quote": "<li>last for at least one full working day</li>"
           }
         ],
@@ -1047,19 +1047,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/employers-sick-pay.json",
+            "source_file": "employers-sick-pay.json",
             "exact_quote": "<p><abbr title=\"Statutory Sick Pay\">SSP</abbr> is paid when the employee is sick for at least one full working day.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-sick-pay.json",
+            "source_file": "employers-sick-pay.json",
             "exact_quote": "<li>have been sick for at least one full working day - known as a ‘period of incapacity for work’</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-sick-pay.json",
+            "source_file": "employers-sick-pay.json",
             "exact_quote": "<p>The weekly rate for Statutory Sick Pay (<abbr title=\"Statutory Sick Pay\">SSP</abbr>) is £123.25 or 80% of average weekly earnings - whichever is lower. It’s paid for up to 28 weeks.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-sick-pay.json",
+            "source_file": "employers-sick-pay.json",
             "exact_quote": "<p>Calculations are usually based on average weekly earnings over an 8-week period. Employees who have been paid less than 8 weeks of earnings still qualify for <abbr title=\"Statutory Sick Pay\">SSP</abbr>.</p>"
           }
         ],
@@ -1119,23 +1119,23 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
+            "source_file": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
             "exact_quote": "<p>A <abbr title=\"Period of incapacity for work\">PIW</abbr> is a period of sickness lasting at least one full day.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
+            "source_file": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
             "exact_quote": "<p><abbr title=\"Statutory Sick Pay\">SSP</abbr> is paid from the first full working day in a <abbr title=\"Period of incapacity for work\">PIW</abbr>.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
+            "source_file": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
             "exact_quote": "<p>Average weekly earnings must include all earnings on which Class 1 National Insurance contributions are due, or would be due if the employee’s earnings were high enough.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
+            "source_file": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
             "exact_quote": "<p><abbr title=\"Statutory Sick Pay\">SSP</abbr> is paid at 80% of average weekly earnings or the flat rate of £123.25, whichever is lower.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
+            "source_file": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments.json",
             "exact_quote": "<p>This guidance applies from 6 April 2026. <a href=\"https://www.gov.uk/guidance/sickness-absences-that-start-before-and-end-on-or-after-6-april-2026\">Find out how to deal with continuous absences that began before 6 April 2026</a>.</p>"
           }
         ],
@@ -1188,11 +1188,11 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest.json",
+            "source_file": "international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest.json",
             "exact_quote": "<p>The Sudan Stability Programme (SSP) is a £39 million, 5-year programme (2026 to 2031) that aims to help bring an end to hostilities in Sudan.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest.json",
+            "source_file": "international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest.json",
             "exact_quote": "<p>For-profit organisations are not eligible to lead but may participate as downstream partners.</p>"
           }
         ],
@@ -1236,15 +1236,15 @@
         "reviewMode": "single",
         "evidence": [
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "Before producing the first version of the written policy for a place of business, an employer must consult—"
           },
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "An employer must consult persons as described in subsection (2A) as part of every review of the written policy."
           },
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "An employer who has carried out a consultation required by this section in relation to a written policy for a place of business must make a summary of the views expressed in the consultation available in anonymised form to all workers of the employer at the place of business."
           }
         ],
@@ -1313,19 +1313,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
+            "source_file": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
             "exact_quote": "<p>A tronc is a separate organised pay arrangement sometimes used to distribute tips, gratuities and service charges.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
+            "source_file": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
             "exact_quote": "<td>You decide how the tronc money is divided</td>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
+            "source_file": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc.json",
             "exact_quote": "<td>The troncmaster decides how the money is divided</td>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-14.xml",
+            "source_file": "era-section-14.xml",
             "exact_quote": "Policy about allocating tips etc: consultation and review"
           }
         ],
@@ -1392,19 +1392,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__advanced-notification-of-redundancies-hr1-form.json",
+            "source_file": "guidance__advanced-notification-of-redundancies-hr1-form.json",
             "exact_quote": "<p>This document provides answers to those questions under common themes.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__advanced-notification-of-redundancies-hr1-form.json",
+            "source_file": "guidance__advanced-notification-of-redundancies-hr1-form.json",
             "exact_quote": "<p>You are required by law to notify RPS of a proposal to dismiss 20 or more employees as redundant at one establishment within a period of 90 days or less.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__advanced-notification-of-redundancies-hr1-form.json",
+            "source_file": "guidance__advanced-notification-of-redundancies-hr1-form.json",
             "exact_quote": "10. Will the form accept a proposed dismissal date which is less than the required 30/45 days?"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__advanced-notification-of-redundancies-hr1-form.json",
+            "source_file": "guidance__advanced-notification-of-redundancies-hr1-form.json",
             "exact_quote": "<p>Yes, the form will accept a date less than the required period, however you will be asked for the reason why. Failure to comply with the statutory notification requirements without good cause may result in prosecution and a fine, on summary conviction, for the company and/or officer of the company.</p>"
           }
         ],
@@ -1461,23 +1461,23 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/industrial-action-strikes.json",
+            "source_file": "industrial-action-strikes.json",
             "exact_quote": "<li>use a permitted voting method - postal, electronic, hybrid or workplace voting</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/industrial-action-strikes.json",
+            "source_file": "industrial-action-strikes.json",
             "exact_quote": "<li>be supervised by a qualified independent person (a ‘scrutineer’) appointed by the union if over 50 members are being balloted by post</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/industrial-action-strikes.json",
+            "source_file": "industrial-action-strikes.json",
             "exact_quote": "<li>be supervised by a scrutineer if any number of members are being balloted via electronic, hybrid, or workplace voting methods</li>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/industrial-action-strikes.json",
+            "source_file": "industrial-action-strikes.json",
             "exact_quote": "<p>There is further information on these voting methods in the <a href=\"/government/publications/electronic-and-workplace-balloting-code-of-practice\">code of practice on electronic and workplace balloting</a>.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/industrial-action-strikes.json",
+            "source_file": "industrial-action-strikes.json",
             "exact_quote": "<p>When you’re balloted, your voting paper (or electronic voting form for an electronic ballot) must ask whether you want to take part in either (or both):</p>"
           }
         ],
@@ -1536,19 +1536,19 @@
         "triggers": [],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-23.xml",
+            "source_file": "era-section-23.xml",
             "exact_quote": "that sexual harassment has occurred, is occurring or is likely to occur,"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/commencement-323.xml",
+            "source_file": "commencement-323.xml",
             "exact_quote": "come into force on 6th April 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__whistleblowing-to-the-sia.json",
+            "source_file": "guidance__whistleblowing-to-the-sia.json",
             "exact_quote": "You are a whistleblower if you are a worker and you report certain types of wrongdoing."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__whistleblowing-to-the-sia.json",
+            "source_file": "guidance__whistleblowing-to-the-sia.json",
             "exact_quote": "a door supervisor groping customers at the nightclub where they work"
           }
         ],
@@ -1593,19 +1593,19 @@
         "triggers": [],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-23.xml",
+            "source_file": "era-section-23.xml",
             "exact_quote": "that sexual harassment has occurred, is occurring or is likely to occur,"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/commencement-323.xml",
+            "source_file": "commencement-323.xml",
             "exact_quote": "come into force on 6th April 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency.json",
+            "source_file": "guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency.json",
             "exact_quote": "To gain protection, the disclosure must be related to the environment and include one or more of the following:"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency.json",
+            "source_file": "guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency.json",
             "exact_quote": "This service is not for Environment Agency employees and workers."
           }
         ],
@@ -1644,19 +1644,19 @@
         "triggers": [],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/era-section-23.xml",
+            "source_file": "era-section-23.xml",
             "exact_quote": "that sexual harassment has occurred, is occurring or is likely to occur,"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/commencement-323.xml",
+            "source_file": "commencement-323.xml",
             "exact_quote": "come into force on 6th April 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__protections-for-whistleblowers.json",
+            "source_file": "guidance__protections-for-whistleblowers.json",
             "exact_quote": "We consider all referrals and information received, including those which take the form of whistleblowing disclosures."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__protections-for-whistleblowers.json",
+            "source_file": "guidance__protections-for-whistleblowers.json",
             "exact_quote": "Since 5 November 2019, we have been a ‘prescribed person’ under the Public Interest Disclosure Act 1998 in relation to matters relating to registered providers of social housing."
           }
         ],
@@ -1698,15 +1698,15 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__seasonal-work-on-farms-guidance-for-workers.json",
+            "source_file": "guidance__seasonal-work-on-farms-guidance-for-workers.json",
             "exact_quote": "<p>They must be licensed on the <a rel=\"external\" href=\"https://glass.gla.gov.uk/pr/s/\">Gangmasters and Labour Abuse Authority (GLAA) register</a>.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p>You can call or email the Fair Work Agency if you need advice on gangmaster licensing.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p><a href=\"https://www.gov.uk/government/publications/how-to-check-if-a-labour-provider-has-a-gangmasters-licence\">Check if a gangmaster is licensed</a></p>"
           }
         ],
@@ -1759,27 +1759,27 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__your-rights-at-work-homes-for-ukraine.json",
+            "source_file": "guidance__your-rights-at-work-homes-for-ukraine.json",
             "exact_quote": "<p>The Gangmaster and Labour Abuse Authority (GLAA) regulates businesses who provide workers to the fresh produce supply chain and horticulture industry, to make sure they meet the employment standards required by law.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__your-rights-at-work-homes-for-ukraine.json",
+            "source_file": "guidance__your-rights-at-work-homes-for-ukraine.json",
             "exact_quote": "<p>GLAA has <a rel=\"external\" href=\"https://www.gla.gov.uk/media/8106/know-your-rights-agriculture-ukrainian-a4.pdf\">translated their guidance into Ukrainian</a> (PDF, 7.55MB).</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__your-rights-at-work-homes-for-ukraine.json",
+            "source_file": "guidance__your-rights-at-work-homes-for-ukraine.json",
             "exact_quote": "<p>It explains to anyone working in the UK, their rights and how to complain if they feel they are not being treated properly or fairly.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p>You can call or email the Fair Work Agency if you need advice on gangmaster licensing.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p><a href=\"https://www.gov.uk/government/publications/how-to-check-if-a-labour-provider-has-a-gangmasters-licence\">Check if a gangmaster is licensed</a></p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p>Use the <a href=\"https://www.gov.uk/government/publications/pay-and-work-rights-complaints\">complain about pay or work rights form</a>.</p>"
           }
         ],
@@ -1829,31 +1829,31 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
+            "source_file": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
             "exact_quote": "<p>For support completing a key information document, contact the <a href=\"https://www.gov.uk/government/organisations/employment-agency-standards-inspectorate\">Employment Agency Standards Inspectorate (<abbr title=\"Employment Agency Standards Inspectorate\">EAS</abbr>)</a>.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
+            "source_file": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
             "exact_quote": "<p>The Employment Agency Standards Inspectorate can: </p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
+            "source_file": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
             "exact_quote": "<p>The Gangmasters and Labour Abuse Authority (<abbr title=\"Gangmasters and Labour Abuse Authority\">GLAA</abbr>) issues penalties for criminal offences under the Gangmasters (Licensing) Act 2004, including those who use unlicensed umbrella companies in the sectors covered by the <abbr title=\"Gangmasters and Labour Abuse Authority\">GLAA</abbr>.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
+            "source_file": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies.json",
             "exact_quote": "<p>check whether the umbrella company holds a <abbr title=\"Gangmasters and Labour Abuse Authority\">GLAA</abbr> licence on <a rel=\"external\" href=\"https://www.gla.gov.uk/our-impact/who-has-a-glaa-licence/\">the <abbr title=\"Gangmasters and Labour Abuse Authority\">GLAA</abbr> website</a> if it operates in a sector covered by the <abbr title=\"Gangmasters and Labour Abuse Authority\">GLAA</abbr></p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p>You can call or email the Fair Work Agency if you need advice on gangmaster licensing.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p><a href=\"https://www.gov.uk/government/publications/how-to-check-if-a-labour-provider-has-a-gangmasters-licence\">Check if a gangmaster is licensed</a></p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__contact-the-fair-work-agency.json",
+            "source_file": "guidance__contact-the-fair-work-agency.json",
             "exact_quote": "<p>Use the <a href=\"https://www.gov.uk/government/publications/pay-and-work-rights-complaints\">complain about pay or work rights form</a>.</p>"
           }
         ],
@@ -1926,59 +1926,59 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "The following provisions of the 2025 Act come into force on 30th October 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "section 60 and Schedule 6 (trade union recognition), so far as not already in force"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "before 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "at a workplace or workplaces decided by the CAC"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by post"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by a combination of the methods described in sub-paragraphs (a) and (b)"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "Each of the parties informed by the CAC under paragraph 15(5) that an application under paragraph 11 or 12 is accepted must refrain from using any unfair practice in relation to the application."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the fifth working day after"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-old-27b.xml",
+            "source_file": "batch6-a-tulrca-old-27b.xml",
             "exact_quote": "must be made on or before the first working day after"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the period of 20 working days starting with the day after the day on which the CAC gives the union (or unions) notice under paragraph 15(5) that the application is accepted"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/trade-union-recognition-employers.json",
+            "source_file": "trade-union-recognition-employers.json",
             "exact_quote": "You and the union then have 15 working days to negotiate an access agreement."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "comes into effect on 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "This Order extends to England and Wales and Scotland."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-guidance.json",
+            "source_file": "batch6-a-code-guidance.json",
             "exact_quote": "<p>16)\tPreparations for access should begin as soon as the union requests access in connection with a relevant application. Requests for access should be in writing, and copies of such requests and responses by the employer should be kept as they may be useful for future use. The normal 20 working days (starting with the day after the day the CAC gives the union notice that the application is accepted) to reach a voluntary access agreement in writing is broken down initially into 5 working days for the union to make a request for access to the relevant workers. At that point, the union may consider what type of access it requires: whether it requests physical, digital or written access, some combination of these or all of these. This is then followed by around 15 working days for the parties to negotiate an access agreement from the date the union notifies the employer and the CAC. This is referred to as the ‘negotiation period’ throughout this Code.</p>"
           }
         ],
@@ -2042,55 +2042,55 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "The following provisions of the 2025 Act come into force on 30th October 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "section 60 and Schedule 6 (trade union recognition), so far as not already in force"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "before 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "at a workplace or workplaces decided by the CAC"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by post"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by a combination of the methods described in sub-paragraphs (a) and (b)"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "An application under sub-paragraph (2) is valid only if it is made before the end of the period of 5 working days starting with the day after the day on which the CAC gives the union (or unions) notice"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the period of 20 working days starting with the day after the day on which the CAC gives the union (or unions) notice"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "decide that the union is (or unions are) not to have access to the relevant workers."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__trade-union-recognition-how-to-apply-to-the-cac.json",
+            "source_file": "guidance__trade-union-recognition-how-to-apply-to-the-cac.json",
             "exact_quote": "There is then a 20 working day period for the union and employer to agree access arrangements."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "comes into effect on 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "This Order extends to England and Wales and Scotland."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-guidance.json",
+            "source_file": "batch6-a-code-guidance.json",
             "exact_quote": "<p>16)\tPreparations for access should begin as soon as the union requests access in connection with a relevant application. Requests for access should be in writing, and copies of such requests and responses by the employer should be kept as they may be useful for future use. The normal 20 working days (starting with the day after the day the CAC gives the union notice that the application is accepted) to reach a voluntary access agreement in writing is broken down initially into 5 working days for the union to make a request for access to the relevant workers. At that point, the union may consider what type of access it requires: whether it requests physical, digital or written access, some combination of these or all of these. This is then followed by around 15 working days for the parties to negotiate an access agreement from the date the union notifies the employer and the CAC. This is referred to as the ‘negotiation period’ throughout this Code.</p>"
           }
         ],
@@ -2147,55 +2147,55 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "The following provisions of the 2025 Act come into force on 30th October 2026"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "section 60 and Schedule 6 (trade union recognition), so far as not already in force"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-commencement-1065.xml",
+            "source_file": "batch6-a-commencement-1065.xml",
             "exact_quote": "before 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "at a workplace or workplaces decided by the CAC"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by post"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "by a combination of the methods described in sub-paragraphs (a) and (b)"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the application under paragraph 11 or 12 is withdrawn;"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the CAC gives notice to the union (or unions) of a decision under paragraph 20 that the application is invalid;"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-tulrca-schedule-a1.xml",
+            "source_file": "batch6-a-tulrca-schedule-a1.xml",
             "exact_quote": "the fifth working day after"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__complain-about-unfair-practice-during-a-recognition-ballot.json",
+            "source_file": "guidance__complain-about-unfair-practice-during-a-recognition-ballot.json",
             "exact_quote": "guidance applies to applications received from 30 October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "comes into effect on 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-order-1129.xml",
+            "source_file": "batch6-a-code-order-1129.xml",
             "exact_quote": "This Order extends to England and Wales and Scotland."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-a-code-guidance.json",
+            "source_file": "batch6-a-code-guidance.json",
             "exact_quote": "<p>16)\tPreparations for access should begin as soon as the union requests access in connection with a relevant application. Requests for access should be in writing, and copies of such requests and responses by the employer should be kept as they may be useful for future use. The normal 20 working days (starting with the day after the day the CAC gives the union notice that the application is accepted) to reach a voluntary access agreement in writing is broken down initially into 5 working days for the union to make a request for access to the relevant workers. At that point, the union may consider what type of access it requires: whether it requests physical, digital or written access, some combination of these or all of these. This is then followed by around 15 working days for the parties to negotiate an access agreement from the date the union notifies the employer and the CAC. This is referred to as the ‘negotiation period’ throughout this Code.</p>"
           }
         ],
@@ -2260,19 +2260,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-duty-response.json",
+            "source_file": "batch6-b-duty-response.json",
             "exact_quote": "This duty is intended to come into force on 1 January 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-october-bulletin.json",
+            "source_file": "batch6-b-october-bulletin.json",
             "exact_quote": "The new employer duty to inform workers of their right to join a trade union will now come into force on 1 January 2027, rather than October 2026 as originally anticipated."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-commencement-1065.xml",
+            "source_file": "batch6-b-commencement-1065.xml",
             "exact_quote": "The following provisions of the 2025 Act come into force on 30th October 2026—"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/working-with-trade-unions.json",
+            "source_file": "working-with-trade-unions.json",
             "exact_quote": "All requests should be reasonable. You must allow time off unless you can show that the request is not reasonable."
           }
         ],
@@ -2339,31 +2339,31 @@
         "triggers": [],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-commencement-1065.xml",
+            "source_file": "batch6-b-commencement-1065.xml",
             "exact_quote": "The following provisions of the 2025 Act come into force on 30th October 2026—"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-era-section-65.xml",
+            "source_file": "batch6-b-era-section-65.xml",
             "exact_quote": "the trade union has in the last six months given the employer notice in writing that the employee will be undergoing such training"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-acas-code-full.html",
+            "source_file": "batch6-b-acas-code-full.html",
             "exact_quote": "During this 6-month period, the employer must allow union learning representatives and union equality representatives reasonable time off for training and to carry out their activities."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-commencement-1065.xml",
+            "source_file": "batch6-b-commencement-1065.xml",
             "exact_quote": "where the date of the failure occurs before 30th October 2026."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-commencement-1065.xml",
+            "source_file": "batch6-b-commencement-1065.xml",
             "exact_quote": "has had that function for a continuous period of six months or more"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-tulrca-section-168a.xml",
+            "source_file": "batch6-b-tulrca-section-168a.xml",
             "exact_quote": "the trade union has in the last six months given the employer notice in writing that the employee will be undergoing such training"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-era-extent-158.xml",
+            "source_file": "batch6-b-era-extent-158.xml",
             "exact_quote": "Parts 1, 2 and 4 of this Act extend to England and Wales and Scotland;"
           }
         ],
@@ -2420,19 +2420,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-duty-response.json",
+            "source_file": "batch6-b-duty-response.json",
             "exact_quote": "This duty is intended to come into force on 1 January 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch6-b-october-bulletin.json",
+            "source_file": "batch6-b-october-bulletin.json",
             "exact_quote": "The new employer duty to inform workers of their right to join a trade union will now come into force on 1 January 2027, rather than October 2026 as originally anticipated."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/join-trade-union.json",
+            "source_file": "join-trade-union.json",
             "exact_quote": "<p>If you become a union rep, <a href=\"/rights-of-trade-union-reps\">find out what rights</a> you have.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/join-trade-union.json",
+            "source_file": "join-trade-union.json",
             "exact_quote": "<li>choose not to join a union</li>"
           }
         ],
@@ -2524,112 +2524,112 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the employee was employed for the purposes of a business carried on by the employer"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the reason (or, if more than one, the principal reason) for the dismissal is a reason within subsection (2) or (3)",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the employer sought to vary the employee’s contract of employment to make a restricted variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "did not agree to a number of variations that included the restricted variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "to carry out the same duties, or substantially the same duties, as the employee carried out before being dismissed"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a variation of any term or condition relating to pensions or pension schemes"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a variation of the number of hours which an employee is required to work"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a reduction in the amount of time off which an employee is entitled to take"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the inclusion in a contract of employment of a term enabling the employer to make any variation within any of the preceding paragraphs without the employee’s agreement."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "Subsection (1) does not apply in relation to an employee if on the effective date of termination the employee has not yet started work.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the employer’s ability to carry on the business as a going concern"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the financial sustainability of carrying out the employer’s statutory functions"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "in all the circumstances the employer could not reasonably have avoided the need to make the restricted variation."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "at the time of the dismissal, a relevant intervention direction has effect in relation to the authority"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the matters that must be considered in determining the question whether the dismissal is fair or unfair include the following"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "none of the variations was a restricted variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the reason for the variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "anything offered to the employee by the employer in return for agreeing to the variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "In section 108 (qualifying period of employment), in subsection (3), before paragraph (h) insert—"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "subsection (1) of section 104I (read with subsections (7) to (9) of that section) applies",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "subsection (1) of section 104K (read with subsections (3) to (5) of that section) applies",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-s159.xml",
+            "source_file": "batch7-legal-s159.xml",
             "exact_quote": "The other provisions of this Act come into force in accordance with regulations made by the Secretary of State."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-s159.xml",
+            "source_file": "batch7-legal-s159.xml",
             "exact_quote": "Regulations under subsection (3) may make different provision for different purposes or different areas.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-s158.xml",
+            "source_file": "batch7-legal-s158.xml",
             "exact_quote": "Parts 1, 2 and 4 of this Act extend to England and Wales and Scotland"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-s158.xml",
+            "source_file": "batch7-legal-s158.xml",
             "exact_quote": "an amendment, repeal or revocation made by this Act has the same extent within the United Kingdom as the provision amended, repealed or revoked."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-code-consultation.json",
+            "source_file": "batch7-legal-code-consultation.json",
             "exact_quote": "The government has redrafted the existing version of the code and is now seeking views on these changes before the code is finalised and brought into effect."
           }
         ],
@@ -2691,31 +2691,31 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a variation of the timing or duration of a shift which meets such conditions as may be specified in regulations made by the Secretary of State"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a variation of a description specified in regulations made by the Secretary of State"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "a payment or benefit in kind, a payment or benefit in kind of a specified description, or a payment or benefit in kind other than one of a specified description."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "none of the variations was a restricted variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the reason for the variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "anything offered to the employee by the employer in return for agreeing to the variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employer-relocation-your-rights.json",
+            "source_file": "employer-relocation-your-rights.json",
             "exact_quote": "<p>Employees without a mobility clause in their contract can choose whether or not to move.</p>"
           }
         ],
@@ -2771,15 +2771,15 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/employment-contracts-and-conditions.json",
+            "source_file": "employment-contracts-and-conditions.json",
             "exact_quote": "Employees and employers must stick to a contract until it ends (for example, by an employer or employee giving notice or an employee being dismissed) or until the terms are changed (usually by agreement between the employee and employer)."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the employer sought to vary the employee’s contract of employment to make a restricted variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-s159.xml",
+            "source_file": "batch7-legal-s159.xml",
             "exact_quote": "The other provisions of this Act come into force in accordance with regulations made by the Secretary of State."
           }
         ],
@@ -2839,19 +2839,19 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/informing-consulting-employees-law.json",
+            "source_file": "informing-consulting-employees-law.json",
             "exact_quote": "All employers must inform and consult their employees on:"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/informing-consulting-employees-law.json",
+            "source_file": "informing-consulting-employees-law.json",
             "exact_quote": "start discussions with employees’ representatives within 3 months of receiving a valid request for an agreement"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the reason for the variation"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch7-legal-section28.xml",
+            "source_file": "batch7-legal-section28.xml",
             "exact_quote": "the matters that must be considered in determining the question whether the dismissal is fair or unfair include the following"
           }
         ],
@@ -2925,49 +2925,49 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-9.xml",
+            "source_file": "batch8-section-9.xml",
             "exact_quote": "it is reasonable for the employer to refuse the application on that ground or those grounds.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-9.xml",
+            "source_file": "batch8-section-9.xml",
             "exact_quote": "explain why the employer considers that it is reasonable to refuse the application on that ground or those grounds.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-9.xml",
+            "source_file": "batch8-section-9.xml",
             "exact_quote": "In section 80H (complaints to employment tribunals), in subsection (1)(a), for “comply with” substitute “act in accordance with” .",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-159.xml",
+            "source_file": "batch8-section-159.xml",
             "exact_quote": "The other provisions of this Act come into force in accordance with regulations made by the Secretary of State.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "<h3 id=\"measures-that-will-take-effect-in-october-2027\">Measures that will take effect in October 2027</h3>\n\n<ul>\n  <li>enhanced dismissal protections for pregnant women and new mothers</li>\n  <li>flexible working</li>\n</ul>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-158.xml",
+            "source_file": "batch8-section-158.xml",
             "exact_quote": "Parts 1, 2 and 4 of this Act extend to England and Wales and Scotland;",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-flexible-response.json",
+            "source_file": "batch8-flexible-response.json",
             "exact_quote": "<h3 id=\"planned-requirements-for-consulting-employees-about-their-flexible-working-request\">Planned requirements for consulting employees about their flexible working request</h3>\n\n<h4 id=\"objective-of-the-meeting\">Objective of the meeting</h4>\n\n<p>Employers must hold a meeting before rejecting a flexible working request both to:</p>\n\n<ul>\n  <li>consider the feasibility of the requested arrangement and address challenges where possible</li>\n  <li>explore any suitable alternative arrangements if the requested arrangement is not feasible</li>\n</ul>\n\n<p>The meeting shall be undertaken by the employer with the view to reaching an agreement with the employee.</p>\n\n<h4 id=\"setting-up-the-meeting-1\">Setting up the meeting</h4>\n\n<p>The meeting must take place within the 2-month period for making a decision.</p>\n\n<p>The employer must give the employee fair and reasonable notice before the meeting.</p>\n\n<p>The employee must be informed about the purpose of the meeting in advance.</p>\n\n<h4 id=\"during-the-meeting-1\">During the meeting</h4>\n\n<p>The employer must clearly communicate any challenges they identify with the original request, and consider potential solutions or mitigations with the employee.</p>\n\n<p>If the original request cannot be accommodated, the employer and employee must consider whether there are feasible alternative arrangements.</p>\n\n<h4 id=\"after-the-meeting\">After the meeting</h4>\n\n<p>Employers will be required to provide written notification of both:</p>\n\n<ul>\n  <li>the outcome of the meeting: a summary of conclusions or next steps agreed during the meeting, or confirmation if an arrangement has been agreed – this is not a requirement to take detailed minutes</li>\n  <li>the outcome of the request: the final decision made by the employer about the flexible working request, stating whether the request was approved, rejected, or if an alternative arrangement was formally agreed</li>\n</ul>\n\n<p>Government plans to set this process out in regulations that will come into force in autumn 2027.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-flexible-response.json",
+            "source_file": "batch8-flexible-response.json",
             "exact_quote": "<p>It is our intention that both of these changes will take effect in autumn 2027.</p>"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-era80g.xml",
+            "source_file": "batch8-era80g.xml",
             "exact_quote": "the period of two months beginning with the date on which the application is made, or",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-era80h.xml",
+            "source_file": "batch8-era80h.xml",
             "exact_quote": "that a decision by his employer to reject the application was based on incorrect facts",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           }
@@ -3015,26 +3015,26 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/guidance__get-help-with-flexible-working-in-schools.json",
+            "source_file": "guidance__get-help-with-flexible-working-in-schools.json",
             "exact_quote": "<p>The toolkit includes practical resources for school leaders, trust leaders and teachers to help implement flexible working."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-9.xml",
+            "source_file": "batch8-section-9.xml",
             "exact_quote": "it is reasonable for the employer to refuse the application on that ground or those grounds.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-9.xml",
+            "source_file": "batch8-section-9.xml",
             "exact_quote": "explain why the employer considers that it is reasonable to refuse the application on that ground or those grounds.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-158.xml",
+            "source_file": "batch8-section-158.xml",
             "exact_quote": "Parts 1, 2 and 4 of this Act extend to England and Wales and Scotland;",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-flexible-response.json",
+            "source_file": "batch8-flexible-response.json",
             "exact_quote": "<p>Government plans to set this process out in regulations that will come into force in autumn 2027.</p>"
           }
         ],
@@ -3095,57 +3095,57 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-26.xml",
+            "source_file": "batch8-section-26.xml",
             "exact_quote": "The Secretary of State may, by regulations, make provision about dismissal (other than by reason of redundancy) during, or after, a protected period of pregnancy.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-27.xml",
+            "source_file": "batch8-section-27.xml",
             "exact_quote": "In section 74 (maternity leave: redundancy and dismissal), in subsection (2), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
+            "source_file": "government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
             "exact_quote": "The government is intending for the measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/working-when-pregnant-your-rights.json",
+            "source_file": "working-when-pregnant-your-rights.json",
             "exact_quote": "Pregnant employees have the right to be offered a suitable alternative job (if one is available) if they’re selected for redundancy. This applies even if other colleagues are more suitable for the role."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Protections will begin when an employee informs her employer (either in writing or verbally) that she is pregnant."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has decided that protections will extend throughout pregnancy and Maternity Leave and continue for 6 months following the end of leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will make the enhanced dismissal protections a ‘day one’ right, with no qualifying period, meaning employees will qualify for protections from the first day of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will extend enhanced dismissal protections to Shared Parental Leave, Neonatal Care Leave and Bereaved Partner’s Paternity Leave. Protections will apply during the period of leave and for 6 months following the end of leave where 6 or more continuous weeks of leave is taken."
           }
         ],
@@ -3184,8 +3184,8 @@
             "passage": "<li>earn at least £125 a week (gross) in an 8-week ‘relevant period’</li>",
             "reason": "Cross-page discrepancy: employee /maternity-pay-leave/eligibility states £129 a week. Separately verify the relevant tax-year threshold and fix with that evidence; pregnancy-dismissal legislation supplies no basis to choose a number.",
             "source_files": [
-              "prototypes/content-drafts/sources/maternity-pay-leave.json",
-              "prototypes/content-drafts/sources/employers-maternity-pay-leave.json"
+              "maternity-pay-leave.json",
+              "employers-maternity-pay-leave.json"
             ]
           }
         ],
@@ -3215,53 +3215,53 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-26.xml",
+            "source_file": "batch8-section-26.xml",
             "exact_quote": "The Secretary of State may, by regulations, make provision about dismissal (other than by reason of redundancy) during, or after, a protected period of pregnancy.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-27.xml",
+            "source_file": "batch8-section-27.xml",
             "exact_quote": "In section 74 (maternity leave: redundancy and dismissal), in subsection (2), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
+            "source_file": "government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
             "exact_quote": "The government is intending for the measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Protections will begin when an employee informs her employer (either in writing or verbally) that she is pregnant."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has decided that protections will extend throughout pregnancy and Maternity Leave and continue for 6 months following the end of leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will make the enhanced dismissal protections a ‘day one’ right, with no qualifying period, meaning employees will qualify for protections from the first day of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will extend enhanced dismissal protections to Shared Parental Leave, Neonatal Care Leave and Bereaved Partner’s Paternity Leave. Protections will apply during the period of leave and for 6 months following the end of leave where 6 or more continuous weeks of leave is taken."
           }
         ],
@@ -3300,8 +3300,8 @@
             "passage": "<li>earn on average at least £129 a week</li>",
             "reason": "Employer counterpart states £125. Check the operative tax year independently; no numeric edit authorised by this scoped policy evidence.",
             "source_files": [
-              "prototypes/content-drafts/sources/maternity-pay-leave.json",
-              "prototypes/content-drafts/sources/employers-maternity-pay-leave.json"
+              "maternity-pay-leave.json",
+              "employers-maternity-pay-leave.json"
             ]
           }
         ],
@@ -3331,53 +3331,53 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-26.xml",
+            "source_file": "batch8-section-26.xml",
             "exact_quote": "The Secretary of State may, by regulations, make provision about dismissal (other than by reason of redundancy) during, or after, a protected period of pregnancy.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-27.xml",
+            "source_file": "batch8-section-27.xml",
             "exact_quote": "In section 74 (maternity leave: redundancy and dismissal), in subsection (2), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
+            "source_file": "government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
             "exact_quote": "The government is intending for the measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Protections will begin when an employee informs her employer (either in writing or verbally) that she is pregnant."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has decided that protections will extend throughout pregnancy and Maternity Leave and continue for 6 months following the end of leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will make the enhanced dismissal protections a ‘day one’ right, with no qualifying period, meaning employees will qualify for protections from the first day of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will extend enhanced dismissal protections to Shared Parental Leave, Neonatal Care Leave and Bereaved Partner’s Paternity Leave. Protections will apply during the period of leave and for 6 months following the end of leave where 6 or more continuous weeks of leave is taken."
           }
         ],
@@ -3432,53 +3432,53 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-26.xml",
+            "source_file": "batch8-section-26.xml",
             "exact_quote": "The Secretary of State may, by regulations, make provision about dismissal (other than by reason of redundancy) during, or after, a protected period of pregnancy.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-27.xml",
+            "source_file": "batch8-section-27.xml",
             "exact_quote": "In section 74 (maternity leave: redundancy and dismissal), in subsection (2), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
+            "source_file": "government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers.json",
             "exact_quote": "The government is intending for the measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Protections will begin when an employee informs her employer (either in writing or verbally) that she is pregnant."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government has decided that protections will extend throughout pregnancy and Maternity Leave and continue for 6 months following the end of leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will make the enhanced dismissal protections a ‘day one’ right, with no qualifying period, meaning employees will qualify for protections from the first day of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-pregnancy-response.json",
+            "source_file": "batch8-pregnancy-response.json",
             "exact_quote": "The government will extend enhanced dismissal protections to Shared Parental Leave, Neonatal Care Leave and Bereaved Partner’s Paternity Leave. Protections will apply during the period of leave and for 6 months following the end of leave where 6 or more continuous weeks of leave is taken."
           }
         ],
@@ -3536,27 +3536,27 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Any provision in an agreement between an employer and a worker of the employer (whether a worker’s contract or not) is void in so far as it purports to preclude the worker from making—",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Subsection (1) does not apply to provision in an agreement (an “excepted agreement”) that satisfies such conditions as the Secretary of State may specify by regulations.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Nothing in this section affects the operation of any other enactment or rule of law by virtue of which provision in an agreement may be void.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-159.xml",
+            "source_file": "batch8-section-159.xml",
             "exact_quote": "The other provisions of this Act come into force in accordance with regulations made by the Secretary of State.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "Measures that will take effect in September 2027"
           }
         ],
@@ -3622,27 +3622,27 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Any provision in an agreement between an employer and a worker of the employer (whether a worker’s contract or not) is void in so far as it purports to preclude the worker from making—",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Subsection (1) does not apply to provision in an agreement (an “excepted agreement”) that satisfies such conditions as the Secretary of State may specify by regulations.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-24.xml",
+            "source_file": "batch8-section-24.xml",
             "exact_quote": "Nothing in this section affects the operation of any other enactment or rule of law by virtue of which provision in an agreement may be void.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-section-159.xml",
+            "source_file": "batch8-section-159.xml",
             "exact_quote": "The other provisions of this Act come into force in accordance with regulations made by the Secretary of State.",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch8-timeline.json",
+            "source_file": "batch8-timeline.json",
             "exact_quote": "Measures that will take effect in September 2027"
           }
         ],
@@ -3701,43 +3701,43 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/neonatal-care-pay-leave.json",
+            "source_file": "neonatal-care-pay-leave.json",
             "exact_quote": "<h2 id=\"employment-rights-when-on-leave\">Employment rights when on leave</h2>\n\n<p>Your <a href=\"/employee-rights-when-on-leave\">employment rights</a> are protected while on Neonatal Care Leave. This includes your right to:</p>\n\n<ul>\n  <li>pay rises</li>\n  <li>build up (‘accrue’) holiday</li>\n  <li>return to work</li>\n</ul>"
           }
         ],
@@ -3796,43 +3796,43 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-neonatal-care-pay-leave.json",
+            "source_file": "employers-neonatal-care-pay-leave.json",
             "exact_quote": "<p>An <a href=\"/employee-rights-when-on-leave\">employee’s rights</a> (like the right to pay rises, holidays and returning to a job) are protected during Neonatal Care Leave.</p>"
           }
         ],
@@ -3893,43 +3893,43 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/bereaved-partners-paternity-leave.json",
+            "source_file": "bereaved-partners-paternity-leave.json",
             "exact_quote": "<h2 id=\"your-employment-rights-when-on-leave\">Your employment rights when on leave</h2>\n\n<p>Your <a href=\"/employee-rights-when-on-leave\">employment rights</a> are protected while on leave. </p>\n\n<p>This includes your right to:</p>\n\n<ul>\n  <li>\n    <p>pay rises</p>\n  </li>\n  <li>\n    <p>build up (accrue) holiday</p>\n  </li>\n  <li>\n    <p>return to work</p>\n  </li>\n</ul>"
           }
         ],
@@ -3987,43 +3987,43 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-bereaved-partners-paternity-leave.json",
+            "source_file": "employers-bereaved-partners-paternity-leave.json",
             "exact_quote": "<p>An <a href=\"/employee-rights-when-on-leave\">employee’s rights</a> (like the right to pay rises, holidays and returning to a job) are protected during Bereaved Partner’s Paternity Leave.</p>"
           }
         ],
@@ -4082,52 +4082,52 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           }
         ],
@@ -4188,56 +4188,56 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/employers-adoption-pay-leave.json",
+            "source_file": "employers-adoption-pay-leave.json",
             "exact_quote": "When an employee takes time off to adopt a child or have a child through a surrogacy arrangement they might be eligible for Statutory Adoption Pay and Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "This will ordinarily require an employer to consider whether there are no reasonably viable, less discriminatory alternatives to dismissal."
           }
         ],
@@ -4290,52 +4290,52 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/parental-leave.json",
+            "source_file": "parental-leave.json",
             "exact_quote": "Eligible employees can take Unpaid Parental Leave to look after their child’s welfare, for example to:"
           }
         ],
@@ -4388,52 +4388,52 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/parental-bereavement-pay-leave.json",
+            "source_file": "parental-bereavement-pay-leave.json",
             "exact_quote": "You and your partner may be able to take time off work if your child dies before they turn 18, or if you have a stillbirth after 24 weeks of pregnancy."
           }
         ],
@@ -4488,48 +4488,48 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           }
         ],
@@ -4597,52 +4597,52 @@
         ],
         "evidence": [
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has therefore decided to retain all 5 of the existing fair reasons for dismissal, while strengthening the framework for assessing fairness during the protected period, as set out in the response to questions 12 and 13."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Under this approach, an employer must demonstrate that dismissal is a proportionate means of achieving a legitimate business aim."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government will legislate so that enhanced dismissal protections are a ‘day one’ right, with no qualifying period, aligning with existing automatic unfair dismissal and pregnancy or maternity discrimination protections and ensuring coverage from the start of employment."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Protections will apply from the first day of leave for all eligible leave types."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "For these eligible leaves, the protections will apply from the first day of leave and continue for 6 months after the leave ends, providing comparable protection to those returning from Maternity Leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Consistent with the existing redundancy protection framework, for those taking Shared Parental Leave, Neonatal Care Leave or Bereaved Partner’s Paternity Leave, the end of leave protections will apply where an individual has taken at least 6 weeks of continuous leave."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "The government has considered these views and intends to extend enhanced dismissal protections to parents taking Shared Parental Leave, Bereaved Partner’s Paternity Leave and Adoption Leave because these entitlements broadly align with Maternity Leave in providing a substantial protected period of leave following the arrival of a child."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "Therefore, the existing redundancy protections, including the 18-month protected period will remain in place."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-pregnancy-response.json",
+            "source_file": "batch9-pregnancy-response.json",
             "exact_quote": "These changes will be implemented through regulations, with the government intending for measures to come into force in October 2027."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-section-27.xml",
+            "source_file": "batch9-section-27.xml",
             "exact_quote": "In section 75C (adoption leave: redundancy and dismissal), in subsection (1)(b), after “during” insert “, or after,”",
             "quote_normalisation": "xml_text_collapsed_whitespace"
           },
           {
-            "source_file": "prototypes/content-drafts/sources/batch9-timeline.json",
+            "source_file": "batch9-timeline.json",
             "exact_quote": "All future dates remain subject to parliamentary processes and may change."
           },
           {
-            "source_file": "prototypes/content-drafts/sources/staff-redundant.json",
+            "source_file": "staff-redundant.json",
             "exact_quote": "Redundancy is when you dismiss an employee because you no longer need anyone to do their job. This might be because your business is:"
           }
         ],
@@ -4683,15 +4683,15 @@
         "reviewMode": "single",
         "evidence": [
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "Before producing the first version of the written policy for a place of business, an employer must consult—"
           },
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "An employer must consult persons as described in subsection (2A) as part of every review of the written policy."
           },
           {
-            "source_file": "sources/batch10-section14.xml",
+            "source_file": "batch10-section14.xml",
             "exact_quote": "An employer who has carried out a consultation required by this section in relation to a written policy for a place of business must make a summary of the views expressed in the consultation available in anonymised form to all workers of the employer at the place of business."
           }
         ],
@@ -4744,7 +4744,7 @@
         "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
         "evidence": [
           {
-            "source_file": "sources/government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs.json",
+            "source_file": "government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs.json",
             "exact_quote": "<p>From 1 October 2024, new legislation has been introduced to make sure the distribution of tips and gratuities is fair and transparent. This means that employers, including agencies, are required to pass all tips, gratuities and service charges onto their employees. This legislation does not change how these payments should be assessed for tax and National Insurance contributions.</p>"
           }
         ],
@@ -4794,7 +4794,7 @@
         "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
         "evidence": [
           {
-            "source_file": "sources/running-payroll.json",
+            "source_file": "running-payroll.json",
             "exact_quote": "<p>Treat tips to your staff as normal pay if they’re paid into your till - this includes tips added to your customers’ card or cheque payments. The rules are different if tips are <a href=\"/tips-at-work/tips-and-tax\">given straight to your employees</a> by customers or <a href=\"/employee-gets-tips-gratuities-or-service-charges-through-a-tronc\">paid into a tronc</a>.</p>"
           }
         ],
@@ -4843,7 +4843,7 @@
         "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
         "evidence": [
           {
-            "source_file": "sources/national-minimum-wage.json",
+            "source_file": "national-minimum-wage.json",
             "exact_quote": "tips, service charges and cover charges"
           }
         ],
@@ -4892,7 +4892,7 @@
         "scope": "PAY-05 · Tipping: allocation guidance and payroll boundaries",
         "evidence": [
           {
-            "source_file": "sources/government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version.json",
+            "source_file": "government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version.json",
             "exact_quote": "Further non-statutory guidance will be published in due course to accompany this code of practice to help employers and workers interpret the legislation."
           }
         ],
@@ -4943,7 +4943,7 @@
         "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
         "evidence": [
           {
-            "source_file": "sources/guidance__director-information-hub-unfair-dismissal-and-employment-tribunals.json",
+            "source_file": "guidance__director-information-hub-unfair-dismissal-and-employment-tribunals.json",
             "exact_quote": "<p>Dismissal is when an employer ends an employee’s contract. If you are considering dismissal, you must have a valid reason and act reasonably.</p>"
           }
         ],
@@ -4995,7 +4995,7 @@
         "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
         "evidence": [
           {
-            "source_file": "sources/transfers-takeovers.json",
+            "source_file": "transfers-takeovers.json",
             "exact_quote": "<p>Employers can dismiss employees for an ETO reason involving changes in the workforce, for example redundancies. The normal rules around fair dismissals will still apply.</p>"
           }
         ],
@@ -5046,7 +5046,7 @@
         "scope": "FLX-03 · Fire and rehire: dismissal and contract-change journey",
         "evidence": [
           {
-            "source_file": "sources/government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat.json",
+            "source_file": "government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat.json",
             "exact_quote": "The employer should treat this option as a last resort."
           }
         ],
