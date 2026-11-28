@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="robots" content="noindex,nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Discover pages · Make Work Pay</title>
+  <link rel="stylesheet" href="discovery.css">
+  <link rel="stylesheet" href="workspace-nav.css">
+</head>
+<body class="discovery-workbench">
+  <a class="skip-link" href="#main">Skip to discovery workspace</a>
+
+  <header class="workspace-header"><a class="workspace-brand" href="discovery.html">MWP <span>/ Content review</span></a><nav class="workspace-navigation" aria-label="Workspace"><a href="discovery.html" aria-current="page">Discover</a><a href="drafts.html">Drafts</a></nav><button id="toggleMeasures" type="button" aria-expanded="false" aria-controls="measureRail">Measures</button></header>
+
+  <div class="shell">
+    <aside id="measureRail" class="measure-rail" aria-label="MWP measures">
+      <div class="rail-heading">
+        <h2>Measures</h2>
+        <span id="measureTotal" class="tabular"></span>
+      </div>
+
+      <div class="rail-controls">
+        <label for="measureSearch">Find a measure</label>
+        <input id="measureSearch" type="search" placeholder="Search code or title">
+
+        <details class="measure-options"><summary>Filter measures</summary>
+        <label for="readinessFilter">Readiness</label>
+        <select id="readinessFilter">
+          <option value="">All readiness states</option>
+          <option value="ready">Ready</option>
+          <option value="provisional">Provisional</option>
+          <option value="blocked">Blocked</option>
+        </select>
+
+        </details>
+        <p id="measureCount" class="rail-status" role="status" aria-live="polite"></p>
+        <button id="clearMeasureFilters" type="button" class="text-btn" hidden>Clear measure filters</button>
+      </div>
+
+      <nav id="measureList" class="measure-list" aria-label="Select a measure"></nav>
+      <p id="measureEmpty" class="rail-empty" hidden>No measures match these filters. Clear the filters to inspect all measures.</p>
+
+      <div class="rail-links">
+        <a href="drafts.html">Drafts</a>
+        <button id="railCoverageLink" type="button" class="link-btn">Coverage and gaps</button>
+        <button id="railAssessmentsLink" type="button" class="link-btn">Saved assessments</button>
+      </div>
+    </aside>
+
+    <main id="main" tabindex="-1">
+      <section id="missingState" class="empty-workspace" hidden aria-labelledby="missingTitle">
+        <h1 id="missingTitle">Local discovery export required</h1>
+        <div id="missingBody"></div>
+      </section>
+
+      <div id="activeWorkspace" hidden>
+        <div class="context-bar">
+          <div class="context-heading">
+            <h1 id="measureTitle" tabindex="-1"></h1>
+            <a class="candidate-jump" href="#candidateListHeading">Browse pages</a>
+          </div>
+          <p class="discovery-note">Suggested pages to review. A match does not mean an edit is needed.</p>
+          <details id="searchDetails" class="search-details">
+            <summary>About this search</summary>
+            <div id="measureMeta" class="measure-meta"></div>
+            <div class="context-actions">
+              <a id="draftMeasureLink" class="action-link" href="drafts.html">Drafts</a>
+              <button id="toggleCoverage" type="button" class="tool-btn" aria-expanded="false" aria-controls="coveragePanel">Coverage and gaps</button>
+              <button id="toggleAssessments" type="button" class="tool-btn" aria-expanded="false" aria-controls="assessmentsPanel">Saved reviews (<span id="savedTotalCount" class="tabular">0</span>)</button>
+            </div>
+            <details class="workflow-orientation">
+              <summary>How to review</summary>
+              <p>Choose a measure, select a page and read its captured text. You can record whether it connects to the measure and whether a change may be needed. Your review saves in this browser.</p>
+            </details>
+            <div id="measureEvidenceWrap" class="measure-evidence-wrap" hidden></div>
+          </details>
+        </div>
+
+        <section id="coveragePanel" class="utility-panel" hidden aria-labelledby="coverageHeading">
+          <div class="utility-panel-head">
+            <h2 id="coverageHeading">Coverage and extraction gaps</h2>
+            <button id="closeCoverage" type="button" class="close-btn">Close</button>
+          </div>
+          <div id="coverageBody"></div>
+        </section>
+
+        <section id="assessmentsPanel" class="utility-panel" hidden aria-labelledby="assessmentsHeading">
+          <div class="utility-panel-head">
+            <h2 id="assessmentsHeading">Your saved assessments</h2>
+            <button id="closeAssessments" type="button" class="close-btn">Close</button>
+          </div>
+          <div id="assessmentsBody">
+            <p class="panel-lead">Assessments save only in this browser and are bound to the discovery run, measure, page surface and captured text hash. They are not policy approval, automated classification or a publishing decision.</p>
+            <div class="utility-actions">
+              <button id="exportAssessments" type="button" class="primary">Download assessments (JSON)</button>
+              <button id="importAssessmentsTrigger" type="button">Restore from JSON</button>
+              <input id="importAssessmentsFile" type="file" accept=".json,application/json" hidden>
+            </div>
+            <p id="importExportStatus" class="status-message" role="status" aria-live="polite"></p>
+            <div id="savedAssessmentsSummary"></div>
+          </div>
+        </section>
+
+        <section class="scope-bar" aria-label="Filter candidate pages">
+          <div class="scope-grid">
+            <div class="field-group field-search">
+              <label for="candidateSearch">Find a page</label>
+              <input id="candidateSearch" type="search" placeholder="Search these pages">
+            </div>
+            <div id="screenFilterGroup" class="field-group" hidden>
+              <label for="screenFilter">AI relevance</label>
+              <select id="screenFilter">
+                <option value="substantive_connection">Likely related</option>
+                <option value="related_background">Background</option>
+                <option value="insufficient_evidence">Uncertain</option>
+                <option value="incidental_or_unrelated">Unlikely related</option>
+                <option value="all">All screening results</option>
+              </select>
+            </div>
+          </div>
+          <details class="secondary-filters">
+            <summary>Filter and sort</summary>
+            <div class="secondary-filter-grid">
+            <div class="field-group">
+              <label for="appFilter">Publishing app</label>
+              <select id="appFilter"><option value="">All apps</option></select>
+            </div>
+
+            <div class="field-group">
+              <label for="docTypeFilter">Document type</label>
+              <select id="docTypeFilter"><option value="">All document types</option></select>
+            </div>
+            <div class="field-group">
+              <label for="assessmentFilter">Your assessment</label>
+              <select id="assessmentFilter">
+                <option value="">All candidates</option>
+                <option value="assessed">Assessed on this device</option>
+                <option value="unassessed">Not yet assessed</option>
+                <option value="topic:direct_connection">Topic: Direct connection</option>
+                <option value="topic:connected_guidance">Topic: Connected guidance</option>
+                <option value="topic:incidental">Topic: Incidental</option>
+                <option value="topic:unrelated">Topic: Unrelated</option>
+                <option value="topic:unsure">Topic: Unsure</option>
+                <option value="impact:needs_impact_review">Impact: Needs impact review</option>
+                <option value="impact:possible_edit">Impact: Possible edit</option>
+                <option value="impact:no_change_evidenced">Impact: No change evidenced</option>
+                <option value="impact:unsure">Impact: Unsure</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="draftFilter">Drafts</label>
+              <select id="draftFilter">
+                <option value="">All candidates</option>
+                <option value="linked">In Draft collection</option>
+                <option value="unlinked">No draft entry linked</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="candidateSort">Sort by</label>
+              <select id="candidateSort">
+                <option value="rank">Rank (default)</option>
+                <option value="score">Score (highest)</option>
+                <option value="title">Title (A–Z)</option>
+                <option value="captured">Capture date (newest)</option>
+              </select>
+            </div>
+            </div>
+          </details>
+          <div class="scope-status-row">
+            <p id="candidateCount" class="scope-count" role="status" aria-live="polite"></p>
+            <button id="clearCandidateFilters" type="button" class="text-btn" hidden>Clear filters</button>
+          </div>
+          <p id="workspaceStatus" class="status-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div id="discoverySplit" class="discovery-split">
+          <section class="candidate-pane" aria-labelledby="candidateListHeading">
+            <div class="pane-head">
+              <h2 id="candidateListHeading" tabindex="-1">Pages</h2>
+              <span id="candidatePaneMeta" class="pane-meta tabular"></span>
+            </div>
+            <div id="candidateList" class="candidate-list" role="region" aria-label="Candidate queue"></div>
+            <div id="queuePagination" class="queue-pagination" hidden>
+              <button id="queuePreviousPage" type="button">Previous 100</button>
+              <span id="queuePageLabel" class="tabular"></span>
+              <button id="queueNextPage" type="button">Next 100</button>
+            </div>
+            <div id="candidateEmpty" class="empty-note" hidden></div>
+          </section>
+
+          <article id="detailPane" class="detail-pane" aria-labelledby="detailTitle">
+            <div id="detailEmpty" class="empty-note" hidden>
+              <p>Select a candidate from the list to inspect captured evidence passages, matched queries and record your device-local assessment.</p>
+            </div>
+
+            <div id="detailContent" hidden>
+              <div class="detail-topline">
+                <span id="detailPosition" class="tabular"></span>
+                <div class="detail-nav">
+                  <button id="prevCandidate" type="button">Previous</button>
+                  <button id="nextCandidate" type="button">Next</button>
+                </div>
+              </div>
+
+              <div class="detail-heading">
+                <h2 id="detailTitle" tabindex="-1"></h2>
+                <a id="detailGovukLink" class="external-link" target="_blank" rel="noopener noreferrer" hidden>Open GOV.UK page</a>
+              </div>
+
+              <p id="detailSourceSummary" class="source-summary"></p>
+              <p id="detailScreen" class="machine-note" hidden></p>
+
+              <section id="detailEvidence" class="detail-section" aria-labelledby="evidenceHeading">
+                <h3 id="evidenceHeading">From this page</h3>
+                <div id="detailPassages"></div>
+                <details id="completeTextDetails" class="complete-text-details">
+                  <summary>Read the complete captured text</summary>
+                  <p class="machine-note">This is the source text retained at capture. The live GOV.UK page may have changed.</p>
+                  <button id="loadCompleteText" type="button">Load complete captured text</button>
+                  <p id="completeTextStatus" class="status-message" role="status" aria-live="polite"></p>
+                  <div id="completeText" class="complete-captured-text" hidden></div>
+                </details>
+              </section>
+
+              <details class="extended-source-details">
+                <summary>Page details and related drafts</summary>
+                <dl id="detailMetadata" class="meta-grid"></dl>
+                <div id="detailDraftBox" class="draft-link-box"></div>
+                <section id="detailOtherMeasures" class="detail-section" hidden aria-labelledby="otherMeasuresHeading">
+                  <h3 id="otherMeasuresHeading">Other measures matched to this page</h3>
+                  <div id="otherMeasuresList"></div>
+                </section>
+                <div id="detailLocations"></div>
+              <details id="detailMachineState" class="detail-section">
+                <summary id="machineStateHeading">Why this page was found</summary>
+                <div id="detailQueries"></div>
+                <div id="machineStateBody"></div>
+              </details>
+              <details id="detailProvenance" class="provenance-details">
+                <summary>Technical record and provenance</summary>
+                <div id="detailProvenanceBody"></div>
+              </details>
+              </details>
+
+
+
+              <details class="review-disclosure"><summary>Record your review</summary>
+              <form id="assessmentForm" class="detail-section assessment-section" aria-labelledby="assessmentHeading">
+                <h3 id="assessmentHeading">Your assessment</h3>
+                <p class="assessment-disclaimer">Saved in this browser. This does not approve publication.</p>
+
+                <div class="assessment-fields">
+                  <div class="field-group">
+                    <label for="assessTopic">Does this page connect to the measure?</label>
+                    <select id="assessTopic">
+                      <option value="">Not yet assessed</option>
+                      <option value="direct_connection">Direct connection</option>
+                      <option value="connected_guidance">Connected guidance</option>
+                      <option value="incidental">Incidental</option>
+                      <option value="unrelated">Unrelated</option>
+                      <option value="unsure">Unsure</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label for="assessImpact">Might the page need a change?</label>
+                    <select id="assessImpact">
+                      <option value="">Not yet assessed</option>
+                      <option value="needs_impact_review">Needs impact review</option>
+                      <option value="possible_edit">Possible edit</option>
+                      <option value="no_change_evidenced">No change evidenced</option>
+                      <option value="unsure">Unsure</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-group">
+                  <label for="assessNotes">Your notes</label>
+                  <textarea id="assessNotes" rows="5" placeholder="Evidence notes, edge cases, connected chapters or questions for policy review"></textarea>
+                </div>
+
+                <div class="assessment-actions">
+                  <button id="saveAssessment" type="submit" class="primary">Save assessment</button>
+                  <button id="clearAssessment" type="button" hidden>Clear assessment</button>
+                  <button id="discardUnsaved" type="button" hidden>Discard unsaved changes</button>
+                </div>
+                <p id="assessmentStatus" class="status-message" role="status" aria-live="polite"></p>
+              </form>
+              </details>
+
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    Review prototype · Not official guidance · <a href="drafts.html">Drafts</a>
+  </footer>
+
+  <script src="measures.js"></script>
+  <script src="data.js"></script>
+  <script src="discovery-data.js"></script>
+  <script src="discovery.js"></script>
+</body>
+</html>

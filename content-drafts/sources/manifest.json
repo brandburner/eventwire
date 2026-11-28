@@ -1,0 +1,1178 @@
+[
+  {
+    "name": "dismissal",
+    "url": "https://www.gov.uk/api/content/dismissal",
+    "final_url": "https://www.gov.uk/api/content/dismissal",
+    "captured_at": "2026-11-13T15:35:58.339461+00:00",
+    "sha256": "589fa41290cd3b3a54e075c5529c770be1c5048c189951ea94b594983d33ee54"
+  },
+  {
+    "name": "dismiss-staff",
+    "url": "https://www.gov.uk/api/content/dismiss-staff",
+    "final_url": "https://www.gov.uk/api/content/dismiss-staff",
+    "captured_at": "2026-11-13T15:35:58.529353+00:00",
+    "sha256": "f6cd327d6b85d454bf3fd835734158ac2f0a1b2b55a396a9dccdc332cc6284f7"
+  },
+  {
+    "name": "whistleblowing",
+    "url": "https://www.gov.uk/api/content/whistleblowing",
+    "final_url": "https://www.gov.uk/api/content/whistleblowing",
+    "captured_at": "2026-11-13T15:35:58.670585+00:00",
+    "sha256": "6b67cf4eda18427c2829c748d97dde83825cd44c3ba1b2a4b439c62b04471bfe"
+  },
+  {
+    "name": "era-section-25",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/25/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/25/data.xml",
+    "captured_at": "2026-11-13T15:35:58.947022+00:00",
+    "sha256": "64f0f2068d24a7c9f77e000498b157510a7d686ab19123bf8bbb119197053a01"
+  },
+  {
+    "name": "era-section-23",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/23/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/23/data.xml",
+    "captured_at": "2026-11-13T15:35:59.184433+00:00",
+    "sha256": "c5ef9ffbccd6570a9c77a8ea333a131354062eb3a6ce01f01ae3b97b3b119898"
+  },
+  {
+    "name": "commencement-559",
+    "url": "https://www.legislation.gov.uk/uksi/2026/559/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/559/made/data.xml",
+    "captured_at": "2026-11-13T15:36:57.974133+00:00",
+    "sha256": "ea8734a88232cf76a76e119e2004c139f782fdda047f192be1aeef87cf50a7c7"
+  },
+  {
+    "name": "commencement-323",
+    "url": "https://www.legislation.gov.uk/uksi/2026/323/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/323/made/data.xml",
+    "captured_at": "2026-11-13T15:36:58.293915+00:00",
+    "sha256": "0ea4b56a445aa6af6ed842074880bdbd959827d25ceabb62bd8c7632f92ee373"
+  },
+  {
+    "name": "disclosure-conditions",
+    "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/43B/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1996/18/section/43B/data.xml",
+    "captured_at": "2026-11-13T15:36:58.630050+00:00",
+    "sha256": "8727fbbd2855646500f07487660a048d882ed96e56e82fbb4429f9282263316a"
+  },
+  {
+    "name": "guidance__whistleblowing-guidance-for-employers",
+    "url": "https://www.gov.uk/api/content/guidance/whistleblowing-guidance-for-employers",
+    "final_url": "https://www.gov.uk/api/content/guidance/whistleblowing-guidance-for-employers",
+    "captured_at": "2026-11-13T16:08:05.429739+00:00",
+    "sha256": "2ecf593daef90e6495a77debad0ceda5923c8f69d482880dbff963665eafcede"
+  },
+  {
+    "name": "guidance__whistleblowing-guidance-for-workers",
+    "url": "https://www.gov.uk/api/content/guidance/whistleblowing-guidance-for-workers",
+    "final_url": "https://www.gov.uk/api/content/guidance/whistleblowing-guidance-for-workers",
+    "captured_at": "2026-11-13T16:08:05.626317+00:00",
+    "sha256": "4ef477aff764490fb2e1dd42ab9a2c4b055a1350c435af8918ef741432fb9c4f"
+  },
+  {
+    "name": "guidance__whistleblowing-for-prescribed-persons",
+    "url": "https://www.gov.uk/api/content/guidance/whistleblowing-for-prescribed-persons",
+    "final_url": "https://www.gov.uk/api/content/guidance/whistleblowing-for-prescribed-persons",
+    "captured_at": "2026-11-13T16:08:05.801725+00:00",
+    "sha256": "6d7a339ac52dc41c0015d17d8485d6a3bd2ba71d30be6c54ce18a0d10d971f57"
+  },
+  {
+    "name": "redundancy-your-rights",
+    "url": "https://www.gov.uk/api/content/redundancy-your-rights",
+    "final_url": "https://www.gov.uk/api/content/redundancy-your-rights",
+    "captured_at": "2026-11-13T16:08:05.980150+00:00",
+    "sha256": "bc3e54b638cd3ba5369a6ccb64fb4f596e98d89d5e7b0c4a489cd0fb71d30b13"
+  },
+  {
+    "name": "employment-tribunals",
+    "url": "https://www.gov.uk/api/content/employment-tribunals",
+    "final_url": "https://www.gov.uk/api/content/employment-tribunals",
+    "captured_at": "2026-11-13T16:08:06.196197+00:00",
+    "sha256": "642d3536a44460751bc94400d7bb5d996f7f0baccb37ac5072b1347351ed0913"
+  },
+  {
+    "name": "guidance__explaining-your-protective-award",
+    "url": "https://www.gov.uk/api/content/guidance/explaining-your-protective-award",
+    "final_url": "https://www.gov.uk/api/content/guidance/explaining-your-protective-award",
+    "captured_at": "2026-11-13T16:08:06.346918+00:00",
+    "sha256": "67c9e4699625a92ecac4e1b0a219663e7907379865748c0f7707b6a20977343c"
+  },
+  {
+    "name": "guidance__explaining-your-redundancy-payments",
+    "url": "https://www.gov.uk/api/content/guidance/explaining-your-redundancy-payments",
+    "final_url": "https://www.gov.uk/api/content/guidance/explaining-your-redundancy-payments",
+    "captured_at": "2026-11-13T16:08:06.555331+00:00",
+    "sha256": "0723e703b57d78a926e7d73baa27d811f76e9404bb04cb28aff31d0a721f0dda"
+  },
+  {
+    "name": "employers-paternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-paternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-paternity-pay-leave",
+    "captured_at": "2026-11-13T16:08:06.747001+00:00",
+    "sha256": "e00402e368d0c7c191eb2c11695d0f79e7c5ea99059fa455f45b0ed5aac0e58b"
+  },
+  {
+    "name": "paternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/paternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/paternity-pay-leave",
+    "captured_at": "2026-11-13T16:08:06.936794+00:00",
+    "sha256": "af55abac0685a902fcb75991823d3f41d47e11a83850dbda8b86f70b3406b21b"
+  },
+  {
+    "name": "agency-workers-your-rights",
+    "url": "https://www.gov.uk/api/content/agency-workers-your-rights",
+    "final_url": "https://www.gov.uk/api/content/agency-workers-your-rights",
+    "captured_at": "2026-11-13T16:08:07.111391+00:00",
+    "sha256": "ffd8a3784677b5a3c5a6645ebb2e29e10a6da89c3448aaed33c3c0728dcd45bc"
+  },
+  {
+    "name": "shared-parental-leave-and-pay",
+    "url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay",
+    "final_url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay",
+    "captured_at": "2026-11-13T16:08:07.317718+00:00",
+    "sha256": "d3568dec73b8245f08dd2d714c10c42292dd5aa03d8bff391190c62ce9b9dff5"
+  },
+  {
+    "name": "shared-parental-leave-and-pay-employer-guide",
+    "url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay-employer-guide",
+    "final_url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay-employer-guide",
+    "captured_at": "2026-11-13T16:08:07.513612+00:00",
+    "sha256": "f59e17c0b9ab9a5641be289573835b6ead402308e3b8e948ae15dbd472fa665a"
+  },
+  {
+    "name": "era-section-14",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "captured_at": "2026-11-13T16:08:07.923680+00:00",
+    "sha256": "d0ac6082e49428299005c8b0ce0c6945171a159e76f49aa77a845bfa96bf5919"
+  },
+  {
+    "name": "era-section-17",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/17/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/17/data.xml",
+    "captured_at": "2026-11-13T16:08:54.521350+00:00",
+    "sha256": "e5915cd2cea4cad14fb7d0d2d397d41e4dca4dcb77014312a5c7bd64132b8e2c"
+  },
+  {
+    "name": "commencement-3",
+    "url": "https://www.legislation.gov.uk/uksi/2026/3/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/3/made/data.xml",
+    "captured_at": "2026-11-13T16:08:55.080033+00:00",
+    "sha256": "39740643ef2e4e6764eb33359c613869bd2cb3ca5470ad8e39b0167d4d5e6ce2"
+  },
+  {
+    "name": "statutory-sick-pay",
+    "url": "https://www.gov.uk/api/content/statutory-sick-pay",
+    "final_url": "https://www.gov.uk/api/content/statutory-sick-pay",
+    "captured_at": "2026-11-13T16:29:51.007630+00:00",
+    "sha256": "3b7f78963a7a256ba0331b38ef794097a21a521cbad58f7564605275165074f7"
+  },
+  {
+    "name": "employers-sick-pay",
+    "url": "https://www.gov.uk/api/content/employers-sick-pay",
+    "final_url": "https://www.gov.uk/api/content/employers-sick-pay",
+    "captured_at": "2026-11-13T16:29:51.176145+00:00",
+    "sha256": "944d2e119b6756651f6cbad4e2d299f26ce9ae666d1e2b87ca03fba649d4a78c"
+  },
+  {
+    "name": "guidance__statutory-sick-pay-manually-calculate-your-employees-payments",
+    "url": "https://www.gov.uk/api/content/guidance/statutory-sick-pay-manually-calculate-your-employees-payments",
+    "final_url": "https://www.gov.uk/api/content/guidance/statutory-sick-pay-manually-calculate-your-employees-payments",
+    "captured_at": "2026-11-13T16:29:51.350600+00:00",
+    "sha256": "f391a5343dd5e422d94dce055c483ff6f58023225b50f562633d284a3ba602c1"
+  },
+  {
+    "name": "tips-at-work",
+    "url": "https://www.gov.uk/api/content/tips-at-work",
+    "final_url": "https://www.gov.uk/api/content/tips-at-work",
+    "captured_at": "2026-11-13T16:29:51.524790+00:00",
+    "sha256": "61a09eb28aa79059f4ffbc2b05a3244b2a9c93f140db11756fb72067a69e2c8c"
+  },
+  {
+    "name": "guidance__employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "final_url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "captured_at": "2026-11-13T16:29:51.689558+00:00",
+    "sha256": "ee8ab17cf3dd962afc5b7255410004760e40df173727a53adbd64d48ddb9bdc7"
+  },
+  {
+    "name": "guidance__advanced-notification-of-redundancies-hr1-form",
+    "url": "https://www.gov.uk/api/content/guidance/advanced-notification-of-redundancies-hr1-form",
+    "final_url": "https://www.gov.uk/api/content/guidance/advanced-notification-of-redundancies-hr1-form",
+    "captured_at": "2026-11-13T16:29:51.856286+00:00",
+    "sha256": "4629015571458028fbe54393bb2e66b00559951220e86207a794baf7c9c2c5ea"
+  },
+  {
+    "name": "industrial-action-strikes",
+    "url": "https://www.gov.uk/api/content/industrial-action-strikes",
+    "final_url": "https://www.gov.uk/api/content/industrial-action-strikes",
+    "captured_at": "2026-11-13T16:29:51.998179+00:00",
+    "sha256": "e89ec3e7543e903888b5fc790ddd0ee23160b5b68387822966aa2aebcb64eb2b"
+  },
+  {
+    "name": "international-development-funding__sudan-stability-programme-ssp-call-for-expressions-of-interest",
+    "url": "https://www.gov.uk/api/content/international-development-funding/sudan-stability-programme-ssp-call-for-expressions-of-interest",
+    "final_url": "https://www.gov.uk/api/content/international-development-funding/sudan-stability-programme-ssp-call-for-expressions-of-interest",
+    "captured_at": "2026-11-13T16:29:52.185769+00:00",
+    "sha256": "54798cda8d8f9c5dbfbb4c961137f049ea6233528aa32e0df4549f2b9edff96d"
+  },
+  {
+    "name": "era-section-10",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/10/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/10/data.xml",
+    "captured_at": "2026-11-14T10:27:42.475908+00:00",
+    "sha256": "4cdda004c0e142fe20ddc66a204f56e41a0afec7f9811aef6550a96cbf0f352f"
+  },
+  {
+    "name": "era-section-11",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/11/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/11/data.xml",
+    "captured_at": "2026-11-14T10:27:42.808218+00:00",
+    "sha256": "3ae5bc1477ca107bcbdda63f8f203c9cb8237e51545cf7833044af9890784abc"
+  },
+  {
+    "name": "ssp-periods-152",
+    "url": "https://www.legislation.gov.uk/ukpga/1992/4/section/152/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1992/4/section/152/data.xml",
+    "captured_at": "2026-11-14T10:27:43.353598+00:00",
+    "sha256": "7159a9d5e13e1eedea97e20fb9e670e9fbf8cdac4c61cfa30972969e3967470e"
+  },
+  {
+    "name": "commencement-373",
+    "url": "https://www.legislation.gov.uk/uksi/2026/373/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/373/made/data.xml",
+    "captured_at": "2026-11-14T10:28:21.543221+00:00",
+    "sha256": "456c9187d703df06cf3ecab39ab8e6c420fd10dd58f4edf83a4a0876f84ef3fb"
+  },
+  {
+    "name": "guidance__whistleblowing-to-the-sia",
+    "url": "https://www.gov.uk/api/content/guidance/whistleblowing-to-the-sia",
+    "final_url": "https://www.gov.uk/api/content/guidance/whistleblowing-to-the-sia",
+    "captured_at": "2026-11-14T10:50:32.089540+00:00",
+    "sha256": "27241db4ed911760ae26cfe9eeb59b1c70f2f37e72138b19674f4ff1070627f6"
+  },
+  {
+    "name": "guidance__whistleblowing-report-serious-wrongdoing-to-the-environment-agency",
+    "url": "https://www.gov.uk/api/content/guidance/whistleblowing-report-serious-wrongdoing-to-the-environment-agency",
+    "final_url": "https://www.gov.uk/api/content/guidance/whistleblowing-report-serious-wrongdoing-to-the-environment-agency",
+    "captured_at": "2026-11-14T10:50:32.237097+00:00",
+    "sha256": "57418b8f6002797cd65babc511929132164ec0adcaca43710f00fbdba4f4e094"
+  },
+  {
+    "name": "guidance__protections-for-whistleblowers",
+    "url": "https://www.gov.uk/api/content/guidance/protections-for-whistleblowers",
+    "final_url": "https://www.gov.uk/api/content/guidance/protections-for-whistleblowers",
+    "captured_at": "2026-11-14T10:50:32.387151+00:00",
+    "sha256": "d11b2e800f678a558f9fa4f2b016657ee8c6377a534655c71cdd4f08245ce84e"
+  },
+  {
+    "name": "guidance__seasonal-work-on-farms-guidance-for-workers",
+    "url": "https://www.gov.uk/api/content/guidance/seasonal-work-on-farms-guidance-for-workers",
+    "final_url": "https://www.gov.uk/api/content/guidance/seasonal-work-on-farms-guidance-for-workers",
+    "captured_at": "2026-11-14T10:50:32.563661+00:00",
+    "sha256": "fcdb7a30359c455ca366b37f80b14a830e08b188f457f679e7e5d715276e8453"
+  },
+  {
+    "name": "guidance__your-rights-at-work-homes-for-ukraine",
+    "url": "https://www.gov.uk/api/content/guidance/your-rights-at-work-homes-for-ukraine",
+    "final_url": "https://www.gov.uk/api/content/guidance/your-rights-at-work-homes-for-ukraine",
+    "captured_at": "2026-11-14T10:50:32.751992+00:00",
+    "sha256": "85198961c5d6c5ff1bb893be8e03ecf24a9b80e0246afe331cce163a82b08b9f"
+  },
+  {
+    "name": "guidance__responsibilities-for-employment-businesses-working-with-umbrella-companies",
+    "url": "https://www.gov.uk/api/content/guidance/responsibilities-for-employment-businesses-working-with-umbrella-companies",
+    "final_url": "https://www.gov.uk/api/content/guidance/responsibilities-for-employment-businesses-working-with-umbrella-companies",
+    "captured_at": "2026-11-14T10:50:32.904027+00:00",
+    "sha256": "8c8d87858dc8b18c5b1b66a1e1bf630398d835a1bff7e833be0137455003ecf3"
+  },
+  {
+    "name": "guidance__contact-the-fair-work-agency",
+    "url": "https://www.gov.uk/api/content/guidance/contact-the-fair-work-agency",
+    "final_url": "https://www.gov.uk/api/content/guidance/contact-the-fair-work-agency",
+    "captured_at": "2026-11-14T10:51:41.547110+00:00",
+    "sha256": "a439ed2ad3a5a87c7ad0e0853aab6c301a04a01d9aa0d5ccb6526dd18ab8fe90"
+  },
+  {
+    "name": "government__organisations__fair-work-agency",
+    "url": "https://www.gov.uk/api/content/government/organisations/fair-work-agency",
+    "final_url": "https://www.gov.uk/api/content/government/organisations/fair-work-agency",
+    "captured_at": "2026-11-14T10:51:41.739707+00:00",
+    "sha256": "2cc9e50dab6734f3c1080de8719eef5db2ce12ca73ebee4ed655491fe9f2da15"
+  },
+  {
+    "name": "trade-union-recognition-employers",
+    "url": "https://www.gov.uk/api/content/trade-union-recognition-employers",
+    "final_url": "https://www.gov.uk/api/content/trade-union-recognition-employers",
+    "captured_at": "2026-11-14T11:30:31.635698+00:00",
+    "sha256": "6d63af691f0847159b75a394aed22a66bf130a8c4893f483abe743925e79995e"
+  },
+  {
+    "name": "guidance__trade-union-recognition-how-to-apply-to-the-cac",
+    "url": "https://www.gov.uk/api/content/guidance/trade-union-recognition-how-to-apply-to-the-cac",
+    "final_url": "https://www.gov.uk/api/content/guidance/trade-union-recognition-how-to-apply-to-the-cac",
+    "captured_at": "2026-11-14T11:30:31.849893+00:00",
+    "sha256": "a0382d99af04d59b9296701ee0d52808edea96843eeec361a0d11c4bfb9d4789"
+  },
+  {
+    "name": "guidance__complain-about-unfair-practice-during-a-recognition-ballot",
+    "url": "https://www.gov.uk/api/content/guidance/complain-about-unfair-practice-during-a-recognition-ballot",
+    "final_url": "https://www.gov.uk/api/content/guidance/complain-about-unfair-practice-during-a-recognition-ballot",
+    "captured_at": "2026-11-14T11:30:32.031157+00:00",
+    "sha256": "76ded745448e0eca839b1895d57f823f446e0073063c7b8a6660310be31e851a"
+  },
+  {
+    "name": "batch6-a-era-schedule-6",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/schedule/6/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/schedule/6/data.xml",
+    "captured_at": "2026-11-14T11:30:32.870522+00:00",
+    "sha256": "3ca4d3e3cedb62bde79c523e266e6ad036c5144948fbe83d91f6c2f0375e48aa"
+  },
+  {
+    "name": "batch6-a-era-commencement",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/157/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/157/data.xml",
+    "captured_at": "2026-11-14T11:30:33.129490+00:00",
+    "sha256": "9aedd525160fb29dbd3849d8fc4dfe5b41ef84f221c74fe64cbf63e93585fcf1"
+  },
+  {
+    "name": "batch6-a-commencement-1065",
+    "url": "https://www.legislation.gov.uk/uksi/2026/1065/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/1065/made/data.xml",
+    "captured_at": "2026-11-14T11:31:03.396177+00:00",
+    "sha256": "b499ec12ab447a2d59592e9ede3bd36ec5f9faf64179c9d97baa5f9ecc7c1b71"
+  },
+  {
+    "name": "batch6-a-commencement-373",
+    "url": "https://www.legislation.gov.uk/uksi/2026/373/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/373/made/data.xml",
+    "captured_at": "2026-11-14T11:31:03.658479+00:00",
+    "sha256": "456c9187d703df06cf3ecab39ab8e6c420fd10dd58f4edf83a4a0876f84ef3fb"
+  },
+  {
+    "name": "batch6-a-tulrca-schedule-a1",
+    "url": "https://www.legislation.gov.uk/ukpga/1992/52/schedule/A1/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1992/52/schedule/A1/data.xml",
+    "captured_at": "2026-11-14T11:31:05.582910+00:00",
+    "sha256": "42f05a69832f4cc9802701d57ab6480385b54e4cc5cd489dbf47146e0dc33a9a"
+  },
+  {
+    "name": "batch6-a-transition-guidance",
+    "url": "https://www.gov.uk/api/content/guidance/trade-union-law-transition-to-employment-rights-act-2025",
+    "final_url": "https://www.gov.uk/api/content/guidance/trade-union-law-transition-to-employment-rights-act-2025",
+    "captured_at": "2026-11-14T11:31:05.776298+00:00",
+    "sha256": "648a456811ee39b9b8cce761d7f0d9c7639f2290345c8e563240c38414c4a341"
+  },
+  {
+    "name": "batch6-a-commencement-323",
+    "url": "https://www.legislation.gov.uk/uksi/2026/323/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/323/made/data.xml",
+    "captured_at": "2026-11-14T11:31:32.497829+00:00",
+    "sha256": "0ea4b56a445aa6af6ed842074880bdbd959827d25ceabb62bd8c7632f92ee373"
+  },
+  {
+    "name": "batch6-a-era-extent",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "captured_at": "2026-11-14T11:31:32.774886+00:00",
+    "sha256": "fadf23c88b61965bf71bf2d88330a52e99a9ee880a48973f876d8fdf2e7c99bd"
+  },
+  {
+    "name": "batch6-a-tulrca-old-27b",
+    "url": "https://www.legislation.gov.uk/ukpga/1992/52/schedule/A1/paragraph/27B/2026-10-29/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1992/52/schedule/A1/paragraph/27B/2026-10-29/data.xml",
+    "captured_at": "2026-11-14T11:32:02.053095+00:00",
+    "sha256": "358e4ea9a5f59f9231bc86eca2c96a033ee5f2dbac00a3a5726da3b1b3deb841"
+  },
+  {
+    "name": "batch6-a-era-commencement-159",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "captured_at": "2026-11-14T11:32:02.198495+00:00",
+    "sha256": "8c4cd69301d8022c2b8a27ea67e37d458638cdbcf56d90e3dffd3d641524b895"
+  },
+  {
+    "name": "batch6-a-code-order-1129",
+    "url": "https://www.legislation.gov.uk/uksi/2026/1129/made/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/1129/made/data.xml",
+    "captured_at": "2026-11-14T11:34:33.800002+00:00",
+    "sha256": "37ee6a2160ab16de9bc9145ca89e9a86600bf6fd71cca729578a53804d38d85c"
+  },
+  {
+    "name": "batch6-a-code-guidance",
+    "url": "https://www.gov.uk/api/content/guidance/code-of-practice",
+    "final_url": "https://www.gov.uk/api/content/guidance/code-of-practice",
+    "captured_at": "2026-11-14T11:34:34.084380+00:00",
+    "sha256": "a53f8ceaa4fc1a451b24bd65b9623c38c09be7588cfdd78322988e17c2c00cfa"
+  },
+  {
+    "name": "working-with-trade-unions",
+    "url": "https://www.gov.uk/api/content/working-with-trade-unions",
+    "final_url": "https://www.gov.uk/api/content/working-with-trade-unions",
+    "sha256": "163d798fdad83c4ec1c86b02f6316b8acc8f6f682c8eac613e0bfc1c098be03f",
+    "captured_at": "2026-11-14T11:30:49.122203+00:00"
+  },
+  {
+    "name": "rights-of-trade-union-reps",
+    "url": "https://www.gov.uk/api/content/rights-of-trade-union-reps",
+    "final_url": "https://www.gov.uk/api/content/rights-of-trade-union-reps",
+    "sha256": "d921a6370d5e81f0aac7e267094b38a7e07e514cf15541632d4d9b7748c05f4a",
+    "captured_at": "2026-11-14T11:30:49.284645+00:00"
+  },
+  {
+    "name": "join-trade-union",
+    "url": "https://www.gov.uk/api/content/join-trade-union",
+    "final_url": "https://www.gov.uk/api/content/join-trade-union",
+    "sha256": "8dfa1eb630d925557d7f0a1fadc61a7e505bc163358cd8cb93a10821d3cab623",
+    "captured_at": "2026-11-14T11:30:49.495385+00:00"
+  },
+  {
+    "name": "batch6-b-era-section-58",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/58/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/58/data.xml",
+    "sha256": "0f8a8ef8be0451c55ab13772e677ff438ac0b022fcfbe02dc797216716095890",
+    "captured_at": "2026-11-14T11:30:49.866702+00:00"
+  },
+  {
+    "name": "batch6-b-era-section-64",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/64/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/64/data.xml",
+    "sha256": "cc3e3ea663a238c80b7c802ea3c196c1357eaeb89925376894c422afe9157c46",
+    "captured_at": "2026-11-14T11:30:50.237399+00:00"
+  },
+  {
+    "name": "batch6-b-era-section-65",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/65/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/65/data.xml",
+    "sha256": "76a2b67d78fa3777f24cc0c0a1a982e4446d841289ca4abbb65920bb49780e7a",
+    "captured_at": "2026-11-14T11:30:50.596938+00:00"
+  },
+  {
+    "name": "batch6-b-era-section-159",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "sha256": "8c4cd69301d8022c2b8a27ea67e37d458638cdbcf56d90e3dffd3d641524b895",
+    "captured_at": "2026-11-14T11:30:50.846312+00:00"
+  },
+  {
+    "name": "batch6-b-duty-response",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-duty-to-inform-workers-of-right-to-join-a-union/outcome/government-response-to-the-consultation-on-duty-to-inform-workers-of-their-right-to-join-a-trade-union-executive-summary",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-duty-to-inform-workers-of-right-to-join-a-union/outcome/government-response-to-the-consultation-on-duty-to-inform-workers-of-their-right-to-join-a-trade-union-executive-summary",
+    "sha256": "02f2e8c601b615a8ef193839d28e53278f99b026e3b341b1dc6ffb84dd020844",
+    "captured_at": "2026-11-14T11:30:51.026825+00:00"
+  },
+  {
+    "name": "batch6-b-october-bulletin",
+    "url": "https://www.gov.uk/api/content/government/publications/employer-bulletin-october-2026/october-2026-issue-of-the-employer-bulletin",
+    "final_url": "https://www.gov.uk/api/content/government/publications/employer-bulletin-october-2026/october-2026-issue-of-the-employer-bulletin",
+    "sha256": "ca712ebf2af6b0a07ae56872068471a12e143368c986c1e81b9e946aa988a523",
+    "captured_at": "2026-11-14T11:30:51.258937+00:00"
+  },
+  {
+    "name": "batch6-b-commencement-1065",
+    "url": "https://www.legislation.gov.uk/uksi/2026/1065/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/1065/made/data.xml",
+    "sha256": "b499ec12ab447a2d59592e9ede3bd36ec5f9faf64179c9d97baa5f9ecc7c1b71",
+    "captured_at": "2026-11-14T11:31:22.012510+00:00"
+  },
+  {
+    "name": "batch6-b-acas-code",
+    "url": "https://www.acas.org.uk/acas-code-of-practice-on-time-off-for-trade-union-duties-and-activities",
+    "final_url": "https://www.acas.org.uk/acas-code-of-practice-on-time-off-for-trade-union-duties-and-activities",
+    "sha256": "07aa9298856b4e62393895d11319d2fd10256647f1b082b250735ee738a10c03",
+    "captured_at": "2026-11-14T11:31:22.585890+00:00"
+  },
+  {
+    "name": "batch6-b-era-short-title-160",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/160/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/160/data.xml",
+    "sha256": "8708ffe03a133878f69e4848e886275a40488c17d97d83b012d0bc4a3fd1e7b0",
+    "captured_at": "2026-11-14T11:31:22.888385+00:00"
+  },
+  {
+    "name": "batch6-b-acas-code-full",
+    "url": "https://www.acas.org.uk/acas-code-of-practice-on-time-off-for-trade-union-duties-and-activities/html",
+    "final_url": "https://www.acas.org.uk/acas-code-of-practice-on-time-off-for-trade-union-duties-and-activities/html",
+    "sha256": "a4d83d37a3c1f583504582eca7ccac65ffcb29f934429ccdfb3b579c8d1e7e0a",
+    "captured_at": "2026-11-14T11:32:10.433003+00:00"
+  },
+  {
+    "name": "batch6-b-tulrca-section-168a",
+    "url": "https://www.legislation.gov.uk/ukpga/1992/52/section/168A/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1992/52/section/168A/data.xml",
+    "sha256": "9b2164dfbb1063c70739760bc9500661a579014b108c6e79c78d438d356d6a80",
+    "captured_at": "2026-11-14T11:34:07.002331+00:00"
+  },
+  {
+    "name": "batch6-b-era-extent-158",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "sha256": "fadf23c88b61965bf71bf2d88330a52e99a9ee880a48973f876d8fdf2e7c99bd",
+    "captured_at": "2026-11-14T11:34:22.312045+00:00"
+  },
+  {
+    "name": "batch6-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "sha256": "2b2f8653cccc2c6ec5d8a1b916a88d8f93e6fb6440ba316677c7791a99927656",
+    "captured_at": "2026-11-14T11:32:31.592651+00:00"
+  },
+  {
+    "name": "batch6-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "sha256": "e45223e5aadabd4f4b6c160725f012a119216f8b9bcbdf158822e9bbbd7030a4",
+    "captured_at": "2026-11-14T11:32:32.033658+00:00"
+  },
+  {
+    "name": "batch7-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "captured_at": "2026-11-14T12:24:11.612476+00:00",
+    "sha256": "2b2f8653cccc2c6ec5d8a1b916a88d8f93e6fb6440ba316677c7791a99927656"
+  },
+  {
+    "name": "batch7-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "captured_at": "2026-11-14T12:24:12.113970+00:00",
+    "sha256": "e45223e5aadabd4f4b6c160725f012a119216f8b9bcbdf158822e9bbbd7030a4"
+  },
+  {
+    "name": "your-employment-contract-how-it-can-be-changed",
+    "url": "https://www.gov.uk/api/content/your-employment-contract-how-it-can-be-changed",
+    "final_url": "https://www.gov.uk/api/content/your-employment-contract-how-it-can-be-changed",
+    "captured_at": "2026-11-14T12:24:12.370553+00:00",
+    "sha256": "2c1e2e8d54d8b8cd58b0bbf7aaf6f63fca4e17c287dec63ffdfdb2bebcde04f5"
+  },
+  {
+    "name": "employment-contracts-and-conditions",
+    "url": "https://www.gov.uk/api/content/employment-contracts-and-conditions",
+    "final_url": "https://www.gov.uk/api/content/employment-contracts-and-conditions",
+    "captured_at": "2026-11-14T12:24:12.607896+00:00",
+    "sha256": "5b546d31eff3ecc7985faaa65efacd3d18d0db514aeb7ceec3e09bd6944eda86"
+  },
+  {
+    "name": "batch7-legal-section28",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/28/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/28/data.xml",
+    "captured_at": "2026-11-14T12:24:12.971684+00:00",
+    "sha256": "41c2dce2e88ef9a6f6263e29b256db62c7821fce2fc9119105ab12494a8143e7"
+  },
+  {
+    "name": "batch7-legal-code-publication",
+    "url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice",
+    "final_url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice",
+    "captured_at": "2026-11-14T12:24:13.168699+00:00",
+    "sha256": "efa6a1706f86defbffb80869040577cbca184b1ced57cdfd8493161365904939"
+  },
+  {
+    "name": "batch7-legal-s158",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "captured_at": "2026-11-14T12:25:21.938793+00:00",
+    "sha256": "fadf23c88b61965bf71bf2d88330a52e99a9ee880a48973f876d8fdf2e7c99bd"
+  },
+  {
+    "name": "batch7-legal-s159",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "captured_at": "2026-11-14T12:25:22.094823+00:00",
+    "sha256": "8c4cd69301d8022c2b8a27ea67e37d458638cdbcf56d90e3dffd3d641524b895"
+  },
+  {
+    "name": "batch7-legal-commencement1",
+    "url": "https://www.legislation.gov.uk/uksi/2026/3/data.xml",
+    "final_url": "https://www.legislation.gov.uk/uksi/2026/3/data.xml",
+    "captured_at": "2026-11-14T12:25:22.419136+00:00",
+    "sha256": "761d783ed1bcf7d9065edb22045e6afee68567119fedbb536b7f3438d998299c"
+  },
+  {
+    "name": "batch7-legal-timeline",
+    "url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "final_url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "captured_at": "2026-11-14T12:25:22.684435+00:00",
+    "sha256": "85a40ca2a88107d1aa79f66d46fc4396d06d32b0ae3333d39dc5c59746b3775e"
+  },
+  {
+    "name": "batch7-legal-code-consultation",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-code-of-practice-on-dismissal-and-re-engagement",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-code-of-practice-on-dismissal-and-re-engagement",
+    "captured_at": "2026-11-14T12:25:22.859877+00:00",
+    "sha256": "015d55012da331ade08ef33bd2c7b075a1ab95a601be3fe72e4f44f12c20ae41"
+  },
+  {
+    "name": "batch7-legal-restricted-consultation",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-fire-and-rehire-changes-to-expenses-benefits-and-shift-patterns",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-fire-and-rehire-changes-to-expenses-benefits-and-shift-patterns",
+    "captured_at": "2026-11-14T12:25:23.049048+00:00",
+    "sha256": "bb489945b8cea17235a8bce336a5584238b33f9a347683b5926daef691c7158e"
+  },
+  {
+    "name": "batch7-legal-changes",
+    "url": "https://www.legislation.gov.uk/changes/affected/ukpga/2025/36/data.xml",
+    "final_url": "https://www.legislation.gov.uk/changes/affected/ukpga/2025/36/data.xml",
+    "captured_at": "2026-11-14T12:25:23.763977+00:00",
+    "sha256": "8d8eb05d1d91df940d62031d43bd654d3a8ea2471846e238a7042588fa75faec"
+  },
+  {
+    "name": "batch7-current-dismissal",
+    "url": "https://www.gov.uk/api/content/dismissal",
+    "final_url": "https://www.gov.uk/api/content/dismissal",
+    "captured_at": "2026-11-14T12:25:23.951844+00:00",
+    "sha256": "589fa41290cd3b3a54e075c5529c770be1c5048c189951ea94b594983d33ee54"
+  },
+  {
+    "name": "batch7-current-dismiss-staff",
+    "url": "https://www.gov.uk/api/content/dismiss-staff",
+    "final_url": "https://www.gov.uk/api/content/dismiss-staff",
+    "captured_at": "2026-11-14T12:25:24.143683+00:00",
+    "sha256": "f6cd327d6b85d454bf3fd835734158ac2f0a1b2b55a396a9dccdc332cc6284f7"
+  },
+  {
+    "name": "employer-relocation-your-rights",
+    "url": "https://www.gov.uk/api/content/employer-relocation-your-rights",
+    "final_url": "https://www.gov.uk/api/content/employer-relocation-your-rights",
+    "captured_at": "2026-11-14T12:25:24.313273+00:00",
+    "sha256": "288085f88b8901576bed4785c76baf1f5a2f7a06084d611a8eb707eae09e5f34"
+  },
+  {
+    "name": "batch7-search-1",
+    "url": "https://www.gov.uk/api/search.json?q=changing+employment+contract&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=changing+employment+contract&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T12:25:24.704214+00:00",
+    "sha256": "c5104cb95d911eaea93d527afbf74a042ae2ec6b994c042a603dc989be937084"
+  },
+  {
+    "name": "batch7-search-2",
+    "url": "https://www.gov.uk/api/search.json?q=fire+rehire&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=fire+rehire&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T12:25:25.057096+00:00",
+    "sha256": "b8b91e2a1ebdb186f2df103190f878ed10797c41cb62db1504596652ea8b1cad"
+  },
+  {
+    "name": "batch7-search-3",
+    "url": "https://www.gov.uk/api/search.json?q=dismissal+re+engagement&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=dismissal+re+engagement&count=20&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T12:25:25.419642+00:00",
+    "sha256": "e0a743d40f86e6626c4b690a02267cba2facf149e8cf4db431a26a6293937a94"
+  },
+  {
+    "name": "informing-consulting-employees-law",
+    "url": "https://www.gov.uk/api/content/informing-consulting-employees-law",
+    "final_url": "https://www.gov.uk/api/content/informing-consulting-employees-law",
+    "captured_at": "2026-11-14T12:25:59.158108+00:00",
+    "sha256": "49d3c4cff7b8c6db69672184d2b6cd722d65a7351d446d5b2e821f9394793440"
+  },
+  {
+    "name": "batch7-legal-current-code",
+    "url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "final_url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "captured_at": "2026-11-14T12:25:59.352910+00:00",
+    "sha256": "7f517c348f7e6f668c5e2e65ffa894394ccb8cb669ef399a93fe0c0a02d348bf"
+  },
+  {
+    "name": "batch8-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "captured_at": "2026-11-14T13:48:49.641556+00:00",
+    "sha256": "2b2f8653cccc2c6ec5d8a1b916a88d8f93e6fb6440ba316677c7791a99927656"
+  },
+  {
+    "name": "batch8-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "captured_at": "2026-11-14T13:48:49.999655+00:00",
+    "sha256": "e45223e5aadabd4f4b6c160725f012a119216f8b9bcbdf158822e9bbbd7030a4"
+  },
+  {
+    "name": "batch8-timeline",
+    "url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "final_url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "captured_at": "2026-11-14T13:48:50.191942+00:00",
+    "sha256": "85a40ca2a88107d1aa79f66d46fc4396d06d32b0ae3333d39dc5c59746b3775e"
+  },
+  {
+    "name": "batch8-section-9",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/9/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/9/data.xml",
+    "captured_at": "2026-11-14T13:48:50.667955+00:00",
+    "sha256": "f118c3eeb31aa79851ed5b1520e7936b83856b1458b6c694714c825af93efb96"
+  },
+  {
+    "name": "batch8-section-24",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/24/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/24/data.xml",
+    "captured_at": "2026-11-14T13:48:50.886898+00:00",
+    "sha256": "6010c9bf6f160a3c0e5b0b4fa3274d22698d14eb10f24fd3925223c5ca4a636f"
+  },
+  {
+    "name": "batch8-section-26",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/26/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/26/data.xml",
+    "captured_at": "2026-11-14T13:48:51.143364+00:00",
+    "sha256": "db4c025ecfd71542d3f0abe327d5bf82c2906234be6b82ecfb7bd7ce7d10e590"
+  },
+  {
+    "name": "batch8-section-27",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/27/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/27/data.xml",
+    "captured_at": "2026-11-14T13:48:51.383059+00:00",
+    "sha256": "96426b6bb4a90b7f98e1fccefa93de4aa901498f3b49b87272a32c550978f8f8"
+  },
+  {
+    "name": "batch8-section-67",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/67/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/67/data.xml",
+    "captured_at": "2026-11-14T13:48:51.719459+00:00",
+    "sha256": "11ad8a7a17ca83d64424dcdfa0e543898d1ed41257e15b03bc45e54ec2938502"
+  },
+  {
+    "name": "batch8-section-158",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/158/data.xml",
+    "captured_at": "2026-11-14T13:48:51.942321+00:00",
+    "sha256": "fadf23c88b61965bf71bf2d88330a52e99a9ee880a48973f876d8fdf2e7c99bd"
+  },
+  {
+    "name": "batch8-section-159",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/159/data.xml",
+    "captured_at": "2026-11-14T13:48:52.252874+00:00",
+    "sha256": "8c4cd69301d8022c2b8a27ea67e37d458638cdbcf56d90e3dffd3d641524b895"
+  },
+  {
+    "name": "flexible-working",
+    "url": "https://www.gov.uk/api/content/flexible-working",
+    "final_url": "https://www.gov.uk/api/content/flexible-working",
+    "captured_at": "2026-11-14T13:48:52.415815+00:00",
+    "sha256": "656fba3e1706d94aabbfb24e06339fab2e60dba3e428b2556eef7e72db4d3c83"
+  },
+  {
+    "name": "guidance__get-help-with-flexible-working-in-schools",
+    "url": "https://www.gov.uk/api/content/guidance/get-help-with-flexible-working-in-schools",
+    "final_url": "https://www.gov.uk/api/content/guidance/get-help-with-flexible-working-in-schools",
+    "captured_at": "2026-11-14T13:48:52.578281+00:00",
+    "sha256": "8aa83cddda4aded385a4c0b5385bee7fccf3018ea482e1be232b0e392264b08e"
+  },
+  {
+    "name": "working-when-pregnant-your-rights",
+    "url": "https://www.gov.uk/api/content/working-when-pregnant-your-rights",
+    "final_url": "https://www.gov.uk/api/content/working-when-pregnant-your-rights",
+    "captured_at": "2026-11-14T13:48:52.732006+00:00",
+    "sha256": "fb46b65f4a47079ade5dfd837b7789ef19685e7b17f9c13c3c5ac15351029d23"
+  },
+  {
+    "name": "employers-maternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-maternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-maternity-pay-leave",
+    "captured_at": "2026-11-14T13:48:52.897931+00:00",
+    "sha256": "914ad8ed4ac61f9f53714f7979682b9d0db4d1421f8fa8050caefc4622ace538"
+  },
+  {
+    "name": "maternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/maternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/maternity-pay-leave",
+    "captured_at": "2026-11-14T13:48:53.097332+00:00",
+    "sha256": "5629ed13010d7b9c5962046b7ad4fb2c7f5d0ff258abff486f80161511386e08"
+  },
+  {
+    "name": "discrimination-your-rights",
+    "url": "https://www.gov.uk/api/content/discrimination-your-rights",
+    "final_url": "https://www.gov.uk/api/content/discrimination-your-rights",
+    "captured_at": "2026-11-14T13:48:53.261487+00:00",
+    "sha256": "29df7e10bb43e8e42503fb8bbc0dc32e06f31e5234d7d88112b85c095d959a4e"
+  },
+  {
+    "name": "workplace-bullying-and-harassment",
+    "url": "https://www.gov.uk/api/content/workplace-bullying-and-harassment",
+    "final_url": "https://www.gov.uk/api/content/workplace-bullying-and-harassment",
+    "captured_at": "2026-11-14T13:48:53.423138+00:00",
+    "sha256": "1954c00499a075beeadd7a276575a45926c4908d1c70c40eea0ea72bd0d3920d"
+  },
+  {
+    "name": "government__publications__non-disclosure-agreements",
+    "url": "https://www.gov.uk/api/content/government/publications/non-disclosure-agreements",
+    "final_url": "https://www.gov.uk/api/content/government/publications/non-disclosure-agreements",
+    "captured_at": "2026-11-14T13:48:53.574088+00:00",
+    "sha256": "a9b2a41cf02a4e854268cdd1ca94a77e05a858e64a01593a6a6bd883dee508b9"
+  },
+  {
+    "name": "government__consultations__make-work-pay-misuse-of-non-disclosure-agreements-ndas",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-misuse-of-non-disclosure-agreements-ndas",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-misuse-of-non-disclosure-agreements-ndas",
+    "captured_at": "2026-11-14T13:48:53.720116+00:00",
+    "sha256": "b80fc57fbc26618f9edf133000387acfc4395369fe67d72389b80bf2fa602343"
+  },
+  {
+    "name": "government__consultations__make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "captured_at": "2026-11-14T13:48:53.887844+00:00",
+    "sha256": "c990c4aaa8e2e50c0c47d47d94132c6a453e1d5bf8561168e7c226bcf839061f"
+  },
+  {
+    "name": "batch8-search-1",
+    "url": "https://www.gov.uk/api/search.json?q=make+work+pay+blacklisting&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=make+work+pay+blacklisting&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T13:48:54.216978+00:00",
+    "sha256": "abbef5a691344bdee59a7d3b35e61c242a9d692f62f008dabf9db7428ac5cb4b"
+  },
+  {
+    "name": "batch8-search-2",
+    "url": "https://www.gov.uk/api/search.json?q=make+work+pay+flexible+working&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=make+work+pay+flexible+working&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T13:48:54.626626+00:00",
+    "sha256": "6b61cf8ad92b2d44afc8de7b367f1db78112484a925e2efc15582688fba55cef"
+  },
+  {
+    "name": "batch8-search-3",
+    "url": "https://www.gov.uk/api/search.json?q=non+disclosure+agreements+employment+rights+2027&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=non+disclosure+agreements+employment+rights+2027&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T13:48:55.071314+00:00",
+    "sha256": "e1a6364dfc548952e94544ca4a26dbbb118be2f6bdb2b3b04873d9fb0f9f1ae4"
+  },
+  {
+    "name": "batch8-search-4",
+    "url": "https://www.gov.uk/api/search.json?q=pregnant+dismissal+protections+2027&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "final_url": "https://www.gov.uk/api/search.json?q=pregnant+dismissal+protections+2027&count=15&fields=title%2Clink%2Cdescription%2Cformat",
+    "captured_at": "2026-11-14T13:48:55.355197+00:00",
+    "sha256": "09888321a258908af8bf30f374072421c2083094cb5e50182e22c42693f65d87"
+  },
+  {
+    "name": "batch8-flexible-consultation",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-improving-access-to-flexible-working",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-improving-access-to-flexible-working",
+    "captured_at": "2026-11-14T13:52:24.987912+00:00",
+    "sha256": "9b413943d96ea50c529848dd95a16550095dcfdd4d56d729a9a6f306a1c7a302"
+  },
+  {
+    "name": "batch8-era80g",
+    "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/80G/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1996/18/section/80G/data.xml",
+    "captured_at": "2026-11-14T13:52:25.355060+00:00",
+    "sha256": "cb3a7cecafd230e0efca2e07d6ae03f9fb314b186c285604c4a5657e3693372c"
+  },
+  {
+    "name": "batch8-era80h",
+    "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/80H/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1996/18/section/80H/data.xml",
+    "captured_at": "2026-11-14T13:52:25.679830+00:00",
+    "sha256": "db8d728b68ba4d12f66ac9ef754217a9a8aa3a256972da5a9768656efcf73741"
+  },
+  {
+    "name": "batch8-pregnancy-response",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers/outcome/government-response-to-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers/outcome/government-response-to-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "captured_at": "2026-11-14T13:52:25.905196+00:00",
+    "sha256": "a114049fd88c01b0efdac9aa2e40e731a458b3694e65e43c2de9fac081b6da4b"
+  },
+  {
+    "name": "employee-rights-when-on-leave",
+    "url": "https://www.gov.uk/api/content/employee-rights-when-on-leave",
+    "final_url": "https://www.gov.uk/api/content/employee-rights-when-on-leave",
+    "captured_at": "2026-11-14T13:52:26.097487+00:00",
+    "sha256": "9801a2cc0705c6f84f84c55ae7a77d406f0796b191db6855fe6fe9f422052028"
+  },
+  {
+    "name": "batch8-ip-nda",
+    "url": "https://www.gov.uk/api/content/government/publications/non-disclosure-agreements/non-disclosure-agreements",
+    "final_url": "https://www.gov.uk/api/content/government/publications/non-disclosure-agreements/non-disclosure-agreements",
+    "captured_at": "2026-11-14T13:52:26.274702+00:00",
+    "sha256": "2737e11239851227c5cf73010c7aa1702615824a38efbe63a9fafc12ff292408"
+  },
+  {
+    "name": "batch8-nda-consultation-pdf",
+    "url": "https://assets.publishing.service.gov.uk/media/69de4a68b0b0b93055e04f7e/make-work-pay-consultation-on-misuse-of-ndas.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/69de4a68b0b0b93055e04f7e/make-work-pay-consultation-on-misuse-of-ndas.pdf",
+    "captured_at": "2026-11-14T13:52:26.603443+00:00",
+    "sha256": "bdfbd51b042a263c05dc203e72a47a36ad54a5df0ebf2970f98a49c0503d9c6e"
+  },
+  {
+    "name": "batch8-flexible-response",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-improving-access-to-flexible-working/outcome/consultation-on-improving-access-to-flexible-working-government-response-web-version",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-improving-access-to-flexible-working/outcome/consultation-on-improving-access-to-flexible-working-government-response-web-version",
+    "captured_at": "2026-11-14T13:54:11.745168+00:00",
+    "sha256": "d0805dfc144726dacc81b6f52e0efb686ae7d3597df58e8149325eae795c895a"
+  },
+  {
+    "name": "batch8-selfemployed-consultation",
+    "url": "https://www.gov.uk/api/content/government/consultations/makework-pay-employment-status-reform-and-protections-for-the-self-employed",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/makework-pay-employment-status-reform-and-protections-for-the-self-employed",
+    "captured_at": "2026-11-14T13:55:15.994418+00:00",
+    "sha256": "28e9b7c5e5c10c2eeae709d184a30190077813c50342913109217fe3d34063e1"
+  },
+  {
+    "name": "batch8-selfemployed-pdf",
+    "url": "https://assets.publishing.service.gov.uk/media/6ae22da4c591dbfc31fb6798/employment-status-reform-and-protections-for-the-self-employed.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/6ae22da4c591dbfc31fb6798/employment-status-reform-and-protections-for-the-self-employed.pdf",
+    "captured_at": "2026-11-14T13:55:16.522765+00:00",
+    "sha256": "d63277bcb68733dbf7962c9fe5831338f0f97bdcc34cb59866c33294048a561d"
+  },
+  {
+    "name": "batch9-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "captured_at": "2026-11-14T16:54:59.237053+00:00",
+    "sha256": "2b2f8653cccc2c6ec5d8a1b916a88d8f93e6fb6440ba316677c7791a99927656"
+  },
+  {
+    "name": "batch9-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "captured_at": "2026-11-14T16:54:54.151787+00:00",
+    "sha256": "6b725d4a7fc614b85fe170df018489729c31448ba4f3bc9f0ce5039da1cf9c27"
+  },
+  {
+    "name": "batch9-pregnancy-response",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers/outcome/government-response-to-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers/outcome/government-response-to-enhanced-dismissal-protections-for-pregnant-women-and-new-mothers",
+    "captured_at": "2026-11-14T16:54:53.962087+00:00",
+    "sha256": "a114049fd88c01b0efdac9aa2e40e731a458b3694e65e43c2de9fac081b6da4b"
+  },
+  {
+    "name": "batch9-timeline",
+    "url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "final_url": "https://www.gov.uk/api/content/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+    "captured_at": "2026-11-14T16:54:53.909627+00:00",
+    "sha256": "85a40ca2a88107d1aa79f66d46fc4396d06d32b0ae3333d39dc5c59746b3775e"
+  },
+  {
+    "name": "batch9-section-26",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/26/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/26/data.xml",
+    "captured_at": "2026-11-14T16:54:54.256962+00:00",
+    "sha256": "db4c025ecfd71542d3f0abe327d5bf82c2906234be6b82ecfb7bd7ce7d10e590"
+  },
+  {
+    "name": "batch9-section-27",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/27/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/27/data.xml",
+    "captured_at": "2026-11-14T16:54:54.359757+00:00",
+    "sha256": "96426b6bb4a90b7f98e1fccefa93de4aa901498f3b49b87272a32c550978f8f8"
+  },
+  {
+    "name": "adoption-pay-leave",
+    "url": "https://www.gov.uk/api/content/adoption-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/adoption-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.359850+00:00",
+    "sha256": "3ce555bee239f1029258c4161ee10b67522fc2efaea92ad03bb41faa88a69c72"
+  },
+  {
+    "name": "employers-adoption-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-adoption-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-adoption-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.446577+00:00",
+    "sha256": "630bb161ac4a5ac06cec89cc5e8a77b59b6096d784fe42a0d510f9a24fbe3c73"
+  },
+  {
+    "name": "neonatal-care-pay-leave",
+    "url": "https://www.gov.uk/api/content/neonatal-care-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/neonatal-care-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.559804+00:00",
+    "sha256": "cbf42e4f8e98d65da415995fdf7efe66bf50ffc1a8c146f3916fe264b70dbaf5"
+  },
+  {
+    "name": "employers-neonatal-care-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-neonatal-care-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-neonatal-care-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.550166+00:00",
+    "sha256": "c8763c4d14a675a5c8064450f917147d70faa5aa4a33b5b3d2df6fe55f975b64"
+  },
+  {
+    "name": "bereaved-partners-paternity-leave",
+    "url": "https://www.gov.uk/api/content/bereaved-partners-paternity-leave",
+    "final_url": "https://www.gov.uk/api/content/bereaved-partners-paternity-leave",
+    "captured_at": "2026-11-14T16:54:54.670093+00:00",
+    "sha256": "8b7ba48c1a035eb0cfec28d4bf41dedc1ed1e677c76ba7727abcfeedfc260c81"
+  },
+  {
+    "name": "employers-bereaved-partners-paternity-leave",
+    "url": "https://www.gov.uk/api/content/employers-bereaved-partners-paternity-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-bereaved-partners-paternity-leave",
+    "captured_at": "2026-11-14T16:54:54.717544+00:00",
+    "sha256": "299af55bcfc998f3e9eaa93888cf3a2dfe524b987c5283ca15883c2a589d294d"
+  },
+  {
+    "name": "parental-leave",
+    "url": "https://www.gov.uk/api/content/parental-leave",
+    "final_url": "https://www.gov.uk/api/content/parental-leave",
+    "captured_at": "2026-11-14T16:54:54.733836+00:00",
+    "sha256": "0ba57b0ba261001596d27930d224eb4c7a03e68973584d88e04879cf4b2beaa2"
+  },
+  {
+    "name": "parental-bereavement-pay-leave",
+    "url": "https://www.gov.uk/api/content/parental-bereavement-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/parental-bereavement-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.866229+00:00",
+    "sha256": "dda334d64cfdf99b20c4a6a8a4163522b8c05280c77ea0d4a2f552e784704a37"
+  },
+  {
+    "name": "employers-parental-bereavement-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-parental-bereavement-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-parental-bereavement-pay-leave",
+    "captured_at": "2026-11-14T16:54:54.898504+00:00",
+    "sha256": "d5ebfe4ea2b7959c1c134add2ec4c9ef5a87046263b5eeae7c52dfd1b2079ea2"
+  },
+  {
+    "name": "batch9-current-shared-parental-leave-and-pay",
+    "url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay",
+    "final_url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay",
+    "captured_at": "2026-11-14T16:54:54.952980+00:00",
+    "sha256": "d3568dec73b8245f08dd2d714c10c42292dd5aa03d8bff391190c62ce9b9dff5"
+  },
+  {
+    "name": "batch9-current-shared-parental-leave-and-pay-employer-guide",
+    "url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay-employer-guide",
+    "final_url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay-employer-guide",
+    "captured_at": "2026-11-14T16:54:55.060769+00:00",
+    "sha256": "f59e17c0b9ab9a5641be289573835b6ead402308e3b8e948ae15dbd472fa665a"
+  },
+  {
+    "name": "batch9-current-paternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/paternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/paternity-pay-leave",
+    "captured_at": "2026-11-14T16:54:55.075632+00:00",
+    "sha256": "af55abac0685a902fcb75991823d3f41d47e11a83850dbda8b86f70b3406b21b"
+  },
+  {
+    "name": "batch9-current-employers-paternity-pay-leave",
+    "url": "https://www.gov.uk/api/content/employers-paternity-pay-leave",
+    "final_url": "https://www.gov.uk/api/content/employers-paternity-pay-leave",
+    "captured_at": "2026-11-14T16:54:55.144148+00:00",
+    "sha256": "e00402e368d0c7c191eb2c11695d0f79e7c5ea99059fa455f45b0ed5aac0e58b"
+  },
+  {
+    "name": "staff-redundant",
+    "url": "https://www.gov.uk/api/content/staff-redundant",
+    "final_url": "https://www.gov.uk/api/content/staff-redundant",
+    "captured_at": "2026-11-14T16:54:55.278116+00:00",
+    "sha256": "577c5228dbfbd6a033e4dd28ec407604205c723439e9d4f5daebd052bd12f37c"
+  },
+  {
+    "name": "batch10-tips",
+    "url": "https://www.gov.uk/api/content/tips-at-work",
+    "final_url": "https://www.gov.uk/api/content/tips-at-work",
+    "captured_at": "2026-11-20T10:44:33.172356+00:00",
+    "sha256": "58c44574244fb6590adf5ff86edf67f5ff26ae8438f108f95791ffa805374a5a"
+  },
+  {
+    "name": "batch10-tronc",
+    "url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "final_url": "https://www.gov.uk/api/content/guidance/employee-gets-tips-gratuities-or-service-charges-through-a-tronc",
+    "captured_at": "2026-11-20T10:44:33.332929+00:00",
+    "sha256": "ee8ab17cf3dd962afc5b7255410004760e40df173727a53adbd64d48ddb9bdc7"
+  },
+  {
+    "name": "batch10-employer",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "captured_at": "2026-11-20T10:44:33.501154+00:00",
+    "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08"
+  },
+  {
+    "name": "batch10-section14",
+    "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/2025/36/section/14/data.xml",
+    "captured_at": "2026-11-20T10:44:33.803717+00:00",
+    "sha256": "d0ac6082e49428299005c8b0ce0c6945171a159e76f49aa77a845bfa96bf5919"
+  },
+  {
+    "name": "batch10-section27I",
+    "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/27I/data.xml",
+    "final_url": "https://www.legislation.gov.uk/ukpga/1996/18/section/27I/data.xml",
+    "captured_at": "2026-11-20T10:44:34.347922+00:00",
+    "sha256": "945d7aaa950eafb321698b616d5a217f628374f6098a7c9e15f3c81d37bf47c9"
+  },
+  {
+    "name": "batch10-outcome",
+    "url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-tipping-code-of-practice",
+    "final_url": "https://www.gov.uk/api/content/government/consultations/make-work-pay-revised-tipping-code-of-practice",
+    "captured_at": "2026-11-20T10:44:34.503894+00:00",
+    "sha256": "809e3ac640b585e730e46e30b43effc3c86de9175b477396243c5893412e516c"
+  },
+  {
+    "name": "batch10-code",
+    "url": "https://assets.publishing.service.gov.uk/media/6af733ff740e16c0699ca83f/draft-revised-tipping-code-of-practice.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/6af733ff740e16c0699ca83f/draft-revised-tipping-code-of-practice.pdf",
+    "captured_at": "2026-11-20T10:44:34.813355+00:00",
+    "sha256": "c2a844f9b3b3c61e9c98d17aa0e0d708018ff545b5ede1bb698066b3397292ab"
+  },
+  {
+    "name": "batch10-response",
+    "url": "https://assets.publishing.service.gov.uk/media/6afae9f59be17c68c69ca897/government-response-to-consultation-on-revised-tipping-code-of-practice.pdf",
+    "final_url": "https://assets.publishing.service.gov.uk/media/6afae9f59be17c68c69ca897/government-response-to-consultation-on-revised-tipping-code-of-practice.pdf",
+    "captured_at": "2026-11-20T10:44:35.049710+00:00",
+    "sha256": "39d348c5f67cd19e4e33d37a8edc455e0098cebfe7206cb8be753975b3777346"
+  },
+  {
+    "name": "batch10-eventwire-queue",
+    "url": "https://brandburner.github.io/eventwire/queue.json",
+    "final_url": "https://brandburner.github.io/eventwire/queue.json",
+    "captured_at": "2026-11-20T10:44:36.145926+00:00",
+    "sha256": "998bb3b074ef2df04d8c7746a62afc2e35917f0c0d32fbdc508f524fe125bf33"
+  },
+  {
+    "name": "batch10-eventwire-wire_desk",
+    "url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "final_url": "https://brandburner.github.io/eventwire/wire_desk.json",
+    "captured_at": "2026-11-20T10:44:36.528827+00:00",
+    "sha256": "ac83484d666d8999edc666c8d32fde79c5917417a2f918996189decc2b03cbf9"
+  },
+  {
+    "name": "government__publications__distributing-tips-fairly-non-statutory-guidance-for-employers__distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-non-statutory-guidance-for-employers/distributing-tips-fairly-non-statutory-guidance-for-employers",
+    "captured_at": "2026-11-20T10:44:33.501154+00:00",
+    "sha256": "330fceafe7dd7c88518440ee8655e215ca7139c722ab34299f88fe58cffadf08"
+  },
+  {
+    "name": "government__publications__e24-tips-gratuities-service-charges-and-troncs__guidance-on-tips-gratuities-service-charges-and-troncs",
+    "url": "https://www.gov.uk/api/content/government/publications/e24-tips-gratuities-service-charges-and-troncs/guidance-on-tips-gratuities-service-charges-and-troncs",
+    "final_url": "https://www.gov.uk/api/content/government/publications/e24-tips-gratuities-service-charges-and-troncs/guidance-on-tips-gratuities-service-charges-and-troncs",
+    "captured_at": "2026-11-21T00:05:45.697396Z",
+    "sha256": "9ee298ee20ac5b1cf3d32ba7ec4334d04b32bb331f694c442acb3b52c938415f"
+  },
+  {
+    "name": "running-payroll",
+    "url": "https://www.gov.uk/api/content/running-payroll",
+    "final_url": "https://www.gov.uk/api/content/running-payroll",
+    "captured_at": "2026-11-22T16:06:05.508639Z",
+    "sha256": "37c2042c1566221155a84451d69a6344ed408c824100b3070197a2b68a2881da"
+  },
+  {
+    "name": "national-minimum-wage",
+    "url": "https://www.gov.uk/api/content/national-minimum-wage",
+    "final_url": "https://www.gov.uk/api/content/national-minimum-wage",
+    "captured_at": "2026-11-22T16:00:08.898776Z",
+    "sha256": "a266b81723362185d49522c02558dfd934772655db707781a66cb6ab981c79c3"
+  },
+  {
+    "name": "government__publications__distributing-tips-fairly-statutory-code-of-practice__code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-statutory-code-of-practice/code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "final_url": "https://www.gov.uk/api/content/government/publications/distributing-tips-fairly-statutory-code-of-practice/code-of-practice-on-fair-and-transparent-distribution-of-tips-html-version",
+    "captured_at": "2026-11-20T23:13:33.484843Z",
+    "sha256": "ef0f003536fe4351e814c1c3b60b8ce2c1678c71e55cc48de4e20becaab3093d"
+  },
+  {
+    "name": "guidance__director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "url": "https://www.gov.uk/api/content/guidance/director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "final_url": "https://www.gov.uk/api/content/guidance/director-information-hub-unfair-dismissal-and-employment-tribunals",
+    "captured_at": "2026-11-20T21:41:51.234009Z",
+    "sha256": "9c4388b4d5d2d848767bac0061b4ed8d2c461a1eccfd6a1e2b8e35caffaf1895"
+  },
+  {
+    "name": "transfers-takeovers",
+    "url": "https://www.gov.uk/api/content/transfers-takeovers",
+    "final_url": "https://www.gov.uk/api/content/transfers-takeovers",
+    "captured_at": "2026-11-22T15:56:38.228646Z",
+    "sha256": "6c238699ce3a9ad496b786ac6529517087614dbce4b2e96be853d1726fd2fe80"
+  },
+  {
+    "name": "government__publications__dismissal-and-re-engagement-code-of-practice__code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "final_url": "https://www.gov.uk/api/content/government/publications/dismissal-and-re-engagement-code-of-practice/code-of-practice-on-dismissal-and-re-engagement-issued-by-the-secretary-of-state-under-section-203-of-the-trade-union-and-labour-relations-consolidat",
+    "captured_at": "2026-11-21T01:22:32.239399Z",
+    "sha256": "96f1746b58b798597e0bb78e5344e77cc834ba951a2a2477ce065624baca36ca"
+  }
+]

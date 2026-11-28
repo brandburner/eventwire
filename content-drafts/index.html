@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MWP / Content review</title>
+<script>
+// Keep old draft bookmarks working while making Discover the workspace entry.
+const url = new URL(location.href);
+const draftKeys = ['page', 'measure', 'topic', 'decision', 'sort'];
+const isDraftLink = draftKeys.some(key => url.searchParams.has(key)) || url.hash === '#editorial';
+url.pathname = url.pathname.replace(/[^/]*$/, isDraftLink ? 'drafts.html' : 'discovery.html');
+location.replace(url.href);
+</script>
+</head>
+<body>
+<p><a href="discovery.html">Discover pages</a> · <a href="drafts.html">Review drafts</a></p>
+</body>
+</html>
